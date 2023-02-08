@@ -212,7 +212,12 @@ VALUES	('Anulado'),
 
 INSERT INTO estado_producto(estado_producto)
 VALUES	('En existencia'),
-				('Agotado')
+				('Agotado');
+
+INSERT INTO estado_usuario(estado_usuario)
+VALUES	('Activo'),
+				('Inactivo'),
+				('Bloqueado');
 
 INSERT INTO genero(genero)
 VALUES	('Femenino'),
@@ -221,3 +226,14 @@ VALUES	('Femenino'),
 INSERT INTO tipo_cliente(tipo_cliente)
 VALUES	('Estandar'),
 				('Afiliado');
+
+INSERT INTO tipo_material(tipo_material)
+VALUES	('Aglomerado'),
+				('Madera contrachapada'),
+				('Virutas orientadas');
+
+INSERT INTO tipo_usuario(tipo_usuario)
+VALUES	('root'), -- superusuario
+				('Gerente'),
+				('Empleado general'),
+				('Cajero')
