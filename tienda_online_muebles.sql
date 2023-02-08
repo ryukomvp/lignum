@@ -1,0 +1,173 @@
+CREATE TABLE cargo(
+  id_cargo serial not null PRIMARY KEY,
+  cargo varchar(20)
+);
+
+CREATE TABLE estado_empleado(
+  id_estado_empleado serial not null PRIMARY KEY,
+  estado_empleado varchar(20)
+);
+
+CREATE TABLE estado_pedido(
+  id_estado_pedido serial not null PRIMARY KEY,
+  estado_empleado varchar(20)
+);
+
+CREATE TABLE estado_producto(
+  id_estado_producto serial not null PRIMARY KEY,
+  estado_producto varchar(20)
+);
+
+CREATE TABLE estado_usuario(
+  id_estado_usuario serial not null PRIMARY KEY,
+  estado_usuario varchar(20)
+);
+
+CREATE TABLE genero(
+  id_genero serial not null PRIMARY KEY,
+  genero varchar(20)
+);
+
+-- revision
+CREATE TABLE tipo_cliente(
+  id_tipo_cliente serial not null PRIMARY KEY,
+  tipo_cliente varchar(20)
+);
+
+-- revision
+CREATE TABLE tipo_material(
+  id_tipo_material serial not null PRIMARY KEY,
+  tipo_material varchar(20)
+);
+
+CREATE TABLE tipo_usuario(
+  id_tipo_usuario serial not null PRIMARY KEY,
+  tipo_usuario varchar(20)
+);
+
+CREATE TABLE cliente(
+	id_cliente serial not null PRIMARY KEY,
+	nombre_cliente varchar(70) not null,
+	apellido_cliente varchar(70) not null,
+	dui_cliente varchar(10) null,
+	correo_cliente varchar(120) not null,
+	telefono_cliente varchar(9),
+	id_genero int not null,
+	id_tipo_cliente int not null,
+
+	usuario_publico varchar(20) not null,
+	clave varchar(2048) not null,
+	id_estado_usuario int not null,
+	
+	CONSTRAINT dui_cliente_unique UNIQUE (dui_cliente),
+	CONSTRAINT usuario_publico_unique UNIQUE (usuario_publico)
+);
+
+CREATE TABLE empleado(
+	id_empleado serial not null PRIMARY KEY,
+	nombre_empleado varchar(70) not null,
+	apellido_empleado varchar(70) not null,
+	dui_empleado varchar(10) not null,
+	correo_empleado varchar(120) not null,
+	telefono_empleado varchar(9),
+	id_genero int not null,
+	id_cargo int not null,
+	
+	CONSTRAINT dui_empleado_unique UNIQUE (dui_empleado)
+);
+
+CREATE TABLE pedido(
+	id_pedido serial not null PRIMARY KEY,
+	codigo_pedido varchar(10) not null,
+	descripcion_pedido varchar(120) not null,
+	total float not null,
+	id_cliente int not null,
+	id_estado_pedido  int not null,
+	
+	CONSTRAINT codigo_pedido_unique UNIQUE (codigo_pedido)
+);
+
+CREATE TABLE detalle_pedido(
+	id_detalle_pedido serial not null PRIMARY KEY,
+	id_pedido int not null,
+	id_producto int not null,
+	precio_producto float not null
+);
+
+CREATE TABLE producto(
+	id_producto serial not null PRIMARY KEY,
+	nomre_producto varchar(70) not null,
+	descripcion_producto varchar(120) not null,
+	precio_producto float not null,
+
+	codigo_producto varchar(10) not null,
+	dimensiones varchar(100) not null,
+	id_tipo_material int not null,
+	id_estado_producto int not null,
+	id_proveedor int not null,
+	
+	CONSTRAINT codigo_producto_unique UNIQUE (codigo_producto)
+);
+
+CREATE TABLE proveedor(
+	id_proveedor serial not null PRIMARY KEY,
+	nombre_proveedor varchar(120) not null,
+	direccion_proveedor varchar(256) not null,
+	correo_proveedor varchar(120) not null,
+	telefono_proveedor varchar(9) not null
+);
+
+CREATE TABLE usuario_privado(
+	id_usuario_privado serial not null PRIMARY KEY,
+	usuario_privado varchar(20) not null,
+	clave varchar(2048) not null,
+	id_empleado int not null,
+	id_tipo_usuario int not null,
+	id_estado_usuario int not null,
+	
+	CONSTRAINT usuario_privado_unique UNIQUE (usuario_privado)
+);
+
+ALTER TABLE cliente
+ADD CONSTRAINT cliente_genero_fkey FOREIGN KEY (id_genero)
+REFERENCES genero(id_genero);
+
+ALTER TABLE empleado
+ADD CONSTRAINT empleado_genero_fkey FOREIGN KEY (id_genero)
+REFERENCES genero(id_genero);
+
+ALTER TABLE empleado
+ADD CONSTRAINT empleado_cargo_fkey FOREIGN KEY (id_cargo)
+REFERENCES cargo(id_cargo);
+
+ALTER TABLE pedido
+ADD CONSTRAINT pedido_estado_fkey FOREIGN KEY (id_estado_pedido)
+REFERENCES estado_pedido(id_estado_pedido);
+
+ALTER TABLE detalle_pedido
+ADD CONSTRAINT detalle_pedido_fkey FOREIGN KEY (id_pedido)
+REFERENCES pedido(id_pedido);
+
+ALTER TABLE detalle_pedido
+ADD CONSTRAINT pedido_producto_fkey FOREIGN KEY (id_producto)
+REFERENCES producto(id_producto);
+
+ALTER TABLE usuario_privado
+ADD CONSTRAINT usuario_privado_empleado_fkey FOREIGN KEY (id_empleado)
+REFERENCES empleado(id_empleado);
+
+ALTER TABLE producto
+ADD CONSTRAINT proveedor_producto_fkey FOREIGN KEY (id_proveedor)
+REFERENCES proveedor(id_proveedor);
+
+ALTER TABLE producto
+ADD CONSTRAINT material_producto_fkey FOREIGN KEY (id_tipo_material)
+REFERENCES tipo_material(id_tipo_material);
+
+ALTER TABLE usuario_privado
+ADD CONSTRAINT usuario_privado_tipo_fkey FOREIGN KEY (id_tipo_usuario)
+REFERENCES tipo_usuario(id_tipo_usuario);
+
+ALTER TABLE usuario_privado
+ADD CONSTRAINT usuario_privado_estado_fkey FOREIGN KEY (id_estado_usuario)
+REFERENCES estado_usuario(id_estado_usuario);
