@@ -94,7 +94,8 @@ CREATE TABLE detalle_pedido(
 	id_detalle_pedido serial not null PRIMARY KEY,
 	id_pedido int not null,
 	id_producto int not null,
-	precio_producto float not null
+	precio_producto float not null,
+	cantidad int null -- en caso de llevar más de un producto puede especificar aqui
 );
 
 CREATE TABLE producto(
@@ -107,8 +108,10 @@ CREATE TABLE producto(
 	dimensiones varchar(100) not null,
 	id_categoria int not null,
 	id_tipo_material int not null,
-	id_estado_producto int not null,
 	id_proveedor int not null,
+	id_estado_producto int not null,
+	cantidad_existencias int not null,
+	
 	
 	CONSTRAINT codigo_producto_unique UNIQUE (codigo_producto)
 );
@@ -206,6 +209,10 @@ VALUES	('Anulado'),
 				('Completado'),
 				('En revisión'),
 				('Procesando');
+
+INSERT INTO estado_producto(estado_producto)
+VALUES	('En existencia'),
+				('Agotado')
 
 INSERT INTO genero(genero)
 VALUES	('Femenino'),
