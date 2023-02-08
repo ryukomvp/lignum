@@ -3,6 +3,11 @@ CREATE TABLE cargo(
   cargo varchar(20)
 );
 
+CREATE TABLE categoria(
+	id_categoria serial not null PRIMARY KEY,
+	categoria varchar(20)
+);
+
 CREATE TABLE estado_empleado(
   id_estado_empleado serial not null PRIMARY KEY,
   estado_empleado varchar(20)
@@ -28,13 +33,11 @@ CREATE TABLE genero(
   genero varchar(20)
 );
 
--- revision
 CREATE TABLE tipo_cliente(
   id_tipo_cliente serial not null PRIMARY KEY,
   tipo_cliente varchar(20)
 );
 
--- revision
 CREATE TABLE tipo_material(
   id_tipo_material serial not null PRIMARY KEY,
   tipo_material varchar(20)
@@ -102,6 +105,7 @@ CREATE TABLE producto(
 
 	codigo_producto varchar(10) not null,
 	dimensiones varchar(100) not null,
+	id_categoria int not null,
 	id_tipo_material int not null,
 	id_estado_producto int not null,
 	id_proveedor int not null,
@@ -157,6 +161,10 @@ ADD CONSTRAINT usuario_privado_empleado_fkey FOREIGN KEY (id_empleado)
 REFERENCES empleado(id_empleado);
 
 ALTER TABLE producto
+ADD CONSTRAINT categoria_producto_fkey FOREIGN KEY (id_categoria)
+REFERENCES categoria(id_categoria);
+
+ALTER TABLE producto
 ADD CONSTRAINT proveedor_producto_fkey FOREIGN KEY (id_proveedor)
 REFERENCES proveedor(id_proveedor);
 
@@ -171,3 +179,38 @@ REFERENCES tipo_usuario(id_tipo_usuario);
 ALTER TABLE usuario_privado
 ADD CONSTRAINT usuario_privado_estado_fkey FOREIGN KEY (id_estado_usuario)
 REFERENCES estado_usuario(id_estado_usuario);
+
+INSERT INTO cargo(cargo)
+VALUES	('Gerente general'),
+				('Asistente de gerencia'),
+				('Carpinteria general'),
+				('Mozo de almacen'),
+				('Encargado de limpieza');
+
+INSERT INTO categoria(categoria)
+VALUES	('Cocina'),
+				('Gamer'),
+				('Jardin'),
+				('Oficina'),
+				('Sala de estar');
+
+INSERT INTO estado_empleado(id_estado_empleado)
+VALUES	('Activo'),
+				('Inactivo'),
+				('Incapacitado'),
+				('Ausente justificado'),
+				('Ausente sin motivo');
+
+INSERT INTO estado_pedido(estado_pedido)
+VALUES	('Anulado'),
+				('Completado'),
+				('En revisión'),
+				('Procesando');
+
+INSERT INTO genero(genero)
+VALUES	('Femenino'),
+				('Masculino');
+
+INSERT INTO tipo_cliente(tipo_cliente)
+VALUES	('Estandar'),
+				('Afiliado');
