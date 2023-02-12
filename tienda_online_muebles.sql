@@ -62,8 +62,8 @@ CREATE TABLE cliente(
 	clave varchar(2048) not null,
 	id_estado_usuario int not null,
 	
-	CONSTRAINT dui_cliente_unique UNIQUE (dui_cliente),
-	CONSTRAINT usuario_publico_unique UNIQUE (usuario_publico)
+	CONSTRAINT dui_cliente UNIQUE (dui_cliente),
+	CONSTRAINT usuario_publico UNIQUE (usuario_publico)
 );
 
 CREATE TABLE empleado(
@@ -76,7 +76,7 @@ CREATE TABLE empleado(
 	id_genero int not null,
 	id_cargo int not null,
 	
-	CONSTRAINT dui_empleado_unique UNIQUE (dui_empleado)
+	CONSTRAINT dui_empleado UNIQUE (dui_empleado)
 );
 
 CREATE TABLE pedido(
@@ -87,7 +87,7 @@ CREATE TABLE pedido(
 	id_cliente int not null,
 	id_estado_pedido  int not null,
 	
-	CONSTRAINT codigo_pedido_unique UNIQUE (codigo_pedido)
+	CONSTRAINT codigo_pedido UNIQUE (codigo_pedido)
 );
 
 CREATE TABLE detalle_pedido(
@@ -113,7 +113,7 @@ CREATE TABLE producto(
 	cantidad_existencias int not null,
 	
 	
-	CONSTRAINT codigo_producto_unique UNIQUE (codigo_producto)
+	CONSTRAINT codigo_producto UNIQUE (codigo_producto)
 );
 
 CREATE TABLE proveedor(
@@ -132,23 +132,23 @@ CREATE TABLE usuario_privado(
 	id_tipo_usuario int not null,
 	id_estado_usuario int not null,
 	
-	CONSTRAINT usuario_privado_unique UNIQUE (usuario_privado)
+	CONSTRAINT usuario_privado UNIQUE (usuario_privado)
 );
 
 ALTER TABLE cliente
-ADD CONSTRAINT cliente_genero_fkey FOREIGN KEY (id_genero)
+ADD CONSTRAINT cliente_genero FOREIGN KEY (id_genero)
 REFERENCES genero(id_genero);
 
 ALTER TABLE empleado
-ADD CONSTRAINT empleado_genero_fkey FOREIGN KEY (id_genero)
+ADD CONSTRAINT empleado_genero FOREIGN KEY (id_genero)
 REFERENCES genero(id_genero);
 
 ALTER TABLE empleado
-ADD CONSTRAINT empleado_cargo_fkey FOREIGN KEY (id_cargo)
+ADD CONSTRAINT empleado_cargo FOREIGN KEY (id_cargo)
 REFERENCES cargo(id_cargo);
 
 ALTER TABLE pedido
-ADD CONSTRAINT pedido_estado_fkey FOREIGN KEY (id_estado_pedido)
+ADD CONSTRAINT pedido_estado FOREIGN KEY (id_estado_pedido)
 REFERENCES estado_pedido(id_estado_pedido);
 
 ALTER TABLE detalle_pedido
