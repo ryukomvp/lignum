@@ -206,6 +206,15 @@ VALUES	('Anulado'),
 				('Completado'),
 				('En revisión'),
 				('Procesando');
+			
+INSERT INTO estado_producto(estado_producto)
+VALUES	('Inexistente'),
+				('En existencia'),
+				('En camino');
+
+INSERT INTO estado_usuario(estado_usuario)
+VALUES	('Inhabilitado'),
+                ('Habilitado'),
 
 INSERT INTO genero(genero)
 VALUES	('Femenino'),
