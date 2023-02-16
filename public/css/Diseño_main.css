@@ -8,14 +8,12 @@
 
 .wrapper{
   float: left;
-  width: 200px;
-  height: 150px;
+  width: 160px;
+  height: 280px;
   margin-top: 10px;
   background-color: #e0e0e0;
 }
 .card{
-  float: left;
-  width:210px;
   background-color: #e0e0e0;
 }
 .sidenav-trigger{
@@ -23,5 +21,10 @@
 }
 
 #search-container{
-  width: 170px;
+  width: 150px;
+}
+
+.button-value{
+  margin-top: 5px;
+  margin-right: 30px;
 }
