@@ -15,7 +15,7 @@ CREATE TABLE estado_empleado(
 
 CREATE TABLE estado_pedido(
   id_estado_pedido serial not null PRIMARY KEY,
-  estado_empleado varchar(20)
+  estado_pedido varchar(20)
 );
 
 CREATE TABLE estado_producto(
@@ -83,7 +83,6 @@ CREATE TABLE pedido(
 	id_pedido serial not null PRIMARY KEY,
 	codigo_pedido varchar(10) not null,
 	descripcion_pedido varchar(120) not null,
-	total float not null,
 	id_cliente int not null,
 	id_estado_pedido  int not null,
 	
@@ -95,7 +94,8 @@ CREATE TABLE detalle_pedido(
 	id_pedido int not null,
 	id_producto int not null,
 	precio_producto float not null,
-	cantidad int null -- en caso de llevar más de un producto puede especificar aqui
+	cantidad int null, -- en caso de llevar más de un producto puede especificar aqui
+	id_valoracion int not null
 );
 
 CREATE TABLE producto(
@@ -135,20 +135,34 @@ CREATE TABLE usuario_privado(
 	CONSTRAINT usuario_privado UNIQUE (usuario_privado)
 );
 
+CREATE TABLE valoracion(
+	id_valoracion serial not null PRIMARY KEY,
+	puntaje int null,
+	comentario varchar null
+);
+
 ALTER TABLE cliente
-ADD CONSTRAINT cliente_genero FOREIGN KEY (id_genero)
+ADD CONSTRAINT cliente_genero_fkey FOREIGN KEY (id_genero)
+REFERENCES genero(id_genero);
+
+ALTER TABLE cliente
+ADD CONSTRAINT tipo_cliente_fkey FOREIGN KEY (id_tipo_cliente)
+REFERENCES tipo_cliente(id_tipo_cliente);
+
+ALTER TABLE cliente
+ADD CONSTRAINT estado_usuario_fkey FOREIGN KEY (id_estado_usuario)
+REFERENCES estado_usuario(id_estado_usuario);
+
+ALTER TABLE empleado
+ADD CONSTRAINT empleado_genero_fkey FOREIGN KEY (id_genero)
 REFERENCES genero(id_genero);
 
 ALTER TABLE empleado
-ADD CONSTRAINT empleado_genero FOREIGN KEY (id_genero)
-REFERENCES genero(id_genero);
-
-ALTER TABLE empleado
-ADD CONSTRAINT empleado_cargo FOREIGN KEY (id_cargo)
+ADD CONSTRAINT empleado_cargo_fkey FOREIGN KEY (id_cargo)
 REFERENCES cargo(id_cargo);
 
 ALTER TABLE pedido
-ADD CONSTRAINT pedido_estado FOREIGN KEY (id_estado_pedido)
+ADD CONSTRAINT pedido_estado_fkey FOREIGN KEY (id_estado_pedido)
 REFERENCES estado_pedido(id_estado_pedido);
 
 ALTER TABLE detalle_pedido
@@ -159,9 +173,9 @@ ALTER TABLE detalle_pedido
 ADD CONSTRAINT pedido_producto_fkey FOREIGN KEY (id_producto)
 REFERENCES producto(id_producto);
 
-ALTER TABLE usuario_privado
-ADD CONSTRAINT usuario_privado_empleado_fkey FOREIGN KEY (id_empleado)
-REFERENCES empleado(id_empleado);
+ALTER TABLE detalle_pedido
+ADD CONSTRAINT pedido_valoracion_fkey FOREIGN KEY (id_valoracion)
+REFERENCES valoracion(id_valoracion);
 
 ALTER TABLE producto
 ADD CONSTRAINT categoria_producto_fkey FOREIGN KEY (id_categoria)
@@ -174,6 +188,10 @@ REFERENCES proveedor(id_proveedor);
 ALTER TABLE producto
 ADD CONSTRAINT material_producto_fkey FOREIGN KEY (id_tipo_material)
 REFERENCES tipo_material(id_tipo_material);
+
+ALTER TABLE usuario_privado
+ADD CONSTRAINT usuario_privado_empleado_fkey FOREIGN KEY (id_empleado)
+REFERENCES empleado(id_empleado);
 
 ALTER TABLE usuario_privado
 ADD CONSTRAINT usuario_privado_tipo_fkey FOREIGN KEY (id_tipo_usuario)
