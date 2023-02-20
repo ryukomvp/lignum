@@ -1,0 +1,66 @@
+body{
+  background-image: url(https://images.hola.com/imagenes/decoracion/20221005218469/muebles-salon-con-almacenaje-il/1-147-555/mueble-salon-01t-t.jpg);
+  background-size: 100%;
+}
+
+.container{
+  display: flex;
+  align-items: center;
+  margin-top: 5%;
+}
+
+.titulo{
+  font-family: 'Times New Roman', Times, serif;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+}
+
+.input{
+  height: 50px;
+  width: auto;
+  margin-top: 10px;
+  background-color: #eeeeee;
+  border-radius: 100px;
+  padding: 14px!important;
+}
+
+.input input{
+  width: 155px;
+  position: relative;
+  padding-left: 30px;
+  border-style: none;
+  background-color: transparent;
+  outline: none;
+}
+
+.input i{
+  position: absolute;
+  color: darkgray;
+  z-index: 999;
+  transition: all 2s ease 0s;
+}
+
+.btn_ingresar{
+  border-radius: 100px;
+  background-color: gray;
+}
+
+/* .btn_ingresar:hover{
+  background-color: black;
+} */
+
+.sesion-clave{
+  display: flex;
+}
+
+.clave{
+  text-align: right;
+}
+
+.clave a{
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+  font-weight: bold;
+}
