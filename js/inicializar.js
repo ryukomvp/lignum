@@ -12,4 +12,12 @@ card.addEventListener('mouseenter', function() {
 card.addEventListener('mouseleave', function() {
   card.style.boxShadow = '0 4px 8px 0 rgba(0, 0, 0, 0.2)';
 });
- 
+
+var instance = M.Carousel.init({
+  fullWidth: true
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.carousel');
+  var instances = M.Carousel.init(elems);
+});
