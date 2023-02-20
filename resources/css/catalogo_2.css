@@ -24,33 +24,9 @@ main {
   font-family: Arial;
 }
 
-.wrapper {
-  float: left;
-  width: 160px;
-  height: 280px;
-  margin-top: 10px;
-  background-color: #e0e0e0;
-}
-
-.sidenav-trigger {
-  float: left;
-}
-
-.button-value {
-  margin-top: 5px;
-  margin-right: 30px;
-}
-
 .Menu {
   margin: auto;
   text-align: center;
   font-family: Arial;
 }
 
-.Categorias {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  margin: auto;
-  text-align: center;
-  font-family: Arial;
-}
