@@ -94,8 +94,7 @@ CREATE TABLE detalle_pedido(
 	id_pedido int not null,
 	id_producto int not null,
 	precio_producto float not null,
-	cantidad int null, -- en caso de llevar más de un producto puede especificar aqui
-	id_valoracion int not null
+	cantidad int null -- en caso de llevar más de un producto puede especificar aqui
 );
 
 CREATE TABLE producto(
@@ -138,7 +137,8 @@ CREATE TABLE usuario_privado(
 CREATE TABLE valoracion(
 	id_valoracion serial not null PRIMARY KEY,
 	puntaje int null,
-	comentario varchar null
+	comentario varchar null,
+	id_detalle_pedido int not null
 );
 
 ALTER TABLE cliente
@@ -173,9 +173,9 @@ ALTER TABLE detalle_pedido
 ADD CONSTRAINT pedido_producto_fkey FOREIGN KEY (id_producto)
 REFERENCES producto(id_producto);
 
-ALTER TABLE detalle_pedido
-ADD CONSTRAINT pedido_valoracion_fkey FOREIGN KEY (id_valoracion)
-REFERENCES valoracion(id_valoracion);
+ALTER TABLE valoracion
+ADD CONSTRAINT pedido_valoracion_fkey FOREIGN KEY (id_detalle_pedido)
+REFERENCES detalle_pedido(id_detalle_pedido);
 
 ALTER TABLE producto
 ADD CONSTRAINT categoria_producto_fkey FOREIGN KEY (id_categoria)
