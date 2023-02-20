@@ -76,5 +76,14 @@ img {
   float: right;
   height: 30px;
   background-color: #00acc1;
+  color: white;
 
+}
+
+.precio{
+  float: right;
+}
+
+.cantidad{
+  float: right;
 }
