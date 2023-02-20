@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--Definicion del lenguaje-->
 <html lang="es">
 
 <head>
@@ -12,10 +13,12 @@
     <link rel="stylesheet" href="../public/css/Diseño_main.css">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--Titulo de la ventana-->
     <title>Catalogo</title>
 </head>
 
 <body>
+    <!--Barra de navegacion-->
     <nav>
         <div class="nav-wrapper">
             <a href="" class="brand-logo">Logo</a>
@@ -27,6 +30,7 @@
         </div>
     </nav>
 
+    <!--Menu lateral-->
     <ul id="slide-out" class="sidenav">
         <li>
             <div class="user-view">
@@ -53,10 +57,12 @@
     </ul>
     <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
+    <!--Barra de busqueda-->
     <div class="wrapper">
         <div id="search-container">
             <input type="search" id="search-input" placeholder="Buscar producto..." />
             <button id="search">Buscar</button>
+            <!--Filtros de categoria-->
             <li><a class="subheader">Categorias</a></li>
         </div>
         <div id="buttons">
@@ -80,6 +86,7 @@
         <div id="products"></div>
     </div>
 
+    <!--Tarjetas de productos-->
     <div class="container">
         <div class="row">
             <div class="col s10 m4">
@@ -153,7 +160,7 @@
     
 
 
-    <!--JavaScript at end of body for optimized loading-->
+    <!--Link con archivos js-->
     <script type="text/javascript" src="../js/materialize.min.js"></script>
     <script type="text/javascript" src="../js/inicializar.js"></script>
 </body>
