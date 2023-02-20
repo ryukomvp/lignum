@@ -18,147 +18,176 @@
 </head>
 
 <body>
-    <!--Barra de navegacion-->
-    <nav>
-        <div class="nav-wrapper">
-            <a href="" class="brand-logo">Logo</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="">sass</a></li>
-                <li><a href="">sass <span class="new badge">4</span></a></li>
-                <li><a src="../public/img/mueble.jpg"></a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <!--Menu lateral-->
-    <ul id="slide-out" class="sidenav">
-        <li>
-            <div class="user-view">
-                <div class="background">
-                    <img src="../public/img/mueble.jpg">
-                </div>
-                <a href="#user"><img class="circle" src="../public/img/Usuario.jpeg"></a>
-                <a href="#name"><span class="white-text name">John Doe</span></a>
-                <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+    <main>
+        <!--Barra de navegacion-->
+        <nav>
+            <div class="nav-wrapper">
+                <a href="" class="brand-logo">Logo</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="">sass</a></li>
+                    <li><a href="">sass <span class="new badge">4</span></a></li>
+                    <li><a src="../public/img/mueble.jpg"></a></li>
+                </ul>
             </div>
-            <!-- </li>
+        </nav>
+
+        <!--Menu lateral-->
+        <ul id="slide-out" class="sidenav">
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img src="../public/img/mueble.jpg">
+                    </div>
+                    <a href="#user"><img class="circle" src="../public/img/Usuario.jpeg"></a>
+                    <a href="#name"><span class="white-text name">John Doe</span></a>
+                    <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+                </div>
+                <!-- </li>
         <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
         <li><a href="#!">Second Link</a></li>
         <li> -->
-            <div class="divider"></div>
-        </li>
-        <li><a class="subheader">Menu</a></li>
-        <li><a class="Categorias" href="#!">Precio</a></li>
-        <li><a class="Categorias" href="#!">Cocina</a></li>
-        <li><a class="Categorias" href="#!">Gamer </a></li>
-        <li><a class="Categorias" href="#!">Jardin</a></li>
-        <li><a class="Categorias" href="#!">Oficina</a></li>
-        <li><a class="Categorias" href="#!">Sala</a></li>
-    </ul>
-    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <div class="divider"></div>
+            </li>
+            <li><a class="subheader">Menu</a></li>
+            <li><a class="Categorias" href="#!">Precio</a></li>
+            <li><a class="Categorias" href="#!">Cocina</a></li>
+            <li><a class="Categorias" href="#!">Gamer </a></li>
+            <li><a class="Categorias" href="#!">Jardin</a></li>
+            <li><a class="Categorias" href="#!">Oficina</a></li>
+            <li><a class="Categorias" href="#!">Sala</a></li>
+        </ul>
+        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
-    <!--Barra de busqueda-->
-    <div class="wrapper">
-        <div id="search-container">
-            <input type="search" id="search-input" placeholder="Buscar producto..." />
-            <button id="search">Buscar</button>
-            <!--Filtros de categoria-->
-            <li><a class="subheader">Categorias</a></li>
+        <!--Barra de busqueda-->
+        <div class="wrapper">
+            <div id="search-container">
+                <input type="search" id="search-input" placeholder="Buscar producto..." />
+                <button id="search">Buscar</button>
+                <!--Filtros de categoria-->
+                <li><a class="subheader">Categorias</a></li>
+            </div>
+            <div id="buttons">
+                <button class="button-value" onclick="filterProduct('Todos')">Todos</button>
+                <button class="button-value" onclick="filterProduct('Cocina')">
+                    Cocina
+                </button>
+                <button class="button-value" onclick="filterProduct('Gamer')">
+                    Gamer
+                </button>
+                <button class="button-value" onclick="filterProduct('Jardin')">
+                    Jardin
+                </button>
+                <button class="button-value" onclick="filterProduct('Oficina')">
+                    Oficina
+                </button>
+                <button class="button-value" onclick="filterProduct('Sala')">
+                    Sala
+                </button>
+            </div>
+            <div id="products"></div>
         </div>
-        <div id="buttons">
-            <button class="button-value" onclick="filterProduct('Todos')">Todos</button>
-            <button class="button-value" onclick="filterProduct('Cocina')">
-                Cocina
-            </button>
-            <button class="button-value" onclick="filterProduct('Gamer')">
-                Gamer
-            </button>
-            <button class="button-value" onclick="filterProduct('Jardin')">
-                Jardin
-            </button>
-            <button class="button-value" onclick="filterProduct('Oficina')">
-                Oficina
-            </button>
-            <button class="button-value" onclick="filterProduct('Sala')">
-                Sala
-            </button>
-        </div>
-        <div id="products"></div>
-    </div>
 
-    <!--Tarjetas de productos-->
-    <div class="container">
-        <div class="row">
-            <div class="col s10 m4">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="../public/img/mueble.jpg">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title">Mueble</span>
-                        <p>Precio: $##.##</p>
-                        <p>Descripcion:
-                           Descripcion no disponible
-                        </p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">Ver</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col s10 m4">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="../public/img/mueble.jpg">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title">Mesa</span>
-                        <p>Precio: $##.##</p>
-                        <p>Descripcion:
-                            Descripcion no disponible
-                        </p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">Ver</a>
+        <!--Tarjetas de productos-->
+        <div class="container">
+            <div class="row">
+                <div class="col s10 m4">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="../public/img/mueble.jpg">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title">Mueble</span>
+                            <p>Precio: $##.##</p>
+                            <p>Descripcion:
+                                Descripcion no disponible
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Ver</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col s10 m4">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="../public/img/mueble 2.jpg">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title">Gabinete</span>
-                        <p>Precio: $##.##</p>
-                        <p>Descripcion:
-                           Descripcion no disponible</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">Ver</a>
+                <div class="col s10 m4">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="../public/img/mueble.jpg">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title">Mesa</span>
+                            <p>Precio: $##.##</p>
+                            <p>Descripcion:
+                                Descripcion no disponible
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Ver</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col s10 m4">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="../public/img/silla.jpg">
+                <div class="col s10 m4">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="../public/img/mueble 2.jpg">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title">Gabinete</span>
+                            <p>Precio: $##.##</p>
+                            <p>Descripcion:
+                                Descripcion no disponible</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Ver</a>
+                        </div>
                     </div>
-                    <div class="card-content">
-                        <span class="card-title">Silla</span>
-                        <p>Precio: $##.##</p>
-                        <p>Descripcion:
-                           Descripcion no disponible</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">Ver</a>
+                </div>
+                <div class="col s10 m4">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="../public/img/silla.jpg">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title">Silla</span>
+                            <p>Precio: $##.##</p>
+                            <p>Descripcion:
+                                Descripcion no disponible</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Ver</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-
+    </main>
+    <footer>
+        <footer class="page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">Footer Content</h5>
+                        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer
+                            content.</p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h5 class="white-text">Links</h5>
+                        <ul>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    © 2014 Copyright Text
+                    <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+                </div>
+            </div>
+        </footer>
+    </footer>
 
     <!--Link con archivos js-->
     <script type="text/javascript" src="../js/materialize.min.js"></script>
