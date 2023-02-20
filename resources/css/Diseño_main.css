@@ -9,6 +9,13 @@ main {
 }
 
 
+.brand-logo{
+  width: 150px;
+  height: 150px;
+  margin-top: -3%;
+  margin-left: -25%;
+}
+
 .Categorias {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 300px;
@@ -25,25 +32,13 @@ main {
   background-color: #e0e0e0;
 }
 
-.card {
-  background-color: #e0e0e0;
-}
-
 .sidenav-trigger {
   float: left;
-}
-
-#search-container {
-  width: 150px;
 }
 
 .button-value {
   margin-top: 5px;
   margin-right: 30px;
-}
-
-img {
-  height: 220px;
 }
 
 .Menu {
@@ -58,46 +53,4 @@ img {
   margin: auto;
   text-align: center;
   font-family: Arial;
-}
-
-.card-horizontal{
-  font-family: Arial;
-  background-color: #e0e0e0;
-}
-
-.nombre{
-  font-size: x-large;
-  font-style: italic;
-}
-
-.precio{
-  font-size: large;
-}
-
-.descripcion{
-  font-size: small;
-}
-
-.total{
-  font-size: large;
-  text-align: center;
-}
-
-.pago{
-  float: right;
-  height: 30px;
-  background-color: #00acc1;
-  color: white;
-}
-
-.precio{
-  float: right;
-}
-
-.cantidad{
-  float: right;
-}
-
-.card-image{
-  width: 200px;
 }

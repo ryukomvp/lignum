@@ -1,0 +1,41 @@
+.card-horizontal {
+    font-family: Arial;
+    background-color: #e0e0e0;
+}
+
+.nombre {
+    font-size: x-large;
+    font-style: italic;
+}
+
+.precio {
+    font-size: large;
+}
+
+.descripcion {
+    font-size: small;
+}
+
+.total {
+    font-size: large;
+    text-align: center;
+}
+
+.pago {
+    float: right;
+    height: 30px;
+    background-color: #00acc1;
+    color: white;
+}
+
+.precio {
+    float: right;
+}
+
+.cantidad {
+    float: right;
+}
+
+.card-image {
+    width: 200px;
+}
