@@ -10,57 +10,56 @@
     <!--Import materialize.css-->
 
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
-    <link type="text/css" rel="stylesheet" href="../recursos/css/Diseño_main.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../recursos/css/Diseño_priv.css" media="screen,projection" />
 
     <!--Let browser know website is optimized for mobile-->
     <title>Employess</title>
 </head>
 
 <body>
+
     <!-- Menu tipo Navbar  -->
     <nav>
         <div class="nav-wrapper">
             <a class="brand-logo"><img src="../recursos/img/2.png"></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a class="Carrito_btn"><img src="../recursos/img/Icono_carrito_45.png"></a></li>
-                <li><a href="#user"><img class="User_config_btn" src="../recursos/img/Usuario.jpeg"></a></li>
+                <li><a class="User_config_btn"><img src="../recursos/img/Icon_user_45.png"></a></li>
                 <!-- <li><a src="../recursos/img/mueble 2.jpg"></a></li> -->
             </ul>
         </div>
     </nav>
-    <!-- Menu tipo sidenav -->
-    <ul id="slide-out" class="sidenav">
-        <li>
-            <div class="user-view">
-                <div class="background">
-                    <img src="../recursos/img/mueble.jpg">
-                </div>
-                <a href="#user"><img class="circle" src="../recursos/img/Usuario.jpeg"></a>
-                <a href="#name"><span class="white-text name">Kevin Rivas</span></a>
-                <a href="#email"><span class="white-text email">kevinrivasd04@gmail.com</span></a>
-            </div>
-            <div class="divider"></div>
-        </li>
-        <div class="Categorias-btns">
-            <li><a class="subheader">Menu</a></li>
-            <li><a class="Empleados-btn" href="#!">Empleados</a></li>
-            <li><a class="Usuarios-btn" href="#!">Usuarios</a></li>
-            <li><a class="Productos-btn" href="#!">Productos</a></li>
-            <li><a class="Proveedor-btn" href="#!">Proveedores</a></li>
-            <li><a class="Pedidos-btn" href="#!">Pedidos</a></li>
-        </div>
-    </ul>
-    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-
 
     <main>
-    
+            <img class="Fondo" src="../recursos/img/1.png" alt=""> 
+        <h5 class="Bienvenida">Bienvenido Kevin Rivas</h5>
+
+        <div class="social-btns">
+            <a class="btn Empleados" href="#"><img class="Iconos_menu" src="../recursos/img/Icono_Employeers_priv_menu.png" ><i class="fa fa-Empleados"><i>
+                <h5 class="Letra_Menu">Empleados</h5>
+            </a>
+            <a class="btn Usuarios" href="#"><img class="Iconos_menu" src="../recursos/img/Icono_User_priv_menu.png"> <i class="fa fa-Usuarios"></i>
+                <h5 class="Letra_Menu">Usuarios</h5> 
+            </a>
+            <a class="btn Productos" href="#"><img class="Iconos_menu" src="../recursos/img/Icono_Productos_priv_menu.png"> <i class="fa fa-Productos"></i>
+                <h5 class="Letra_Menu">Productos</h5> 
+            </a>
+            <a class="btn Proveedores" href="#"><img class="Iconos_menu" src="../recursos/img/Icono_Proveedor_priv_menu.png"> <i class="fa fa-Proveedores"><i>
+                <h5 class="Letra_Menu">Proveedores</h5> 
+            </a>
+            <a class="btn Pedidos" href="#"><img class="Iconos_menu" src="../recursos/img/Icono_Pedidos_priv_menu.png"><i class="fa fa-Pedidos"><i>
+                <h5 class="Letra_Menu">Pedidos</h5> 
+            </a>
+            <a class="btn Valoracion" href="#"><img class="Iconos_menu" src="../recursos/img/Icono_Valoracion_priv_menu.png"><i class="fa fa-Valoracion"><i>
+                <h5 class="Letra_Menu">Valoracion y comentarios</h5> 
+            </a>
+        </div>
+
 
     </main>
 
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
-    <script type="text/javascript" src="js/inicializar.js"></script>
+    <script type="text/javascript" src="js/inicializar_dashboard.js"></script>
 </body>
 
 </html>

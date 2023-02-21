@@ -1,4 +1,5 @@
 @import '//codepen.io/chrisdothtml/pen/ojLzJK.css';
+
 .Categorias-btns,
 .Categorias-btns:before,
 .Categorias-btns.fa {
@@ -6,16 +7,7 @@
   transition-timing-function: cubic-bezier(0.35, -0.105, 0.43, 1.59);
 }
 
-.User_config_btn{
-  border-radius: 180px;
-  width: 45px;
-  height: 45px;
-  position: absolute;
-  right: 0px;
-  margin-left: 30px;
-}
-
-.brand-logo{
+.brand-logo {
   width: 50px;
   height: 50px;
   /* position: absolute;  */
@@ -25,41 +17,43 @@
 }
 
 
-.Categorias-btns{
+.Categorias-btns {
   /* box-shadow: 10px 10px 10px 10px rgba(147, 147, 147, 0.2); */
   max-width: 700px;
   margin: 5px;
   margin-top: 30px;
-  border-radius: 0;  
+  border-radius: 0;
   text-align: center;
   font-family: Arial;
   top: 90%;
-  }
+}
 
-.Categorias-btns:before{
-    top: 90%; left: -100%;
-  } 
+.Categorias-btns:before {
+  top: 90%;
+  left: -100%;
+}
 
-.Categorias-btns.fa{
+.Categorias-btns.fa {
   transform: scale(0.8);
 }
 
-.Categorias-btns:before{
+.Categorias-btns:before {
   background-color: rgba(138, 119, 56, 0.608);
-}  
+}
 
 .Categorias-btns:focus:before,
-.Categorias-btns:hover:before{
-  top: -5px; left: -5%;
+.Categorias-btns:hover:before {
+  top: -5px;
+  left: -5%;
 }
 
 .Categorias-btns:focus.fa,
-.Categorias-btns:hover.fa{
-  color : #fff;
+.Categorias-btns:hover.fa {
+  color: #fff;
   transform: scale(50);
 }
 
-.Categorias-btns:before{
+.Categorias-btns:before {
   content: '';
   width: 15%;
   height: 70%;
@@ -75,14 +69,15 @@
   transform: rotate(90deg);
 } */
 
-.Categorias-btns:hover.fa{
+.Categorias-btns:hover.fa {
   font-size: 3px;
   vertical-align: middle;
 }
 
 
-.Menu{
-  margin: auto; 
+.Menu {
+  margin: auto;
   text-align: center;
   font-family: Arial;
 }
+

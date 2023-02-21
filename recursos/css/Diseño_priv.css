@@ -1,0 +1,160 @@
+@import '//codepen.io/chrisdothtml/pen/ojLzJK.css';
+
+.social-btns,
+.social-btns:before,
+.social-btns.fa {
+  transition: all 0.35s;
+  transition-timing-function: cubic-bezier(0.90, -0.105, 0.43, 1.59);
+}
+
+.social-btns .btn:before {
+  top: 90%;
+  left: -110%;
+}
+
+.social-btns .btn .fa {
+  transform: scale(2,1);
+}
+
+.social-btns .btn.Empleados:before {
+  background-color: rgba(0, 136, 255, 0.315);
+}
+
+/* .social-btns .btn.Empleados.fa {
+  color: #3b5998;
+} */
+
+.social-btns .btn.Usuarios:before {
+  background-color: rgba(0, 136, 255, 0.315);
+  z-index: 1;
+}
+
+.social-btns .btn.Usuarios.fa {
+  color: rgba(0, 136, 255, 0.315);
+  z-index: 1;
+}
+
+.social-btns .btn.Productos:before {
+  background-color:rgba(0, 136, 255, 0.315);
+}
+
+.social-btns .btn.Productos.fa {
+  color: rgba(0, 136, 255, 0.315);
+}
+
+.social-btns .btn.Proveedores:before {
+  background-color: rgba(0, 136, 255, 0.315);
+}
+
+.social-btns .btn.Proveedores.fa {
+  color: rgba(0, 136, 255, 0.315);
+}
+
+.social-btns .btn.Pedidos:before {
+  background-color: rgba(0, 136, 255, 0.315);
+}
+
+.social-btns .btn.Pedidos.fa {
+  color: rgba(0, 136, 255, 0.315);
+}
+
+.social-btns .btn.Valoracion:before {
+  background-color: rgba(0, 136, 255, 0.315);
+}
+
+.social-btns .btn.Valoracion.fa {
+  color: rgba(0, 136, 255, 0.315);
+}
+
+
+.social-btns .btn:focus:before,
+.social-btns .btn:hover:before {
+  top: -10%;
+  left: -10%;
+}
+
+
+.social-btns .btn:focus .fa,
+.social-btns .btn:hover .fa {
+  color: #fff;
+  transform: scale(1);
+}
+
+.social-btns {
+  height: 90px;
+  margin: auto;
+  font-size: 0;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.social-btns .btn {
+  display: inline-block;
+  background-color: #d6d6d6;
+  width: 200px;
+  height: 200px;
+  Line-height: 90px;
+  margin: 10px 10px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 28%;
+  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
+  opacity: 0.99;
+}
+
+.social-btns .btn:before {
+  content: '';
+  width: 125%;
+  height: 125%;
+  position: absolute;
+  transform: rotate(45deg)
+}
+
+.social-btns .btn .fa {
+  font-size: 38px;
+  vertical-align: middle;
+}
+
+/* navbar */
+
+.brand-logo {
+  display: inline;
+  width: 150px;
+  height: 150px;
+  margin: -45px -25px;
+  /* margin-top: -3%;
+  margin-left: -25; */
+}
+
+/* .Menu_Use{
+  z-index: 3;
+} */
+
+.Letra_Menu{
+  color: black;
+  margin-top: -10px;
+  font-size: 17px;
+}
+
+.Iconos_menu{
+  align-items: center;
+  margin: 20% 20%;
+}
+
+.Bienvenida{
+  color: black;
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.Fondo{
+   margin: -250px 625px;
+   height: 40%;
+   width: 40%;
+}
