@@ -15,6 +15,14 @@ img {
     height: 220px;
 }
 
+.nav-wrapper{
+    background-color: #1a120b !important;
+}
+
+.page-footer{
+    background-color: #1a120b !important;
+}
+
 .wrapper {
     float: left;
     width: 160px;
