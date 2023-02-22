@@ -24,10 +24,10 @@ img {
 }
 
 .wrapper {
-    float: left;
     width: 160px;
     height: 280px;
     margin-top: 10px;
+    margin-left: 20px;
     background-color: #e0e0e0;
 }
 

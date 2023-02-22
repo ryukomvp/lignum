@@ -60,39 +60,48 @@
         </ul>
         <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
-        <!--Barra de busqueda-->
-        <div class="wrapper">
-            <div id="search-container">
-                <input type="search" id="search-input" placeholder="Buscar producto..." />
-                <button id="search">Buscar</button>
-                <!--Filtros de categoria-->
-                <li><a class="subheader">Categorias</a></li>
-            </div>
-            <div id="buttons">
-                <button class="button-value" onclick="filterProduct('Todos')">Todos</button>
-                <button class="button-value" onclick="filterProduct('Cocina')">
-                    Cocina
-                </button>
-                <button class="button-value" onclick="filterProduct('Gamer')">
-                    Gamer
-                </button>
-                <button class="button-value" onclick="filterProduct('Jardin')">
-                    Jardin
-                </button>
-                <button class="button-value" onclick="filterProduct('Oficina')">
-                    Oficina
-                </button>
-                <button class="button-value" onclick="filterProduct('Sala')">
-                    Sala
-                </button>
-            </div>
-            <div id="products"></div>
-        </div>
 
         <!--Tarjetas de productos-->
         <div class="container">
             <div class="row">
-                <div class="col s10 m4">
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col s3">
+                    <!--Barra de busqueda-->
+                <div id="search-container">
+                    <input type="search" id="search-input" placeholder="Buscar producto..." />
+                    <button id="search"><a href=""><i class="material-icons">search</i></a></button>
+                    <!--Filtros de categoria-->
+                    <li><a class="subheader">Categorias</a></li>
+                </div>
+                <div id="buttons">
+                    <button class="button-value" onclick="filterProduct('Todos')">Todos</button>
+                    <button class="button-value" onclick="filterProduct('Cocina')">
+                        Cocina
+                    </button>
+                    <button class="button-value" onclick="filterProduct('Gamer')">
+                        Gamer
+                    </button>
+                    <button class="button-value" onclick="filterProduct('Jardin')">
+                        Jardin
+                    </button>
+                    <button class="button-value" onclick="filterProduct('Oficina')">
+                        Oficina
+                    </button>
+                    <button class="button-value" onclick="filterProduct('Sala')">
+                        Sala
+                    </button>
+                </div>
+                <div id="products"></div>
+            </div>
+
+            <div class="col s9">
+                <!--Cards para productos-->
+                <div class="col s3">
                     <div class="card">
                         <div class="card-image">
                             <img src="../../resources/img/mueble.jpg">
@@ -109,7 +118,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col s10 m4">
+                <div class="col s3">
                     <div class="card">
                         <div class="card-image">
                             <img src="../../resources/img/mueble.jpg">
@@ -126,7 +135,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col s10 m4">
+                <div class="col s3">
                     <div class="card">
                         <div class="card-image">
                             <img src="../../resources/img/mueble 2.jpg">
@@ -142,7 +151,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col s10 m4">
+                <div class="col s3">
                     <div class="card">
                         <div class="card-image">
                             <img src="../../resources/img/silla.jpg">
@@ -159,7 +168,9 @@
                     </div>
                 </div>
             </div>
+
         </div>
+
     </main>
     <footer>
         <footer class="page-footer">
