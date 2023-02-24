@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import de hojas de estilo-->
     <link type="text/css" rel="stylesheet" href="../../resources/css/materialize.min.css" media="screen,projection" />
-    <link rel="stylesheet" href="../../resources/css/Diseño_main.css">
+    <link rel="stylesheet" href="../../resources/css/catalogo_2.css">
     <link rel="stylesheet" href="../../resources/css/catalogo.css">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -73,29 +73,51 @@
             <div class="col s3">
                 <!--Barra de busqueda-->
                 <div id="search-container">
-                    <h6>Filtro por busqueda</h6>
+                    <h6 class="encabezado">Filtro por busqueda</h6>
                     <input type="search" id="search-input" placeholder="Buscar producto..." />
-                    <button id="search">Buscar</button>
+                    <button id="search"><i class="material-icons">search</i></button>
                     <!--Filtros de categoria-->
                 </div>
                 <div id="buttons">
-                    <h6>Filtro por categorias</h6>
-                    <button class="button-value" onclick="filterProduct('Todos')">Todos</button>
-                    <button class="button-value" onclick="filterProduct('Cocina')">
-                        Cocina
-                    </button>
-                    <button class="button-value" onclick="filterProduct('Gamer')">
-                        Gamer
-                    </button>
-                    <button class="button-value" onclick="filterProduct('Jardin')">
-                        Jardin
-                    </button>
-                    <button class="button-value" onclick="filterProduct('Oficina')">
-                        Oficina
-                    </button>
-                    <button class="button-value" onclick="filterProduct('Sala')">
-                        Sala
-                    </button>
+                    <h6 class="encabezado">Filtro por categorias</h6>
+                    <form action="#">
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" checked />
+                                <span>Todo</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" />
+                                <span>Cocina</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" />
+                                <span>Gamer</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" />
+                                <span>Jardin</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" />
+                                <span>Oficina</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" />
+                                <span>Sala</span>
+                            </label>
+                        </p>
+                    </form>
                 </div>
                 <div id="products"></div>
             </div>

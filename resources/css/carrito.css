@@ -33,6 +33,7 @@
 .pago {
     float: right;
     height: 30px;
+    border: 0px;
     background-color: #00acc1;
     color: white;
 }
