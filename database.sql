@@ -52,6 +52,7 @@ CREATE TABLE cliente(
 	id_cliente serial not null PRIMARY KEY,
 	nombre_cliente varchar(70) not null,
 	apellido_cliente varchar(70) not null,
+	foto varchar not null,
 	dui_cliente varchar(10) null,
 	correo_cliente varchar(120) not null,
 	telefono_cliente varchar(9),
@@ -70,6 +71,7 @@ CREATE TABLE empleado(
 	id_empleado serial not null PRIMARY KEY,
 	nombre_empleado varchar(70) not null,
 	apellido_empleado varchar(70) not null,
+	foto varchar not null,
 	dui_empleado varchar(10) not null,
 	correo_empleado varchar(120) not null,
 	telefono_empleado varchar(9),
@@ -100,6 +102,7 @@ CREATE TABLE detalle_pedido(
 CREATE TABLE producto(
 	id_producto serial not null PRIMARY KEY,
 	nomre_producto varchar(70) not null,
+	foto varchar not null,
 	descripcion_producto varchar(120) not null,
 	precio_producto float not null,
 
@@ -205,7 +208,7 @@ INSERT INTO cargo(cargo)
 VALUES	('Gerente general'),
 				('Asistente de gerencia'),
 				('Carpinteria general'),
-				('Mozo de almacen'),
+				('Mozo de almacén'),
 				('Encargado de limpieza');
 
 INSERT INTO categoria(categoria)

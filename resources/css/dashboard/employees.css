@@ -1,0 +1,17 @@
+.nav-wrapper{
+    background-color: #1a120b;
+}
+
+.busqueda{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    display: flex;
+}
+
+.salir-sin-guardar:hover{
+    background-color: #FFD56F;
+}
+
+.guardar-cambios:hover{
+    background-color: #68B984;
+}
