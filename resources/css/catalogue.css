@@ -66,3 +66,7 @@ img {
     color: #353433;
     border: 0px;
 }
+
+.card:hover{
+    box-shadow: #1a120b;
+}
