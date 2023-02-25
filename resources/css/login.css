@@ -39,11 +39,6 @@ body{
     transition: all 2s ease 0s;
 }
 
-.sesion{
-    display: inline;
-    background-color: black;
-}
-
 .recuperacion{
     text-align: right;
     text-decoration: none;
