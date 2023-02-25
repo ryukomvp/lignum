@@ -2,16 +2,15 @@
     background-color: #1a120b;
 }
 
-.busqueda{
+.acciones{
     margin-top: 5%;
     margin-bottom: 5%;
-    display: flex;
 }
 
-.salir-sin-guardar:hover{
+.salir:hover{
     background-color: #FFD56F;
 }
 
-.guardar-cambios:hover{
+.guardar:hover{
     background-color: #68B984;
 }
