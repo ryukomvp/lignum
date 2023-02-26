@@ -10,6 +10,10 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import de hojas de estilo-->
     <link type="text/css" rel="stylesheet" href="../../resources/css/materialize.min.css" media="screen,projection" />
+<<<<<<< HEAD
+=======
+    <link rel="stylesheet" href="../../resources/css/catalogo_2.css">
+>>>>>>> rama_alec
     <link rel="stylesheet" href="../../resources/css/catalogue.css">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,11 +27,14 @@
         <!--Barra de navegacion-->
         <nav>
             <div class="nav-wrapper">
-                <a href="" class="brand-logo">Logo</a>
+                <a class="brand-logo"><img src="../../resources/img/2.png" alt="" width="80px" height="80px"></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="">sass</a></li>
-                    <li><a href="">sass <span class="new badge">4</span></a></li>
-                    <!--<li><a src="../resources/img/mueble.jpg"></a></li>-->
+                    <li><a href="#" class="tooltipped" data-position="bottom" data-tooltip="Inicio de la página"><i
+                                class="material-icons">arrow_upward</i></a></li>
+                    <li><a href="shopping_cart.html" class="tooltipped" data-position="bottom"
+                            data-tooltip="Carrito de compras"><i class="material-icons">shopping_cart</i></a></li>
+                    <li><a href="login.html" class="tooltipped" data-position="bottom"
+                            data-tooltip="Cuenta de usuario"><i class="material-icons">account_circle</i></a></li>
                 </ul>
             </div>
         </nav>
@@ -59,42 +66,76 @@
         </ul>
         <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
-        <!--Barra de busqueda-->
-        <div class="wrapper">
-            <div id="search-container">
-                <input type="search" id="search-input" placeholder="Buscar producto..." />
-                <button id="search">Buscar</button>
-                <!--Filtros de categoria-->
-                <li><a class="subheader">Categorias</a></li>
-            </div>
-            <div id="buttons">
-                <button class="button-value" onclick="filterProduct('Todos')">Todos</button>
-                <button class="button-value" onclick="filterProduct('Cocina')">
-                    Cocina
-                </button>
-                <button class="button-value" onclick="filterProduct('Gamer')">
-                    Gamer
-                </button>
-                <button class="button-value" onclick="filterProduct('Jardin')">
-                    Jardin
-                </button>
-                <button class="button-value" onclick="filterProduct('Oficina')">
-                    Oficina
-                </button>
-                <button class="button-value" onclick="filterProduct('Sala')">
-                    Sala
-                </button>
-            </div>
-            <div id="products"></div>
-        </div>
 
         <!--Tarjetas de productos-->
         <div class="container">
             <div class="row">
-                <div class="col s10 m4">
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col s3">
+                <!--Barra de busqueda-->
+                <div id="search-container">
+                    <h6 class="encabezado">Filtro por busqueda</h6>
+                    <input type="search" id="search-input" placeholder="Buscar producto..." />
+                    <button id="search"><i class="material-icons">search</i></button>
+                    <!--Filtros de categoria-->
+                </div>
+                <div id="buttons">
+                    <h6 class="encabezado">Filtro por categorias</h6>
+                    <form action="#">
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" checked />
+                                <span>Todo</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" />
+                                <span>Cocina</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" />
+                                <span>Gamer</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" />
+                                <span>Jardin</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" />
+                                <span>Oficina</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" />
+                                <span>Sala</span>
+                            </label>
+                        </p>
+                    </form>
+                </div>
+                <div id="products"></div>
+            </div>
+
+            <div class="col s9" id="card-container">
+                <!--Cards para productos-->
+                <div class="col s4">
                     <div class="card">
                         <div class="card-image">
                             <img src="../../resources/img/mueble.jpg">
+                            <a class="btn-floating halfway-fab waves-effect waves-light red"><i
+                                    class="material-icons">favorite</i></a>
                         </div>
                         <div class="card-content">
                             <span class="card-title">Mueble</span>
@@ -108,10 +149,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col s10 m4">
+                <div class="col s4">
                     <div class="card">
                         <div class="card-image">
                             <img src="../../resources/img/mueble.jpg">
+                            <a class="btn-floating halfway-fab waves-effect waves-light red"><i
+                                    class="material-icons">favorite</i></a>
                         </div>
                         <div class="card-content">
                             <span class="card-title">Mesa</span>
@@ -125,10 +168,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col s10 m4">
+                <div class="col s4">
                     <div class="card">
                         <div class="card-image">
                             <img src="../../resources/img/mueble 2.jpg">
+                            <a class="btn-floating halfway-fab waves-effect waves-light red"><i
+                                    class="material-icons">favorite</i></a>
                         </div>
                         <div class="card-content">
                             <span class="card-title">Gabinete</span>
@@ -141,10 +186,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col s10 m4">
+                <div class="col s4">
                     <div class="card">
                         <div class="card-image">
                             <img src="../../resources/img/silla.jpg">
+                            <a class="btn-floating halfway-fab waves-effect waves-light red"><i
+                                    class="material-icons">favorite</i></a>
                         </div>
                         <div class="card-content">
                             <span class="card-title">Silla</span>
@@ -158,24 +205,27 @@
                     </div>
                 </div>
             </div>
+
         </div>
+
     </main>
     <footer>
         <footer class="page-footer">
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">
-                        <h5 class="white-text">Footer Content</h5>
-                        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer
-                            content.</p>
+                        <h5 class="white-text">Sobre lignum</h5>
+                        <p class="grey-text text-lighten-4">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Dolorem, ipsum magnam quam nesciunt ratione molestias laboriosam. Magnam in, earum quod nam
+                            aliquam, minus debitis quidem eveniet et unde tempore quam.</p>
                     </div>
                     <div class="col l4 offset-l2 s12">
                         <h5 class="white-text">Links</h5>
                         <ul>
-                            <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                            <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/dnlhernandez_">Link 1</a></li>
+                            <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/dnlhernandez_">Link 2</a></li>
+                            <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/dnlhernandez_">Link 3</a></li>
+                            <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/dnlhernandez_!">Link 4</a></li>
                         </ul>
                     </div>
                 </div>
@@ -183,7 +233,7 @@
             <div class="footer-copyright">
                 <div class="container">
                     © 2014 Copyright Text
-                    <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+                    <a class="grey-text text-lighten-4 right" href="https://www.instagram.com/dnlhernandez_">More Links</a>
                 </div>
             </div>
         </footer>
