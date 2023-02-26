@@ -73,6 +73,7 @@ CREATE TABLE empleado(
 	apellido_empleado varchar(70) not null,
 	foto varchar not null,
 	dui_empleado varchar(10) not null,
+	nacimiento_empleado date not null,
 	correo_empleado varchar(120) not null,
 	telefono_empleado varchar(9),
 	id_genero int not null,

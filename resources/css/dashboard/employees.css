@@ -1,5 +1,6 @@
 .nav-wrapper{
     background-color: #1a120b;
+    /* background-color: #212121; */
 }
 
 .acciones{
@@ -7,10 +8,10 @@
     margin-bottom: 5%;
 }
 
-.salir:hover{
-    background-color: #FFD56F;
+.guardar:hover{
+    background-color: #66bb6a;
 }
 
-.guardar:hover{
-    background-color: #68B984;
+.salir:hover{
+    background-color: #ffee58;
 }
