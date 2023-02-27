@@ -34,6 +34,7 @@
     float: right;
     height: 30px;
     border: 0px;
+    border-radius: 4px;
     background-color: #00acc1;
     color: white;
 }
@@ -48,7 +49,10 @@
 
 .detalle-cantidad{
     border: 1px solid black;
-    background-color: #ffff;
+    background-color: #00acc1;
+    color: white;
+    border: 0px;
+    border-radius: 4px;
     width: 35px;
 }
 

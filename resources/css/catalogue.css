@@ -37,34 +37,20 @@ img {
     float: left;
 }
 
-.button-value {
-    margin-top: 5px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    margin-right: 30px;
-    max-width: 300px;
-    width: 160px;
-    text-align: center;
-    font-family: Arial;
-    background-color: #ffff;
-    color: #353433;
-    border: 0px;
-}
+
 
 .encabezado{
     color: gray;
 }
 
 #search{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 300px;
-    margin: auto;
-    text-align: center;
     font-family: Arial;
     width: 200px;
     text-align: center;
-    background-color: white;
-    color: #353433;
+    background-color: #00acc1;
+    color: white;
     border: 0px;
+    border-radius: 4px;
 }
 
 .card:hover{
