@@ -46,6 +46,12 @@
     float: right;
 }
 
+.detalle-cantidad{
+    border: 1px solid black;
+    background-color: #ffff;
+    width: 35px;
+}
+
 .card-image {
     width: 200px;
 }
