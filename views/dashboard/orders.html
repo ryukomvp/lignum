@@ -42,7 +42,6 @@
                 <div class="input-field">
                   <input id="search" type="search" required>
                   <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                  <h1 class="h1s">search</h1>
                   <i class="material-icons">close</i>
                 </div>
               </form>
@@ -51,58 +50,189 @@
         </div>
       </div>
     </div>
-    <!-- Tabla de pedidos -->
-    <table class="responsive-table centered" >
-      <thead>
-        <tr>
-            <th>Usuario</th>
-            <th>Item Name</th>
-            <th>Item Price</th>
-            <th>Item Name</th>
-            <th>Item Price</th>
-        </tr>
-      </thead>
 
-      <tbody>
-        <tr>         
-          <td>Alvin</td>
-          <td>Eclair</td>
-          <td>$0.87</td>
-        </tr>
-        <tr>
-          <td>Alan</td>
-          <td>Jellybean</td>
-          <td>$3.76</td>
-        </tr>
-        <tr>
-          <td>Jonathan</td>
-          <td>Lollipop</td>
-          <td>$7.00</td>
-        </tr>
-        <tr>
-          <td>Alvin</td>
-          <td>Eclair</td>
-          <td>$0.87</td>
-        </tr>
-        <tr>
-          <td>Alvin</td>
-          <td>Eclair</td>
-          <td>$0.87</td>
-        </tr>
-        <tr>
-          <td>Alvin</td>
-          <td>Eclair</td>
-          <td>$0.87</td>
-        </tr>
-        <tr>
-          <td>Alvin</td>
-          <td>Eclair</td>
-          <td>$0.87</td>
-        </tr>
-      </tbody>
-    </table>
+    <!-- Tabla de pedidos -->
+    <div class="container">
+      <div class="row">
+        <div class="col m12 tabla">
+          <table class="responsive-table highlight ">
+            <thead>
+              <!-- Contenido de tabla -->
+              <tr>
+                <th>id</th>
+                <th>id cliente</th>
+                <th>Usuario</th>
+                <th>Cantidad</th>
+                <th>Total</th>
+                <th>Estado del pedido</th>
+                <th>Detalles</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <!-- Datos de tabla -->
+              <tr>
+                <th>1</th>
+                <th>4</th>
+                <th>KevinRivas</th>
+                <th>2</th>
+                <th>$50.00</th>
+                <!-- swith de estado de pedido -->
+                <td>
+                  <div class="switch">
+                    <label>
+                      En proceso
+                      <input type="checkbox">
+                      <span class="lever"></span>
+                      Terminado
+                    </label>
+                  </div>
+                </td>
+                <!-- Boton de detalle -->
+                <td><a class="waves-effect waves-light btn  modal-trigger" href="#Detalles"><Label
+                      class="Detalle">Detalles</Label></a></td>
+              </tr>
+              <tr>
+                <th>2</th>
+                <th>4</th>
+                <th>Ryuko</th>
+                <th>2</th>
+                <th>$50.00</th>
+                <!-- swith de estado de pedido -->
+                <td>
+                  <div class="switch">
+                    <label>
+                      En proceso
+                      <input type="checkbox">
+                      <span class="lever"></span>
+                      Terminado
+                    </label>
+                  </div>
+                </td>
+                <!-- Boton de detalle -->
+                <td><a class="waves-effect waves-light btn  modal-trigger" href="#Detalles"><Label
+                      class="Detalle">Detalles</Label></a></td>
+              </tr>
+              <tr>
+                <th>3</th>
+                <th>4</th>
+                <th>Alec</th>
+                <th>2</th>
+                <th>$50.00</th>
+                <!-- swith de estado de pedido -->
+                <td>
+                  <div class="switch">
+                    <label>
+                      En proceso
+                      <input type="checkbox">
+                      <span class="lever"></span>
+                      Terminado
+                    </label>
+                  </div>
+                </td>
+                <!-- Boton de detalle -->
+                <td><a class="waves-effect waves-light btn  modal-trigger" href="#Detalles"><Label
+                      class="Detalle">Detalles</Label></a></td>
+              </tr>
+              <tr>
+                <th>3</th>
+                <th>4</th>
+                <th>OmarRivas</th>
+                <th>2</th>
+                <th>$50.00</th>
+                <!-- swith de estado de pedido -->
+                <td>
+                  <div class="switch">
+                    <label>
+                      En proceso
+                      <input type="checkbox">
+                      <span class="lever"></span>
+                      Terminado
+                    </label>
+                  </div>
+                </td>
+                <!-- Boton de detalle -->
+                <td><a class="waves-effect waves-light btn  modal-trigger" href="#Detalles"><Label
+                      class="Detalle">Detalles</Label></a></td>
+              </tr>
+              <tr>
+                <th>3</th>
+                <th>4</th>
+                <th>MirraPerez</th>
+                <th>2</th>
+                <th>$50.00</th>
+                <!-- swith de estado de pedido -->
+                <td>
+                  <div class="switch">
+                    <label>
+                      En proceso
+                      <input type="checkbox">
+                      <span class="lever"></span>
+                      Terminado
+                    </label>
+                  </div>
+                </td>
+                <!-- Boton de detalle -->
+                <td><a class="waves-effect waves-light btn  modal-trigger" href="#Detalles"><Label
+                      class="Detalle">Detalles</Label></a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Detalle de pedido -->
+    <div id="Detalles" class="modal">
+      <div class="modal-content">
+        <i class="material-icons  right">close</i>
+        <h4>Detalles</h4>
+        <div class="row">
+          <form class="col s12">
+            <div class="container">
+              <div class="row">
+                <div class="col m12 tabla">
+                  <table class="responsive-table highlight ">
+                    <thead>
+                      <!-- datos con los que se rellenara la tabla -->
+                      <tr>
+                        <th>Codigo Producto</th>
+                        <th>Productos</th>
+                        <th>Descripcion</th>
+                        <th>Precio</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- Datos de tabla -->
+                      <tr>
+                        <th>1028973</th>
+                        <th>Escritorio de habitacion, una mesa de noche</th>
+                        <th>Escritorio: Ancho 60cm, un largo de 1.50m. Mesa: standar</th>
+                        <th>$80.50</th>
+                      </tr>
+                      <tr>  
+                        <th>1231233</th>
+                        <th>Mesa para comedor</th>
+                        <th>Con la capacidad para 8 sillas</th>
+                        <th>$100.00</th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class=" modal-close btn">Descartar</a>
+      </div>
+    </div>
   </main>
 
+  <!-- Footer -->
   <footer class="page-footer">
     <div class="container">
       <div class="row">
