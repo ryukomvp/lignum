@@ -8,11 +8,7 @@
     font-style: italic;
 }
 
-.nav-wrapper{
-    background-color: #1a120b !important;
-}
-
-.page-footer{
+.nav-wrapper, .page-footer{
     background-color: #1a120b !important;
 }
 

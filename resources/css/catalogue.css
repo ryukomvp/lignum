@@ -25,17 +25,10 @@ img {
     height: 220px;
 }
 
-.nav-wrapper{
+.nav-wrapper, .page-footer{
     background-color: #1a120b !important;
 }
 
-.page-footer{
-    background-color: #1a120b !important;
-}
-
-.sidenav-trigger {
-    float: left;
-}
 
 .encabezado{
     color: gray;
