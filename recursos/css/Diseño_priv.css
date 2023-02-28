@@ -179,3 +179,12 @@ background-color: #1a120B;
 .Detalle{
   color : white ;
 }
+
+.profile{
+  display: flex;
+  align-items: center;
+  box-shadow: 0 0 1px;
+  border-radius: 20px;
+  width: 73%;
+  background-color :#ffffffde;
+}
