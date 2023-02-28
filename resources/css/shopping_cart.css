@@ -8,11 +8,7 @@
     font-style: italic;
 }
 
-.nav-wrapper{
-    background-color: #1a120b !important;
-}
-
-.page-footer{
+.nav-wrapper, .page-footer{
     background-color: #1a120b !important;
 }
 
@@ -34,6 +30,7 @@
     float: right;
     height: 30px;
     border: 0px;
+    border-radius: 4px;
     background-color: #00acc1;
     color: white;
 }
@@ -44,6 +41,15 @@
 
 .cantidad {
     float: right;
+}
+
+.detalle-cantidad{
+    border: 1px solid black;
+    background-color: #00acc1;
+    color: white;
+    border: 0px;
+    border-radius: 4px;
+    width: 35px;
 }
 
 .card-image {

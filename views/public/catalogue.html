@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<!--Definicion del lenguaje-->
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import de hojas de estilo-->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/materialize.min.css" media="screen,projection" />
+    <link rel="stylesheet" href="../../resources/css/catalogo_2.css">
+    <link rel="stylesheet" href="../../resources/css/catalogue.css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--Titulo de la ventana-->
+    <title>Catalogo</title>
+</head>
+
+<body>
+    <!--Etiqueta del header-->
+    <header>
+        <!--Barra de navegacion-->
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="#" class="brand-logo"><img src="../../resources/img/2.png" alt="" width="80px" height="80px"></a>
+                    <a href="#" data-target="menu-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href="#" class="tooltipped" data-position="bottom" data-tooltip="Inicio de la página"><i
+                                    class="material-icons">arrow_upward</i></a></li>
+                        <li><a href="catalogue.html" class="tooltipped" data-position="bottom" data-tooltip="Catalogo"><i class="material-icons">library_books</i></a></li>
+                        <li><a href="shopping_cart.html" class="tooltipped" data-position="bottom"
+                                data-tooltip="Carrito de compras"><i class="material-icons">shopping_cart</i></a></li>
+                        <li><a href="login.html" class="tooltipped" data-position="bottom"
+                                data-tooltip="Cuenta de usuario"><i class="material-icons">account_circle</i></a></li>
+                    </ul>
+                </div>
+            </nav>
+            <ul class="sidenav" id="menu-mobile">
+                <li><a href="catalogue.html">Catalogo</a></li>
+                <li><a href="shopping_cart.html">Carrito</a></li>
+                <li><a href="login.html">Cuenta</a></li>
+            </ul>
+        </div>
+    </header>
+    <!--Etiqueta main-->
+    <main>
+        
+        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+
+        <!--Tarjetas de productos-->
+        <div class="container">
+            <div class="row">
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col s3">
+                <!--Barra de busqueda-->
+                <div id="search-container">
+                    <h6 class="encabezado">Filtro por busqueda</h6>
+                    <input type="search" id="search-input" placeholder="Buscar producto..." />
+                    <button id="search"><i class="material-icons">search</i></button>
+                    <!--Filtros de categoria-->
+                </div>
+                <div id="buttons">
+                    <h6 class="encabezado">Filtro por categorias</h6>
+                    <form action="#">
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" checked />
+                                <span>Todo</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" />
+                                <span>Cocina</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" />
+                                <span>Gamer</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" />
+                                <span>Jardin</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" />
+                                <span>Oficina</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" />
+                                <span>Sala</span>
+                            </label>
+                        </p>
+                    </form>
+                </div>
+                <div id="products"></div>
+            </div>
+
+            <div class="col s9" id="card-container">
+                <!--Cards para productos-->
+                <div class="col s4">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="../../resources/img/mueble.jpg">
+                            <a class="btn-floating halfway-fab waves-effect waves-light red"><i
+                                    class="material-icons">favorite</i></a>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title">Mueble</span>
+                            <p>Precio: $##.##</p>
+                            <p>Descripcion:
+                                Descripcion no disponible
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Ver</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s4">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="../../resources/img/mueble.jpg">
+                            <a class="btn-floating halfway-fab waves-effect waves-light red"><i
+                                    class="material-icons">favorite</i></a>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title">Mesa</span>
+                            <p>Precio: $##.##</p>
+                            <p>Descripcion:
+                                Descripcion no disponible
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Ver</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s4">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="../../resources/img/mueble 2.jpg">
+                            <a class="btn-floating halfway-fab waves-effect waves-light red"><i
+                                    class="material-icons">favorite</i></a>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title">Gabinete</span>
+                            <p>Precio: $##.##</p>
+                            <p>Descripcion:
+                                Descripcion no disponible</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Ver</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s4">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="../../resources/img/silla.jpg">
+                            <a class="btn-floating halfway-fab waves-effect waves-light red"><i
+                                    class="material-icons">favorite</i></a>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title">Silla</span>
+                            <p>Precio: $##.##</p>
+                            <p>Descripcion:
+                                Descripcion no disponible</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Ver</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+     <!--Etiqueta footer-->
+    <footer>
+        <footer class="page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">Sobre lignum</h5>
+                        <p class="grey-text text-lighten-4">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Dolorem, ipsum magnam quam nesciunt ratione molestias laboriosam. Magnam in, earum quod nam
+                            aliquam, minus debitis quidem eveniet et unde tempore quam.</p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h5 class="white-text">Links</h5>
+                        <ul>
+                            <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/dnlhernandez_">Link
+                                    1</a></li>
+                            <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/dnlhernandez_">Link
+                                    2</a></li>
+                            <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/dnlhernandez_">Link
+                                    3</a></li>
+                            <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/dnlhernandez_!">Link
+                                    4</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    © 2014 Copyright Text
+                    <a class="grey-text text-lighten-4 right" href="https://www.instagram.com/dnlhernandez_">More
+                        Links</a>
+                </div>
+            </div>
+        </footer>
+    </footer>
+
+    <!--Link con archivos js-->
+    <script type="text/javascript" src="../../js/materialize.min.js"></script>
+    <script type="text/javascript" src="../../js/inicializar.js"></script>
+</body>
+
+</html>
