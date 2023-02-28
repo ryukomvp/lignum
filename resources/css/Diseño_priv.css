@@ -6,9 +6,6 @@
   transition-timing-function: cubic-bezier(0.90, -0.105, 0.43, 1.59);
 }
 
-.nav-wrapper{
-background-color: #1a120B;
-}
 .social-btns .btn:before {
   top: 90%;
   left: -110%;
@@ -91,14 +88,6 @@ background-color: #1a120B;
   height: 125%;
   position: absolute;
   transform: rotate(45deg)
-}
-
-/* Logo navbar */
-.brand-logo {
-  display: inline;
-  width: 150px;
-  height: 150px;
-  margin: -45px -25px;
 }
 
 
