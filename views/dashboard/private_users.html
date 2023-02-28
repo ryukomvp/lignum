@@ -19,7 +19,8 @@
     <div class="navbar-fixed">
       <nav>
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo"><img src="/resources/img/2.png" alt="" width="80px" height="80px"></a>
+          <a href="#" class="brand-logo"><img src="/resources/img/2.png" alt=""></a>
+          <a href="#" data-target="menu-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="#" class="tooltipped" data-position="bottom" data-tooltip="Inicio de la página"><i
                   class="material-icons">arrow_upward</i></a></li>
@@ -28,6 +29,12 @@
           </ul>
         </div>
       </nav>
+      <!-- menu para dispositivos con pantalla pequeña -->
+      <ul class="sidenav" id="menu-mobile">
+        <li><a href="catalogue.html">Catalogo</a></li>
+        <li><a href="shopping_cart.html">Carrito</a></li>
+        <li><a href="login.html">Cuenta</a></li>
+      </ul>
     </div>
   </header>
   <main>
@@ -127,8 +134,8 @@
                 <td>Daniel Hernández</td>
                 <td>Administrador</td>
                 <td>Activo</td>
-                <td><a class="waves-effect waves-light btn tooltipped" data-position="top" data-tooltip="Editar"><i
-                      class="material-icons">create</i></a></td>
+                <td><a href="#modal-usuarios" class="waves-effect waves-light btn tooltipped modal-trigger"
+                    data-position="top" data-tooltip="Editar"><i class="material-icons">create</i></a></td>
                 <td><a class="waves-effect waves-light btn tooltipped" data-position="top" data-tooltip="Eliminar"><i
                       class="material-icons">delete</i></a></td>
               </tr>
@@ -139,8 +146,8 @@
                 <td>Alejandro Figueroa</td>
                 <td>Estandar</td>
                 <td>Inactivo</td>
-                <td><a class="waves-effect waves-light btn tooltipped" data-position="top" data-tooltip="Editar"><i
-                      class="material-icons">create</i></a></td>
+                <td><a href="#modal-usuarios" class="waves-effect waves-light btn tooltipped modal-trigger"
+                    data-position="top" data-tooltip="Editar"><i class="material-icons">create</i></a></td>
                 <td><a class="waves-effect waves-light btn tooltipped" data-position="top" data-tooltip="Eliminar"><i
                       class="material-icons">delete</i></a></td>
               </tr>
@@ -151,8 +158,8 @@
                 <td>Daniel Figueroa</td>
                 <td>Estandar</td>
                 <td>Bloqueado</td>
-                <td><a class="waves-effect waves-light btn tooltipped" data-position="top" data-tooltip="Editar"><i
-                      class="material-icons">create</i></a></td>
+                <td><a href="#modal-usuarios" class="waves-effect waves-light btn tooltipped modal-trigger"
+                    data-position="top" data-tooltip="Editar"><i class="material-icons">create</i></a></td>
                 <td><a class="waves-effect waves-light btn tooltipped" data-position="top" data-tooltip="Eliminar"><i
                       class="material-icons">delete</i></a></td>
               </tr>
@@ -181,8 +188,8 @@
     </div>
   </footer>
   <!--JavaScript at end of body for optimized loading-->
-  <script type="text/javascript" src="/js/materialize.min.js"></script>
-  <script type="text/javascript" src="/js/dashboard.js"></script>
+  <script type="text/javascript" src="/resources/js/materialize.min.js"></script>
+  <script type="text/javascript" src="/resources/js/dashboard.js"></script>
 </body>
 
 </html>
