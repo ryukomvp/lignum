@@ -1,0 +1,61 @@
+@import '//codepen.io/chrisdothtml/pen/ojLzJK.css';
+
+/* Tranciociones before  */
+.Categorias-btns,
+.Categorias-btns:before {
+  transition: all 0.35s;
+  transition-timing-function: cubic-bezier(0.35, -0.105, 0.43, 1.59);
+}
+
+/* Estilo a el logo */
+.brand-logo {
+  width: 50px;
+  height: 50px;
+  margin-top: -3%;
+  margin-left: -25;
+}
+
+
+/* Estilo de botones de menu */
+.Categorias-btns {
+  max-width: 700px;
+  margin: 5px;
+  margin-top: 30px;
+  border-radius: 0;
+  text-align: center;
+  font-family: Arial;
+  top: 90%;
+}
+
+
+.Categorias-btns:before {
+  top: 90%;
+  left: -100%;
+}
+
+
+/* Cambio de boton*/
+.Categorias-btns:before {
+  background-color: rgba(138, 119, 56, 0.608);
+}
+
+
+.Categorias-btns:focus:before,
+.Categorias-btns:hover:before {
+  top: -5px;
+  left: -5%;
+}
+
+
+.Categorias-btns:before {
+  content: '';
+  width: 15%;
+  height: 70%;
+  position: absolute;
+  transform: rotate(90deg);
+}
+
+
+
+
+

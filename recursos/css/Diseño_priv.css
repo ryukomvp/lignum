@@ -1,0 +1,151 @@
+@import '//codepen.io/chrisdothtml/pen/ojLzJK.css';
+
+.social-btns,
+.social-btns:before{
+  transition: all 0.35s;
+  transition-timing-function: cubic-bezier(0.90, -0.105, 0.43, 1.59);
+}
+
+.nav-wrapper{
+background-color: #1a120B;
+}
+.social-btns .btn:before {
+  top: 90%;
+  left: -110%;
+}
+
+.social-btns .btn.Empleados:before {
+  background-color: rgba(0, 136, 255, 0.315);
+}
+
+
+/* Cambio de color de usuarios */
+.social-btns .btn.Usuarios:before {
+  background-color: rgba(0, 136, 255, 0.315);
+  z-index: 1;
+}
+
+
+
+/* Cambio de color de productos */
+.social-btns .btn.Productos:before {
+  background-color:rgba(0, 136, 255, 0.315);
+}
+
+
+
+/* Cambio de color de proveedor */
+.social-btns .btn.Proveedores:before {
+  background-color: rgba(0, 136, 255, 0.315);
+}
+
+/* Cambio de color de pedidos */
+.social-btns .btn.Pedidos:before {
+  background-color: rgba(0, 136, 255, 0.315);
+}
+
+
+/* Cambio de color de valoracion */
+.social-btns .btn.Valoracion:before {
+  background-color: rgba(0, 136, 255, 0.315);
+}
+
+.social-btns .btn:focus:before,
+.social-btns .btn:hover:before {
+  top: -10%;
+  left: -10%;
+}
+
+/* Estilo de botones del menu */
+.social-btns {
+  height: 90px;
+  margin: auto;
+  font-size: 0;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* Estilo de botones del menu */
+.social-btns .btn {
+  display: inline-block;
+  background-color: #d6d6d6;
+  width: 200px;
+  height: 200px;
+  Line-height: 90px;
+  margin: 10px 10px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 28%;
+  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
+  opacity: 0.99;
+}
+
+.social-btns .btn:before {
+  content: '';
+  width: 125%;
+  height: 125%;
+  position: absolute;
+  transform: rotate(45deg)
+}
+
+/* Logo navbar */
+.brand-logo {
+  display: inline;
+  width: 150px;
+  height: 150px;
+  margin: -45px -25px;
+}
+
+
+/* Letra de menu */
+.Letra_Menu{
+  color: black;
+  margin-top: -10px;
+  font-size: 17px;
+}
+
+/* Estilo de iconos del menu */
+.Iconos_menu{
+  align-items: center;
+  margin: 20% 20%;
+}
+
+/* Estilo de letra de Bienvenida */
+.Bienvenida{
+  color: black;
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+/* Estilo de fondo de la pagina main  */
+.Fondo{
+   margin: -200px 450px;
+   height: 40%;
+   width: 40%;
+}
+
+.row{
+  margin-top: 50px;
+}
+
+
+.Detalle{
+  color : white ;
+}
+
+
+/* Contenedor de configuracion de perfil */
+.profile{
+  display: flex;
+  align-items: center;
+  box-shadow: 0 0 1px;
+  border-radius: 20px;
+  width: 73%;
+  background-color :#ffffffde;
+}
