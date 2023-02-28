@@ -1,8 +1,7 @@
 @import '//codepen.io/chrisdothtml/pen/ojLzJK.css';
 
 .social-btns,
-.social-btns:before,
-.social-btns.fa {
+.social-btns:before{
   transition: all 0.35s;
   transition-timing-function: cubic-bezier(0.90, -0.105, 0.43, 1.59);
 }
@@ -15,60 +14,41 @@ background-color: #1a120B;
   left: -110%;
 }
 
-.social-btns .btn .fa {
-  transform: scale(2,1);
-}
-
 .social-btns .btn.Empleados:before {
   background-color: rgba(0, 136, 255, 0.315);
 }
 
-/* .social-btns .btn.Empleados.fa {
-  color: #3b5998;
-} */
 
+/* Cambio de color de usuarios */
 .social-btns .btn.Usuarios:before {
   background-color: rgba(0, 136, 255, 0.315);
   z-index: 1;
 }
 
-.social-btns .btn.Usuarios.fa {
-  color: rgba(0, 136, 255, 0.315);
-  z-index: 1;
-}
 
+
+/* Cambio de color de productos */
 .social-btns .btn.Productos:before {
   background-color:rgba(0, 136, 255, 0.315);
 }
 
-.social-btns .btn.Productos.fa {
-  color: rgba(0, 136, 255, 0.315);
-}
 
+
+/* Cambio de color de proveedor */
 .social-btns .btn.Proveedores:before {
   background-color: rgba(0, 136, 255, 0.315);
 }
 
-.social-btns .btn.Proveedores.fa {
-  color: rgba(0, 136, 255, 0.315);
-}
-
+/* Cambio de color de pedidos */
 .social-btns .btn.Pedidos:before {
   background-color: rgba(0, 136, 255, 0.315);
 }
 
-.social-btns .btn.Pedidos.fa {
-  color: rgba(0, 136, 255, 0.315);
-}
 
+/* Cambio de color de valoracion */
 .social-btns .btn.Valoracion:before {
   background-color: rgba(0, 136, 255, 0.315);
 }
-
-.social-btns .btn.Valoracion.fa {
-  color: rgba(0, 136, 255, 0.315);
-}
-
 
 .social-btns .btn:focus:before,
 .social-btns .btn:hover:before {
@@ -76,13 +56,7 @@ background-color: #1a120B;
   left: -10%;
 }
 
-
-.social-btns .btn:focus .fa,
-.social-btns .btn:hover .fa {
-  color: #fff;
-  transform: scale(1);
-}
-
+/* Estilo de botones del menu */
 .social-btns {
   height: 90px;
   margin: auto;
@@ -95,6 +69,7 @@ background-color: #1a120B;
   right: 0;
 }
 
+/* Estilo de botones del menu */
 .social-btns .btn {
   display: inline-block;
   background-color: #d6d6d6;
@@ -118,37 +93,29 @@ background-color: #1a120B;
   transform: rotate(45deg)
 }
 
-.social-btns .btn .fa {
-  font-size: 38px;
-  vertical-align: middle;
-}
-
-/* navbar */
-
+/* Logo navbar */
 .brand-logo {
   display: inline;
   width: 150px;
   height: 150px;
   margin: -45px -25px;
-  /* margin-top: -3%;
-  margin-left: -25; */
 }
 
-/* .Menu_Use{
-  z-index: 3;
-} */
 
+/* Letra de menu */
 .Letra_Menu{
   color: black;
   margin-top: -10px;
   font-size: 17px;
 }
 
+/* Estilo de iconos del menu */
 .Iconos_menu{
   align-items: center;
   margin: 20% 20%;
 }
 
+/* Estilo de letra de Bienvenida */
 .Bienvenida{
   color: black;
   text-align: center;
@@ -156,30 +123,24 @@ background-color: #1a120B;
   font-weight: bold;
 }
 
+/* Estilo de fondo de la pagina main  */
 .Fondo{
    margin: -200px 450px;
    height: 40%;
    width: 40%;
 }
 
-.Fondo{
-  display: contents;
-  height: 40%;
-  width: 40%;
-  Line-height: 500px;
-  margin: 10px 10px;
-  position: relative;
-  overflow: auto;
-}
-
 .row{
   margin-top: 50px;
 }
+
 
 .Detalle{
   color : white ;
 }
 
+
+/* Contenedor de configuracion de perfil */
 .profile{
   display: flex;
   align-items: center;
