@@ -19,48 +19,35 @@
 </head>
 
 <body>
-
-    <main>
+    <!--Etiqueta del header-->
+    <header>
         <!--Barra de navegacion-->
-        <nav>
-            <div class="nav-wrapper">
-                <a class="brand-logo"><img src="../../resources/img/2.png" alt="" width="80px" height="80px"></a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="#" class="tooltipped" data-position="bottom" data-tooltip="Inicio de la página"><i
-                                class="material-icons">arrow_upward</i></a></li>
-                    <li><a href="shopping_cart.html" class="tooltipped" data-position="bottom"
-                            data-tooltip="Carrito de compras"><i class="material-icons">shopping_cart</i></a></li>
-                    <li><a href="login.html" class="tooltipped" data-position="bottom"
-                            data-tooltip="Cuenta de usuario"><i class="material-icons">account_circle</i></a></li>
-                </ul>
-            </div>
-        </nav>
-
-        <!--Menu lateral-->
-        <ul id="slide-out" class="sidenav">
-            <li>
-                <div class="user-view">
-                    <div class="background">
-                        <img src="../../resources/img/mueble.jpg">
-                    </div>
-                    <a href="#user"><img class="circle" src="../../resources/img/Usuario.jpeg"></a>
-                    <a href="#name"><span class="white-text name">John Doe</span></a>
-                    <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="#" class="brand-logo"><img src="../../resources/img/2.png" alt="" width="80px" height="80px"></a>
+                    <a href="#" data-target="menu-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href="#" class="tooltipped" data-position="bottom" data-tooltip="Inicio de la página"><i
+                                    class="material-icons">arrow_upward</i></a></li>
+                        <li><a href="catalogue.html" class="tooltipped" data-position="bottom" data-tooltip="Catalogo"><i class="material-icons">library_books</i></a></li>
+                        <li><a href="shopping_cart.html" class="tooltipped" data-position="bottom"
+                                data-tooltip="Carrito de compras"><i class="material-icons">shopping_cart</i></a></li>
+                        <li><a href="login.html" class="tooltipped" data-position="bottom"
+                                data-tooltip="Cuenta de usuario"><i class="material-icons">account_circle</i></a></li>
+                    </ul>
                 </div>
-                <!-- </li>
-        <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-        <li><a href="#!">Second Link</a></li>
-        <li> -->
-                <div class="divider"></div>
-            </li>
-            <li><a class="subheader">Menu</a></li>
-            <li><a class="Categorias" href="#!">Precio</a></li>
-            <li><a class="Categorias" href="#!">Cocina</a></li>
-            <li><a class="Categorias" href="#!">Gamer </a></li>
-            <li><a class="Categorias" href="#!">Jardin</a></li>
-            <li><a class="Categorias" href="#!">Oficina</a></li>
-            <li><a class="Categorias" href="#!">Sala</a></li>
-        </ul>
+            </nav>
+            <ul class="sidenav" id="menu-mobile">
+                <li><a href="catalogue.html">Catalogo</a></li>
+                <li><a href="shopping_cart.html">Carrito</a></li>
+                <li><a href="login.html">Cuenta</a></li>
+            </ul>
+        </div>
+    </header>
+    <!--Etiqueta main-->
+    <main>
+        
         <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
 
@@ -206,6 +193,8 @@
         </div>
 
     </main>
+
+     <!--Etiqueta footer-->
     <footer>
         <footer class="page-footer">
             <div class="container">
@@ -219,10 +208,14 @@
                     <div class="col l4 offset-l2 s12">
                         <h5 class="white-text">Links</h5>
                         <ul>
-                            <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/dnlhernandez_">Link 1</a></li>
-                            <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/dnlhernandez_">Link 2</a></li>
-                            <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/dnlhernandez_">Link 3</a></li>
-                            <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/dnlhernandez_!">Link 4</a></li>
+                            <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/dnlhernandez_">Link
+                                    1</a></li>
+                            <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/dnlhernandez_">Link
+                                    2</a></li>
+                            <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/dnlhernandez_">Link
+                                    3</a></li>
+                            <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/dnlhernandez_!">Link
+                                    4</a></li>
                         </ul>
                     </div>
                 </div>
@@ -230,7 +223,8 @@
             <div class="footer-copyright">
                 <div class="container">
                     © 2014 Copyright Text
-                    <a class="grey-text text-lighten-4 right" href="https://www.instagram.com/dnlhernandez_">More Links</a>
+                    <a class="grey-text text-lighten-4 right" href="https://www.instagram.com/dnlhernandez_">More
+                        Links</a>
                 </div>
             </div>
         </footer>
