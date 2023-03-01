@@ -48,6 +48,14 @@ CREATE TABLE tipo_usuario(
   tipo_usuario varchar(20)
 );
 
+CREATE TABLE proveedor(
+	id_proveedor serial not null PRIMARY KEY,
+	nombre_proveedor varchar(120) not null,
+	direccion_proveedor varchar(256) not null,
+	correo_proveedor varchar(120) not null,
+	telefono_proveedor varchar(9) not null
+);
+
 CREATE TABLE cliente(
 	id_cliente serial not null PRIMARY KEY,
 	nombre_cliente varchar(70) not null,
@@ -119,13 +127,11 @@ CREATE TABLE producto(
 	CONSTRAINT codigo_producto UNIQUE (codigo_producto)
 );
 
-CREATE TABLE proveedor(
-	id_proveedor serial not null PRIMARY KEY,
-	nombre_proveedor varchar(120) not null,
-	direccion_proveedor varchar(256) not null,
-	correo_proveedor varchar(120) not null,
-	telefono_proveedor varchar(9) not null
-);
+CREATE TABLE imagenes(
+	id_imagen serial not null PRIMARY KEY,
+	ruta_imagen varchar not null,
+	id_producto int not null
+)
 
 CREATE TABLE usuario_privado(
 	id_usuario_privado serial not null PRIMARY KEY,
@@ -192,6 +198,10 @@ REFERENCES proveedor(id_proveedor);
 ALTER TABLE producto
 ADD CONSTRAINT material_producto_fkey FOREIGN KEY (id_tipo_material)
 REFERENCES tipo_material(id_tipo_material);
+
+ALTER TABLE imagenes
+ADD CONSTRAINT imagen_producto_fkey FOREIGN KEY (id_producto)
+REFERENCES producto(id_producto);
 
 ALTER TABLE usuario_privado
 ADD CONSTRAINT usuario_privado_empleado_fkey FOREIGN KEY (id_empleado)

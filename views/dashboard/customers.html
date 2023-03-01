@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html>
+<!-- deficion del lenguaje del sitio -->
+<html lang="es">
 
 <head>
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--Import materialize.css-->
   <link type="text/css" rel="stylesheet" href="/resources/css/materialize.min.css" media="screen,projection" />
+  <!-- importacion de css -->
   <link type="text/css" rel="stylesheet" href="/resources/css/dashboard.css" media="screen,projection" />
 
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- titulo de la pagina -->
   <title>Clientes</title>
 </head>
 
@@ -64,32 +67,38 @@
         </div>
       </div>
     </div>
-    <!-- contenedor para ventana modal -->
+    <!-- contenedor para ventana modal de scrud clientes-->
     <div class="container">
       <!-- contenido de ventana modal -->
       <div id="modal-clientes" class="modal">
         <div class="modal-content">
           <div class="row">
+            <!-- textbox nombres -->
             <div class="input-field col s12 m6">
               <input id="nombre" type="text">
               <label for="nombre">Nombres</label>
             </div>
+            <!-- textbox apellidos -->
             <div class="input-field col s12 m6">
               <input id="apellido" type="text">
               <label for="apellido">Apellidos</label>
             </div>
+            <!-- textbox dui -->
             <div class="input-field col s12 m3">
               <input id="dui" type="text" maxlength="10">
               <label for="dui">DUI</label>
             </div>
+            <!-- textbox correo -->
             <div class="input-field col s12 m6">
               <input id="correo" type="email">
               <label for="correo">Correo</label>
             </div>
+            <!-- textbox telefono -->
             <div class="input-field col s12 m3">
               <input id="telefono" type="text" maxlength="9">
               <label for="telefono">Teléfono</label>
             </div>
+            <!-- cmb genero -->
             <div class="input-field col s12 m6">
               <select>
                 <option value="" disabled selected>Seleccione el genero</option>
@@ -98,6 +107,7 @@
               </select>
               <label>Genero</label>
             </div>
+            <!-- cmb tipo de cliente -->
             <div class="input-field col s12 m6">
               <select>
                 <option value="" disabled selected>Seleccione el tipo de cliente</option>
@@ -106,6 +116,7 @@
               </select>
               <label>Tipo de cliente</label>
             </div>
+            <!-- boton para subir foto -->
             <div class="col s12 m12">
               <form action="#">
                 <div class="file-field input-field">
@@ -119,10 +130,12 @@
                 </div>
               </form>
             </div>
+            <!-- textbox usaurio -->
             <div class="input-field col s12 m6">
               <input id="usuario" type="text">
               <label for="usuario">Usuario</label>
             </div>
+            <!-- textbox clave -->
             <div class="input-field col s12 m6">
               <input id="clave" type="password">
               <label for="clave">Clave</label>
