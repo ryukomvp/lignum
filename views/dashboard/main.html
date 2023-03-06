@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- definicion del lenguaje del sitio -->
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -8,11 +9,12 @@
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="/recursos/css/materialize.min.css" media="screen,projection" />
-    <link type="text/css" rel="stylesheet" href="/recursos/css/Diseño_priv.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="/resources/css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="/resources/css/diseño_priv.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="/resources/css/dashboard.css" media="screen,projection" />
 
     <!--Titulo de pagina-->
-    <title>Employess</title>
+    <title>Dashboard</title>
 </head>
 
 <body>
@@ -23,8 +25,7 @@
         <div class="navbar-fixed">
             <nav>
                 <div class="nav-wrapper">
-                    <a href="#" class="brand-logo"><img src="/resources/img/2.png" alt="" width="80px"
-                            height="80px"></a>
+                    <a href="main.html" class="brand-logo"><img src="/resources/img/2.png" alt=""></a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li><a href="#" class="tooltipped" data-position="bottom" data-tooltip="Inicio de la página"><i
                                     class="material-icons">arrow_upward</i></a></li>
@@ -35,37 +36,43 @@
             </nav>
         </div>
     </header>
-
-    <!-- Botones de menu -->
+    <!-- contenido principal -->
     <main>
-        <img class="Fondo" src="/recursos/img/1.png" alt="">
-        <h5 class="Bienvenida">Bienvenido Kevin Rivas</h5>
-        <!-- botones para direccionar a los SCRUD -->
-        <div class="social-btns">
-            <a class="btn Empleados" href="#"><img class="Iconos_menu"
-                    src="/recursos/img/Icono_Employeers_priv_menu.png"><i class="fa fa-Empleados"><i>
-                        <h5 class="Letra_Menu">Empleados</h5>
-            </a>
-            <a class="btn Usuarios" href="#"><img class="Iconos_menu" src="/recursos/img/Icono_User_priv_menu.png"> <i
-                    class="fa fa-Usuarios"></i>
-                <h5 class="Letra_Menu">Usuarios</h5>
-            </a>
-            <a class="btn Productos" href="products.html"><img class="Iconos_menu"
-                    src="/recursos/img/Icono_Productos_priv_menu.png"> <i class="fa fa-Productos"></i>
-                <h5 class="Letra_Menu">Productos</h5>
-            </a>
-            <a class="btn Proveedores" href="#"><img class="Iconos_menu"
-                    src="/recursos/img/Icono_Proveedor_priv_menu.png"> <i class="fa fa-Proveedores"><i>
-                        <h5 class="Letra_Menu">Proveedores</h5>
-            </a>
-            <a class="btn Pedidos" href="orders.html"><img class="Iconos_menu"
-                    src="/recursos/img/Icono_Pedidos_priv_menu.png"><i class="fa fa-Pedidos"><i>
-                        <h5 class="Letra_Menu">Pedidos</h5>
-            </a>
-            <a class="btn Valoracion" href="#"><img class="Iconos_menu"
-                    src="/recursos/img/Icono_Valoracion_priv_menu.png"><i class="fa fa-Valoracion"><i>
-                        <h5 class="Letra_Menu">Valoracion y comentarios</h5>
-            </a>
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m12">
+                    <h5 class="Bienvenida">Bienvenido Kevin Rivas</h5>
+                </div>
+                <div class="col s12 m12">
+                    <!-- botones para direccionar a los SCRUD -->
+                    <div class="social-btns">
+                        <a class="btn Empleados" href="employees.html"><img class="Iconos_menu"
+                                src="/resources/img/Icono_Employeers_priv_menu.png"><i class="fa fa-Empleados"><i>
+                                    <h5 class="Letra_Menu">Empleados</h5>
+                        </a>
+                        <a class="btn Usuarios" href="private_users.html"><img class="Iconos_menu"
+                                src="/resources/img/Icono_User_priv_menu.png"> <i class="fa fa-Usuarios"></i>
+                            <h5 class="Letra_Menu">Usuarios</h5>
+                        </a>
+                        <a class="btn Productos" href="products.html"><img class="Iconos_menu"
+                                src="/resources/img/Icono_Productos_priv_menu.png"> <i class="fa fa-Productos"></i>
+                            <h5 class="Letra_Menu">Productos</h5>
+                        </a>
+                        <a class="btn Proveedores" href="suppliers.html"><img class="Iconos_menu"
+                                src="/resources/img/Icono_Proveedor_priv_menu.png"> <i class="fa fa-Proveedores"><i>
+                                    <h5 class="Letra_Menu">Proveedores</h5>
+                        </a>
+                        <a class="btn Pedidos" href="orders.html"><img class="Iconos_menu"
+                                src="/resources/img/Icono_Pedidos_priv_menu.png"><i class="fa fa-Pedidos"><i>
+                                    <h5 class="Letra_Menu">Pedidos</h5>
+                        </a>
+                        <a class="btn Valoracion" href="#"><img class="Iconos_menu"
+                                src="/resources/img/Icono_Valoracion_priv_menu.png"><i class="fa fa-Valoracion"><i>
+                                    <h5 class="Letra_Menu">Valoracion y comentarios</h5>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
     <!-- Footer -->
@@ -89,8 +96,9 @@
         </div>
     </footer>
     <!--JavaScript at end of body for optimized loading-->
-    <script type="text/javascript" src="/recursos/js/materialize.min.js"></script>
-    <script type="text/javascript" src="/recursos/js/inicializar_dashboard.js"></script>
+    <script type="text/javascript" src="/resources/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/resources/js/inicializar_dashboard.js"></script>
+    <script type="text/javascript" src="/resources/js/dashboard.js"></script>
 </body>
 
 </html>

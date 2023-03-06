@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!-- definicion de lenguaje del sitio -->
+<html lang="es">
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="/resources/css/materialize.min.css" media="screen,projection" />
+    <!-- importacion de css -->
+    <link type="text/css" rel="stylesheet" href="/resources/css/dashboard.css" media="screen,projection" />
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <!-- etiqueta de header -->
+    <header>
+        <!-- menu -->
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="#" class="brand-logo"><img src="/resources/img/2.png"></a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- contenido principal de la página -->
+    <main>
+        <!-- contenedor para titulo y textboxs -->
+        <div class="container">
+            <div class="row">
+                <!-- titulo -->
+                <h5 class="titulo center">Bienvenido</h5>
+                <!-- textbox de usuario -->
+                <div class="col s8 m4 offset-s2 offset-m4 textbox">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input class="browser-default" type="text" name="usuario" id="usuario"
+                        placeholder="Ingrese su usuario" autocomplete="off">
+                </div>
+                <!-- textbox de clave -->
+                <div class="col s8 m4 offset-s2 offset-m4 textbox">
+                    <i class="material-icons prefix">lock</i>
+                    <input class="browser-default" type="password" name="clave" id="usuario"
+                        placeholder="Ingrese su clave" autocomplete="off" maxlength="16">
+                </div>
+            </div>
+        </div>
+        <!-- contenedor para boton -->
+        <div class="container">
+            <div class="row">
+                <div class="col s4 m2 offset-s4 offset-m5">
+                    <a href="main.html">
+                        <button class="btn col l12 s12 m12 btn_ingresar">Ingresar</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- contenedor para checkbox y recuperacion de clave -->
+        <div class="container">
+            <div class="row">
+                <div class="col s4 m2 offset-s4 offset-m4">
+                    <!-- checkbox para recordar sesion -->
+                    <form action="#">
+                        <p>
+                            <label>
+                                <input type="checkbox" class="filled-in" checked="checked" />
+                                <span>Recuerdame</span>
+                            </label>
+                        </p>
+                    </form>
+                </div>
+                <!-- enlace a recuperacion de clave -->
+                <div class="col s6 m6 offset-s3">
+                    <a class="recuperacion" href="">Olvidé mi contraseña</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="/resources/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/resources/js/dashboard.js"></script>
+</body>
+
+</html>

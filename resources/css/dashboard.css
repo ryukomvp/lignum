@@ -1,0 +1,87 @@
+/* ajustes de diseño para el cuerpo de la pagina */
+body{
+    font-family: 'Times New Roman', Times, serif;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.nav-wrapper, .page-footer{
+    background-color: #1a120b;
+}
+
+.acciones{
+    margin-top: 5%;
+    margin-bottom: 1%;
+}
+
+.guardar{
+    background-color: #cfd8dc;
+}
+
+.eliminar{
+    background-color: #cfd8dc;
+}
+
+.salir{
+    background-color: #cfd8dc;
+}
+
+.guardar:hover{
+    background-color: #66bb6a;
+}
+
+.eliminar:hover{
+    background-color: #ef5350;
+}
+
+.salir:hover{
+    background-color: #ffee58;
+}
+
+.entradas{
+    display: flex;
+    align-items: center;
+}
+
+.titulo{
+    font-family: 'Times New Roman', Times, serif;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.textbox{
+    height: 50px;
+    width: auto;
+    margin-top: 10px;
+    background-color: #eeeeee;
+    border-radius: 100px;
+    padding: 14px!important;
+}
+
+.textbox input{
+    position: relative;
+    padding-left: 30px;
+    border-style: none;
+    background-color: transparent;
+    outline: none;
+}
+
+.textbox i{
+    position: absolute;
+    color: darkgray;
+    transition: all 2s ease 0s;
+}
+
+.recuperacion{
+    text-align: right;
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+}

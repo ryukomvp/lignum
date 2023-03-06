@@ -48,10 +48,19 @@ CREATE TABLE tipo_usuario(
   tipo_usuario varchar(20)
 );
 
+CREATE TABLE proveedor(
+	id_proveedor serial not null PRIMARY KEY,
+	nombre_proveedor varchar(120) not null,
+	direccion_proveedor varchar(256) not null,
+	correo_proveedor varchar(120) not null,
+	telefono_proveedor varchar(9) not null
+);
+
 CREATE TABLE cliente(
 	id_cliente serial not null PRIMARY KEY,
 	nombre_cliente varchar(70) not null,
 	apellido_cliente varchar(70) not null,
+	foto varchar not null,
 	dui_cliente varchar(10) null,
 	correo_cliente varchar(120) not null,
 	telefono_cliente varchar(9),
@@ -70,7 +79,9 @@ CREATE TABLE empleado(
 	id_empleado serial not null PRIMARY KEY,
 	nombre_empleado varchar(70) not null,
 	apellido_empleado varchar(70) not null,
+	foto varchar not null,
 	dui_empleado varchar(10) not null,
+	nacimiento_empleado date not null,
 	correo_empleado varchar(120) not null,
 	telefono_empleado varchar(9),
 	id_genero int not null,
@@ -94,13 +105,13 @@ CREATE TABLE detalle_pedido(
 	id_pedido int not null,
 	id_producto int not null,
 	precio_producto float not null,
-	cantidad int null, -- en caso de llevar más de un producto puede especificar aqui
-	id_valoracion int not null
+	cantidad int null -- en caso de llevar más de un producto puede especificar aqui
 );
 
 CREATE TABLE producto(
 	id_producto serial not null PRIMARY KEY,
 	nomre_producto varchar(70) not null,
+	foto varchar not null,
 	descripcion_producto varchar(120) not null,
 	precio_producto float not null,
 
@@ -116,13 +127,11 @@ CREATE TABLE producto(
 	CONSTRAINT codigo_producto UNIQUE (codigo_producto)
 );
 
-CREATE TABLE proveedor(
-	id_proveedor serial not null PRIMARY KEY,
-	nombre_proveedor varchar(120) not null,
-	direccion_proveedor varchar(256) not null,
-	correo_proveedor varchar(120) not null,
-	telefono_proveedor varchar(9) not null
-);
+CREATE TABLE imagenes(
+	id_imagen serial not null PRIMARY KEY,
+	ruta_imagen varchar not null,
+	id_producto int not null
+)
 
 CREATE TABLE usuario_privado(
 	id_usuario_privado serial not null PRIMARY KEY,
@@ -138,7 +147,8 @@ CREATE TABLE usuario_privado(
 CREATE TABLE valoracion(
 	id_valoracion serial not null PRIMARY KEY,
 	puntaje int null,
-	comentario varchar null
+	comentario varchar null,
+	id_detalle_pedido int not null
 );
 
 ALTER TABLE cliente
@@ -173,9 +183,9 @@ ALTER TABLE detalle_pedido
 ADD CONSTRAINT pedido_producto_fkey FOREIGN KEY (id_producto)
 REFERENCES producto(id_producto);
 
-ALTER TABLE detalle_pedido
-ADD CONSTRAINT pedido_valoracion_fkey FOREIGN KEY (id_valoracion)
-REFERENCES valoracion(id_valoracion);
+ALTER TABLE valoracion
+ADD CONSTRAINT pedido_valoracion_fkey FOREIGN KEY (id_detalle_pedido)
+REFERENCES detalle_pedido(id_detalle_pedido);
 
 ALTER TABLE producto
 ADD CONSTRAINT categoria_producto_fkey FOREIGN KEY (id_categoria)
@@ -188,6 +198,10 @@ REFERENCES proveedor(id_proveedor);
 ALTER TABLE producto
 ADD CONSTRAINT material_producto_fkey FOREIGN KEY (id_tipo_material)
 REFERENCES tipo_material(id_tipo_material);
+
+ALTER TABLE imagenes
+ADD CONSTRAINT imagen_producto_fkey FOREIGN KEY (id_producto)
+REFERENCES producto(id_producto);
 
 ALTER TABLE usuario_privado
 ADD CONSTRAINT usuario_privado_empleado_fkey FOREIGN KEY (id_empleado)
@@ -205,7 +219,7 @@ INSERT INTO cargo(cargo)
 VALUES	('Gerente general'),
 				('Asistente de gerencia'),
 				('Carpinteria general'),
-				('Mozo de almacen'),
+				('Mozo de almacén'),
 				('Encargado de limpieza');
 
 INSERT INTO categoria(categoria)
