@@ -70,6 +70,7 @@ CREATE TABLE cliente(
 	usuario_publico varchar(20) not null,
 	clave varchar(2048) not null,
 	id_estado_usuario int not null,
+	acceso boolean,
 	
 	CONSTRAINT dui_cliente UNIQUE (dui_cliente),
 	CONSTRAINT usuario_publico UNIQUE (usuario_publico)
@@ -148,6 +149,7 @@ CREATE TABLE valoracion(
 	id_valoracion serial not null PRIMARY KEY,
 	puntaje int null,
 	comentario varchar null,
+	estado boolean null,
 	id_detalle_pedido int not null
 );
 
