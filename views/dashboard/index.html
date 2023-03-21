@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <!-- etiqueta de header -->
+    <!-- encabezado de la pagina -->
     <header>
         <!-- menu -->
         <div class="navbar-fixed">
@@ -28,65 +28,40 @@
         </div>
     </header>
     <!-- contenido principal de la página -->
-    <main>
-        <!-- contenedor para titulo y textboxs -->
-        <div class="container">
-            <div class="row">
-                <!-- titulo -->
-                <h5 class="titulo center">Bienvenido</h5>
-                <!-- textbox de usuario -->
-                <div class="col s8 m4 offset-s2 offset-m4 textbox">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input class="browser-default" type="text" name="usuario" id="usuario"
-                        placeholder="Ingrese su usuario" autocomplete="off">
+    <main class="container">
+        <div class="row">
+            <!-- titulo de bienvenida -->
+            <h1 class="text center">Bienvenido</h1>
+            <!-- formulario para inicio de sesion -->
+            <form class="col s12">
+                <div class="row">
+                    <!-- input para ingresar usuario -->
+                    <div class="input-field col s4 offset-s4">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="usuario" type="text" required>
+                        <label for="usuario">Ingrese su usuario</label>
+                    </div>
+                    <!-- input para ingresar clave -->
+                    <div class="input-field col s4 offset-s4">
+                        <i class="material-icons prefix">lock</i>
+                        <input id="clave" type="password" required>
+                        <label for="clave">Ingrese su contraseña</label>
+                    </div>
                 </div>
-                <!-- textbox de clave -->
-                <div class="col s8 m4 offset-s2 offset-m4 textbox">
-                    <i class="material-icons prefix">lock</i>
-                    <input class="browser-default" type="password" name="clave" id="usuario"
-                        placeholder="Ingrese su clave" autocomplete="off" maxlength="16">
-                </div>
-            </div>
-        </div>
-        <!-- contenedor para boton -->
-        <div class="container">
-            <div class="row">
-                <div class="col s4 m2 offset-s4 offset-m5">
-                    <a href="main.html">
-                        <button class="btn col l12 s12 m12 btn_ingresar">Ingresar</button>
+                <div class="center-align">
+                    <a href="main.html" type="submit" class="waves-effect btn-large blue"><i
+                            class="material-icons">send</i></button>
                     </a>
                 </div>
-            </div>
-        </div>
-        <!-- contenedor para checkbox y recuperacion de clave -->
-        <div class="container">
-            <div class="row">
-                <div class="col s4 m2 offset-s4 offset-m4">
-                    <!-- checkbox para recordar sesion -->
-                    <form action="#">
-                        <p>
-                            <label>
-                                <input type="checkbox" class="filled-in" checked="checked" />
-                                <span>Recuerdame</span>
-                            </label>
-                        </p>
-                    </form>
-                </div>
-                <!-- enlace a recuperacion de clave -->
-                <div class="col s6 m6 offset-s3">
-                    <a class="recuperacion" href="">Olvidé mi contraseña</a>
-                </div>
-            </div>
+            </form>
         </div>
     </main>
-    <!-- Footer -->
+    <!-- pie de la pagina -->
     <footer class="page-footer">
         <div class="container">
             <div class="row">
                 <div class="col l6 s12">
-                    <a href="about-us.html">
-                        <h5 class="white-text">Dashboard footer</h5>
-                    </a>
+                    <h5 class="white-text">Dashboard footer</h5>
                 </div>
             </div>
         </div>

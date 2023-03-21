@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <!-- etiqueta de header -->
+    <!-- encabezado de la pagina -->
     <header>
         <!-- menu -->
         <div class="navbar-fixed">
@@ -26,33 +26,35 @@
         </div>
     </header>
     <!-- contenido principal de la página -->
-    <main>
-        <div class="container">
-            <div class="row">
-                <h1 class="text center">Bienvenido</h1>
-                <form class="col s12">
-                    <div class="row">
-                        <div class="input-field col s4 offset-s4">
-                            <i class="material-icons prefix">account_circle</i>
-                            <input id="usuario" type="text" class="validate">
-                            <label for="usuario">Usuario</label>
-                        </div>
-                        <div class="input-field col s4 offset-s4">
-                            <i class="material-icons prefix">lock</i>
-                            <input id="clave" type="password" class="validate">
-                            <label for="clave">Clave</label>
-                        </div>
+    <main class="container">
+        <div class="row">
+            <!-- titulo de bienvenida -->
+            <h1 class="text center">Bienvenido</h1>
+            <!-- formulario para inicio de sesion -->
+            <form class="col s12">
+                <div class="row">
+                    <!-- input para ingresar usuario -->
+                    <div class="input-field col s4 offset-s4">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="usuario" type="text" required>
+                        <label for="usuario">Ingrese su usuario</label>
                     </div>
-                </form>
-                <div class="col s12 center-align">
-                    <button type="submit" class="waves-effect waves-light btn-large blue darken-4"><i
-                        class="material-icons">send</i></button>
+                    <!-- input para ingresar clave -->
+                    <div class="input-field col s4 offset-s4">
+                        <i class="material-icons prefix">lock</i>
+                        <input id="clave" type="password" required>
+                        <label for="clave">Ingrese su contraseña</label>
+                    </div>
+                </div>
+                <div class="center-align">
+                    <button href="index.html" type="submit" class="waves-effect btn-large blue"><i
+                            class="material-icons">send</i></button>
                     </button>
                 </div>
-            </div>
+            </form>
         </div>
     </main>
-    <!-- Footer -->
+    <!-- pie de la pagina -->
     <footer class="page-footer">
         <div class="container">
             <div class="row">
