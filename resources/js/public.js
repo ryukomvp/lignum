@@ -7,7 +7,10 @@
   // inicializacion de carrusel
   document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.carousel');
-    var instances = M.Carousel.init(elems);
+    var instances = M.Carousel.init(elems, {
+      duration: 500,
+      indicators: true
+    });
   });
 
   var instance = M.Carousel.init({

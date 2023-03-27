@@ -15,10 +15,10 @@ main {
 }
 
 /* main */
-#oferta{
-    text-align: center;
+.oferta{
     display: flex;
     align-items: center;
+    background-color: #D5CEA3;
 }
 
 /* login */
