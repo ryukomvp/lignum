@@ -85,7 +85,7 @@ CREATE TABLE empleado(
 CREATE TABLE pedido(
 	id_pedido serial not null PRIMARY KEY,
 	codigo_pedido varchar(10) not null,
-	descripcion_pedido varchar(120) not null,
+	descripcion_pedido varchar(120) null,
 	id_cliente int not null,
 	id_estado_pedido  int not null,
 	
