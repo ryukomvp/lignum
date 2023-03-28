@@ -245,8 +245,8 @@ VALUES	('Femenino'),
 		('Masculino');
 
 INSERT INTO tipo_cliente(tipo_cliente)
-VALUES  ('Estandar'),
-		('Afiliado');
+VALUES  ('Afiliado'),
+		('Estandar');
 
 INSERT INTO tipo_material(tipo_material)
 VALUES	('Aglomerado'),
@@ -258,7 +258,7 @@ VALUES	('root'), -- superusuario
 		('Gerente'),
 	    ('Empleado general'),
 		('Cajero');
-		
+
 INSERT INTO cliente(nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, id_genero, id_tipo_cliente, usuario_publico, clave, id_estado_usuario)
 VALUES  ('Robina', 'Bonniface' , 'foto', '76168-013', 'rbonniface0@ifeng.com', '8566-9159', 1, 1, 'rbonniface0', 'QdNQFar', 1),
         ('Judd', 'Drew' , 'foto', '23138-014', 'jdrew1@ed.gov', '2412-7332', 2, 1, 'jdrew1', 'RXSxcTWyD', 1),
@@ -288,16 +288,16 @@ VALUES ('Weston Logging Co.', '9355 Blackbird Way', 'westonlogging@contact', '03
        ('McAllen Hardware Store', '81 Grove Avenue', 'mcallenhardware@support', '2134-0312');
 	   
 INSERT INTO usuario_privado(usuario_privado, clave, id_empleado, id_tipo_usuario, id_estado_usuario)
-VALUES ('jfuch', 'djaiAPS', 3, 2, 1),
-       ('nbyron', 'Asdoq21', 4, 3, 1),
-	   ('pamhatt', '21FWEp', 5, 3, 1),
-	   ('rhawk', 'PkoAOP3', 6, 3, 1),
-	   ('Echamb', 'KlSDa2', 7, 3, 1),
-	   ('tobynew', 'DbO12sd', 8, 3, 1),
-	   ('tpearl', 'IlOSD2', 9, 3, 1),
-	   ('bmaloney', 'HSa123', 10, 4, 1),
-	   ('mhoneywood', 'KjaVSA1', 11, 4, 1),
-	   ('lmccoy', 'KLSo123', 12, 3, 2);
+VALUES ('jfuch', 'djaiAPS', 1, 2, 1),
+       ('nbyron', 'Asdoq21', 2, 3, 1),
+	   ('pamhatt', '21FWEp', 3, 3, 1),
+	   ('rhawk', 'PkoAOP3', 4, 3, 1),
+	   ('Echamb', 'KlSDa2', 5, 3, 1),
+	   ('tobynew', 'DbO12sd', 6, 3, 1),
+	   ('tpearl', 'IlOSD2', 7, 3, 1),
+	   ('bmaloney', 'HSa123', 8, 4, 1),
+	   ('mhoneywood', 'KjaVSA1', 9, 4, 1),
+	   ('lmccoy', 'KLSo123', 10, 3, 2);
 
 INSERT INTO producto(nomre_producto, foto, descripcion_producto, precio_producto, codigo_producto, dimensiones, id_categoria, id_tipo_material, id_proveedor, id_estado_producto, cantidad_existencias)
 VALUES ('Mesa de centro', 'foto', 'Mesa pequeña de centro', 95.00, 'MC201AS2', '9x9', 5, 2, 1, 1, 10),
