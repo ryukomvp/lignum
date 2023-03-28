@@ -33,19 +33,53 @@ document.addEventListener('DOMContentLoaded', async () => {
         </ul>
     `;
     FOOTER.innerHTML = `
-        <div class="container">
-            <div class="row">
-                <div class="col l6 s12">
-                    <h5 class="white-text">Expertos en muebles</h5>
+        <div class="page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">Expertos en muebles</h5>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class=" footer-copyright">
-            <div class="container">
-                <a href="/views/public/about_us.html">Sobre Lignum</a>
-                <a class="grey-text text-lighten-4 right" href="https://www.instagram.com/dnlhernandez_"
-                    target="_blank"><img src="https://img.icons8.com/material-outlined/24/FFFFFF/instagram-new--v1.png"/></a>
+            <div class=" footer-copyright">
+                <div class="container">
+                    <a href="/views/public/about_us.html">Sobre Lignum</a>
+                    <a class="grey-text text-lighten-4 right" href="https://www.instagram.com/dnlhernandez_"
+                        target="_blank"><img src="https://img.icons8.com/material-outlined/24/FFFFFF/instagram-new--v1.png"/></a>
+                </div>
             </div>
         </div>
     `;
 })
+
+// inicializacion para material box
+document.addEventListener('DOMContentLoaded', function() {
+var elems = document.querySelectorAll('.materialboxed');
+var instances = M.Materialbox.init(elems);
+});
+
+// inicializacion de carrusel
+document.addEventListener('DOMContentLoaded', function() {
+var elems = document.querySelectorAll('.carousel');
+var instances = M.Carousel.init(elems, {
+    duration: 500,
+    indicators: true
+});
+});
+
+var instance = M.Carousel.init({
+fullWidth: true,
+indicators: true
+})
+
+// inicializacion para tooltip
+document.addEventListener('DOMContentLoaded', function() {
+var elems = document.querySelectorAll('.tooltipped');
+var instances = M.Tooltip.init(elems);
+});
+
+// inicializacion de menu para pantallas pequeñas
+document.addEventListener('DOMContentLoaded', function() {
+var elems = document.querySelectorAll('.sidenav');
+var instances = M.Sidenav.init(elems);
+});
