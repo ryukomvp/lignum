@@ -76,8 +76,9 @@ CREATE TABLE empleado(
 	nacimiento_empleado date not null,
 	correo_empleado varchar(120) not null,
 	telefono_empleado varchar(9),
-	id_genero int not null,
 	id_cargo int not null,
+	id_estado_empleado int not null,
+	id_genero int not null,
 	
 	CONSTRAINT dui_empleado UNIQUE (dui_empleado)
 );
@@ -157,12 +158,16 @@ ADD CONSTRAINT estado_usuario_fkey FOREIGN KEY (id_estado_usuario)
 REFERENCES estado_usuario(id_estado_usuario);
 
 ALTER TABLE empleado
-ADD CONSTRAINT empleado_genero_fkey FOREIGN KEY (id_genero)
-REFERENCES genero(id_genero);
-
-ALTER TABLE empleado
 ADD CONSTRAINT empleado_cargo_fkey FOREIGN KEY (id_cargo)
 REFERENCES cargo(id_cargo);
+
+ALTER TABLE empleado
+ADD CONSTRAINT empleado_estado_fkey FOREIGN KEY (id_estado_empleado)
+REFERENCES estado_empleado(id_estado_empleado);
+
+ALTER TABLE empleado
+ADD CONSTRAINT empleado_genero_fkey FOREIGN KEY (id_genero)
+REFERENCES genero(id_genero);
 
 ALTER TABLE pedido
 ADD CONSTRAINT pedido_estado_fkey FOREIGN KEY (id_estado_pedido)
@@ -185,12 +190,16 @@ ADD CONSTRAINT categoria_producto_fkey FOREIGN KEY (id_categoria)
 REFERENCES categoria(id_categoria);
 
 ALTER TABLE producto
+ADD CONSTRAINT material_producto_fkey FOREIGN KEY (id_tipo_material)
+REFERENCES tipo_material(id_tipo_material);
+
+ALTER TABLE producto
 ADD CONSTRAINT proveedor_producto_fkey FOREIGN KEY (id_proveedor)
 REFERENCES proveedor(id_proveedor);
 
 ALTER TABLE producto
-ADD CONSTRAINT material_producto_fkey FOREIGN KEY (id_tipo_material)
-REFERENCES tipo_material(id_tipo_material);
+ADD CONSTRAINT estado_producto_fkey FOREIGN KEY (id_estado_producto)
+REFERENCES estado_producto(id_estado_producto);
 
 ALTER TABLE usuario_privado
 ADD CONSTRAINT usuario_privado_empleado_fkey FOREIGN KEY (id_empleado)
