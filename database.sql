@@ -278,3 +278,62 @@ VALUES	('root'), -- superusuario
 				('Gerente'),
 				('Empleado general'),
 				('Cajero')
+
+
+
+-- 3 consultas utilizando las claúsulas de join, order by, group by.
+
+
+--  Producto mas pedido
+    SELECT d.id_producto, p.nomre_producto, SUM (d.cantidad) as mayor_cantidad
+	FROM detalle_pedido d  
+	INNER JOIN producto p ON  d.id_producto = p.id_producto
+	GROUP BY d.id_producto, p.nomre_producto
+	ORDER BY SUM(d.cantidad) DESC LIMIT 1;
+
+--  Producto menos pedido
+	SELECT d.id_producto, p.nomre_producto, MIN (d.cantidad) as menor_cantidad
+	FROM detalle_pedido d  
+	INNER JOIN producto p ON  d.id_producto = p.id_producto
+	GROUP BY d.id_producto, p.nomre_producto
+	ORDER BY SUM(d.cantidad) DESC LIMIT 1;
+	
+-- Clientes con mayor cantidad de pedidos 
+	
+	SELECT c.id_cliente, c.nombre_cliente, SUM(d.cantidad) as Cliente_con_mas_pedidos
+	FROM detalle_pedido d
+	INNER JOIN pedido p ON d.id_pedido = p.id_pedido
+	INNER JOIN cliente c ON p.id_cliente = c.id_cliente
+	GROUP BY c.id_cliente, c.nombre_cliente
+	ORDER BY MAX(d.cantidad);
+
+-- 3 consultas parametrizadas por rango de fechas para generar reportes útiles para el rubro del proyecto.
+
+--  Producto mas vendido de la semana 
+    SELECT d.id_producto, p.nomre_producto, SUM (d.cantidad) as cantidad
+	FROM detalle_pedido d  
+	INNER JOIN producto p ON  d.id_producto = p.id_producto
+	GROUP BY d.id_producto, p.nomre_producto
+	ORDER BY SUM(d.cantidad) DESC LIMIT 1;
+	WHERE d.fecha BETWEEN '2022-01-01' AND '2022-01-07';
+	
+--  Producto mas vendido de el mes 	
+	SELECT d.id_producto, p.nomre_producto, SUM (d.cantidad) as cantidad
+	FROM detalle_pedido d  
+	INNER JOIN producto p ON  d.id_producto = p.id_producto
+	GROUP BY d.id_producto, p.nomre_producto
+	ORDER BY SUM(d.cantidad) DESC LIMIT 1;
+	WHERE d.fecha BETWEEN '2022-01-01' AND '2022-02-01';
+	
+--  Producto mas vendido de el año
+	SELECT d.id_producto, p.nomre_producto, SUM (d.cantidad) as cantidad
+	FROM detalle_pedido d  
+	INNER JOIN producto p ON  d.id_producto = p.id_producto
+	GROUP BY d.id_producto, p.nomre_producto
+	ORDER BY SUM(d.cantidad) DESC LIMIT 1;
+	WHERE d.fecha BETWEEN '2021-01-01' AND '2022-01-01';
+	
+-- valoraciones de el mes 
+   SELECT v.puntaje, v.comentario, d.fecha
+   FROM valoracion v, detalle_pedido d
+   WHERE d.fecha BETWEEN '2022-01-01' AND '2022-02-01';
