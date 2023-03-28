@@ -21,54 +21,8 @@ main {
     background-color: #D5CEA3;
 }
 
-/* login */
-
-#body-login{
-    background-image: url(https://images.hola.com/imagenes/decoracion/20221005218469/muebles-salon-con-almacenaje-il/1-147-555/mueble-salon-01t-t.svg);
-    background-size: cover;
-}
-
-.entradas{
-    display: flex;
-    align-items: center;
-}
-
-.titulo{
-    font-family: 'Times New Roman', Times, serif;
-    width: 100%;
-    text-align: center;
-    font-weight: bold;
-}
-
-.textbox{
-    height: 50px;
-    width: auto;
-    margin-top: 10px;
-    background-color: #eeeeee;
-    border-radius: 100px;
-    padding: 14px!important;
-}
-
-.textbox input{
-    position: relative;
-    padding-left: 30px;
-    border-style: none;
-    background-color: transparent;
-    outline: none;
-}
-
-.textbox i{
-    position: absolute;
-    color: darkgray;
-    transition: all 2s ease 0s;
-}
-
-.recuperacion{
-    text-align: right;
-    text-decoration: none;
-    color: black;
-    font-size: 14px;
-    font-weight: bold;
+a {
+    color: white;
 }
 
 /* carrito */

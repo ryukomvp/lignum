@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         </div>
         <div class=" footer-copyright">
         <div class="container">
-            Lignum
+            <a href="/views/public/about_us.html">Sobre Lignum</a>
             <a class="grey-text text-lighten-4 right" href="https://www.instagram.com/dnlhernandez_"
                 target="_blank"><img src="https://img.icons8.com/material-outlined/24/FFFFFF/instagram-new--v1.png"/></a>
         </div>
