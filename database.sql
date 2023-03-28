@@ -257,7 +257,8 @@ INSERT INTO tipo_usuario(tipo_usuario)
 VALUES	('root'), -- superusuario
 		('Gerente'),
 	    ('Empleado general'),
-		('Cajero')
+		('Cajero');
+		
 INSERT INTO cliente(nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, id_genero, id_tipo_cliente, usuario_publico, clave, id_estado_usuario)
 VALUES  ('Robina', 'Bonniface' , 'foto', '76168-013', 'rbonniface0@ifeng.com', '8566-9159', 1, 1, 'rbonniface0', 'QdNQFar', 1),
         ('Judd', 'Drew' , 'foto', '23138-014', 'jdrew1@ed.gov', '2412-7332', 2, 1, 'jdrew1', 'RXSxcTWyD', 1),
