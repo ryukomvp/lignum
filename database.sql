@@ -102,7 +102,7 @@ CREATE TABLE detalle_pedido(
 
 CREATE TABLE producto(
 	id_producto serial not null PRIMARY KEY,
-	nomre_producto varchar(70) not null,
+	nombre_producto varchar(70) not null,
 	foto varchar not null,
 	descripcion_producto varchar(120) not null,
 	precio_producto float not null,
@@ -299,7 +299,7 @@ VALUES ('jfuch', 'djaiAPS', 1, 2, 1),
 	   ('mhoneywood', 'KjaVSA1', 9, 4, 1),
 	   ('lmccoy', 'KLSo123', 10, 3, 2);
 
-INSERT INTO producto(nomre_producto, foto, descripcion_producto, precio_producto, codigo_producto, dimensiones, id_categoria, id_tipo_material, id_proveedor, id_estado_producto, cantidad_existencias)
+INSERT INTO producto(nombre_producto, foto, descripcion_producto, precio_producto, codigo_producto, dimensiones, id_categoria, id_tipo_material, id_proveedor, id_estado_producto, cantidad_existencias)
 VALUES ('Mesa de centro', 'foto', 'Mesa pequeña de centro', 95.00, 'MC201AS2', '9x9', 5, 2, 1, 1, 10),
        ('Mueble para televisor', 'foto', 'Mueble para televisor', 80.00, 'TVA2003P', '14x10', 5, 1, 1, 1, 15),
 	   ('Mesa de comedor', 'foto', 'Mesa grande para comedor', 125.00, 'PSAO0123', '20x15', 5, 1, 1, 2, 0),
