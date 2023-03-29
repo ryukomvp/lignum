@@ -280,17 +280,17 @@ VALUES  ('Robina', 'Bonniface' , 'foto', '76168-013', 'rbonniface0@ifeng.com', '
 		('Berton', 'Kivlin' , 'foto', '21034-123', 'bkivlin@gmail.com', '4321-3456', 2, 1, 'bkivlin8', '2D1XPXYxHRc7', 1),
 		('John', 'Garcia' , 'foto', '12453-121', 'jgarcia@gmail.com', '1234-1234', 2, 1, 'jgarcia9', 'SVutvhE5R', 1);
 		
-INSERT INTO empleado(nombre_empleado, apellido_empleado, foto, dui_empleado, nacimiento_empleado, correo_empleado, telefono_empleado, id_genero, id_cargo)
-VALUES  ('Jerome', 'Fruchon' , 'foto', '56187-013', '11-02-1990', 'jfruchon@lignum.com', '8576-9123', 2, 1),
-        ('Nevile', 'Byron' , 'foto', '12942-212', '23-06-1997', 'nbyron@lignum.com', '8213-9812', 2, 2),
-		('Pammie', 'Hatt' , 'foto', '41234-233', '02-11-1989', 'pamhatt@lignum.com', '1456-9031', 1, 3),
-		('Richard', 'Hawke' , 'foto', '44512-413', '11-08-1995', 'rhawke@lignum.com', '0912-9182', 2, 2),
-		('Eric', 'Chamberlain' , 'foto', '54123-541', '01-05-1992', 'ericcham@lignum.com', '1236-4012', 2, 2),
-		('Tobyn', 'Newart' , 'foto', '12345-012', '14-03-1997', 'tnewart@lignum.com', '8431-2212', 2, 2),
-		('Trey', 'Pearl' , 'foto', '44214-110', '18-12-1990', 'tpearl@lignum.com' , '8339-7812', 2, 3),
-		('Bobby', 'Maloney' , 'foto', '31417-003', '28-09-1993', 'bmaloney@lignum.com', '1234-4123', 2, 4),
-		('Morty', 'Honeywood' , 'foto', '23347-053', '09-07-1993', 'mhoneywood0@lignum.com', '9102-0301', 2, 4),
-		('Louis', 'McCoy' , 'foto', '12357-995', '27-03-1990', 'lmccoy@lignum.com', '3012-3312', 2, 5);
+INSERT INTO empleado(nombre_empleado, apellido_empleado, foto, dui_empleado, nacimiento_empleado, correo_empleado, telefono_empleado, id_cargo, id_estado_empleado, id_genero)
+VALUES  ('Jerome', 'Fruchon' , 'foto', '56187-013', '11-02-1990', 'jfruchon@lignum.com', '8576-9123', 1, 1, 2),
+        ('Nevile', 'Byron' , 'foto', '12942-212', '23-06-1997', 'nbyron@lignum.com', '8213-9812', 2, 2, 2),
+		('Pammie', 'Hatt' , 'foto', '41234-233', '02-11-1989', 'pamhatt@lignum.com', '1456-9031', 3, 5, 1),
+		('Richard', 'Hawke' , 'foto', '44512-413', '11-08-1995', 'rhawke@lignum.com', '0912-9182', 2, 4, 2),
+		('Eric', 'Chamberlain' , 'foto', '54123-541', '01-05-1992', 'ericcham@lignum.com', '1236-4012', 2, 1, 2),
+		('Tobyn', 'Newart' , 'foto', '12345-012', '14-03-1997', 'tnewart@lignum.com', '8431-2212', 2, 1, 2),
+		('Trey', 'Pearl' , 'foto', '44214-110', '18-12-1990', 'tpearl@lignum.com' , '8339-7812', 3, 3, 2),
+		('Bobby', 'Maloney' , 'foto', '31417-003', '28-09-1993', 'bmaloney@lignum.com', '1234-4123', 4, 1, 2),
+		('Morty', 'Honeywood' , 'foto', '23347-053', '09-07-1993', 'mhoneywood0@lignum.com', '9102-0301', 4, 1, 2),
+		('Louis', 'McCoy' , 'foto', '12357-995', '27-03-1990', 'lmccoy@lignum.com', '3012-3312', 5, 1, 2);
 		
 INSERT INTO proveedor(nombre_proveedor, direccion_proveedor, correo_proveedor, telefono_proveedor)
 VALUES ('Weston Logging Co.', '9355 Blackbird Way', 'westonlogging@contact', '0381-0101'),
