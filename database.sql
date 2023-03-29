@@ -459,3 +459,73 @@ GROUP BY nomre_producto, descripcion_producto, precio_producto
    WHERE d.fecha BETWEEN '2022-01-01' AND '2022-02-01'
    GROUP BY v.puntaje, v.comentario, d.fecha, p.nombre_producto
    ORDER BY d.fecha ASC;
+
+-- 5 consultas parametrizadas para generar reportes
+
+-- Reporte para ver los datos de los empleados que tengan x tipo de usuario
+SELECT    a.id_empleado AS "ID Empleado",
+        a.nombre_empleado AS "Nombres",
+        a.apellido_empleado AS "Apellidos",
+        a.dui_empleado AS "DUI",
+        a.nacimiento_empleado AS "Fecha de nacimiento",
+        a.correo_empleado AS "Correo",
+        a.telefono_empleado AS "Telefono"
+FROM empleado a
+INNER JOIN usuario_privado b
+ON a.id_empleado = b.id_empleado
+WHERE b.id_tipo_usuario = 3
+ORDER BY a.apellido_empleado ASC
+
+-- Reporte para ver los productos que se encuentren entre un rango de puntaje
+SELECT     a.id_producto AS "ID Producto",
+        a.nombre_producto AS "Nombre",
+        a.descripcion_producto AS "Descripción",
+        a.precio_producto AS "Precio",
+        a.codigo_producto AS "Codigo"
+FROM producto a
+INNER JOIN detalle_pedido b
+INNER JOIN valoracion c
+ON c.id_detalle_pedido = b.id_detalle_pedido ON b.id_producto = a.id_producto
+WHERE c.puntaje >= 3
+ORDER BY c.puntaje DESC
+
+-- Reporte para ver el produto que mas se repite en los pedido
+SELECT     b.id_producto AS "ID Producto",
+        b.nombre_producto AS "Nombre",
+        b.descripcion_producto AS "Descripción",
+        b.precio_producto AS "Precio",
+        b.codigo_producto AS "Codigo",
+        COUNT(a.id_producto) AS total FROM detalle_pedido a
+INNER JOIN producto b
+ON a.id_producto = b.id_producto
+GROUP BY b.id_producto
+ORDER BY total DESC
+
+-- Reporte para ver a que proveedor perteneces los productos que mas se vender
+SELECT     c.id_proveedor AS "ID Proveedor",
+        c.nombre_proveedor AS "Nombre",
+        c.direccion_proveedor AS "Dirección",
+        c.correo_proveedor AS "Correo",
+        c.telefono_proveedor AS "Teléfono",
+        COUNT(a.id_producto) AS total 
+FROM detalle_pedido a
+INNER JOIN producto b
+ON b.id_producto = a.id_producto
+INNER JOIN proveedor c
+ON b.id_proveedor = c.id_proveedor
+GROUP BY c.id_proveedor
+ORDER BY total DESC
+
+-- Clientes con mas pedidos
+SELECT 	a.id_cliente AS "ID Cliente",
+		a.nombre_cliente AS "Nombres",
+		a.apellido_cliente AS "Apellidos",
+		a.dui_cliente AS "DUI",
+		a.correo_cliente AS "Correo",
+		a.telefono_cliente AS "Telefono",
+		COUNT(b.id_cliente) AS total 
+FROM cliente a
+INNER JOIN pedido b
+ON a.id_cliente = b.id_cliente
+GROUP BY a.id_cliente
+ORDER BY total DESC
