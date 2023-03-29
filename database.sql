@@ -98,7 +98,8 @@ CREATE TABLE detalle_pedido(
 	id_pedido int not null,
 	id_producto int not null,
 	precio_producto float not null,
-	cantidad int null -- en caso de llevar más de un producto puede especificar aqui
+	cantidad int null, -- en caso de llevar más de un producto puede especificar aqui
+	fecha date null
 );
 
 CREATE TABLE producto(
