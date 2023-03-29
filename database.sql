@@ -357,3 +357,105 @@ VALUES (5,'Esta super bonita la mesa de centro ', 1),
 	   (5,'Ta bonito', 8),
 	   (3,'Esta raro no se como poner la tele', 9),
 	   (5,'Todos los productos que he comprado ahi me gustan, me gustaria ver cosas nuevas en la tienda para seguir comprando', 10);
+
+-- punto 1	   
+-- 3 consultas utilizando las claúsulas de join, order by, group by.
+
+
+--  Producto mas pedido
+    SELECT d.id_producto, p.nombre_producto, SUM (d.cantidad) as mayor_cantidad
+	FROM detalle_pedido d  
+	INNER JOIN producto p ON  d.id_producto = p.id_producto
+	GROUP BY d.id_producto, p.nombre_producto
+	ORDER BY SUM(d.cantidad) DESC LIMIT 5;
+
+--  Producto menos pedido
+	SELECT d.id_producto, p.nombre_producto, SUM (d.cantidad) as menor_cantidad
+	FROM detalle_pedido d  
+	INNER JOIN producto p ON  d.id_producto = p.id_producto
+	GROUP BY d.id_producto, p.nombre_producto
+	ORDER BY SUM(d.cantidad) ASC LIMIT 5;
+	
+-- Clientes con mayor cantidad de pedidos 
+	
+	SELECT c.id_cliente, c.nombre_cliente, SUM(d.cantidad) as Cantidad_pedidos
+	FROM detalle_pedido d
+	INNER JOIN pedido p ON d.id_pedido = p.id_pedido
+	INNER JOIN cliente c ON p.id_cliente = c.id_cliente
+	GROUP BY c.id_cliente, c.nombre_cliente
+	ORDER BY SUM(d.cantidad) DESC LIMIT 5;
+
+
+--Punto 2
+--Procedimiento almacenado que agrega usuarios
+CREATE PROCEDURE Insert_usuarios
+(u_usuario_privado varchar(30),
+u_clave varchar(2048),
+u_id_empleado int,
+u_id_tipo_usuario int,
+u_id_estado_usuario int)
+AS
+$$
+BEGIN
+INSERT INTO usuario_privado(usuario_privado, clave, id_empleado, id_tipo_usuario, id_estado_usuario)
+VALUES(u_suario_privado, u_clave, u_id_empleado, u_id_tipo_usuario, u_id_estado_usuario);
+END;
+$$ LANGUAGE plpgsql;
+
+--Punto 3
+--Consulta para precio total en un pedido
+SELECT precio_producto * cantidad FROM detalle_pedido 
+
+--Punto 4
+--Consulta para filtros de productos
+SELECT * FROM producto WHERE id_categoria NOT IN (1,3,4,5) 
+
+--Punto 5
+--Consulta para determinar los productos con el mayor precio en el catalogo
+SELECT MAX(precio_producto), nomre_producto, descripcion_producto FROM producto
+GROUP BY nomre_producto, descripcion_producto, precio_producto
+
+-- Punto 7
+-- 3 consultas parametrizadas por rango de fechas para generar reportes útiles para el rubro del proyecto.
+
+--  Producto mas vendido de la semana 
+    SELECT d.id_producto, p.nombre_producto, d.fecha, SUM (d.cantidad) as cantidad
+	FROM detalle_pedido d  
+	INNER JOIN producto p ON  d.id_producto = p.id_producto	
+	WHERE d.fecha  BETWEEN '2022-01-01' AND '2022-01-07'
+	GROUP BY d.id_producto, p.nombre_producto, d.fecha
+	ORDER BY SUM(d.cantidad) DESC;
+	
+-- 	SELECT d.id_producto, p.nombre_producto, d.fecha, SUM (d.cantidad) as cantidad
+-- 	FROM detalle_pedido d  
+-- 	INNER JOIN producto p ON  d.id_producto = p.id_producto	
+-- 	WHERE d.fecha = current_date -7
+-- 	GROUP BY d.id_producto, p.nombre_producto, d.fecha
+-- 	ORDER BY SUM(d.cantidad) DESC;
+	
+--  Producto mas vendido de el mes 	
+	SELECT d.id_producto, p.nombre_producto, d.fecha, SUM (d.cantidad) as cantidad
+	FROM detalle_pedido d  
+	INNER JOIN producto p ON  d.id_producto = p.id_producto
+	WHERE d.fecha BETWEEN '2022-01-01' AND '2022-02-01'
+	GROUP BY d.id_producto, p.nombre_producto, d.fecha
+	ORDER BY d.fecha ASC;
+	
+	SELECT*FROM detalle_pedido;
+	
+--  Producto mas vendido de el año
+	SELECT d.id_producto, p.nombre_producto, d.fecha, SUM (d.cantidad) as cantidad
+	FROM detalle_pedido d  
+	INNER JOIN producto p ON  d.id_producto = p.id_producto
+	WHERE d.fecha BETWEEN '2022-01-01' AND '2023-01-01'
+	GROUP BY d.id_producto, p.nombre_producto, d.fecha
+	ORDER BY d.fecha ASC;
+	
+-- valoraciones de el mes 
+   SELECT v.puntaje, v.comentario, d.fecha, p.nombre_producto
+   FROM valoracion v
+   INNER JOIN detalle_pedido d ON  d.id_detalle_pedido = v.id_detalle_pedido
+   INNER JOIN producto p ON p.id_producto = d.id_producto
+   WHERE d.fecha BETWEEN '2022-01-01' AND '2022-02-01'
+   GROUP BY v.puntaje, v.comentario, d.fecha, p.nombre_producto
+   ORDER BY d.fecha ASC;
