@@ -389,6 +389,7 @@ VALUES (5,'Esta super bonita la mesa de centro ', 1),
 
 --Punto 2
 --Procedimiento almacenado que agrega usuarios
+
 CREATE PROCEDURE Insert_usuarios
 (u_usuario_privado varchar(30),
 u_clave varchar(2048),
@@ -399,22 +400,25 @@ AS
 $$
 BEGIN
 INSERT INTO usuario_privado(usuario_privado, clave, id_empleado, id_tipo_usuario, id_estado_usuario)
-VALUES(u_suario_privado, u_clave, u_id_empleado, u_id_tipo_usuario, u_id_estado_usuario);
+VALUES(u_usuario_privado, u_clave, u_id_empleado, u_id_tipo_usuario, u_id_estado_usuario);
 END;
 $$ LANGUAGE plpgsql;
 
+CALL  Insert_usuarios ('user1','password',1,2,1);
+
 --Punto 3
 --Consulta para precio total en un pedido
-SELECT precio_producto * cantidad FROM detalle_pedido 
+SELECT precio_producto * cantidad FROM detalle_pedido; 
 
 --Punto 4
 --Consulta para filtros de productos
-SELECT * FROM producto WHERE id_categoria NOT IN (1,3,4,5) 
+SELECT * FROM producto WHERE id_categoria NOT IN (1,3);
 
 --Punto 5
 --Consulta para determinar los productos con el mayor precio en el catalogo
-SELECT MAX(precio_producto), nomre_producto, descripcion_producto FROM producto
-GROUP BY nomre_producto, descripcion_producto, precio_producto
+SELECT MAX(precio_producto), nombre_producto, descripcion_producto FROM producto
+GROUP BY nombre_producto, descripcion_producto, precio_producto
+ORDER BY precio_producto DESC;
 
 -- Punto 7
 -- 3 consultas parametrizadas por rango de fechas para generar reportes útiles para el rubro del proyecto.
@@ -440,17 +444,17 @@ GROUP BY nomre_producto, descripcion_producto, precio_producto
 	INNER JOIN producto p ON  d.id_producto = p.id_producto
 	WHERE d.fecha BETWEEN '2022-01-01' AND '2022-02-01'
 	GROUP BY d.id_producto, p.nombre_producto, d.fecha
-	ORDER BY d.fecha ASC;
+	ORDER BY d.fecha ASC LIMIT 10;
 	
 	SELECT*FROM detalle_pedido;
 	
---  Producto mas vendido de el año
+--  Productos mas vendido de el año
 	SELECT d.id_producto, p.nombre_producto, d.fecha, SUM (d.cantidad) as cantidad
 	FROM detalle_pedido d  
 	INNER JOIN producto p ON  d.id_producto = p.id_producto
 	WHERE d.fecha BETWEEN '2022-01-01' AND '2023-01-01'
 	GROUP BY d.id_producto, p.nombre_producto, d.fecha
-	ORDER BY d.fecha ASC;
+	ORDER BY d.fecha ASC LIMIT 10;
 	
 -- valoraciones de el mes 
    SELECT v.puntaje, v.comentario, d.fecha, p.nombre_producto
@@ -459,12 +463,14 @@ GROUP BY nomre_producto, descripcion_producto, precio_producto
    INNER JOIN producto p ON p.id_producto = d.id_producto
    WHERE d.fecha BETWEEN '2022-01-01' AND '2022-02-01'
    GROUP BY v.puntaje, v.comentario, d.fecha, p.nombre_producto
-   ORDER BY d.fecha ASC;
+   ORDER BY d.fecha DESC;
+
+
 
 -- 5 consultas parametrizadas para generar reportes
 
 -- Reporte para ver los datos de los empleados que tengan x tipo de usuario
-SELECT    a.id_empleado AS "ID Empleado",
+SELECT 	a.id_empleado AS "ID Empleado",
         a.nombre_empleado AS "Nombres",
         a.apellido_empleado AS "Apellidos",
         a.dui_empleado AS "DUI",
@@ -478,7 +484,7 @@ WHERE b.id_tipo_usuario = 3
 ORDER BY a.apellido_empleado ASC
 
 -- Reporte para ver los productos que se encuentren entre un rango de puntaje
-SELECT     a.id_producto AS "ID Producto",
+SELECT 	a.id_producto AS "ID Producto",
         a.nombre_producto AS "Nombre",
         a.descripcion_producto AS "Descripción",
         a.precio_producto AS "Precio",
@@ -491,7 +497,7 @@ WHERE c.puntaje >= 3
 ORDER BY c.puntaje DESC
 
 -- Reporte para ver el produto que mas se repite en los pedido
-SELECT     b.id_producto AS "ID Producto",
+SELECT 	b.id_producto AS "ID Producto",
         b.nombre_producto AS "Nombre",
         b.descripcion_producto AS "Descripción",
         b.precio_producto AS "Precio",
@@ -503,7 +509,7 @@ GROUP BY b.id_producto
 ORDER BY total DESC
 
 -- Reporte para ver a que proveedor perteneces los productos que mas se vender
-SELECT     c.id_proveedor AS "ID Proveedor",
+SELECT 	c.id_proveedor AS "ID Proveedor",
         c.nombre_proveedor AS "Nombre",
         c.direccion_proveedor AS "Dirección",
         c.correo_proveedor AS "Correo",
