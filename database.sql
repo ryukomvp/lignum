@@ -319,3 +319,41 @@ VALUES ('Mesa de centro', 'foto', 'Mesa pequeña de centro', 95.00, 'MC201AS2', 
 	   ('Silla', 'foto', 'Silla de madera', 60.00, 'ASDF0032', '5x5', 5, 2, 1, 2, 0),
 	   ('Ropero', 'foto', 'Ropero de madera', 105.00, 'ALSJ0921', '20x20', 5, 1, 1, 1, 10),
 	   ('Escalera', 'foto', 'Escalera de madera', 50.00, 'LADD0451', '20x5', 5, 2, 1, 1, 15);
+
+INSERT INTO pedido (codigo_pedido, descripcion_pedido, id_cliente, id_estado_pedido)
+VALUES (1234567812, 'Mesa de centro de 9x9', 1, 4),
+       (9855723656, 'Mueble para televisor 14x10', 2, 4),
+	   (2463563234, 'Mesa de centro de 9x9', 3, 4),
+	   (6332452635, 'Mesa de centro de 9x9', 4, 4),
+	   (7656433577, 'Mesa de comedor de 20x15', 5, 4),
+	   (9876245785, 'Escritorio pequeño de 10x5', 6, 4),
+	   (3534635744, 'Escritorio de oficina de 10x15', 7, 4),
+	   (8954565353, 'Gavetero pequeño de 10x5', 8, 4),
+	   (7453546359, 'Mueble para televisor de 14x10', 9, 4),
+	   (7458769098, 'Mesa de centro de 9x9, Escritorio pequeño de 10x5, Mueble para televisor de 14x10', 9, 4);
+
+INSERT INTO detalle_pedido (id_pedido, id_producto, precio_producto, cantidad, fecha)
+VALUES (1, 1, 95, 3, '2022-01-01'),
+       (2, 2, 80, 1, '2022-01-05'),
+	   (3, 1, 95, 5, '2022-01-10'),
+	   (4, 1, 95, 2, '2022-01-15'),
+	   (5, 3, 125, 3, '2022-01-20'),
+	   (6, 4, 75, 3, '2022-01-25'),
+	   (7, 5, 100, 3, '2022-02-01'),
+	   (8, 6, 75, 3, '2022-02-05'),
+	   (9, 2, 80, 3, '2022-02-10'),
+	   (10, 1, 95, 3, '2022-12-15'),
+	   (10, 4, 95, 3, '2022-12-15'),
+       (10, 2, 95, 3, '2022-12-15');
+	   
+INSERT INTO valoracion(puntaje, comentario, id_detalle_pedido)
+VALUES (5,'Esta super bonita la mesa de centro ', 1),
+	   (4,'Esta bien el mueble es estable y esta seguro para mi TV', 2),
+	   (3,'Esta super bonita la mesa de centro solo que no es simetrica', 3),
+	   (2,'Esta super bonita la mesa de centro', 4),
+	   (4,'Bonita la mesa de comedor', 5),
+	   (5,'Bonito el escritorio me gusta por que es bastante minimalista', 6),
+	   (5,'Me gusta por que tiene bastante espacio y puedo ordenar bien mis cables', 7),
+	   (5,'Ta bonito', 8),
+	   (3,'Esta raro no se como poner la tele', 9),
+	   (5,'Todos los productos que he comprado ahi me gustan, me gustaria ver cosas nuevas en la tienda para seguir comprando', 10);
