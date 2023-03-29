@@ -1,3 +1,17 @@
+-- Database: lignum
+
+-- DROP DATABASE IF EXISTS lignum;
+
+CREATE DATABASE lignum
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'Spanish_Spain.1252'
+    LC_CTYPE = 'Spanish_Spain.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+	
 CREATE TABLE cargo(
   id_cargo serial not null PRIMARY KEY,
   cargo varchar(30)
@@ -97,8 +111,10 @@ CREATE TABLE detalle_pedido(
 	id_pedido int not null,
 	id_producto int not null,
 	precio_producto float not null,
-	cantidad int null -- en caso de llevar más de un producto puede especificar aqui
+	cantidad int null, -- en caso de llevar más de un producto puede especificar aqui
+	fecha date null
 );
+
 
 CREATE TABLE producto(
 	id_producto serial not null PRIMARY KEY,
@@ -257,7 +273,8 @@ INSERT INTO tipo_usuario(tipo_usuario)
 VALUES	('root'), -- superusuario
 		('Gerente'),
 	    ('Empleado general'),
-		('Cajero')
+		('Cajero');
+		
 INSERT INTO cliente(nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, id_genero, id_tipo_cliente, usuario_publico, clave, id_estado_usuario)
 VALUES  ('Robina', 'Bonniface' , 'foto', '76168-013', 'rbonniface0@ifeng.com', '8566-9159', 1, 1, 'rbonniface0', 'QdNQFar', 1),
         ('Judd', 'Drew' , 'foto', '23138-014', 'jdrew1@ed.gov', '2412-7332', 2, 1, 'jdrew1', 'RXSxcTWyD', 1),
@@ -287,18 +304,18 @@ VALUES ('Weston Logging Co.', '9355 Blackbird Way', 'westonlogging@contact', '03
        ('McAllen Hardware Store', '81 Grove Avenue', 'mcallenhardware@support', '2134-0312');
 	   
 INSERT INTO usuario_privado(usuario_privado, clave, id_empleado, id_tipo_usuario, id_estado_usuario)
-VALUES ('jfuch', 'djaiAPS', 3, 2, 1),
-       ('nbyron', 'Asdoq21', 4, 3, 1),
-	   ('pamhatt', '21FWEp', 5, 3, 1),
-	   ('rhawk', 'PkoAOP3', 6, 3, 1),
-	   ('Echamb', 'KlSDa2', 7, 3, 1),
-	   ('tobynew', 'DbO12sd', 8, 3, 1),
-	   ('tpearl', 'IlOSD2', 9, 3, 1),
-	   ('bmaloney', 'HSa123', 10, 4, 1),
-	   ('mhoneywood', 'KjaVSA1', 11, 4, 1),
-	   ('lmccoy', 'KLSo123', 12, 3, 2);
+VALUES ('jfuch', 'djaiAPS', 1, 1, 1),
+       ('nbyron', 'Asdoq21', 2, 2, 1),
+	   ('pamhatt', '21FWEp', 3, 2, 1),
+	   ('rhawk', 'PkoAOP3', 4, 2, 1),
+	   ('Echamb', 'KlSDa2', 5, 2, 1),
+	   ('tobynew', 'DbO12sd', 6, 2, 1),
+	   ('tpearl', 'IlOSD2', 7, 2, 1),
+	   ('bmaloney', 'HSa123', 8, 3, 1),
+	   ('mhoneywood', 'KjaVSA1', 9, 3, 1),
+	   ('lmccoy', 'KLSo123', 10, 2, 2);
 
-INSERT INTO producto(nomre_producto, foto, descripcion_producto, precio_producto, codigo_producto, dimensiones, id_categoria, id_tipo_material, id_proveedor, id_estado_producto, cantidad_existencias)
+INSERT INTO producto(nombre_producto, foto, descripcion_producto, precio_producto, codigo_producto, dimensiones, id_categoria, id_tipo_material, id_proveedor, id_estado_producto, cantidad_existencias)
 VALUES ('Mesa de centro', 'foto', 'Mesa pequeña de centro', 95.00, 'MC201AS2', '9x9', 5, 2, 1, 1, 10),
        ('Mueble para televisor', 'foto', 'Mueble para televisor', 80.00, 'TVA2003P', '14x10', 5, 1, 1, 1, 15),
 	   ('Mesa de comedor', 'foto', 'Mesa grande para comedor', 125.00, 'PSAO0123', '20x15', 5, 1, 1, 2, 0),
@@ -349,7 +366,7 @@ VALUES (5,'Esta super bonita la mesa de centro ', 1),
 	   (3,'Esta raro no se como poner la tele', 9),
 	   (5,'Todos los productos que he comprado ahi me gustan, me gustaria ver cosas nuevas en la tienda para seguir comprando', 10);
 	   
-	   SELECT*FROM valoracion
+
 -- punto 1	   
 -- 3 consultas utilizando las claúsulas de join, order by, group by.
 
@@ -380,6 +397,7 @@ VALUES (5,'Esta super bonita la mesa de centro ', 1),
 
 --Punto 2
 --Procedimiento almacenado que agrega usuarios
+
 CREATE PROCEDURE Insert_usuarios
 (u_usuario_privado varchar(30),
 u_clave varchar(2048),
@@ -390,22 +408,25 @@ AS
 $$
 BEGIN
 INSERT INTO usuario_privado(usuario_privado, clave, id_empleado, id_tipo_usuario, id_estado_usuario)
-VALUES(u_suario_privado, u_clave, u_id_empleado, u_id_tipo_usuario, u_id_estado_usuario);
+VALUES(u_usuario_privado, u_clave, u_id_empleado, u_id_tipo_usuario, u_id_estado_usuario);
 END;
 $$ LANGUAGE plpgsql;
 
+CALL  Insert_usuarios ('user1','password',1,2,1);
+
 --Punto 3
 --Consulta para precio total en un pedido
-SELECT precio_producto * cantidad FROM detalle_pedido 
+SELECT precio_producto * cantidad FROM detalle_pedido; 
 
 --Punto 4
 --Consulta para filtros de productos
-SELECT * FROM producto WHERE id_categoria NOT IN (1,3,4,5) 
+SELECT * FROM producto WHERE id_categoria NOT IN (1,3);
 
 --Punto 5
 --Consulta para determinar los productos con el mayor precio en el catalogo
-SELECT MAX(precio_producto), nomre_producto, descripcion_producto FROM producto
-GROUP BY nomre_producto, descripcion_producto, precio_producto
+SELECT MAX(precio_producto), nombre_producto, descripcion_producto FROM producto
+GROUP BY nombre_producto, descripcion_producto, precio_producto
+ORDER BY precio_producto DESC;
 
 -- Punto 7
 -- 3 consultas parametrizadas por rango de fechas para generar reportes útiles para el rubro del proyecto.
@@ -431,17 +452,17 @@ GROUP BY nomre_producto, descripcion_producto, precio_producto
 	INNER JOIN producto p ON  d.id_producto = p.id_producto
 	WHERE d.fecha BETWEEN '2022-01-01' AND '2022-02-01'
 	GROUP BY d.id_producto, p.nombre_producto, d.fecha
-	ORDER BY d.fecha ASC;
+	ORDER BY d.fecha ASC LIMIT 10;
 	
 	SELECT*FROM detalle_pedido;
 	
---  Producto mas vendido de el año
+--  Productos mas vendido de el año
 	SELECT d.id_producto, p.nombre_producto, d.fecha, SUM (d.cantidad) as cantidad
 	FROM detalle_pedido d  
 	INNER JOIN producto p ON  d.id_producto = p.id_producto
 	WHERE d.fecha BETWEEN '2022-01-01' AND '2023-01-01'
 	GROUP BY d.id_producto, p.nombre_producto, d.fecha
-	ORDER BY d.fecha ASC;
+	ORDER BY d.fecha ASC LIMIT 10;
 	
 -- valoraciones de el mes 
    SELECT v.puntaje, v.comentario, d.fecha, p.nombre_producto
@@ -450,4 +471,4 @@ GROUP BY nomre_producto, descripcion_producto, precio_producto
    INNER JOIN producto p ON p.id_producto = d.id_producto
    WHERE d.fecha BETWEEN '2022-01-01' AND '2022-02-01'
    GROUP BY v.puntaje, v.comentario, d.fecha, p.nombre_producto
-   ORDER BY d.fecha ASC;
+   ORDER BY d.fecha DESC;
