@@ -64,6 +64,26 @@ class Producto extends ProductoQueries
         }
     }
 
+    public function setCodigo($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->codigo = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setDimenciones($value)
+    {
+        if (Validator::validateString($value, 1, 250)) {
+            $this->dimenciones = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function setImagen($file)
     {
         if (Validator::validateImageFile($file, 500, 500)) {
@@ -76,8 +96,28 @@ class Producto extends ProductoQueries
 
     public function setCategoria($value)
     {
-        if (Validator::validateNaturalNumber($value)) {
-            $this->categoria = $value;
+        if (Validator::validateBoolean($value)) {
+            $this->estado = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setMaterial($value)
+    {
+        if (Validator::validateString($value, 1, 250)) {
+            $this->material = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setProveedor($value)
+    {
+        if (Validator::validateBoolean($value)) {
+            $this->proveedor = $value;
             return true;
         } else {
             return false;
@@ -94,6 +134,16 @@ class Producto extends ProductoQueries
         }
     }
 
+    public function setExistencia($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->existencia = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     /*
     *   Métodos para obtener valores de los atributos.
     */
