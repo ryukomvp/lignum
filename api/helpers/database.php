@@ -2,23 +2,33 @@
 header('Access-Control-Allow-Origin')
 require_once('config.php')
 
+
+//Clase para realizar acciones en la base de datos
 class Database
 {
+    //Propiedades de la base.
     private static $connection = null;
     private static $statement = null;
     private static $error = null;
 
+
+    //Metodo para ejecucion de sentencias SQL
     public static function executeRow($query, $values)
     {
         try{
+            //Creacion de coneccion mediante clase PDO
             self::$connection = new PDO('pgsql:host' . SERVER . ';dbname=' . DATABASE . ';port=5432', USERNAME, PASSWORD);
+            //Preparacion de sentencia sql
             self::$statement = self::$connection->prepare($query);
+            //Ejecucion de sentencia. Se retorna el resultado
             return self::$statement->execute($values);
         } catch (PDOException $error) {
             self::setException($errorgetCode(), $error->getMessage());
             return false;
         }
     }
+
+    //Metodo para obtencion de llave primaria del ultimo registro ingresado
 
     public static function getLastRow($query, $values)
     {
@@ -29,6 +39,8 @@ class Database
         }
     }
 
+    //Metodo de obtencion de un registro mediante sentencia tipo SELECT
+
     public static function getRow($query, $values = null)
     {
         if(self::executeRow($query, $values)){
@@ -38,6 +50,8 @@ class Database
         }
     }
 
+    //Metodo de obtencion todos los registros mediante sentencia tipo SELECT
+
     public static function getRow($query, $values = null)
     {
         if(self::executeRow($query, $values)) {
@@ -46,6 +60,8 @@ class Database
            return false;
         }
     }
+
+    //Metodo para obtener un error personalizado en caso de alguna excepcion
 
     private static function setException($code, $message)
     {
@@ -73,11 +89,8 @@ class Database
         }
     }
 
-    /*
-    *   Método para obtener un error personalizado cuando ocurre una excepción.
-    *   Parámetros: ninguno.
-    *   Retorno: error personalizado.
-    */
+    //Metodo para obtencion de error personalizado
+    
     public static function getException()
     {
         return self::$error;
