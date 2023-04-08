@@ -62,6 +62,7 @@ CREATE TABLE cliente(
 	usuario_publico varchar(30) not null,
 	clave varchar(2048) not null,
 	id_estado_usuario int not null,
+	direccion_cliente varchar(300) not null,
 	
 	CONSTRAINT dui_cliente UNIQUE (dui_cliente),
 	CONSTRAINT usuario_publico UNIQUE (usuario_publico)
@@ -89,6 +90,7 @@ CREATE TABLE pedido(
 	descripcion_pedido varchar(120) null,
 	id_cliente int not null,
 	id_estado_pedido  int not null,
+	direccion_pedido varchar(300) not null,
 	
 	CONSTRAINT codigo_pedido UNIQUE (codigo_pedido)
 );
