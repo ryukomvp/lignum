@@ -25,6 +25,13 @@ public function startOrder()
     }
 }
 
+//Metodo para agregar un producto al carrito
+
+public function createDetail()
+{
+    $sql = 'INSERT INTO detalle_pedido(id_pedido, id_prodcuto, precio_producto, cantidad)'
+}
+
 }
 
 
