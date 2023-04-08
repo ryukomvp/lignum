@@ -7,62 +7,74 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Petición para obtener en nombre del usuario que ha iniciado sesión.
     const JSON = await dataFetch(USER_API, 'getUser');
     // Se comprueba si el usuario está autenticado para establecer el encabezado respectivo.
-    if (JSON.session) {
-        HEADER.innerHTML = `
-        <!-- etiqueta para menu -->
-        <div class="navbar-fixed">
+   // Archivo para crear la plantilla del sitio privado
+
+document.addEventListener('DOMContentLoaded', async () => {
+    HEADER.innerHTML = `
+      <div class="navbar-fixed">
           <nav>
             <div class="nav-wrapper">
-              <a href="#" class="brand-logo"><img src="/resources/img/2.png" alt="" width="80px" height="80px"></a>
+              <a href="main.html" class="brand-logo"><img src="/resources/img/2.png" alt=""></a>
+              <a href="#" data-target="menu-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
               <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="#" class="tooltipped" data-position="bottom" data-tooltip="Inicio de la página"><i
                       class="material-icons">arrow_upward</i></a></li>
-                <li><a href="profile.html" class="tooltipped" data-position="bottom" data-tooltip="Perfil del usuario"><i
+                <li><a href="login.html" class="tooltipped" data-position="bottom" data-tooltip="Perfil del usuario"><i
                       class="material-icons">account_circle</i></a></li>
               </ul>
             </div>
           </nav>
-        </div>
-        `;
-    } else {
-        HEADER.innerHTML = `
-        <!-- etiqueta para menu -->
-        <div class="navbar-fixed">
-          <nav>
-            <div class="nav-wrapper">
-              <a href="#" class="brand-logo"><img src="/resources/img/2.png" alt="" width="80px" height="80px"></a>
-              <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#" class="tooltipped" data-position="bottom" data-tooltip="Inicio de la página"><i
-                      class="material-icons">arrow_upward</i></a></li>
-                <li><a href="profile.html" class="tooltipped" data-position="bottom" data-tooltip="Perfil del usuario"><i
-                      class="material-icons">account_circle</i></a></li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-        `;
-    }
-    // Se establece el pie del encabezado.
-    FOOTER.innerHTML = `
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <a href="about-us.html">
-            <h5 class="white-text">Dashboard footer</h5>
-          </a>
-        </div>
+          <!-- menu para dispositivos con pantalla pequeña -->
+          <ul class="sidenav" id="menu-mobile">
+            <li><a href="catalogue.html">Catalogo</a></li>
+            <li><a href="shopping_cart.html">Carrito</a></li>
+            <li><a href="login.html">Cuenta</a></li>
+          </ul>
       </div>
-    </div>
-    <div class=" footer-copyright">
-      <div class="container">
-        © 2014 Copyright Text
-        <a class="grey-text text-lighten-4 right" href="https://www.instagram.com/dnlhernandez_" target="_blank">More
-          Links</a>
-      </div>
-    </div>
     `;
-    // Se inicializa el componente Sidenav para que funcione la navegación lateral.
-    M.Sidenav.init(document.querySelectorAll('.sidenav'));
+    FOOTER.innerHTML = `
+    <div class="page-footer">
+      <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Dashboard</h5>
+            </div>
+        </div>
+      </div>
+      <div class=" footer-copyright">
+        <div class="container">
+            Lignum
+            <a class="grey-text text-lighten-4 right" href="https://www.instagram.com/dnlhernandez_"
+                target="_blank"><img src="https://img.icons8.com/material-outlined/24/FFFFFF/instagram-new--v1.png"/></a>
+        </div>
+      </div>
+    </div>
+  `;
+})
+
+// inicializacion de tooltip
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.tooltipped');
+  var instances = M.Tooltip.init(elems);
+});
+
+// inicializacion de ventana modal
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.modal');
+  var instances = M.Modal.init(elems);
+});
+
+// inicializacion de selecionador
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('select');
+  var instances = M.FormSelect.init(elems);
+});
+
+// inicializacion de menu para pantallas pequeñas
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.sidenav');
+  var instances = M.Sidenav.init(elems);
+});
     // Se declara e inicializa una constante para obtener un elemento del arreglo de forma aleatoria.
     const ELEMENT = Math.floor(Math.random() * IMAGES.length);
 });
