@@ -1,8 +1,7 @@
-<<<<<<<< HEAD:resources/js/inicializar.js
-<<<<<<< HEAD
-========
+resources/js/inicializar.js
+ HEAD
+
 // inicializar Sidenav
->>>>>>>> origin/rama_kevin:recursos/js/inicializar.js
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.sidenav');
     var instances = M.Sidenav.init(elems);
@@ -28,9 +27,9 @@ document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('.carousel');
   var instances = M.Carousel.init(elems);
 });
-=======
+
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.sidenav');
   var instances = M.Sidenav.init(elems);
 });
->>>>>>> rama_alec
+
