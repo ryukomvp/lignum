@@ -29,7 +29,9 @@ public function startOrder()
 
 public function createDetail()
 {
-    $sql = 'INSERT INTO detalle_pedido(id_pedido, id_prodcuto, precio_producto, cantidad)'
+    $sql = 'INSERT INTO detalle_pedido(id_pedido, id_prodcuto, precio_producto, cantidad, fecha) VALUES(?, (SELECT precio_producto FROM producto where id_producto = ?), ?, ?)';
+    $params = array($this->id_pedido, $this->producto, $this->producto, $this->id_pedido);
+    return Database::executeRow($sql, $params)
 }
 
 }
