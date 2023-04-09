@@ -91,7 +91,8 @@ CREATE TABLE pedido(
 	id_cliente int not null,
 	id_estado_pedido  int not null,
 	direccion_pedido varchar(300) not null,
-	
+	fecha date null,
+
 	CONSTRAINT codigo_pedido UNIQUE (codigo_pedido)
 );
 
@@ -101,7 +102,6 @@ CREATE TABLE detalle_pedido(
 	id_producto int not null,
 	precio_producto float not null,
 	cantidad int null, -- en caso de llevar más de un producto puede especificar aqui
-	fecha date null
 );
 
 CREATE TABLE producto(
