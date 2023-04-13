@@ -13,12 +13,12 @@ class Producto extends ProductoQueries
     protected $precio = null;
     protected $codigo = null;
     protected $dimenciones = null;
-    protected $imagen = null;
     protected $categoria = null;
     protected $material = null;
     protected $proveedor = null;
     protected $estado = null;
     protected $existencia = null;
+    protected $imagen = null;
     protected $ruta = '../../images/productos/';
 
     /*
@@ -84,16 +84,6 @@ class Producto extends ProductoQueries
         }
     }
 
-    public function setImagen($file)
-    {
-        if (Validator::validateImageFile($file, 500, 500)) {
-            $this->imagen = Validator::getFileName();
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public function setCategoria($value)
     {
         if (Validator::validateBoolean($value)) {
@@ -144,6 +134,17 @@ class Producto extends ProductoQueries
         }
     }
     
+    public function setImagen($file)
+    {
+        if (Validator::validateImageFile($file, 500, 500)) {
+            $this->imagen = Validator::getFileName();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
     /*
     *   Métodos para obtener valores de los atributos.
     */
@@ -167,11 +168,6 @@ class Producto extends ProductoQueries
         return $this->precio;
     }
 
-    public function getImagen()
-    {
-        return $this->imagen;
-    }
-
     public function getCategoria()
     {
         return $this->categoria;
@@ -186,4 +182,10 @@ class Producto extends ProductoQueries
     {
         return $this->ruta;
     }
+
+    public function getImagen()
+    {
+        return $this->imagen;
+    }
+
 }

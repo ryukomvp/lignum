@@ -24,7 +24,7 @@ class ProductoQueries
     {
         $sql = 'INSERT INTO productos(nomre_producto, descripcion_producto, precio_producto, codigo_producto, dimensiones, id_categoria, id_tipo_material, id_proveedor, id_estado_producto, cantidad_existencias, imagen_producto)
                 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombre, $this->descripcion, $this->precio, $this->codigo, $this->dimensiones, $this->categoria, $this->material, $this->proveedor, $this->estado, $this->cantidad,$this->imagen, $_SESSION['id_usuario_privado']);
+        $params = array($this->nombre, $this->descripcion, $this->precio, $this->codigo, $this->dimensiones, $this->categoria, $this->material, $this->proveedor, $this->estado, $this->existencia,$this->imagen, $_SESSION['id_usuario_privado']);
         return Database::executeRow($sql, $params);
     }
 
