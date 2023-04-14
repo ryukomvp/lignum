@@ -7,8 +7,8 @@ const SEARCH_FORM = document.getElementById('search-form');
 const SAVE_FORM = document.getElementById('save-form');
 // Constante para establecer el título de la modal.
 const MODAL_TITLE = document.getElementById('modal-title');
-// Constantes para establecer el contenido de la tabla.
-const TBODY_ROWS = document.getElementById('tbody-rows');
+// Constantes para establecer el contenido de la carta
+const CBODY_ROWS = document.getElementById('cbody-row');
 const RECORDS = document.getElementById('records');
 // Constante tipo objeto para establecer las opciones del componente Modal.
 const OPTIONS = {
@@ -65,7 +65,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 */
 async function fillCard(form = null) {
     // Se inicializa el contenido de la tabla.
-    CBODY.innerHTML = '';
+    CBODY_ROWS.innerHTML = '';
     RECORDS.textContent = '';
     // Se verifica la acción a realizar.
     (form) ? action = 'search' : action = 'readAll';
@@ -78,17 +78,17 @@ async function fillCard(form = null) {
           // Se establece un icono para el estado del producto.
           (row.estado_producto) ? icon = 'visibility' : icon = 'visibility_off';
           // Se crean y concatenan un contenedor con la imagen y nombre de cada registro.
-          CBODY.innerHTML += `
+          CBODY_ROWS.innerHTML += `
           <div class="row">
               <div class="col s10 m3">
                 <div class="card">
                   <div class="card-image waves-effect waves-block waves-light">
-                     <img src="${SERVER_URL}images/productos/${imagen_producto}" class="activator" >  
+                     <img src="${SERVER_URL}images/productos/${row.imagen_producto}" class="activator" >  
                   </div>
                   <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">${nombre_producto}
+                    <span class="card-title activator grey-text text-darken-4">${row.nombre_producto}
                       <div class="modal-footerD">
-                        <a class="waves-effect waves-light btn modal-trigger" href="#Detalles">${descripcion_producto}</a>
+                        <a class="waves-effect waves-light btn modal-trigger" href="#Detalles">${row.descripcion_producto}</a>
                       </div>
                   </div>
                 </div>
