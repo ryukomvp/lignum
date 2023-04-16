@@ -102,6 +102,7 @@ CREATE TABLE pedido(
 	descripcion_pedido varchar(120) not null,
 	id_cliente int not null,
 	id_estado_pedido  int not null,
+	direccion_pedido varchar(250) not null,
 	fecha date null,
 
 	CONSTRAINT codigo_pedido UNIQUE (codigo_pedido)
