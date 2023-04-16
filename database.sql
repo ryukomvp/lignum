@@ -72,7 +72,7 @@ CREATE TABLE cliente(
 	telefono_cliente varchar(9),
 	id_genero int not null,
 	id_tipo_cliente int not null,
-
+	direccion_cliente varchar(250) not null,
 	usuario_publico varchar(30) not null,
 	clave varchar(2048) not null,
 	id_estado_usuario int not null,
