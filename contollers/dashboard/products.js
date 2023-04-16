@@ -8,7 +8,7 @@ const SAVE_FORM = document.getElementById('save-form');
 // Constante para establecer el título de la modal.
 const MODAL_TITLE = document.getElementById('modal-title');
 // Constantes para establecer el contenido de la carta
-const CBODY_ROWS = document.getElementById('cbody-row');
+const PRODUCTOS = document.getElementById('productos');
 const RECORDS = document.getElementById('records');
 // Constante tipo objeto para establecer las opciones del componente Modal.
 const OPTIONS = {
@@ -65,7 +65,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 */
 async function fillCard(form = null) {
     // Se inicializa el contenido de la tabla.
-    CBODY_ROWS.innerHTML = '';
+    PRODUCTOS.innerHTML = '';
     RECORDS.textContent = '';
     // Se verifica la acción a realizar.
     (form) ? action = 'search' : action = 'readAll';
@@ -88,7 +88,7 @@ async function fillCard(form = null) {
                   <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">${row.nombre_producto}
                       <div class="modal-footerD">
-                        <a class="waves-effect waves-light btn modal-trigger" href="#Detalles">${row.descripcion_producto}</a>
+                        <a onclick="openUpdate(${id_producto})" class="waves-effect waves-light btn modal-trigger" href="#update">${row.descripcion_producto}</a>
                       </div>
                   </div>
                 </div>

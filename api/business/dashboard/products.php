@@ -16,7 +16,7 @@ if (isset($_GET['action'])) {
             case 'readAll':
                 if ($result['dataset'] = $products->readAll()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Existen '.count($result['dataset']).' registros';
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
@@ -29,7 +29,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Ingrese un valor para buscar';
                 } elseif ($result['dataset'] = $products->searchRows($_POST['search'])) {
                     $result['status'] = 1;
-                    $result['message'] = 'Existen '.count($result['dataset']).' coincidencias';
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' coincidencias';
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
@@ -42,44 +42,34 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Nombre incorrecto';
                 } elseif (!$products->setDescripcion($_POST['descripcion'])) {
                     $result['exception'] = 'Descripción incorrecta';
-
                 } elseif (!$products->setPrecio($_POST['precio'])) {
                     $result['exception'] = 'Precio incorrecto';
-
                 } elseif (!$products->setCodigo($_POST['codigo'])) {
                     $result['exception'] = 'codigo incorrecto';
-
                 } elseif (!$products->setDimenciones($_POST['dimenciones'])) {
                     $result['exception'] = 'dimenciones incorrecto';
-
                 } elseif (!isset($_POST['categoria'])) {
                     $result['exception'] = 'Seleccione una categoría';
                 } elseif (!$products->setCategoria($_POST['categoria'])) {
                     $result['exception'] = 'Categoría incorrecta';
-
                 } elseif (!isset($_POST['material'])) {
                     $result['exception'] = 'Seleccione un material';
                 } elseif (!$products->setMaterial($_POST['material'])) {
                     $result['exception'] = 'Material incorrecta';
-
                 } elseif (!isset($_POST['proveedor'])) {
                     $result['exception'] = 'Seleccione un proveedor';
                 } elseif (!$products->setProveedor($_POST['proveedor'])) {
                     $result['exception'] = 'Proveedor incorrecta';
-
                 } elseif (!isset($_POST['estado'])) {
                     $result['exception'] = 'Seleccione un estado';
                 } elseif (!$products->setEstado($_POST['estado'])) {
                     $result['exception'] = 'Estado incorrecta';
-
                 } elseif (!$products->setExistencia($_POST['existencia'])) {
                     $result['exception'] = 'existencia incorrecto';
-
                 } elseif (!is_uploaded_file($_FILES['archivo']['tmp_name'])) {
                     $result['exception'] = 'Seleccione una imagen';
                 } elseif (!$products->setImagen($_FILES['archivo'])) {
                     $result['exception'] = Validator::getFileError();
-
                 } elseif ($products->createRow()) {
                     $result['status'] = 1;
                     if (Validator::saveFile($_FILES['archivo'], $products->getRuta(), $products->getImagen())) {
@@ -109,37 +99,26 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Producto incorrecto';
                 } elseif (!$data = $products->readOne()) {
                     $result['exception'] = 'Producto inexistente';
-
                 } elseif (!$products->setNombre($_POST['nombre'])) {
                     $result['exception'] = 'Nombre incorrecto';
-
                 } elseif (!$products->setDescripcion($_POST['descripcion'])) {
                     $result['exception'] = 'Descripción incorrecta';
-
                 } elseif (!$products->setPrecio($_POST['precio'])) {
                     $result['exception'] = 'Precio incorrecto';
-
                 } elseif (!$products->setCodigo($_POST['codigo'])) {
                     $resut['exception'] = 'codigo incorrecto';
-
                 } elseif (!$products->setDimenciones($_POST['dimenciones'])) {
                     $result['exception'] = 'dimenciones incorrecto';
-
                 } elseif (!$products->setCategoria($_POST['categoria'])) {
                     $result['exception'] = 'Seleccione una categoría';
-
                 } elseif (!$products->setMaterial($_POST['material'])) {
                     $result['exception'] = 'Seleccione un material';
-
                 } elseif (!$products->setProveedor($_POST['proveedor'])) {
                     $result['exception'] = 'Seleccione un proveedor';
-
                 } elseif (!$products->setEstado(isset($_POST['estado']))) {
                     $result['exception'] = 'Estado incorrecto';
-
                 } elseif (!$products->setExistencia($_POST['existencia'])) {
-                    $result['exception'] = 'existencia incorrecto';  
-
+                    $result['exception'] = 'existencia incorrecto';
                 } elseif (!is_uploaded_file($_FILES['archivo']['tmp_name'])) {
                     if ($products->updateRow($data['foto'])) {
                         $result['status'] = 1;
@@ -149,7 +128,6 @@ if (isset($_GET['action'])) {
                     }
                 } elseif (!$products->setImagen($_FILES['archivo'])) {
                     $result['exception'] = Validator::getFileError();
-
                 } elseif ($products->updateRow($data['foto'])) {
                     $result['status'] = 1;
                     if (Validator::saveFile($_FILES['archivo'], $products->getRuta(), $products->getImagen())) {
@@ -157,7 +135,6 @@ if (isset($_GET['action'])) {
                     } else {
                         $result['message'] = 'Producto modificado pero no se guardó la imagen';
                     }
-
                 } else {
                     $result['exception'] = Database::getException();
                 }
