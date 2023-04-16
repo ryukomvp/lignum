@@ -16,42 +16,96 @@
 
 <body>
     <!-- encabezado de la pagina -->
-    <header>
-        <!-- menu -->
-        <div class="navbar-fixed">
-            <nav>
-                <div class="nav-wrapper">
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <header></header>
     <!-- contenido principal de la página -->
     <main class="container">
-        <div class="row">
+        <div id="login-container">
             <!-- titulo de bienvenida -->
             <h1 class="text center">Bienvenido</h1>
             <!-- formulario para inicio de sesion -->
-            <form class="col s12">
-                <div class="row">
-                    <!-- input para ingresar usuario -->
-                    <div class="input-field col s4 offset-s4">
-                        <i class="material-icons prefix">account_circle</i>
-                        <input id="usuario" type="text" required>
-                        <label for="usuario">Ingrese su usuario</label>
-                    </div>
-                    <!-- input para ingresar clave -->
-                    <div class="input-field col s4 offset-s4">
-                        <i class="material-icons prefix">lock</i>
-                        <input id="clave" type="password" required>
-                        <label for="clave">Ingrese su contraseña</label>
-                    </div>
+            <form class="row" method="post" id="login-form">
+                <!-- input para ingresar usuario -->
+                <div class="input-field col s12 m4 offset-m4">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="usuario" type="text" name="usuario" required>
+                    <label for="usuario">Ingrese su usuario</label>
                 </div>
-                <div class="center-align">
-                    <a href="main.html" type="submit" class="waves-effect btn-large blue"><i
+                <!-- input para ingresar clave -->
+                <div class="input-field col s12 m4 offset-m4">
+                    <i class="material-icons prefix">lock</i>
+                    <input id="clave" type="password" name="clave" required>
+                    <label for="clave">Ingrese su contraseña</label>
+                </div>
+                <div class="col s12 center-align">
+                    <button href="main.html" type="submit" class="waves-effect btn-large blue"><i
                             class="material-icons">chevron_right</i></button>
-                    </a>
+                </div>
+            </form>
+        </div>
+        <!-- Contenedor del formulario para registrar el primer empleado del sitio privado -->
+        <div class="hide" id="first-employe-container">
+            <!-- Título del contenido principal -->
+            <h4 class="center-align">Registrar primer empleado</h4>
+            <!-- Formulario para crear el primer usuario -->
+            <form class="row" method="post" id="signup-employee-form">
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">person</i>
+                    <input id="nombres" type="text" name="nombres" required>
+                    <label for="nombres">Nombres</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">person</i>
+                    <input id="apellidos" type="text" name="apellidos" required>
+                    <label for="apellidos">Apellidos</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">credit_card</i>
+                    <input id="dui" type="text" name="dui" required>
+                    <label for="dui">DUI</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">email</i>
+                    <input id="correo" type="email" name="correo" required>
+                    <label for="correo">Correo</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">phone</i>
+                    <input id="telefono" type="text" name="telefono" required>
+                    <label for="telefono">Teléfono</label>
+                </div>
+                <div class="col s12 center-align">
+                    <button type="reset" class="btn waves-effect grey tooltipped" data-tooltip="Limpiar campos">
+                        <i class="material-icons">autorenew</i>
+                    </button>
+                    <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Guardar registro">
+                        <i class="material-icons">save</i>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <!-- Contenedor del formulario para registrar el primer empleado del sitio privado -->
+        <div class="hide" id="first-user-container">
+            <!-- Título del contenido principal -->
+            <h4 class="center-align">Registrar primer usuario</h4>
+            <!-- Formulario para crear el primer usuario -->
+            <form class="row" method="post" id="signup-user-form">
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">person</i>
+                    <input id="usuario-pu" type="text" name="usuario-pu" required>
+                    <label for="usuario-pu">Usuario</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">lock</i>
+                    <input id="clave-pu" type="password" name="clave-pu" required>
+                    <label for="clave-pu">Contraseña</label>
+                </div>
+                <div class="col s12 center-align">
+                    <button type="reset" class="btn waves-effect grey tooltipped" data-tooltip="Limpiar campos">
+                        <i class="material-icons">autorenew</i>
+                    </button>
+                    <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Guardar registro">
+                        <i class="material-icons">save</i>
+                    </button>
                 </div>
             </form>
         </div>
