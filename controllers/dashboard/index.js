@@ -16,24 +16,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('login-container').classList.remove('hide');
         sweetAlert(4, JSON.message, true);
     } else {
-        // Se muestra el formulario para registrar el primer empleado.
-        document.getElementById('first-employe-container').classList.remove('hide');
-        document.getElementById('first-user-container').classList.remove('hide');
+        // Se muestra el formulario para registrar el primer usuario.
+        document.getElementById('signup-container').classList.remove('hide');
         sweetAlert(4, JSON.exception, true);
-    } 
-    // else {
-    //     // Se muestra el formulario para registrar el primer usuario.
-    //     document.getElementById('first-user-container').classList.remove('hide');
-    //     // sweetAlert(4, JSON.exception, true);
-    // }
+    }
 });
 
-// Método manejador de eventos para cuando se envía el formulario de registro del primer empleado.
-SIGNUP_EMPLOYEE_FORM.addEventListener('submit', async (event) => {
+// Método manejador de eventos para cuando se envía el formulario de registro del primer usuario.
+SIGNUP_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Constante tipo objeto con los datos del formulario.
-    const FORM = new FormData(SIGNUP_EMPLOYEE_FORM);
+    const FORM = new FormData(SIGNUP_FORM);
     // Petición para registrar el primer usuario del sitio privado.
     const JSON = await dataFetch(USER_API, 'signup', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
