@@ -7,7 +7,7 @@ class PedidosQueries{
 
 //Operaciones SCRUD
 
-public function searchOrder()
+public function searchOrder($value)
 {
     $sql = 'SELECT id_pedido, codigo_pedido, descripcion_pedido, nombre_cliente, estado_pedido FROM pedido INNER JOIN cliente USING(id_cliente) INNER JOIN estado_pedido USING(id_estado_pedido) WHERE codigo_pedido ILIKE ? or descripcion_pedido ILIKE ? ORDER BY id_producto';
     $params = array("%$value%", "%$value%");

@@ -1,6 +1,6 @@
 <?php
-header('Access-Control-Allow-Origin')
-require_once('config.php')
+header('Access-Control-Allow-Origin');
+require_once('config.php');
 
 
 //Clase para realizar acciones en la base de datos
@@ -23,7 +23,7 @@ class Database
             //Ejecucion de sentencia. Se retorna el resultado
             return self::$statement->execute($values);
         } catch (PDOException $error) {
-            self::setException($errorgetCode(), $error->getMessage());
+            self::setException($error->getCode(), $error->getMessage());
             return false;
         }
     }
@@ -41,7 +41,7 @@ class Database
 
     //Metodo de obtencion de un registro mediante sentencia tipo SELECT
 
-    public static function getRow($query, $values = null)
+    public static function getRows($query, $values = null)
     {
         if(self::executeRow($query, $values)){
            return self::$statement->fetch(PDO::FETCH_ASSOC);

@@ -14,7 +14,7 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un cliente ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readAll':
-                if ($result['dataset'] = $producto->readAll()) {
+                if ($result['dataset'] = $pedido->readAll()) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen '.count($result['dataset']).' registros';
                 } elseif (Database::getException()) {
@@ -27,7 +27,7 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if ($_POST['search'] == '') {
                     $result['exception'] = 'Ingrese un valor para buscar';
-                } elseif ($result['dataset'] = $pedido->searchRows($_POST['search'])) {
+                } elseif ($result['dataset'] = $pedido->searchOrder($_POST['search'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen '.count($result['dataset']).' coincidencias';
                 } elseif (Database::getException()) {
@@ -50,7 +50,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Seleccione un estado';
                 }elseif(!$pedido->setEstado($_POST['estado'])){
                     $result['exception'] = 'Estado incorrecto';
-                }elseif($pedido->createRow()) {
+                }elseif($pedido->createOrder()) {
                     $result['status'] = 1;
                     $result['message'] = 'Pedido ingresado correctamente';
                 }else{
@@ -58,8 +58,8 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOne':
-                if (!$pedido->setIdPedido($_POST['id'])) {
-                    $result['exception'] = 'Producto incorrecto';
+                if (!$pedido->setIdPedido($_POST['id_pedido'])) {
+                    $result['exception'] = 'Pedido incorrecto';
                 } elseif ($result['dataset'] = $pedido->readOne()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
@@ -80,7 +80,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Descripción incorrecta';
                 }elseif(!$pedido->setIdCliente($_POST['cliente'])){
                     $result['exception'] = 'Seleccione un cliente';
-                }elseif(!$pedido->setIdEstado($_POST['estado'])){
+                }elseif(!$pedido->setEstado($_POST['estado'])){
                     $result['exception'] = 'Seleccione un estado';
                 }elseif(!$pedido->updateOrder()){
                     $result['status'] = 1;
@@ -88,11 +88,11 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'delete':
-                if (!$producto->setIdPedido($_POST['id_producto'])) {
+                if (!$pedido->setIdPedido($_POST['id_producto'])) {
                     $result['exception'] = 'Pedido incorrecto';
                 } elseif (!$data = $producto->readOne()) {
                     $result['exception'] = 'Pedido inexistente';
-                } elseif ($producto->deleteRow()) {
+                } elseif (!$pedido->deleteOrder()) {
                     $result['status'] = 1;
                     $result['message'] = 'Pedido eliminado correctamente'
                 } else {
