@@ -1,31 +1,19 @@
 <?php
 require_once('../../helpers/database.php');
 
-//Clase para manejar datos de entrada de pedido y detalle pedido
+//Clase para manejar datos de entrada de pedido
 
 class PedidosQueries{
 
-//Se verifica si existe un pedido, si no es el caso se crea uno
+//Operaciones SCRUD
 
-public function startOrder()
+public function searchOrder()
 {
-    $sql = 'SELECT id_pedido FROM pedido WHERE estado_pedido = 1 AND id_cliente = ?';
-    $params = array($_SESSION['id_cliente']);
-    if($data = Database::getRow($sql, $params)){
-        this->id_pedido = $data['id_pedido'];
-        return true;
-    }else{
-        $sql = 'INSERT INTO pedido(direccion_pedido, id_cliente) VALUES((SELECT direccion_cliente from cliente WHERE id_cliente = ?), ?)';
-        $params = array($_SESSION['id_cliente'], $_SESSION['id_cliente'])
-        if($this->id_pedido = Database::getLastRow($sql, $params)) {
-            return true;
-        }else{
-            return false;
-        }
-    }
+    $sql = 'SELECT id_pedido, codigo_pedido, descripcion_pedido, nombre_cliente, estado_pedido FROM pedido INNER JOIN cliente USING(id_cliente) INNER JOIN estado_pedido USING(id_estado_pedido) WHERE codigo_pedido ILIKE ? or descripcion_pedido ILIKE ? ORDER BY id_producto';
+    $params = array("%$value%", "%$value%");
+    return Database::getRows($sql, $params);
 }
 
-//Operaciones SCRUD
 
 public function createOrder()
 {
