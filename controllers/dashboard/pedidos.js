@@ -44,3 +44,9 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     }
 });
 
+async function filltable(form = null){
+    TBODY_ROWS.innerHTML = '';
+    RECORDS.textContent = '';
+    (form) ? action = 'search' : action = 'readAll';
+}
+
