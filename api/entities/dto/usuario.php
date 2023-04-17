@@ -8,11 +8,13 @@ class Usuario extends UsuarioQueries
 {
     // Declaración de atributos (propiedades).
     protected $id = null;
+    protected $nombre_empleado = null;
+    protected $apellido_empleado = null;
+    protected $dui_empleado = null;
+    protected $correo_empleado = null;
+    protected $telefono_empleado = null;
     protected $usuario_privado = null;
     protected $clave = null;
-    protected $empleado = null;
-    protected $tipo_usuario = null;
-    protected $estado_usuario = null;
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -21,6 +23,56 @@ class Usuario extends UsuarioQueries
     {
         if (Validator::validateNaturalNumber($value)) {
             $this->id = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setNombreEmpleado($value)
+    {
+        if (Validator::validateAlphabetic($value, 1, 70)) {
+            $this->nombre_empleado = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setApellidoEmpleado($value)
+    {
+        if (Validator::validateAlphabetic($value, 1, 70)) {
+            $this->apellido_empleado = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setDuiEmpleado($value)
+    {
+        if (Validator::validateAlphabetic($value, 1, 10)) {
+            $this->dui_empleado = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setCorreoEmpleado($value)
+    {
+        if (Validator::validateAlphabetic($value, 1, 120)) {
+            $this->correo_empleado = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setTelefonoEmpleado($value)
+    {
+        if (Validator::validateAlphabetic($value, 1, 9)) {
+            $this->telefono_empleado = $value;
             return true;
         } else {
             return false;
@@ -47,42 +99,37 @@ class Usuario extends UsuarioQueries
         }
     }
 
-    public function setEmpleado($value)
-    {
-        if (Validator::validateNaturalNumber($value)) {
-            $this->id = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function setTipoUsuario($value)
-    {
-        if (Validator::validateNaturalNumber($value)) {
-            $this->id = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function setEstadoUsuario($value)
-    {
-        if (Validator::validateNaturalNumber($value)) {
-            $this->id = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     /*
     *   Métodos para obtener valores de los atributos.
     */
     public function getId()
     {
         return $this->id;
+    }
+
+    public function getNombreEmpleado()
+    {
+        return $this->nombre_empleado;
+    }
+
+    public function getApellidoEmpleado()
+    {
+        return $this->apellido_empleado;
+    }
+
+    public function getDuiEmpleado()
+    {
+        return $this->dui_empleado;
+    }
+
+    public function getCorreoEmpleado()
+    {
+        return $this->correo_empleado;
+    }
+
+    public function getTelefonoEmpleado()
+    {
+        return $this->telefono_empleado;
     }
 
     public function getUsuarioPrivado()
@@ -93,20 +140,5 @@ class Usuario extends UsuarioQueries
     public function getClave()
     {
         return $this->clave;
-    }
-
-    public function getEmpleado()
-    {
-        return $this->empleado;
-    }
-
-    public function getTipoUsuario()
-    {
-        return $this->tipo_usuario;
-    }
-
-    public function getEstadoUsuario()
-    {
-        return $this->estado_usuario;
     }
 }
