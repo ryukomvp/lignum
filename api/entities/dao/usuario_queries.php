@@ -36,14 +36,14 @@ class UsuarioQueries
 
     public function changePassword()
     {
-        $sql = 'UPDATE usuarios SET clave_usuario = ? WHERE id_usuario = ?';
-        $params = array($this->clave, $_SESSION['id_usuario']);
+        $sql = 'UPDATE usuario_privado SET clave = ? WHERE id_usuario_privado = ?';
+        $params = array($this->clave, $_SESSION['id_usuario_privado']);
         return Database::executeRow($sql, $params);
     }
 
     public function readProfile()
     {
-        $sql = 'SELECT id_usuario_privado, usuario_privado, id_empleado, id_tipo_usuario, id_estado_usuario
+        $sql = 'SELECT id_usuario_privado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, telefono_empleado, usuario_privado
                 FROM usuario_privado
                 WHERE id_usuario_privado = ?';
         $params = array($_SESSION['id_usuario_privado']);
@@ -52,10 +52,10 @@ class UsuarioQueries
 
     public function editProfile()
     {
-        $sql = 'UPDATE usuario_privado
-                SET usuario_privado = ?
+        $sql = 'UPDATE nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, telefono_empleado, usuario_privado
+                SET nombre_empleado = ?, apellido_empleado = ?, dui_empleado = ?, correo_empleado = ?, telefono_empleado = ?, usuario_privado = ?
                 WHERE id_usuario_privado = ?';
-        $params = array($this->usuario_privado, $_SESSION['id_usuario_privado']);
+        $params = array($this->nombre_empleado, $this->apellido_empleado, $this->dui_empleado, $this->correo_empleado, $this->telefono_empleado, $this->usuario_privado, $_SESSION['id_usuario_privado']);
         return Database::executeRow($sql, $params);
     }
 
@@ -64,33 +64,33 @@ class UsuarioQueries
     */
     public function searchRows($value)
     {
-        $sql = 'SELECT id_usuario_privado, usuario_privado, id_empleado, id_tipo_usuario, id_estado_usuario
+        $sql = 'SELECT id_usuario_privado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, telefono_empleado, usuario_privado
                 FROM usuario_privado
-                WHERE usuario_privado ILIKE ?
-                ORDER BY id_usuario_privado';
-        $params = array("%$value%");
+                WHERE nombre_empleado ILIKE ? OR apellido_empleado ILIKE ?
+                ORDER BY apellido_empleado';
+        $params = array("%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
 
     public function createRow()
     {
-        $sql = 'INSERT INTO id_usuario_privado(usuario_privado, clave, id_empleado, id_tipo_usuario, id_estado_usuario)
-                VALUES(?, ?, ?, ?, ?)';
-        $params = array($this->usuario, $this->clave, $this->empleado, $this->tipo_usuario, $this->estado_usuario);
+        $sql = 'INSERT INTO id_usuario_privado(nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, telefono_empleado, usuario_privado, clave)
+                VALUES(?, ?, ?, ?, ?, ?, ?)';
+        $params = array($this->nombre_empleado, $this->apellido_empleado, $this->dui_empleado, $this->correo_empleado, $this->telefono_empleado, $this->usuario_privado, $this->clave);
         return Database::executeRow($sql, $params);
     }
 
     public function readAll()
     {
-        $sql = 'SELECT id_usuario_privado, usuario_privado, id_empleado, id_tipo_usuario, id_estado_usuario
+        $sql = 'SELECT id_usuario_privado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, telefono_empleado, usuario_privado
                 FROM usuario_privado
-                ORDER BY usuario_privado';
+                ORDER BY apellido_empleado';
         return Database::getRows($sql);
     }
 
     public function readOne()
     {
-        $sql = 'SELECT id_usuario_privado, usuario_privado, id_empleado, id_tipo_usuario, id_estado_usuario
+        $sql = 'SELECT id_usuario_privado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, telefono_empleado, usuario_privado
                 FROM usuario_privado
                 WHERE id_usuario_privado = ?';
         $params = array($this->id);
@@ -100,9 +100,9 @@ class UsuarioQueries
     public function updateRow()
     {
         $sql = 'UPDATE usuario_privado 
-                SET usuario_privado = ?, id_empleado = ?, id_tipo_usuario = ?, id_estado_usuario = ? 
+                SET nombre_empleado = ?, apellido_empleado = ?, dui_empleado = ?, correo_empleado = ?, telefono_empleado = ?, usuario_privado = ?
                 WHERE id_usuario_privado = ?';
-        $params = array($this->usuario_privado, $this->empleado, $this->tipo_usuario, $this->estado_usuario, $this->id);
+        $params = array($this->nombre_empleado, $this->apellido_empleado, $this->dui_empleado, $this->correo_empleado, $this->telefono_empleado, $this->usuario_privado, $this->id);
         return Database::executeRow($sql, $params);
     }
 
