@@ -99,15 +99,17 @@ if (isset($_GET['action'])) {
                 break;
             case 'create':
                 $_POST = Validator::validateForm($_POST);
-                if (!$usuario->setUsuarioPrivado($_POST['nombres'])) {
+                if (!$usuario->setUsuarioPrivado($_POST['usuario_privado'])) {
                     $result['exception'] = 'Nombres incorrectos';
-                } elseif (!$usuario->setClave($_POST['apellidos'])) {
+                } elseif (!$usuario->setClave($_POST['clave'])) {
                     $result['exception'] = 'Apellidos incorrectos';
-                } elseif (!$usuario->setEmpleado($_POST['correo'])) {
+                } elseif (!$usuario->setEmpleado($_POST['empleado'])) {
                     $result['exception'] = 'Correo incorrecto';
-                } elseif (!$usuario->setTipoUsuario($_POST['alias'])) {
+                } elseif (!$usuario->setTipoUsuario($_POST['tipo_usuario'])) {
                     $result['exception'] = 'Alias incorrecto';
-                } elseif ($_POST['clave'] != $_POST['confirmar']) {
+                }  elseif (!$usuario->setTipoUsuario($_POST['estado_usuario'])) {
+                    $result['exception'] = 'Alias incorrecto';
+                }  elseif ($_POST['clave'] != $_POST['confirmar']) {
                     $result['exception'] = 'Claves diferentes';
                 } elseif (!$usuario->setEstadoUsuario($_POST['clave'])) {
                     $result['exception'] = Validator::getPasswordError();
@@ -178,13 +180,15 @@ if (isset($_GET['action'])) {
                 break;
             case 'signup':
                 $_POST = Validator::validateForm($_POST);
-                if (!$usuario->setNombres($_POST['nombres'])) {
+                if (!$usuario->setUsuarioPrivado($_POST['usuario_privado'])) {
                     $result['exception'] = 'Nombres incorrectos';
-                } elseif (!$usuario->setApellidos($_POST['apellidos'])) {
+                } elseif (!$usuario->setClave($_POST['clave'])) {
                     $result['exception'] = 'Apellidos incorrectos';
-                } elseif (!$usuario->setCorreo($_POST['correo'])) {
+                } elseif (!$usuario->setEmpleado($_POST['empleado'])) {
                     $result['exception'] = 'Correo incorrecto';
-                } elseif (!$usuario->setAlias($_POST['usuario'])) {
+                } elseif (!$usuario->setTipoUsuario($_POST['tipo_usuario'])) {
+                    $result['exception'] = 'Alias incorrecto';
+                }  elseif (!$usuario->setEstadoUsuario($_POST['estado_usuario'])) {
                     $result['exception'] = 'Alias incorrecto';
                 } elseif ($_POST['codigo'] != $_POST['confirmar']) {
                     $result['exception'] = 'Claves diferentes';
@@ -199,13 +203,13 @@ if (isset($_GET['action'])) {
                 break;
             case 'login':
                 $_POST = Validator::validateForm($_POST);
-                if (!$usuario->checkUser($_POST['alias'])) {
+                if (!$usuario->checkUser($_POST['usuario_privado'])) {
                     $result['exception'] = 'Alias incorrecto';
                 } elseif ($usuario->checkPassword($_POST['clave'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';
                     $_SESSION['id_usuario'] = $usuario->getId();
-                    $_SESSION['alias_usuario'] = $usuario->getAlias();
+                    $_SESSION['alias_usuario'] = $usuario->getUsuarioPrivado();
                 } else {
                     $result['exception'] = 'Clave incorrecta';
                 }

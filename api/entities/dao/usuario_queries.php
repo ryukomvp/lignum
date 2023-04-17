@@ -84,7 +84,7 @@ class UsuarioQueries
     {
         $sql = 'SELECT id_usuario_privado, usuario_privado, id_empleado, id_tipo_usuario, id_estado_usuario
                 FROM usuario_privado
-                ORDER BY id_usuario_privado';
+                ORDER BY usuario_privado';
         return Database::getRows($sql);
     }
 
