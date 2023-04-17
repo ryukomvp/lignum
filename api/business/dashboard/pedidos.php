@@ -94,7 +94,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Pedido inexistente';
                 } elseif (!$pedido->deleteOrder()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Pedido eliminado correctamente'
+                    $result['message'] = 'Pedido eliminado correctamente';
                 } else {
                     $result['exception'] = Database::getException();
                 }
@@ -108,7 +108,7 @@ if (isset($_GET['action'])) {
         // Se imprime el resultado en formato JSON y se retorna al controlador.
         print(json_encode($result));
     } else {
-        print(json_encode('Acceso denegado'))
+        print(json_encode('Acceso denegado'));
     }
     
 } else {

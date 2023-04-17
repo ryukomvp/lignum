@@ -13,7 +13,7 @@ class Database
 
 
     //Metodo para ejecucion de sentencias SQL
-    public static function executeRow($query, $values)
+    public static function executeRows($query, $values)
     {
         try{
             //Creacion de coneccion mediante clase PDO
@@ -32,7 +32,7 @@ class Database
 
     public static function getLastRow($query, $values)
     {
-        if (self::executeRow($query, $values)) {
+        if (self::executeRows($query, $values)) {
             $id = self::$connection->lastInsertId();
         } else {
             $id = 0;
@@ -43,7 +43,7 @@ class Database
 
     public static function getRows($query, $values = null)
     {
-        if(self::executeRow($query, $values)){
+        if(self::executeRows($query, $values)){
            return self::$statement->fetch(PDO::FETCH_ASSOC);
         } else {
            return false;
@@ -54,7 +54,7 @@ class Database
 
     public static function getRow($query, $values = null)
     {
-        if(self::executeRow($query, $values)) {
+        if(self::executeRows($query, $values)) {
            return self::$statement->fetchAll(PDO::FETCH_ASSOC);
         } else {
            return false;

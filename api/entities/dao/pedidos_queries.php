@@ -19,7 +19,7 @@ public function createOrder()
 {
     $sql = 'INSERT INTO pedido(codigo_pedido, descripcion_pedido, id_cliente, id_estado_pedido) VALUES(?, ?, ?, ?)';
     $params = array($this->codigo, $this->descripcion, $this->cliente, $this->estado);
-    return Database::executeRow($sql, $params)
+    return Database::executeRows($sql, $params);
 }
 
 public function readAll()
@@ -31,7 +31,7 @@ public function readAll()
 public function readOne()
 {
     $sql = 'SELECT id_pedido, codigo_pedido, descripcion_pedido, id_cliente, id_estado_pedido from pedido WHERE id_producto = ?';
-    $params = array(this->id_pedido);
+    $params = array($this->id_pedido);
     return Database::getRows($sql, $params);
 }
 

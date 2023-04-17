@@ -16,7 +16,7 @@ class Pedidos extends PedidosQueries
 
     public function setIdPedido($value)
     {
-        if(Validator::validateAlphanumeric($value)){
+        if(Validator::validateNaturalNumber($value)){
             $this->codigo = $value;
             return true;
         }else{
@@ -36,11 +36,11 @@ class Pedidos extends PedidosQueries
 
     public function setDescripcion($value)
     {
-        if(Validator::validateAlphanumeric($value)){
+        if(Validator::validateString($value, 1, 250)){
             $this->descripcion = $value;
             return true;
         }else{
-            return false
+            return false;
         }
     }
 
