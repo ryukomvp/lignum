@@ -8,88 +8,87 @@ class Pedidos extends PedidosQueries
 {
     //Declaracion de atributos
     protected $id_pedido = null;
-    protected $id_detalle_producto = null;
+    protected $codigo = null;
+    protected $descripcion = null;
     protected $cliente = null;
-    protected $producto = null;
-    protected $cantidad = null;
-    protected $precio = null;
     protected $estado = null;
 
 
     public function setIdPedido($value)
     {
-        if (Validator::validateNaturalNumber($value)) {
+        if(Validator::validateAlphanumeric($value)){
+            $this->codigo = $value;
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function setCodigo($value)
+    {
+        if(Validator::validateNaturalNumber($value)){
             $this->id_pedido = $value;
             return true;
-        } else {
+        }else{
             return false;
         }
     }
 
-    public function setIdDetalle($value)
+    public function setDescripcion($value)
     {
-        if (Validator::validateNaturalNumber($value)) {
-            $this->id_detalle_pedido = $value;
+        if(Validator::validateAlphanumeric($value)){
+            $this->descripcion = $value;
             return true;
-        } else {
-            return false;
+        }else{
+            return false
         }
     }
 
-    public function setCliente($value)
+    public function setIdCliente($value)
     {
-        if (Validator::validateNaturalNumber($value)) {
+        if(Validator::validateNaturalNumber($value)){
             $this->cliente = $value;
             return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function setProducto($value)
-    {
-        if (Validator::validateNaturalNumber($value)) {
-            $this->producto = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function setCantidad($value)
-    {
-        if (Validator::validateNaturalNumber($value)) {
-            $this->cantidad = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function setPrecio($value)
-    {
-        if (Validator::validateMoney($value)) {
-            $this->precio = $value;
-            return true;
-        } else {
+        }else{
             return false;
         }
     }
 
     public function setEstado($value)
     {
-        if (Validator::validateNaturalNumber($value)) {
+        if(Validator::validateNaturalNumber($value)){
             $this->estado = $value;
             return true;
-        } else {
+        }else{
             return false;
         }
     }
+
 
     //Metodo de obtencion de valores de atributos
     public function getIdPedido()
     {
         return $this->id_pedido;
+    }
+
+    public function getCodigo()
+    {
+        return $this->codigo;
+    }
+
+    public function getDescripcion()
+    {
+        return $this->descripcion;
+    }
+
+    public function getIdCliente()
+    {
+        return $this->cliente;
+    }
+
+    public function getIdEstado()
+    {
+        return $this->estado;
     }
 }
 
