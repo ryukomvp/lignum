@@ -3,274 +3,147 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!--Import Google Icon Font-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!--Import materialize.css-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
 
-  <link type="text/css" rel="stylesheet" href="/resources/css/materialize.min.css" media="screen,projection" />
-  <link type="text/css" rel="stylesheet" href="/resources/css/diseño_priv.css" media="screen,projection" />
-  <link type="text/css" rel="stylesheet" href="/resources/css/dashboard.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="/resources/css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="/resources/css/diseño_priv.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="/resources/css/dashboard.css" media="screen,projection" />
 
-  <!--Titulo de pagina-->
-  <title>Pedidos</title>
+    <!--Titulo de pagina-->
+    <title>Categorias</title>
 </head>
 
 <body>
-  <!-- header del sitio -->
-  <header>
-    <!-- etiqueta para menu -->
-    <div class="navbar-fixed">
-      <nav>
-        <div class="nav-wrapper">
-          <a href="main.html" class="brand-logo"><img src="/resources/img/2.png" alt=""></a>
-          <a href="#" data-target="menu-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="#" class="tooltipped" data-position="bottom" data-tooltip="Inicio de la página"><i
-                  class="material-icons">arrow_upward</i></a></li>
-            <li><a href="login.html" class="tooltipped" data-position="bottom" data-tooltip="Perfil del usuario"><i
-                  class="material-icons">account_circle</i></a></li>
-          </ul>
-        </div>
-      </nav>
-      <!-- menu para dispositivos con pantalla pequeña -->
-      <ul class="sidenav" id="menu-mobile">
-        <li><a href="catalogue.html">Catalogo</a></li>
-        <li><a href="shopping_cart.html">Carrito</a></li>
-        <li><a href="login.html">Cuenta</a></li>
-      </ul>
-    </div>
-  </header>
-
-
-  <main>
-    <!-- contenedor para acciones de busqueda y agregar -->
-    <div class="container acciones">
-      <div class="row">
-        <div class="col s10 m8 offset-m1">
-          <nav>
-            <div class="nav-wrapper">
-              <form>
-                <div class="input-field">
-                  <input char id="search" type="search" required>
-                  <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                  <i class="material-icons">close</i>
+    <!-- header del sitio -->
+    <header>
+        <!-- etiqueta para menu -->
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="main.html" class="brand-logo"><img src="/resources/img/2.png" alt=""></a>
+                    <a href="#" data-target="menu-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href="#" class="tooltipped" data-position="bottom" data-tooltip="Inicio de la página"><i
+                                    class="material-icons">arrow_upward</i></a></li>
+                        <li><a href="login.html" class="tooltipped" data-position="bottom"
+                                data-tooltip="Perfil del usuario"><i class="material-icons">account_circle</i></a></li>
+                    </ul>
                 </div>
-              </form>
-            </div>
-          </nav>
+            </nav>
+            <!-- menu para dispositivos con pantalla pequeña -->
+            <ul class="sidenav" id="menu-mobile">
+                <li><a href="catalogue.html">Catalogo</a></li>
+                <li><a href="shopping_cart.html">Carrito</a></li>
+                <li><a href="login.html">Cuenta</a></li>
+            </ul>
         </div>
-        <div class="col s2 m2">
-          <a href="#modal-usuarios" class="waves-effect waves-light btn-large tooltipped modal-trigger"
-            data-position="right" data-tooltip="Agregar un usuario"><i class="material-icons">add_shopping_cart</i></a>
-        </div>
-      </div>
-    </div>
-    <!-- Tabla de pedidos -->
-    <div class="container">
-      <div class="row">
-        <div class="col m12 tabla">
-          <table class="responsive-table highlight ">
-            <thead>
-              <!-- Contenido de tabla -->
-              <tr>
-                <th>id</th>
-                <th>id cliente</th>
-                <th>Usuario</th>
-                <th>Cantidad</th>
-                <th>Total</th>
-                <th>Estado del pedido</th>
-                <th>Detalles</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <!-- Datos de tabla -->
-              <tr>
-                <td>1</td>
-                <td>4</td>
-                <td>KevinRivas</td>
-                <td>2</td>
-                <td>$50.00</td>
-                <!-- swith de estado de pedido -->
-                <td>
-                  <div class="switch">
-                    <label>
-                      En proceso
-                      <input type="checkbox">
-                      <span class="lever"></span>
-                      Terminado
-                    </label>
-                  </div>
-                </td>
-                <!-- Boton de detalle -->
-                <td><a class="waves-effect waves-light btn  modal-trigger" href="#Detalles"><Label
-                      class="Detalle">Detalles</Label></a></td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>4</td>
-                <td>Ryuko</td>
-                <td>2</td>
-                <td>$50.00</td>
-                <!-- swith de estado de pedido -->
-                <td>
-                  <div class="switch">
-                    <label>
-                      En proceso
-                      <input type="checkbox">
-                      <span class="lever"></span>
-                      Terminado
-                    </label>
-                  </div>
-                </td>
-                <!-- Boton de detalle -->
-                <td><a class="waves-effect waves-light btn  modal-trigger" href="#Detalles"><Label
-                      class="Detalle">Detalles</Label></a></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>4</td>
-                <td>Alec</td>
-                <td>2</td>
-                <td>$50.00</td>
-                <!-- swith de estado de pedido -->
-                <td>
-                  <div class="switch">
-                    <label>
-                      En proceso
-                      <input type="checkbox">
-                      <span class="lever"></span>
-                      Terminado
-                    </label>
-                  </div>
-                </td>
-                <!-- Boton de detalle -->
-                <td><a class="waves-effect waves-light btn  modal-trigger" href="#Detalles"><Label
-                      class="Detalle">Detalles</Label></a></td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>4</td>
-                <td>OmarRivas</td>
-                <td>2</td>
-                <td>$50.00</td>
-                <!-- swith de estado de pedido -->
-                <td>
-                  <div class="switch">
-                    <label>
-                      En proceso
-                      <input type="checkbox">
-                      <span class="lever"></span>
-                      Terminado
-                    </label>
-                  </div>
-                </td>
-                <!-- Boton de detalle -->
-                <td><a class="waves-effect waves-light btn  modal-trigger" href="#Detalles"><Label
-                      class="Detalle">Detalles</Label></a></td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>4</td>
-                <td>MirraPerez</td>
-                <td>2</td>
-                <td>$50.00</td>
-                <!-- swith de estado de pedido -->
-                <td>
-                  <div class="switch">
-                    <label>
-                      En proceso
-                      <input type="checkbox">
-                      <span class="lever"></span>
-                      Terminado
-                    </label>
-                  </div>
-                </td>
-                <!-- Boton de detalle -->
-                <td><a class="waves-effect waves-light btn  modal-trigger" href="#Detalles"><Label
-                      class="Detalle">Detalles</Label></a></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+    </header>
 
 
-
-    <!-- Ventana modal Detalle de pedido -->
-    <div id="Detalles" class="modal">
-      <div class="modal-content">
-        <i class="material-icons  right">close</i>
-        <h4>Detalles</h4>
-        <div class="row">
-          <form class="col s12">
-            <div class="container">
-              <div class="row">
-                <div class="col m12 tabla">
-                  <table class="responsive-table highlight ">
-                    <thead>
-                      <!-- datos con los que se rellenara la tabla -->
-                      <tr>
-                        <th>Codigo Producto</th>
-                        <th>Productos</th>
-                        <th>Descripcion</th>
-                        <th>Precio</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <!-- Datos de tabla -->
-                      <tr>
-                        <td>1028973</td>
-                        <td>Escritorio de habitacion</td>
-                        <td>Escritorio: Ancho 60cm, un largo de 1.50m. </td>
-                        <td>$80.50</td>
-                      </tr>
-                      <tr>
-                        <td>1231233</td>
-                        <td>Mesa para comedor</td>
-                        <td>Con la capacidad para 8 sillas</td>
-                        <td>$100.00</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+    <main>
+        <!-- contenedor para acciones de busqueda y agregar -->
+        <div class="container acciones">
+            <div class="row">
+              <div class="col s10 m8 offset-m1">
+                <nav>
+                  <!-- barra de busqueda -->
+                  <div class="nav-wrapper">
+                    <form id="search-form">
+                      <div class="input-field">
+                        <input char id="search" type="search" required>
+                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                        <i class="material-icons">close</i>
+                      </div>
+                    </form>
+                  </div>
+                </nav>
               </div>
+                <div class="col s2 m2">
+                    <!-- boton de agregar -->
+                    <a onclick="openCreate()" href="#modal-categorias"
+                        class="waves-effect waves-light btn-large tooltipped modal-trigger" data-position="right"
+                        data-tooltip="Agregar un producto"><i class="material-icons">person_add</i></a>
+                </div>
             </div>
-          </form>
         </div>
-      </div>
-      <div class="modal-footer">
-        <a href="#!" class=" modal-close btn">Descartar</a>
-      </div>
-    </div>
-  </main>
+        <!-- Tabla de pedidos -->
+        <div class="container">
+            <div class="row">
+                <div class="col m12 tabla">
+                    <table class="responsive-table highlight ">
+                        <thead>
+                            <!-- Contenido de tabla -->
+                            <tr id="records"></tr>
+                            <tr>
+                                <th>id</th>
+                                <th>Categoria</th>
+                            </tr>
+                        </thead>
+                        <!-- Cuerpo de la tabla para mostrar un registro por fila -->
+                        <tbody id="tbody-rows"></tbody>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
-  <!-- Footer -->
-  <footer class="page-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <a href="about-us.html">
-            <h5 class="white-text">Dashboard footer</h5>
-          </a>
+
+
+        <!-- Ventana modal Detalle de pedido -->
+        <div id="save-modal" class="modal">
+            <div class="modal-content">
+                <h4>Detalles</h4>
+                <div class="row">
+                    <form class="col s12" id="save-form">
+                        <div class="row">
+                            <!--Text imput Productos -->
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">note_add</i>
+                                <input id="nombre" type="text" name="nombre" class="validate" required>
+                                <label for="nombre">Nombre</label>
+                            </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a type="close" href="#!" class=" modal-close btn">Descartar</a>
+                <a type="submit" href="#!" class=" modal-close btn">Actualizar</a>
+                <a type="submit" href="#!" class=" modal-close btn">Agregar</a>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class=" footer-copyright">
-      <div class="container">
-        © 2014 Copyright Text
-        <a class="grey-text text-lighten-4 right" href="https://www.instagram.com/dnlhernandez_" target="_blank">More
-          Links</a>
-      </div>
-    </div>
-  </footer>
-  <!--JavaScript at end of body for optimized loading-->
-  <script type="text/javascript" src="/resources/js/materialize.min.js"></script>
-  <script type="text/javascript" src="/resources/js/inicializar_dashboard.js"></script>
+    </main>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <a href="about-us.html">
+                        <h5 class="white-text">Dashboard footer</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class=" footer-copyright">
+            <div class="container">
+                © 2014 Copyright Text
+                <a class="grey-text text-lighten-4 right" href="https://www.instagram.com/dnlhernandez_"
+                    target="_blank">More
+                    Links</a>
+            </div>
+        </div>
+    </footer>
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="/resources/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/resources/js/inicializar_dashboard.js"></script>
+    <script type="text/javascript" src="/contollers/components.js"></script>
+    <script type="text/javascript" src="/contollers/dashboard/categories.js"></script>
 </body>
 
 </html>
