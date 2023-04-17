@@ -93,8 +93,6 @@ async function fillTable(form = null) {
                 </tr>
             `;
         });
-        // Se inicializa el componente Material Box para que funcione el efecto Lightbox.
-        M.Materialbox.init(document.querySelectorAll('.materialboxed'));
         // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
         M.Tooltip.init(document.querySelectorAll('.tooltipped'));
         // Se muestra un mensaje de acuerdo con el resultado.

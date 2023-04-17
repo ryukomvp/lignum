@@ -14,7 +14,7 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readAll':
-                if ($result['dataset'] = $categoria->readAll()) {
+                if ($result['dataset'] = $categories->readAll()) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen '.count($result['dataset']).' registros';
                 } elseif (Database::getException()) {
@@ -27,7 +27,7 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if ($_POST['search'] == '') {
                     $result['exception'] = 'Ingrese un valor para buscar';
-                } elseif ($result['dataset'] = $categoria->searchRows($_POST['search'])) {
+                } elseif ($result['dataset'] = $categories->searchRows($_POST['search'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen '.count($result['dataset']).' coincidencias';
                 } elseif (Database::getException()) {
@@ -38,16 +38,16 @@ if (isset($_GET['action'])) {
                 break;
             case 'create':
                 $_POST = Validator::validateForm($_POST);
-                if (!$categoria->setNombre($_POST['nombre'])) {
+                if (!$categories->setNombre($_POST['nombre'])) {
                     $result['exception'] = 'Nombre incorrecto';
                 } else {
                     $result['exception'] = Database::getException();
                 }
                 break;
             case 'readOne':
-                if (!$categoria->setId($_POST['id_categoria'])) {
+                if (!$categories->setId($_POST['id_categoria'])) {
                     $result['exception'] = 'Categoría incorrecta';
-                } elseif ($result['dataset'] = $categoria->readOne()) {
+                } elseif ($result['dataset'] = $categories->readOne()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -57,28 +57,21 @@ if (isset($_GET['action'])) {
                 break;
             case 'update':
                 $_POST = Validator::validateForm($_POST);
-                if (!$categoria->setId($_POST['id'])) {
+                if (!$categories->setId($_POST['id'])) {
                     $result['exception'] = 'Categoría incorrecta';
-                } elseif (!$data = $categoria->readOne()) {
+                } elseif (!$data = $categories->readOne()) {
                     $result['exception'] = 'Categoría inexistente';
-                } elseif (!$categoria->setNombre($_POST['nombre'])) {
+                } elseif (!$categories->setNombre($_POST['nombre'])) {
                     $result['exception'] = 'Nombre incorrecto';
                 } else {
                     $result['exception'] = Database::getException();
                 }
                 break;
             case 'delete':
-                if (!$categoria->setId($_POST['id_categoria'])) {
+                if (!$categories->setId($_POST['id_categoria'])) {
                     $result['exception'] = 'Categoría incorrecta';
-                } elseif (!$data = $categoria->readOne()) {
+                } elseif (!$data = $categories->readOne()) {
                     $result['exception'] = 'Categoría inexistente';
-                } elseif ($categoria->deleteRow()) {
-                    $result['status'] = 1;
-                    if (Validator::deleteFile($categoria->getRuta(), $data['imagen_categoria'])) {
-                        $result['message'] = 'Categoría eliminada correctamente';
-                    } else {
-                        $result['message'] = 'Categoría eliminada pero no se borró la imagen';
-                    }
                 } else {
                     $result['exception'] = Database::getException();
                 }

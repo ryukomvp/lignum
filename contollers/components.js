@@ -3,7 +3,7 @@
 */
 
 // Constante para establecer la ruta del servidor.
-const SERVER_URL = 'http://localhost/coffeeshop/api/';
+const SERVER_URL = 'http://localhost/tienda_online/api/';
 
 /*
 *   Función para mostrar un mensaje de confirmación. Requiere la librería sweetalert para funcionar.
@@ -70,6 +70,7 @@ function sweetAlert(type, text, timer, url = null) {
             className: 'cyan'
         }
     };
+    
     // Se verifica el uso del temporizador.
     (timer) ? options.timer = 3000 : options.timer = null;
     // Se muestra el mensaje. Requiere la librería sweetalert para funcionar.
