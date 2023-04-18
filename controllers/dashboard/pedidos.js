@@ -58,14 +58,28 @@ async function filltable(form = null){
                 <td>${row.nombre_cliente}</td>
                 <td>${row.estado_pedido}</td>
                 <td>
-                    <a onclick="openUpdate(${row.id_pedido})" class="btn waves-effect blue tooltipped"             data-tooltip="Actualizar">
+                    <a onclick="openUpdate(${row.id_pedido})" class="btn waves-effect blue tooltipped" data-tooltip="Actualizar">
                         <i class="material-icons">mode_edit</i>
                     </a>
-                    <a onclick="openDelete(${row.id_pedido}" class="btn waves-effect red tooltipped" data-tooltip="Eliminar")><i class="material-icons">delete</a>
-                    </td>
+                    <a onclick="openDelete(${row.id_pedido}" class="btn waves-effect red tooltipped" data-tooltip="Eliminar")>
+                        <i class="material-icons">delete</i>
+                    </a>
+                </td>
             <tr>
-            `
+            `;
         })
+        M.MaterialBox.init(document.querySelectorAll('.materialboxed'));
+        M.ToolTip.init(document.querySelectorAll('.tooltiped'));
+        RECORDS.textContent = JSON.message
+    }else{
+        sweetAlert(4, JSON.exception, true)
     }
+}
+
+function openCreate(){
+    SAVE_MODAL.open();
+    SAVE_FORM.reset();
+    MODAL_TITLE.textContent = 'Crear pedido';
+    document.getElementById('archivo').required = true;
 }
 
