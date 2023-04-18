@@ -56,6 +56,8 @@ async function filltable(form = null){
                 <td>${row.codigo_pedido}</td>
                 <td>${row.descripcion.pedido}</td>
                 <td>${row.nombre_cliente}</td>
+                <td>${row.estado_pedido}</td>
+                <td></td>
             <tr>
             `
         })
