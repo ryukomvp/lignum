@@ -57,7 +57,12 @@ async function filltable(form = null){
                 <td>${row.descripcion.pedido}</td>
                 <td>${row.nombre_cliente}</td>
                 <td>${row.estado_pedido}</td>
-                <td></td>
+                <td>
+                    <a onclick="openUpdate(${row.id_pedido})" class="btn waves-effect blue tooltipped"             data-tooltip="Actualizar">
+                        <i class="material-icons">mode_edit</i>
+                    </a>
+                    <a onclick="openDelete(${row.id_pedido}" class="btn waves-effect red tooltipped" data-tooltip="Eliminar")><i class="material-icons">delete</a>
+                    </td>
             <tr>
             `
         })
