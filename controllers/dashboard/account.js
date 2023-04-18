@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       <div class="navbar-fixed">
           <nav>
             <div class="nav-wrapper">
-              <a href="../../views/dashboard/main.html" class="brand-logo"><img src="../../resources/img/2.png" alt=""></a>
+              <a href="../../views/dashboard/main.html" class="brand-logo"><i class="material-icons">dashboard</i></a>
               <a href="#" data-target="menu-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
               <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="#" class="tooltipped" data-position="bottom" data-tooltip="Inicio de la página"><i
