@@ -86,13 +86,12 @@ async function fillTable(form = null) {
                         <a onclick="openDelete(${row.id_categoria})" class="btn red tooltipped" data-tooltip="Eliminar">
                             <i class="material-icons">delete</i>
                         </a>
-                        <a onclick="openReport(${row.id_categoria})" class="btn amber tooltipped" data-tooltip="Reporte">
-                            <i class="material-icons">assignment</i>
-                        </a>
                     </td>
                 </tr>
             `;
         });
+        // Se inicializa el componente Material Box para que funcione el efecto Lightbox.
+        M.Materialbox.init(document.querySelectorAll('.materialboxed'));
         // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
         M.Tooltip.init(document.querySelectorAll('.tooltipped'));
         // Se muestra un mensaje de acuerdo con el resultado.
@@ -142,7 +141,6 @@ async function openUpdate(id) {
         // Se inicializan los campos del formulario.
         document.getElementById('id').value = JSON.dataset.id_categoria;
         document.getElementById('nombre').value = JSON.dataset.nombre_categoria;
-        document.getElementById('descripcion').value = JSON.dataset.descripcion_categoria;
         // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
         M.updateTextFields();
     } else {
@@ -182,11 +180,11 @@ async function openDelete(id) {
 *   Parámetros: id (identificador del registro seleccionado).
 *   Retorno: ninguno.
 */
-function openReport(id) {
-    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
-    const PATH = new URL(`${SERVER_URL}reports/dashboard/productos_categoria.php`);
-    // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
-    PATH.searchParams.append('id_categoria', id);
-    // Se abre el reporte en una nueva pestaña del navegador web.
-    window.open(PATH.href);
-}
+// function openReport(id) {
+//     // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+//     const PATH = new URL(`${SERVER_URL}reports/dashboard/productos_categoria.php`);
+//     // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
+//     PATH.searchParams.append('id_categoria', id);
+//     // Se abre el reporte en una nueva pestaña del navegador web.
+//     window.open(PATH.href);
+// }

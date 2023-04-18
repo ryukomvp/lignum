@@ -6,15 +6,15 @@ if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
     // Se instancia la clase correspondiente.
-    $categories = new Categoria;
+    $suppliers = new proveedores;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null, 'dataset' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
-    if (isset($_SESSION['id_usuario_privado'])) {
+    if (isset($_SESSION['id_usuario'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readAll':
-                if ($result['dataset'] = $categories->readAll()) {
+                if ($result['dataset'] = $suppliers->readAll()) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen '.count($result['dataset']).' registros';
                 } elseif (Database::getException()) {
@@ -27,7 +27,7 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if ($_POST['search'] == '') {
                     $result['exception'] = 'Ingrese un valor para buscar';
-                } elseif ($result['dataset'] = $categories->searchRows($_POST['search'])) {
+                } elseif ($result['dataset'] = $suppliers->searchRows($_POST['search'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen '.count($result['dataset']).' coincidencias';
                 } elseif (Database::getException()) {
@@ -38,16 +38,16 @@ if (isset($_GET['action'])) {
                 break;
             case 'create':
                 $_POST = Validator::validateForm($_POST);
-                if (!$categories->setNombre($_POST['nombre'])) {
+                if (!$suppliers->setNombre($_POST['nombre'])) {
                     $result['exception'] = 'Nombre incorrecto';
                 } else {
                     $result['exception'] = Database::getException();
                 }
                 break;
             case 'readOne':
-                if (!$categories->setId($_POST['id_categoria'])) {
+                if (!$suppliers->setId($_POST['id_categoria'])) {
                     $result['exception'] = 'Categoría incorrecta';
-                } elseif ($result['dataset'] = $categories->readOne()) {
+                } elseif ($result['dataset'] = $suppliers->readOne()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -57,20 +57,20 @@ if (isset($_GET['action'])) {
                 break;
             case 'update':
                 $_POST = Validator::validateForm($_POST);
-                if (!$categories->setId($_POST['id'])) {
+                if (!$suppliers->setId($_POST['id'])) {
                     $result['exception'] = 'Categoría incorrecta';
-                } elseif (!$data = $categories->readOne()) {
+                } elseif (!$data = $suppliers->readOne()) {
                     $result['exception'] = 'Categoría inexistente';
-                } elseif (!$categories->setNombre($_POST['nombre'])) {
+                } elseif (!$suppliers->setNombre($_POST['nombre'])) {
                     $result['exception'] = 'Nombre incorrecto';
                 } else {
                     $result['exception'] = Database::getException();
                 }
                 break;
             case 'delete':
-                if (!$categories->setId($_POST['id_categoria'])) {
+                if (!$suppliers->setId($_POST['id_categoria'])) {
                     $result['exception'] = 'Categoría incorrecta';
-                } elseif (!$data = $categories->readOne()) {
+                } elseif (!$data = $suppliers->readOne()) {
                     $result['exception'] = 'Categoría inexistente';
                 } else {
                     $result['exception'] = Database::getException();
