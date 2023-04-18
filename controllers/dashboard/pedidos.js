@@ -48,5 +48,13 @@ async function filltable(form = null){
     TBODY_ROWS.innerHTML = '';
     RECORDS.textContent = '';
     (form) ? action = 'search' : action = 'readAll';
+    const JSON = await dataFetch(PEDIDO_API, action, form);
+    if(JSON.status){
+        JSON.dataFetch.forEach(row => {
+            TBODY_ROWS.innerHTML += `
+            <tr>
+            `
+        })
+    }
 }
 
