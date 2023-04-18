@@ -53,6 +53,10 @@ async function filltable(form = null){
         JSON.dataFetch.forEach(row => {
             TBODY_ROWS.innerHTML += `
             <tr>
+                <td>${row.codigo_pedido}</td>
+                <td>${row.descripcion.pedido}</td>
+                <td>${row.nombre_cliente}</td>
+            <tr>
             `
         })
     }
