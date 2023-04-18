@@ -29,20 +29,18 @@ document.addEventListener('DOMContentLoaded', async () => {
                 </div>
             `;
             FOOTER.innerHTML = `
-                <div class="page-footer">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col l6 s12">
-                                <h5 class="white-text">Dashboard</h5>
-                            </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col l6 s12">
+                            <h5 class="white-text">Dashboard</h5>
                         </div>
                     </div>
-                    <div class=" footer-copyright">
-                        <div class="container">
-                            Lignum
-                            <a class="grey-text text-lighten-4 right" href="https://www.instagram.com/dnlhernandez_"
-                            target="_blank"><img src="https://img.icons8.com/material-outlined/24/FFFFFF/instagram-new--v1.png"/></a>
-                        </div>
+                </div>
+                <div class=" footer-copyright">
+                    <div class="container">
+                        Lignum
+                        <a class="grey-text text-lighten-4 right" href="https://www.instagram.com/dnlhernandez_"
+                        target="_blank"><img src="https://img.icons8.com/material-outlined/24/FFFFFF/instagram-new--v1.png"/></a>
                     </div>
                 </div>
             `;
@@ -68,17 +66,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             FOOTER.innerHTML = `
                 <div class="container">
                     <div class="row">
-                        <b>Dashboard de CoffeeShop</b>
+                        <div class="col l6 s12">
+                            <h5 class="white-text">Dashboard</h5>
+                        </div>
                     </div>
                 </div>
-                <div class="footer-copyright">
+                <div class=" footer-copyright">
                     <div class="container">
-                        <span>© 2018-2023 Copyright CoffeeShop. Todos los derechos reservados.</span>
-                        <span class="right">Diseñado con
-                            <a href="http://materializecss.com/" target="_blank">
-                                <img src="../../resources/img/materialize.png" height="20" style="vertical-align:middle" alt="Materialize">
-                            </a>
-                        </span>
+                        Lignum
+                        <a class="grey-text text-lighten-4 right" href="https://www.instagram.com/dnlhernandez_"
+                        target="_blank"><img src="https://img.icons8.com/material-outlined/24/FFFFFF/instagram-new--v1.png"/></a>
                     </div>
                 </div>
             `;
@@ -89,3 +86,27 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 });
+
+// inicializacion de tooltip
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.tooltipped');
+    var instances = M.Tooltip.init(elems);
+  });
+  
+  // inicializacion de ventana modal
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems);
+  });
+  
+  // inicializacion de selecionador
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems);
+  });
+  
+  // inicializacion de menu para pantallas pequeñas
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems);
+  });

@@ -74,7 +74,7 @@ class UsuarioQueries
 
     public function createRow()
     {
-        $sql = 'INSERT INTO id_usuario_privado(nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, telefono_empleado, usuario_privado, clave)
+        $sql = 'INSERT INTO usuario_privado(nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, telefono_empleado, usuario_privado, clave)
                 VALUES(?, ?, ?, ?, ?, ?, ?)';
         $params = array($this->nombre_empleado, $this->apellido_empleado, $this->dui_empleado, $this->correo_empleado, $this->telefono_empleado, $this->usuario_privado, $this->clave);
         return Database::executeRow($sql, $params);

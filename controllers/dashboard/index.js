@@ -1,3 +1,5 @@
+// Ruta de la api
+const USER_API = 'business/dashboard/usuario.php';
 // Constante para establecer el formulario de registro del primer usuario.
 const SIGNUP_FORM = document.getElementById('signup-form');
 // Constante para establecer el formulario de inicio de sesión.

@@ -3,7 +3,7 @@
 */
 
 // Constante para establecer la ruta del servidor.
-const SERVER_URL = 'http://localhost/coffeeshop/api/';
+const SERVER_URL = 'http://localhost/tienda_online/api/';
 
 /*
 *   Función para mostrar un mensaje de confirmación. Requiere la librería sweetalert para funcionar.
