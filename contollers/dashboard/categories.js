@@ -78,7 +78,7 @@ async function fillTable(form = null) {
             TBODY_ROWS.innerHTML += `
                 <tr>
                     <td>${row.id_categoria}</td>
-                    <td>${row.nombre_categoria}</td>
+                    <td>${row.categoria}</td>
                     <td>
                         <a onclick="openUpdate(${row.id_categoria})" class="btn blue tooltipped" data-tooltip="Actualizar">
                             <i class="material-icons">mode_edit</i>
@@ -114,7 +114,7 @@ function openCreate() {
     // Se asigna título a la caja de diálogo.
     MODAL_TITLE.textContent = 'Crear categoría';
     // Se establece el campo de archivo como obligatorio.
-    document.getElementById('archivo').required = true;
+    document.getElementById('archivo').required = false;
 }
 
 /*
@@ -139,8 +139,8 @@ async function openUpdate(id) {
         // Se establece el campo de archivo como opcional.
         document.getElementById('archivo').required = false;
         // Se inicializan los campos del formulario.
-        document.getElementById('id').value = JSON.dataset.id_categoria;
-        document.getElementById('nombre').value = JSON.dataset.nombre_categoria;
+        document.getElementById('id_categoria').value = JSON.dataset.id_categoria;
+        document.getElementById('categoria').value = JSON.dataset.nombre_categoria;
         // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
         M.updateTextFields();
     } else {
