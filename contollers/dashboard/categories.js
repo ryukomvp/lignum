@@ -114,10 +114,6 @@ function openCreate() {
     // Se asigna título a la caja de diálogo.
     MODAL_TITLE.textContent = 'Crear categoría';
     // Se establece el campo de archivo como obligatorio.
-<<<<<<< HEAD
-=======
-    document.getElementById('archivo').required = false;
->>>>>>> 27ea9a6fdb3747bf1affeca53456bb86ef626e08
 }
 
 /*
@@ -142,13 +138,8 @@ async function openUpdate(id) {
         // Se establece el campo de archivo como opcional.
         document.getElementById('archivo').required = false;
         // Se inicializan los campos del formulario.
-<<<<<<< HEAD
-        document.getElementById('id').value = JSON.dataset.id_categoria;
-        document.getElementById('nombre').value = JSON.dataset.nombre_categoria;
-=======
         document.getElementById('id_categoria').value = JSON.dataset.id_categoria;
         document.getElementById('categoria').value = JSON.dataset.nombre_categoria;
->>>>>>> 27ea9a6fdb3747bf1affeca53456bb86ef626e08
         // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
         M.updateTextFields();
     } else {
