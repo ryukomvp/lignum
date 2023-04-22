@@ -78,16 +78,13 @@ async function fillTable(form = null) {
             TBODY_ROWS.innerHTML += `
                 <tr>
                     <td>${row.id_categoria}</td>
-                    <td>${row.nombre_categoria}</td>
+                    <td>${row.categoria}</td>
                     <td>
                         <a onclick="openUpdate(${row.id_categoria})" class="btn blue tooltipped" data-tooltip="Actualizar">
                             <i class="material-icons">mode_edit</i>
                         </a>
                         <a onclick="openDelete(${row.id_categoria})" class="btn red tooltipped" data-tooltip="Eliminar">
                             <i class="material-icons">delete</i>
-                        </a>
-                        <a onclick="openReport(${row.id_categoria})" class="btn amber tooltipped" data-tooltip="Reporte">
-                            <i class="material-icons">assignment</i>
                         </a>
                     </td>
                 </tr>
@@ -117,6 +114,10 @@ function openCreate() {
     // Se asigna título a la caja de diálogo.
     MODAL_TITLE.textContent = 'Crear categoría';
     // Se establece el campo de archivo como obligatorio.
+<<<<<<< HEAD
+=======
+    document.getElementById('archivo').required = false;
+>>>>>>> 27ea9a6fdb3747bf1affeca53456bb86ef626e08
 }
 
 /*
@@ -141,8 +142,13 @@ async function openUpdate(id) {
         // Se establece el campo de archivo como opcional.
         document.getElementById('archivo').required = false;
         // Se inicializan los campos del formulario.
+<<<<<<< HEAD
         document.getElementById('id').value = JSON.dataset.id_categoria;
         document.getElementById('nombre').value = JSON.dataset.nombre_categoria;
+=======
+        document.getElementById('id_categoria').value = JSON.dataset.id_categoria;
+        document.getElementById('categoria').value = JSON.dataset.nombre_categoria;
+>>>>>>> 27ea9a6fdb3747bf1affeca53456bb86ef626e08
         // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
         M.updateTextFields();
     } else {
@@ -182,11 +188,11 @@ async function openDelete(id) {
 *   Parámetros: id (identificador del registro seleccionado).
 *   Retorno: ninguno.
 */
-function openReport(id) {
-    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
-    const PATH = new URL(`${SERVER_URL}reports/dashboard/productos_categoria.php`);
-    // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
-    PATH.searchParams.append('id_categoria', id);
-    // Se abre el reporte en una nueva pestaña del navegador web.
-    window.open(PATH.href);
-}
+// function openReport(id) {
+//     // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+//     const PATH = new URL(`${SERVER_URL}reports/dashboard/productos_categoria.php`);
+//     // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
+//     PATH.searchParams.append('id_categoria', id);
+//     // Se abre el reporte en una nueva pestaña del navegador web.
+//     window.open(PATH.href);
+// }
