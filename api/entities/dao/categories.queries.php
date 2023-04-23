@@ -43,7 +43,7 @@ class CategoriesQueries
         return Database::getRow($sql, $params);
     }
 
-    public function updateRow($current_image)
+    public function updateRow()
     {
         $sql = 'UPDATE categoria
                 SET  categoria = ?

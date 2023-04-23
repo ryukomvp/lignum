@@ -49,25 +49,25 @@
         <!-- contenedor para acciones de busqueda y agregar -->
         <div class="container acciones">
             <div class="row">
-              <div class="col s10 m8 offset-m1">
-                <nav>
-                  <!-- barra de busqueda -->
-                  <div class="nav-wrapper">
-                    <form id="search-form">
-                      <div class="input-field">
-                        <input char id="search" type="search" required>
-                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                        <i class="material-icons">close</i>
-                      </div>
-                    </form>
-                  </div>
-                </nav>
-              </div>
+                <div class="col s10 m8 offset-m1">
+                    <nav>
+                        <!-- barra de busqueda -->
+                        <div class="nav-wrapper">
+                            <form id="search-form">
+                                <div class="input-field">
+                                    <input char id="search" type="search" required>
+                                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                                    <i class="material-icons">close</i>
+                                </div>
+                            </form>
+                        </div>
+                    </nav>
+                </div>
                 <div class="col s2 m2">
                     <!-- boton de agregar -->
-                    <a onclick="openCreate()" href="#modal-categorias"
-                        class="waves-effect waves-light btn-large tooltipped modal-trigger" data-position="right"
-                        data-tooltip="Agregar un producto"><i class="material-icons">person_add</i></a>
+                    <a onclick="openCreate()" class="waves-effect waves-light btn-large tooltipped"
+                        data-position="right" data-tooltip="Agregar un producto"><i
+                            class="material-icons">person_add</i></a>
                 </div>
             </div>
         </div>
@@ -100,7 +100,8 @@
             <div class="modal-content">
                 <h4 id="modal-title" class="center-align"></h4>
                 <div class="row">
-                    <form class="col s12" id="save-form">
+                    <form class="col s12" method="post" id="save-form" enctype="multipart/form-data">
+                        <input class="hide" type="number" id="id" name="id">
                         <div class="row">
                             <!--Text imput Productos -->
                             <div class="input-field col s12 m6">
@@ -108,20 +109,25 @@
                                 <input id="nombre" type="text" name="nombre" class="validate" required>
                                 <label for="nombre">Nombre</label>
                             </div>
+                            <div class="col s12 center-align">
+                                <div class="modal-footer">
+                                    <button type="close" class=" modal-close btn tooltipped"
+                                        data-tooltip="Regresar">Descartar</button>
+                                    <button type="submit" class=" btn  tooltipped"
+                                        data-tooltip="Guardar">Guardar</button>
+                                    <!-- <button type="submit" class=" btn  tooltipped"
+                                        data-tooltip="Agregar">Agregar</button> -->
+                                </div>
+                            </div>
                     </form>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <a type="close" href="#!" class=" modal-close btn">Descartar</a>
-                <a type="submit" href="#!" class=" modal-close btn">Actualizar</a>
-                <a type="submit" href="#!" class=" modal-close btn">Agregar</a>
             </div>
         </div>
     </main>
 
     <!-- Footer -->
     <footer class="page-footer bottom-0">
-        <div class="container" >
+        <div class="container">
             <div class="row">
                 <div class="col l6 s12">
                     <a href="about-us.html">

@@ -90,8 +90,6 @@ async function fillTable(form = null) {
                 </tr>
             `;
         });
-        // Se inicializa el componente Material Box para que funcione el efecto Lightbox.
-        M.Materialbox.init(document.querySelectorAll('.materialboxed'));
         // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
         M.Tooltip.init(document.querySelectorAll('.tooltipped'));
         // Se muestra un mensaje de acuerdo con el resultado.
@@ -114,7 +112,7 @@ function openCreate() {
     // Se asigna título a la caja de diálogo.
     MODAL_TITLE.textContent = 'Crear categoría';
     // Se establece el campo de archivo como obligatorio.
-    document.getElementById('archivo').required = false;
+    // document.getElementById('archivo').required = false;
 }
 
 /*
@@ -137,7 +135,7 @@ async function openUpdate(id) {
         // Se asigna título para la caja de diálogo.
         MODAL_TITLE.textContent = 'Actualizar categoría';
         // Se establece el campo de archivo como opcional.
-        document.getElementById('archivo').required = false;
+        // document.getElementById('archivo').required = false;
         // Se inicializan los campos del formulario.
         document.getElementById('id_categoria').value = JSON.dataset.id_categoria;
         document.getElementById('categoria').value = JSON.dataset.nombre_categoria;
