@@ -19,26 +19,25 @@
 </head>
 
 <body>
-  <!-- Menu tipo Navbar  -->
-  <header>
-    <!-- etiqueta para menu -->
-    <div class="navbar-fixed">
-      <nav>
-        <div class="nav-wrapper">
-          <a href="#" class="brand-logo"><img src="/resources/img/2.png" alt="" width="80px" height="80px"></a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="#" class="tooltipped" data-position="bottom" data-tooltip="Inicio de la página"><i
-                  class="material-icons">arrow_upward</i></a></li>
-            <li><a href="profile.html" class="tooltipped" data-position="bottom" data-tooltip="Perfil del usuario"><i
-                  class="material-icons">account_circle</i></a></li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-  </header>
-
-
   <main>
+<!-- Menu tipo Navbar  -->
+<header>
+  <!-- etiqueta para menu -->
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo"><img src="../../resources/img/logos/2.png" alt="" width="80px" height="80px"></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="#" class="tooltipped" data-position="bottom" data-tooltip="Inicio de la página"><i
+                class="material-icons">arrow_upward</i></a></li>
+          <li><a href="profile.html" class="tooltipped" data-position="bottom" data-tooltip="Perfil del usuario"><i
+                class="material-icons">account_circle</i></a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
+
 
     <!-- contenedor para acciones de busqueda y agregar -->
     <div class="container acciones">
@@ -59,22 +58,22 @@
         </div>
         <div class="col s2 m2">
           <!-- boton de agregar -->
-          <a onclick="openCreate()" href="#modal-productos"
-            class="waves-effect waves-light btn-large tooltipped modal-trigger" data-position="right"
+          <a onclick="openCreate()" class="waves-effect waves-light btn-large tooltipped" data-position="right"
             data-tooltip="Agregar un producto"><i class="material-icons">person_add</i></a>
         </div>
       </div>
     </div>
-<!-- Contenido de las cartas -->
-    <div class="row" id="records"></div>  
+    <!-- Contenido de las cartas -->
+    <div class="row" id="records"></div>
     <div class="row" id="productos"></div>
 
     <!-- ventana modal para scrud productos -->
     <div id="save-modal" class="modal">
-      <div class="modal-content">    
+      <div class="modal-content">
         <div class="row">
-          <h4>Detalles</h4>
-          <form class="col s12" id="save-form">
+          <h4 id="modal-title"></h4>
+          <form class="col s12" method="post" id="save-form" enctype="multipart/form-data">
+            <input class="hide" type="number" id="id" name="id">
             <div class="row">
               <!--Text imput Productos -->
               <div class="input-field col s12 m6">
@@ -161,14 +160,17 @@
                 </label>
               </div>
             </div>
+            <div class="col s12 center-align">
+              <div class="modal-footer">
+                <button type="close" class=" modal-close btn tooltipped" data-tooltip="Regresar">Descartar</button>
+                <button type="submit" class=" btn  tooltipped" data-tooltip="Guardar">Guardar</button>
+                <!-- <button type="submit" class=" btn  tooltipped"
+                      data-tooltip="Agregar">Agregar</button> -->
+              </div>
           </form>
         </div>
       </div>
-      <div class="modal-footer">
-        <a type="close" href="#!" class=" modal-close btn">Descartar</a>
-        <a type="submit" href="#!" class=" modal-close btn">Actualizar</a>
-        <a type="submit" href="#!" class="tooltipped" data-position="bottom" data-tooltip="Perfil del usuario" class=" modal-close btn">Agregar</a>
-      </div>
+    </div>
     </div>
     </div>
 
@@ -180,7 +182,9 @@
 
   <!--JavaScript at end of body for optimized loading-->
   <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
+  <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
   <script type="text/javascript" src="../../resources/js/inicializar_dashboard.js"></script>
+  <script type="text/javascript" src="../../contollers/components.js"></script>
   <script type="text/javascript" src="../../contollers/dashboard/products.js"></script>
 </body>
 

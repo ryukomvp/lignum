@@ -57,7 +57,7 @@ if (isset($_GET['action'])) {
                 break;
             case 'update':
                 $_POST = Validator::validateForm($_POST);
-                if (!$categories->setId($_POST['id_categoria'])) {
+                if (!$categories->setId($_POST['id'])) {
                     $result['exception'] = 'Categoría incorrecta';
                 } elseif (!$data = $categories->readOne()) {
                     $result['exception'] = 'Categoría inexistente';

@@ -47,7 +47,7 @@ function sweetAlert(type, text, timer, url = null) {
             icon = 'success';
             break;
         case 2:
-            title = 'Error';
+            title = 'error';
             icon = 'error';
             break;
         case 3:

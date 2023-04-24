@@ -1,6 +1,6 @@
 <?php
 // require_once('../../helpers/validator.php');
-require_once('../../entities/dao/producto_queries.php');
+require_once('../../entities/dao/products.queries.php');
 /*
 *	Clase para manejar la transferencia de datos de la entidad PRODUCTO.
 */
@@ -9,6 +9,7 @@ class Producto extends ProductoQueries
     // Declaración de atributos (propiedades).
     protected $id = null;
     protected $nombre = null;
+    protected $imagen = null;
     protected $descripcion = null;
     protected $precio = null;
     protected $codigo = null;
@@ -18,7 +19,6 @@ class Producto extends ProductoQueries
     protected $proveedor = null;
     protected $estado = null;
     protected $existencia = null;
-    protected $imagen = null;
     protected $ruta = '../../images/productos/';
 
     /*
@@ -38,6 +38,16 @@ class Producto extends ProductoQueries
     {
         if (Validator::validateAlphanumeric($value, 1, 50)) {
             $this->nombre = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setImagen($file)
+    {
+        if (Validator::validateImageFile($file, 500, 500)) {
+            $this->imagen = Validator::getFileName();
             return true;
         } else {
             return false;
@@ -133,16 +143,6 @@ class Producto extends ProductoQueries
             return false;
         }
     }
-    
-    public function setImagen($file)
-    {
-        if (Validator::validateImageFile($file, 500, 500)) {
-            $this->imagen = Validator::getFileName();
-            return true;
-        } else {
-            return false;
-        }
-    }
 
 
     /*
@@ -156,6 +156,11 @@ class Producto extends ProductoQueries
     public function getNombre()
     {
         return $this->nombre;
+    }
+
+    public function getImagen()
+    {
+        return $this->imagen;
     }
 
     public function getDescripcion()
@@ -181,11 +186,6 @@ class Producto extends ProductoQueries
     public function getRuta()
     {
         return $this->ruta;
-    }
-
-    public function getImagen()
-    {
-        return $this->imagen;
     }
 
 }
