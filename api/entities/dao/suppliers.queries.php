@@ -12,9 +12,9 @@ class SuppliersQueries
     {
         $sql = 'SELECT id_proveedor, nombre_proveedor, direccion_proveedor, correo_proveedor, telefono_proveedor
                 FROM proveedor
-                WHERE nombre_proveedor ILIKE ?
+                WHERE nombre_proveedor ILIKE ? OR correo_proveedor ILIKE ? OR telefono_proveedor ILIKE ?
                 ORDER BY nombre_proveedor';
-        $params = array("%$value%", "%$value%");
+        $params = array("%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
 

@@ -1,6 +1,7 @@
 // Constantes para completar las rutas de la API.
 const PRODUCTO_API = 'business/dashboard/products.php';
-const CATEGORIA_API = 'business/dashboard/categories.php';
+const CATEGORIES_API = 'business/dashboard/categories.php';
+const SUPPLIERS_API = 'business/dashbard/suppliers.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('search-form');
 // Constante para establecer el formulario de guardar.
@@ -77,21 +78,30 @@ async function fillTable(form = null) {
         JSON.dataset.forEach(row => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             PRODUCTOS.innerHTML += `
-            <div class="row">
+         
             <div class="col s10 m3">
               <div class="card">
                 <div class="card-image waves-effect waves-block waves-light">
-                   <img src="${SERVER_URL}images/productos/${row.imagen_producto}" class="activator" >  
+                   <img src="${SERVER_URL}images/productos/${row.foto}" class="activator" >  
                 </div>
                 <div class="card-content">
-                  <span class="card-title activator grey-text text-darken-4">${row.nombre_producto}
+                  <span class="card-title activator grey-text text-darken-4">${row.nombre_producto}</span>
                     <div class="modal-footerD">
-                      <a onclick="openUpdate(${id_producto})" class="waves-effect waves-light btn modal-trigger" href="#update">${row.descripcion_producto}</a>
+                    <p>${row.descripcion_producto}</p>
                     </div>
+
+                    <div class ="card-action">
+                    <button onclick="openUpdate(${row.id_producto})" class="btn blue tooltipped" data-tooltip="Actualizar">
+                    <i class="material-icons">mode_edit</i>
+                </button>
+                    <button onclick="openDelete(${row.id_producto})" class="btn red tooltipped" data-tooltip="Eliminar">
+                            <i class="material-icons">delete</i>
+                        </button>
+                        </div>
                 </div>
               </div>
             </div>
-        </div>
+       
             `;
         });
         // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
@@ -113,8 +123,13 @@ function openCreate() {
     SAVE_MODAL.open();
     // Se restauran los elementos del formulario.
     SAVE_FORM.reset();
-    // Se asigna título a la caja de diálogo.
+    // Se asigna el título a la caja de diálogo.
     MODAL_TITLE.textContent = 'Crear producto';
+    // Se establece el campo de archivo como obligatorio.
+    document.getElementById('archivo').required = true;
+    // Llamada a la función para llenar el select del formulario. Se encuentra en el archivo components.js
+    fillSelect(CATEGORIES_API, 'readAll', 'categoria');
+    fillSelect(SUPPLIERS_API, 'readAll', 'categoria');
 }
 
 /*

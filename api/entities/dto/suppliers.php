@@ -1,5 +1,5 @@
 <?php
-// require_once('../../helpers/validator.php');
+require_once('../../helpers/validator.php');
 require_once('../../entities/dao/suppliers.queries.php');
 /*
 *	Clase para manejar la transferencia de datos de la entidad PRODUCTO.
@@ -49,7 +49,7 @@ class Suppliers extends SuppliersQueries
 
     public function setCorreo($value)
     {
-        if (Validator::validateString($value, 1, 250)) {
+        if (Validator::validateEmail($value, 1, 250)) {
             $this->correo = $value;
             return true;
         } else {

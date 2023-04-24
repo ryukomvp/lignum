@@ -15,7 +15,7 @@
     <link type="text/css" rel="stylesheet" href="../../resources/css/dashboard.css" media="screen,projection" />
 
     <!--Titulo de pagina-->
-    <title>Valoracion</title>
+    <title>Categorias</title>
 </head>
 
 <body>
@@ -63,6 +63,12 @@
                         </div>
                     </nav>
                 </div>
+                <div class="col s2 m2">
+                    <!-- boton de agregar -->
+                    <a onclick="openCreate()" class="waves-effect waves-light btn-large tooltipped"
+                        data-position="right" data-tooltip="Agregar una categoria"><i
+                            class="material-icons">person_add</i></a>
+                </div>
             </div>
         </div>
         <!-- Tabla de pedidos -->
@@ -75,9 +81,7 @@
                             <tr id="records"></tr>
                             <tr>
                                 <th>id</th>
-                                <th>Puntaje</th>
-                                <th>Comentario</th>
-                                <th>producto</th>
+                                <th>material</th>
                                 <th>Actualizar</th>
                                 <th>Eliminar</th>
                             </tr>
