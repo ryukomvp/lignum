@@ -46,7 +46,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Correo incorrecta';
                 } elseif (! $suppliers->setTelefono($_POST['telefono'])) {
                     $result['exception'] = 'Telefono incorrecta';
-                } elseif ($categories->createRow()) {
+                } elseif ($suppliers->createRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'proveedor creado correctamente';
                 } else {
