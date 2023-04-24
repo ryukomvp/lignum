@@ -1,5 +1,5 @@
 // Constante para completar la ruta de la API.
-const PEDIDO_API = 'business/public/pedido.php';
+const PEDIDO_API = 'business/dashboard/pedido.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('search-form');
 // Constante para establecer el formulario de guardar.
@@ -21,13 +21,13 @@ const SAVE_MODAL = M.Modal.getInstance(document.getElementById('save-modal'));
 // Método manejador de eventos para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para mostrar los productos del carrito de compras.
-    filltable();
+    fillTable();
 });
 
 SEARCH_FORM.addEventListener('submit', (event) => {
     event.preventDefault();
     const FORM = new FormData(SEARCH_FORM);
-    filltable(FORM);
+    fillTable(FORM);
 });
 
 SAVE_FORM.addEventListener('submit', async (event) => {
@@ -44,7 +44,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     }
 });
 
-async function filltable(form = null){
+async function fillTable(form = null){
     TBODY_ROWS.innerHTML = '';
     RECORDS.textContent = '';
     (form) ? action = 'search' : action = 'readAll';
@@ -81,5 +81,40 @@ function openCreate(){
     SAVE_FORM.reset();
     MODAL_TITLE.textContent = 'Crear pedido';
     document.getElementById('archivo').required = true;
+    fillSelect(PEDIDO_API, 'readAll');
 }
 
+async function openUpdate(id_pedido){
+    const FORM = new FormData();
+    FORM.append('id_pedido', id_pedido);
+    const JSON = await dataFetch(PEDIDO_API, 'readOne', FORM)
+    if(JSON.status) {
+       SAVE_MODAL.open();
+       SAVE_FORM.reset();
+       MODAL_TITLE.textContent = 'Actualizar Pedido';
+       document.getElementById('id_pedido');
+       document.getElementById('codigo');
+       document.getElementById('descripcion');
+       document.getElementById('cliente');
+       document.getElementById('estado');
+       fillSelect(PEDIDO_API, 'readAll');
+       M.updateTextFields();
+    }else{
+       sweetAlert(2, JSON.exception, false);
+    }
+}
+
+async function openDelete(id_pedido){
+    const RESPONSE = await confirmAction('Desea eliminar el pedido de forma permanente');
+    if(RESPONSE){
+        const FORM = new FormData();
+        FORM.append('id_pedido', id_pedido);
+        const JSON = await dataFetch(PEDIDO_API, 'delete', FORM);
+        if(JSON.status){
+           fillTable(); 
+           sweetAlert(1, JSON.message, true);
+        }else{
+           sweetAlert(2, JSON.message, false);  
+        }
+    }
+}
