@@ -84,171 +84,66 @@
               </tr>
             </thead>
 
-            <tbody>
-              <!-- Datos de tabla -->
-              <tr>
-                <td>1</td>
-                <td>4</td>
-                <td>KevinRivas</td>
-                <td>2</td>
-                <td>$50.00</td>
-                <!-- swith de estado de pedido -->
-                <td>
-                  <div class="switch">
-                    <label>
-                      En proceso
-                      <input type="checkbox">
-                      <span class="lever"></span>
-                      Terminado
-                    </label>
-                  </div>
-                </td>
-                <!-- Boton de detalle -->
-                <td><a class="waves-effect waves-light btn  modal-trigger" href="#Detalles"><Label
-                      class="Detalle">Detalles</Label></a></td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>4</td>
-                <td>Ryuko</td>
-                <td>2</td>
-                <td>$50.00</td>
-                <!-- swith de estado de pedido -->
-                <td>
-                  <div class="switch">
-                    <label>
-                      En proceso
-                      <input type="checkbox">
-                      <span class="lever"></span>
-                      Terminado
-                    </label>
-                  </div>
-                </td>
-                <!-- Boton de detalle -->
-                <td><a class="waves-effect waves-light btn  modal-trigger" href="#Detalles"><Label
-                      class="Detalle">Detalles</Label></a></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>4</td>
-                <td>Alec</td>
-                <td>2</td>
-                <td>$50.00</td>
-                <!-- swith de estado de pedido -->
-                <td>
-                  <div class="switch">
-                    <label>
-                      En proceso
-                      <input type="checkbox">
-                      <span class="lever"></span>
-                      Terminado
-                    </label>
-                  </div>
-                </td>
-                <!-- Boton de detalle -->
-                <td><a class="waves-effect waves-light btn  modal-trigger" href="#Detalles"><Label
-                      class="Detalle">Detalles</Label></a></td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>4</td>
-                <td>OmarRivas</td>
-                <td>2</td>
-                <td>$50.00</td>
-                <!-- swith de estado de pedido -->
-                <td>
-                  <div class="switch">
-                    <label>
-                      En proceso
-                      <input type="checkbox">
-                      <span class="lever"></span>
-                      Terminado
-                    </label>
-                  </div>
-                </td>
-                <!-- Boton de detalle -->
-                <td><a class="waves-effect waves-light btn  modal-trigger" href="#Detalles"><Label
-                      class="Detalle">Detalles</Label></a></td>
-                <td><a class="waves-effect waves-light btn  modal-trigger" href="#Detalles"><Label
-                  class="Detalle">Editar</Label></a></td>
-                <td><a class="waves-effect waves-light btn  modal-trigger" href="#Detalles"><Label
-                  class="Detalle">Eliminar</Label></a></td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>4</td>
-                <td>MirraPerez</td>
-                <td>2</td>
-                <td>$50.00</td>
-                <!-- swith de estado de pedido -->
-                <td>
-                  <div class="switch">
-                    <label>
-                      En proceso
-                      <input type="checkbox">
-                      <span class="lever"></span>
-                      Terminado
-                    </label>
-                  </div>
-                </td>
-                <!-- Boton de detalle -->
-                <td><a class="waves-effect waves-light btn  modal-trigger" href="#Detalles"><Label
-                      class="Detalle">Detalles</Label></a></td>
-              </tr>
-            </tbody>
+            <tbody id="tbody-rows"></tbody>
           </table>
         </div>
       </div>
     </div>
 
-
-
-    <!-- Ventana modal editar -->
-    <div id="Update" class="modal">
+    <!-- Componente Modal para guardar un registro -->
+    <div id="save-modal" class="modal">
+      <!-- Enlace para cerrar el componente Modal -->
+      <div class="row right">
+          <a class="black-text tooltipped modal-close" data-tooltip="Cerrar">
+              <i class="small material-icons">close</i>
+          </a>
+      </div>
+      <!-- Contenido del componente Modal -->
       <div class="modal-content">
-        <i class="material-icons  right">close</i>
-        <h4>Detalles</h4>
-        <div class="row">
-          <form class="col s12">
-            <div class="container">
-              <div class="row">
-                <div class="col m12 tabla">
-                  <table class="responsive-table highlight ">
-                    <thead>
-                      <!-- datos con los que se rellenara la tabla -->
-                      <tr>
-                        <th>Codigo Producto</th>
-                        <th>Productos</th>
-                        <th>Descripcion</th>
-                        <th>Precio</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <!-- Datos de tabla -->
-                      <tr>
-                        <td>1028973</td>
-                        <td>Escritorio de habitacion</td>
-                        <td>Escritorio: Ancho 60cm, un largo de 1.50m. </td>
-                        <td>$80.50</td>
-                      </tr>
-                      <tr>
-                        <td>1231233</td>
-                        <td>Mesa para comedor</td>
-                        <td>Con la capacidad para 8 sillas</td>
-                        <td>$100.00</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+          <!-- Título para la caja de diálogo -->
+          <h4 id="modal-title" class="center-align"></h4>
+          <!-- Formulario para crear o actualizar un registro -->
+          <form class="row" method="post" id="save-form" enctype="multipart/form-data">
+              <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+              <input class="hide" type="number" id="id" name="id">
+              <div class="input-field col s12 m6">
+                  <i class="material-icons prefix">note_add</i>
+                  <input id="nombre" type="text" name="nombre" class="validate" required>
+                  <label for="nombre">Codigo de pedido</label>
               </div>
-            </div>
+              <div class="input-field col s12 m6">
+                  <i class="material-icons prefix">description</i>
+                  <input id="descripcion" type="text" name="descripcion" class="validate" required>
+                  <label for="descripcion">Descripción</label>
+              </div>
+              <div class="input-field col s12 m6">
+                  <select id="cliente" name="cliente">
+                  </select>
+                  <label>Cliente</label>
+              </div>
+              <div class="col s12 m6">
+                  <p>
+                  <div class="switch">
+                      <span>Estado:</span>
+                      <label>
+                          <input id="estado" type="checkbox" name="estado" checked>
+                          <span class="lever"></span>
+                      </label>
+                  </div>
+                  </p>
+              </div>
+              <div class="col s12 center-align">
+                  <button type="reset" class="btn waves-effect grey tooltipped" data-tooltip="Reiniciar">
+                      <i class="material-icons">autorenew</i>
+                  </button>
+                  <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Guardar">
+                      <i class="material-icons">save</i>
+                  </button>
+              </div>
           </form>
-        </div>
       </div>
-      <div class="modal-footer">
-        <a href="#!" class=" modal-close btn">Descartar</a>
-      </div>
-    </div>
+  </div>
+</main>
   </main>
 
   <!-- Footer -->
