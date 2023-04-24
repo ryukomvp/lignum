@@ -9,9 +9,9 @@
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="/resources/css/materialize.min.css" media="screen,projection" />
-    <link type="text/css" rel="stylesheet" href="/resources/css/diseño_priv.css" media="screen,projection" />
-    <link type="text/css" rel="stylesheet" href="/resources/css/dashboard.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../resources/css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../resources/css/diseño_priv.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../resources/css/dashboard.css" media="screen,projection" />
 
     <!--Titulo de pagina-->
     <title>Dashboard</title>
@@ -20,28 +20,13 @@
 <body>
 
     <!-- Menu tipo Navbar  -->
-    <header>
-        <!-- etiqueta para menu -->
-        <div class="navbar-fixed">
-            <nav>
-                <div class="nav-wrapper">
-                    <a href="main.html" class="brand-logo"><img src="/resources/img/2.png" alt=""></a>
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="#" class="tooltipped" data-position="bottom" data-tooltip="Inicio de la página"><i
-                                    class="material-icons">arrow_upward</i></a></li>
-                        <li><a href="profile.html" class="tooltipped" data-position="bottom"
-                                data-tooltip="Perfil del usuario"><i class="material-icons">account_circle</i></a></li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <header></header>
     <!-- contenido principal -->
     <main>
         <div class="container">
             <div class="row">
                 <div class="col s12 m12">
-                    <h5 class="Bienvenida">Bienvenido Kevin Rivas</h5>
+                    <h5 class="Bienvenida">Bienvenido</h5>
                 </div>
                 <div class="col s12 m12">
                     <!-- botones para direccionar a los SCRUD -->
@@ -70,35 +55,22 @@
                                 src="/resources/img/Icono_Valoracion_priv_menu.png"><i class="fa fa-Valoracion"><i>
                                     <h5 class="Letra_Menu">Valoracion y comentarios</h5>
                         </a>
+                        <a class="btn Valoracion" href="customers.html"><img class="Iconos_menu"
+                            src="/resources/img/Icono_Valoracion_priv_menu.png"><i class="fa fa-Valoracion"><i>
+                                <h5 class="Letra_Menu">Clientes</h5>
+                    </a>
                     </div>
                 </div>
             </div>
         </div>
     </main>
     <!-- Footer -->
-    <footer class="page-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col l6 s12">
-                    <a href="about-us.html">
-                        <h5 class="white-text">Dashboard footer</h5>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class=" footer-copyright">
-            <div class="container">
-                © 2014 Copyright Text
-                <a class="grey-text text-lighten-4 right" href="https://www.instagram.com/dnlhernandez_"
-                    target="_blank">More
-                    Links</a>
-            </div>
-        </div>
-    </footer>
+    <footer class="page-footer"></footer>
     <!--JavaScript at end of body for optimized loading-->
-    <script type="text/javascript" src="/resources/js/materialize.min.js"></script>
-    <script type="text/javascript" src="/resources/js/inicializar_dashboard.js"></script>
-    <script type="text/javascript" src="/resources/js/dashboard.js"></script>
+    <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../controllers/components.js"></script>
+    <script type="text/javascript" src="../../controllers/dashboard/account.js"></script>
 </body>
 
 </html>
