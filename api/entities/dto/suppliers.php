@@ -1,10 +1,10 @@
 <?php
 // require_once('../../helpers/validator.php');
-require_once('../../entities/dao/producto_queries.php');
+require_once('../../entities/dao/suppliers.queries.php');
 /*
 *	Clase para manejar la transferencia de datos de la entidad PRODUCTO.
 */
-class Producto extends ProductoQueries
+class Suppliers extends SuppliersQueries
 {
     // Declaración de atributos (propiedades).
     protected $id = null;
@@ -37,100 +37,30 @@ class Producto extends ProductoQueries
         }
     }
 
-    public function setDescripcion($value)
+    public function setDireccion($value)
+    {
+        if (Validator::validateAlphanumeric($value, 1, 250)) {
+            $this->direccion = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setCorreo($value)
     {
         if (Validator::validateString($value, 1, 250)) {
-            $this->descripcion = $value;
+            $this->correo = $value;
             return true;
         } else {
             return false;
         }
     }
 
-    public function setPrecio($value)
-    {
-        if (Validator::validateMoney($value)) {
-            $this->precio = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function setCodigo($value)
+    public function setTelefono($value)
     {
         if (Validator::validateNaturalNumber($value)) {
-            $this->codigo = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function setDimenciones($value)
-    {
-        if (Validator::validateString($value, 1, 250)) {
-            $this->dimenciones = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function setCategoria($value)
-    {
-        if (Validator::validateBoolean($value)) {
-            $this->estado = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function setMaterial($value)
-    {
-        if (Validator::validateString($value, 1, 250)) {
-            $this->material = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function setProveedor($value)
-    {
-        if (Validator::validateBoolean($value)) {
-            $this->proveedor = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function setEstado($value)
-    {
-        if (Validator::validateBoolean($value)) {
-            $this->estado = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function setExistencia($value)
-    {
-        if (Validator::validateNaturalNumber($value)) {
-            $this->existencia = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
-    
-    public function setImagen($file)
-    {
-        if (Validator::validateImageFile($file, 500, 500)) {
-            $this->imagen = Validator::getFileName();
+            $this->telefono = $value;
             return true;
         } else {
             return false;
@@ -151,34 +81,19 @@ class Producto extends ProductoQueries
         return $this->nombre;
     }
 
-    public function getDescripcion()
+    public function getDireccion()
     {
-        return $this->descripcion;
+        return $this->direccion;
     }
 
-    public function getPrecio()
+    public function getCorreo()
     {
-        return $this->precio;
+        return $this->correo;
     }
 
-    public function getCategoria()
+    public function getTelefono()
     {
-        return $this->categoria;
-    }
-
-    public function getEstado()
-    {
-        return $this->estado;
-    }
-
-    public function getRuta()
-    {
-        return $this->ruta;
-    }
-
-    public function getImagen()
-    {
-        return $this->imagen;
+        return $this->telefono;
     }
 
 }
