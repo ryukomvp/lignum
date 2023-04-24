@@ -123,9 +123,9 @@ function openCreate() {
 async function openUpdate(id) {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
-    FORM.append('id_categoria', id);
+    FORM.append('id', id);
     // Petición para obtener los datos del registro solicitado.
-    const JSON = await dataFetch(CATEGORIA_API, 'readOne', FORM);
+    const JSON = await dataFetch(CATEGORIES_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
         // Se abre la caja de diálogo que contiene el formulario.
@@ -136,7 +136,7 @@ async function openUpdate(id) {
         MODAL_TITLE.textContent = 'Actualizar categoría';
         // Se inicializan los campos del formulario.
         document.getElementById('id').value = JSON.dataset.id_categoria;
-        document.getElementById('nombre').value = JSON.dataset.nombre_categoria;
+        document.getElementById('nombre').value = JSON.dataset.categoria;
         // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
         M.updateTextFields();
     } else {
@@ -160,7 +160,6 @@ async function openDelete(id) {
         // Petición para eliminar el registro seleccionado.
         const JSON = await dataFetch(CATEGORIES_API, 'delete', FORM);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-        console.log(JSON);
         if (JSON.status) {
             // Se carga nuevamente la tabla para visualizar los cambios.
             fillTable();

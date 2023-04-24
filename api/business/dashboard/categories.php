@@ -40,12 +40,15 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if (!$categories->setNombre($_POST['nombre'])) {
                     $result['exception'] = 'Nombre incorrecto';
-                } else {
+                }  elseif ($categories->createRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'categoria creado correctamente';
+                }else {
                     $result['exception'] = Database::getException();
                 }
                 break;
             case 'readOne':
-                if (!$categories->setId($_POST['id_categoria'])) {
+                if (!$categories->setId($_POST['id'])) {
                     $result['exception'] = 'Categoría incorrecta';
                 } elseif ($result['dataset'] = $categories->readOne()) {
                     $result['status'] = 1;
@@ -63,7 +66,10 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Categoría inexistente';
                 } elseif (!$categories->setNombre($_POST['nombre'])) {
                     $result['exception'] = 'Nombre incorrecto';
-                } else {
+                } elseif ($categories->updateRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'categoria actualizada correctamente';
+                }else {
                     $result['exception'] = Database::getException();
                 }
                 break;
@@ -72,7 +78,10 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Categoría incorrecta';
                 } elseif (!$data = $categories->readOne()) {
                     $result['exception'] = 'Categoría inexistente';
-                } else {
+                } elseif ($categories->deleteRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'categoria eliminada correctamente';
+                }else {
                     $result['exception'] = Database::getException();
                 }
                 break;

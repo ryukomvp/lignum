@@ -70,7 +70,7 @@ async function fillTable(form = null) {
     // Se verifica la acción a realizar.
     (form) ? action = 'search' : action = 'readAll';
     // Petición para obtener los registros disponibles.
-    const JSON = await dataFetch(CATEGORIA_API, action, form);
+    const JSON = await dataFetch(PRODUCTO_API, action, form);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
         // Se recorre el conjunto de registros fila por fila.
@@ -123,9 +123,9 @@ function openCreate() {
 *   Retorno: ninguno.
 */
 async function openUpdate(id) {
-    // Se define una constante tipo objeto con los datos del registro seleccionado.
+    // Se define un objeto con los datos del registro seleccionado.
     const FORM = new FormData();
-    FORM.append('id_producto', id);
+    FORM.append('id', id);
     // Petición para obtener los datos del registro solicitado.
     const JSON = await dataFetch(PRODUCTO_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
@@ -134,19 +134,27 @@ async function openUpdate(id) {
         SAVE_MODAL.open();
         // Se restauran los elementos del formulario.
         SAVE_FORM.reset();
-        // Se asigna título para la caja de diálogo.
+        // Se asigna el título para la caja de diálogo (modal).
         MODAL_TITLE.textContent = 'Actualizar producto';
+        // Se establece el campo de archivo como opcional.
+        document.getElementById('archivo').required = false;
         // Se inicializan los campos del formulario.
         document.getElementById('id').value = JSON.dataset.id_producto;
-        document.getElementById('nombre').value = JSON.dataset.nombre_produto;
-        document.getElementById('nombre').value = JSON.dataset.nombre_produto;
+        document.getElementById('nombre').value = JSON.dataset.nombre_producto;
+        document.getElementById('precio').value = JSON.dataset.precio_producto;
+        document.getElementById('descripcion').value = JSON.dataset.descripcion_producto;
+        fillSelect(CATEGORIES_API, 'readAll', 'categoria', JSON.dataset.id_categoria);
+        if (JSON.dataset.estado_producto) {
+            document.getElementById('estado').checked = true;
+        } else {
+            document.getElementById('estado').checked = false;
+        }
         // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
         M.updateTextFields();
     } else {
         sweetAlert(2, JSON.exception, false);
     }
 }
-
 /*
 *   Función asíncrona para eliminar un registro.
 *   Parámetros: id (identificador del registro seleccionado).
@@ -161,7 +169,7 @@ async function openDelete(id) {
         const FORM = new FormData();
         FORM.append('id_categoria', id);
         // Petición para eliminar el registro seleccionado.
-        const JSON = await dataFetch(CATEGORIA_API, 'delete', FORM);
+        const JSON = await dataFetch(PRODUCTO_API, 'delete', FORM);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
         if (JSON.status) {
             // Se carga nuevamente la tabla para visualizar los cambios.
