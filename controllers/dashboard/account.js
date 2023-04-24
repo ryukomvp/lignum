@@ -13,6 +13,7 @@ const FOOTER = document.querySelector('footer');
 document.addEventListener('DOMContentLoaded', async () => {
     // Petición para obtener en nombre del usuario que ha iniciado sesión.
     const JSON = await dataFetch(USER_API, 'getUser');
+    console.log(USER_API);
     // Se verifica si el usuario está autenticado, de lo contrario se envía a iniciar sesión.
     if (JSON.session) {
         // Se comprueba si existe un alias definido para el usuario, de lo contrario se muestra un mensaje con la excepción.
@@ -21,13 +22,14 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <div class="navbar-fixed">
                     <nav>
                         <div class="nav-wrapper">
-                            <a href="index.html" class="brand-logo"><i class="material-icons">dashboard</i></a>
+                            <a href="main.html" class="brand-logo"><i class="material-icons">dashboard</i></a>
                             <a href="#" data-target="menu-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                             <ul id="nav-mobile" class="right hide-on-med-and-down">
                                 <li><a href="#" class="tooltipped" data-position="bottom" data-tooltip="Inicio de la página"><i
                                     class="material-icons">arrow_upward</i></a></li>
                                 <li><a href="../../views/dashboard/index.html" class="tooltipped" data-position="bottom" data-tooltip="${JSON.username}"><i
                                     class="material-icons">account_circle</i></a></li>
+                                <li><a onclick="logOut()" class="tooltipped" data-position="bottom" data-tooltip="Cerrar sesión"><i class="material-icons">exit_to_app</i></a></li>
                             </ul>
                         </div>
                     </nav>
