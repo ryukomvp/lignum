@@ -159,6 +159,7 @@ CREATE TABLE valoracion(
 	puntaje int null,
 	comentario varchar null,
 	id_detalle_pedido int not null
+	estado boolean NOT NULL,
 );
 
 ALTER TABLE cliente
