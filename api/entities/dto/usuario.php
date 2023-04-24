@@ -15,6 +15,7 @@ class Usuario extends UsuarioQueries
     protected $telefono_empleado = null;
     protected $usuario_privado = null;
     protected $clave = null;
+    protected $acceso = null;
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -51,7 +52,7 @@ class Usuario extends UsuarioQueries
 
     public function setDuiEmpleado($value)
     {
-        if (Validator::validateAlphabetic($value, 1, 10)) {
+        if (Validator::validateDUI($value)) {
             $this->dui_empleado = $value;
             return true;
         } else {
@@ -61,7 +62,7 @@ class Usuario extends UsuarioQueries
 
     public function setCorreoEmpleado($value)
     {
-        if (Validator::validateAlphabetic($value, 1, 120)) {
+        if (Validator::validateEmail($value)) {
             $this->correo_empleado = $value;
             return true;
         } else {
@@ -71,7 +72,7 @@ class Usuario extends UsuarioQueries
 
     public function setTelefonoEmpleado($value)
     {
-        if (Validator::validateAlphabetic($value, 1, 9)) {
+        if (Validator::validatePhone($value)) {
             $this->telefono_empleado = $value;
             return true;
         } else {
@@ -93,6 +94,16 @@ class Usuario extends UsuarioQueries
     {
         if (Validator::validatePassword($value)) {
             $this->clave = password_hash($value, PASSWORD_DEFAULT);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setAcceso($value)
+    {
+        if (Validator::validateBoolean($value)) {
+            $this->acceso = $value;
             return true;
         } else {
             return false;
@@ -140,5 +151,10 @@ class Usuario extends UsuarioQueries
     public function getClave()
     {
         return $this->clave;
+    }
+
+    public function getAcceso()
+    {
+        return $this->acceso;
     }
 }
