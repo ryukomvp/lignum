@@ -35,7 +35,6 @@ SEARCH_FORM.addEventListener('submit', (event) => {
     // Llamada a la función para llenar la tabla con los resultados de la búsqueda.
     fillTable(FORM);
 });
-
 // Método manejador de eventos para cuando se envía el formulario de guardar.
 SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
@@ -81,7 +80,7 @@ async function fillTable(form = null) {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TBODY_ROWS.innerHTML += `
                 <tr>
-                    <td><img src="${SERVER_URL}images/clientes/${row.foto}" class="materialboxed" height="100"></td>
+                    // <td><img src="${SERVER_URL}images/clientes/${row.foto}" class="materialboxed" height="100"></td>
                     <td>${row.nombre_cliente}</td>
                     <td>${row.apellido_cliente}</td>
                     <td>${row.dui_cliente}</td>
@@ -93,11 +92,13 @@ async function fillTable(form = null) {
                     <td>${row.usuario_publico}</td>
                     // <td><i class="material-icons">${icon}</i></td>
                     <td>
-                        <a onclick="openUpdate(${row.id_cliente})" class="waves-effect waves-light btn modal-trigger tooltipped"
+                        <a onclick="openUpdate(${row.id_cliente})" class="waves-effect waves-light btn tooltipped"
                             data-position="top" data-tooltip="Editar"><i class="material-icons">create</i>
                         </a>
-                        <a onclick="openDelete(${row.id_cliente})" <a class="waves-effect waves-light btn tooltipped" data-position="top" data-tooltip="Eliminar"><i
-                            class="material-icons">delete</i>
+                    </td>
+                    <td>
+                        <a onclick="openDelete(${row.id_cliente})" class="waves-effect waves-light btn tooltipped"
+                            data-position="top" data-tooltip="Eliminar"><i class="material-icons">delete</i>
                         </a>
                     </td>
                 </tr>
