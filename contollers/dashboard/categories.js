@@ -1,5 +1,5 @@
 // Constante para completar la ruta de la API.
-const CATEGORIA_API = 'business/dashboard/categories.php';
+const CATEGORIES_API = 'business/dashboard/categories.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('search-form');
 // Constante para establecer el formulario de guardar.
@@ -43,7 +43,8 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
     // Petición para guardar los datos del formulario.
-    const JSON = await dataFetch(CATEGORIA_API, action, FORM);
+    const JSON = await dataFetch(CATEGORIES_API, action, FORM);
+    console.log(JSON);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
         // Se carga nuevamente la tabla para visualizar los cambios.
@@ -52,7 +53,8 @@ SAVE_FORM.addEventListener('submit', async (event) => {
         SAVE_MODAL.close();
         // Se muestra un mensaje de éxito.
         sweetAlert(1, JSON.message, true);
-    } else {
+    } 
+    else {
         sweetAlert(2, JSON.exception, false);
     }
 });
@@ -69,7 +71,7 @@ async function fillTable(form = null) {
     // Se verifica la acción a realizar.
     (form) ? action = 'search' : action = 'readAll';
     // Petición para obtener los registros disponibles.
-    const JSON = await dataFetch(CATEGORIA_API, action, form);
+    const JSON = await dataFetch(CATEGORIES_API, action, form);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
         // Se recorre el conjunto de registros fila por fila.
@@ -156,8 +158,9 @@ async function openDelete(id) {
         const FORM = new FormData();
         FORM.append('id_categoria', id);
         // Petición para eliminar el registro seleccionado.
-        const JSON = await dataFetch(CATEGORIA_API, 'delete', FORM);
+        const JSON = await dataFetch(CATEGORIES_API, 'delete', FORM);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+        console.log(JSON);
         if (JSON.status) {
             // Se carga nuevamente la tabla para visualizar los cambios.
             fillTable();

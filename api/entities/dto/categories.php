@@ -25,7 +25,7 @@ class Categoria extends CategoriesQueries
 
     public function setNombre($value)
     {
-        if (Validator::validateAlphanumeric($value, 1, 50)) {
+        if (Validator::validateString($value, 1, 50)) {
             $this->nombre = $value;
             return true;
         } else {
