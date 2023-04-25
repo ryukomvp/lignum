@@ -15,40 +15,39 @@
     <link type="text/css" rel="stylesheet" href="../../resources/css/dashboard.css" media="screen,projection" />
 
     <!--Titulo de pagina-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Productos</title>
 </head>
 
 <body>
+    <!-- Menu tipo Navbar  -->
+    <header>
+        <!-- etiqueta para menu -->
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="main.html" class="brand-logo"><img src="../../resources/img/logos/2.png" alt=""></a>
+                    <a href="#" data-target="menu-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href="#" class="tooltipped" data-position="bottom" data-tooltip="Inicio de la página"><i
+                                    class="material-icons">arrow_upward</i></a>
+                        </li>
+                        <li><a href="login.html" class="tooltipped" data-position="bottom"
+                                data-tooltip="Perfil del usuario"><i class="material-icons">account_circle</i></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- menu para dispositivos con pantalla pequeña -->
+            <ul class="sidenav" id="menu-mobile">
+                <li><a href="catalogue.html">Catalogo</a></li>
+                <li><a href="shopping_cart.html">Carrito</a></li>
+                <li><a href="login.html">Cuenta</a></li>
+            </ul>
+        </div>
+    </header>
+
     <main>
-        <!-- Menu tipo Navbar  -->
-        <header>
-            <!-- etiqueta para menu -->
-            <div class="navbar-fixed">
-                <nav>
-                    <div class="nav-wrapper">
-                        <a href="main.html" class="brand-logo"><img src="../../resources/img/logos/2.png" alt=""></a>
-                        <a href="#" data-target="menu-mobile" class="sidenav-trigger"><i
-                                class="material-icons">menu</i></a>
-                        <ul id="nav-mobile" class="right hide-on-med-and-down">
-                            <li><a href="#" class="tooltipped" data-position="bottom"
-                                    data-tooltip="Inicio de la página"><i class="material-icons">arrow_upward</i></a>
-                            </li>
-                            <li><a href="login.html" class="tooltipped" data-position="bottom"
-                                    data-tooltip="Perfil del usuario"><i class="material-icons">account_circle</i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-                <!-- menu para dispositivos con pantalla pequeña -->
-                <ul class="sidenav" id="menu-mobile">
-                    <li><a href="catalogue.html">Catalogo</a></li>
-                    <li><a href="shopping_cart.html">Carrito</a></li>
-                    <li><a href="login.html">Cuenta</a></li>
-                </ul>
-            </div>
-        </header>
-
-
         <!-- contenedor para acciones de busqueda y agregar -->
         <div class="container acciones">
             <div class="row">
@@ -58,7 +57,7 @@
                         <div class="nav-wrapper">
                             <form id="search-form">
                                 <div class="input-field">
-                                    <input char id="search" type="search" required>
+                                    <input char id="search" name="search" type="search" required>
                                     <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                                     <i class="material-icons">close</i>
                                 </div>
@@ -66,11 +65,12 @@
                         </div>
                     </nav>
                 </div>
+                <!-- Boton para agregar producto -->
                 <div class="col s2 m2">
                     <!-- boton de agregar -->
                     <a onclick="openCreate()" class="waves-effect waves-light btn-large tooltipped"
-                        data-position="right" data-tooltip="Agregar un producto"><i
-                            class="material-icons">person_add</i></a>
+                        data-position="right" data-tooltip="Agregar un proveedor"><i
+                            class="material-icons">playlist_add</i></a>
                 </div>
             </div>
         </div>
@@ -88,97 +88,99 @@
                         <div class="row">
                             <!--Text imput Productos -->
                             <div class="input-field col s12 m6">
-                                <input id="Producto" type="text" class="validate">
-                                <label for="Producto">Producto</label>
+                                <input id="nombre" name="nombre" type="text" class="validate">
+                                <label for="nombre">Producto</label>
                             </div>
                             <!--Text imput Codigo -->
                             <div class="input-field col s12 m6">
-                                <input id="Codigo" type="number" class="validate">
-                                <label for="Codigo">Codigo</label>
+                                <input id="codigo" name="codigo" type="number" class="validate">
+                                <label for="codigo">Codigo</label>
                             </div>
                         </div>
                         <div class="row">
                             <!--Text imput Dimenciones -->
                             <div class="input-field col s12 m6">
-                                <input id="Dimenciones" type="text" class="validate">
-                                <label for="Dimenciones">Dimenciones</label>
+                                <input id="dimensiones" name="dimensiones" type="text" class="validate">
+                                <label for="dimensiones">Dimensiones</label>
                             </div>
                             <!--Text imput Precio -->
                             <div class="input-field col s12 m6">
-                                <input id="Precio" type="number" step="0.01" class="validate">
-                                <label for="Precio">Precio</label>
+                                <input id="precio" name="precio" type="number" step="0.01" class="validate">
+                                <label for="precio">Precio</label>
                             </div>
                         </div>
                         <div class="row">
                             <!--Text imput Descripcion -->
                             <div class="input-field col s12 m6">
-                                <input id="Descripcion" type="text" class="validate">
-                                <label for="Descripcion">Descripcion</label>
+                                <input id="descripcion" name="descripcion" type="text" class="validate">
+                                <label for="descripcion">Descripcion</label>
                             </div>
-                            <!--Select tipo de producto-->
+                            <!--Text imput Descripcion -->
                             <div class="input-field col s12 m6">
-                                <select>
-                                    <option value="" disabled selected>Tipo de producto</option>
-                                    <option value="1">Sala</option>
-                                    <option value="2">Comedor</option>
-                                    <option value="3">Jardion</option>
-                                    <option value="4">Gamer</option>
-                                    <option value="5">Habitacion</option>
-                                </select>
-                                <label>Tipo de Producto</label>
+                                <input id="existencia" name="existencia" type="number" class="validate">
+                                <label for="existencia">Existencia</label>
                             </div>
                         </div>
                         <div class="row">
+                            <!--Select tipo de producto-->
+                            <div class="input-field col s12 m6">
+                                <select id="categoria" name="categoria" class="form-select">
+                                    <option value="" disabled selected>Seleccione una categoria</option>
+                                </select>
+                                <label>Categoria</label>
+                            </div>
+
                             <!--Select tipo de material-->
                             <div class="input-field col s12 m6">
-                                <select>
-                                    <option value="" disabled selected>Tipo de Material</option>
-                                    <option value="1">Madera</option>
-                                    <option value="2">Metal</option>
-                                    <option value="3">Jardion</option>
+                                <select id="tipo_material" name="tipo_material" class="form-select">
+                                    <option value="" disabled selected>Seleccione un material</option>
                                 </select>
-                                <label>Tipo de Material</label>
+                                <label>Material</label>
                             </div>
+                        </div>
+                        <div class="row">
+                            <!-- Select proveedores -->
                             <div class="input-field col s12 m6">
-                                <select>
+                                <select id="proveedor" name="proveedor" class="form-select">
                                     <option value="" disabled selected>Seleccione un proveedor</option>
-                                    <option value="1">Madera</option>
-                                    <option value="2">Metal</option>
-                                    <option value="3">Jardion</option>
                                 </select>
                                 <label>Proveedor</label>
                             </div>
-                            <form action="#">
-                                <div class="file-field input-field">
-                                    <div class="btn">
-                                        <span>Foto</span>
-                                        <input type="file">
-                                    </div>
-                                    <div class="file-path-wrapper">
-                                        <input class="file-path validate" type="text">
-                                    </div>
+                            <!-- input imagen -->
+                            <div class="file-field input-field col s12 m6">
+                                <div class="btn waves-effect tooltipped"
+                                    data-tooltip="Elegir imagen de al menos 600X600 px">
+                                    <i class="material-icons">Imagen</i>
+                                    <input id="archivo" type="file" name="archivo" accept=".jpg, .png">
                                 </div>
-                            </form>
+                                <div class="file-path-wrapper">
+                                    <input type="text" class="file-path validate"
+                                        placeholder="Formatos válidos: jpg y png">
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
                             <!-- Switch -->
-                            <div class="switch">
-                                <label>
-                                    Inexistente
-                                    <input type="checkbox">
-                                    <span class="lever"></span>
-                                    Existente
-                                </label>
+                            <p>
+                                <div class="switch">
+                                    <span>Estado:</span>
+                                    <label>
+                                        <input id="estado" type="checkbox" name="estado" checked>
+                                        <span class="lever"></span>
+                                    </label>
+                                </div>
+                                </p>
+                        </div>
+                        <!-- Acciones   -->
+                        <div class="col s12 center-align">
+                            <div class="modal-footer ">
+                                <button type="submit" class=" waves-effect waves-green btn-flat guardar tooltipped"
+                                    data-tooltip="Guardar"><i class="material-icons">save</i></button>
+                                <button type="close"
+                                    class="modal-close waves-effect waves-green btn-flat salir tooltipped"
+                                    data-tooltip="Regresar"><i class="material-icons">exit_to_app</i></button>
                             </div>
                         </div>
-                        <div class="col s12 center-align">
-                            <div class="modal-footer">
-                                <button type="close" class=" modal-close btn tooltipped"
-                                    data-tooltip="Regresar">Descartar</button>
-                                <button type="submit" class=" btn  tooltipped" data-tooltip="Guardar">Guardar</button>
-                                <!-- <button type="submit" class=" btn  tooltipped"
-                      data-tooltip="Agregar">Agregar</button> -->
-                            </div>
                     </form>
                 </div>
             </div>

@@ -13,7 +13,7 @@ class Products extends ProductsQueries
     protected $descripcion = null;
     protected $precio = null;
     protected $codigo = null;
-    protected $dimenciones = null;
+    protected $dimensiones = null;
     protected $categoria = null;
     protected $material = null;
     protected $proveedor = null;
@@ -46,7 +46,7 @@ class Products extends ProductsQueries
 
     public function setImagen($file)
     {
-        if (Validator::validateImageFile($file, 500, 500)) {
+        if (Validator::validateImageFile($file, 600, 600)) {
             $this->imagen = Validator::getFileName();
             return true;
         } else {
@@ -84,10 +84,10 @@ class Products extends ProductsQueries
         }
     }
 
-    public function setDimenciones($value)
+    public function setDimensiones($value)
     {
         if (Validator::validateString($value, 1, 250)) {
-            $this->dimenciones = $value;
+            $this->dimensiones = $value;
             return true;
         } else {
             return false;
@@ -96,7 +96,7 @@ class Products extends ProductsQueries
 
     public function setCategoria($value)
     {
-        if (Validator::validateBoolean($value)) {
+        if (Validator::validateNaturalNumber($value)) {
             $this->estado = $value;
             return true;
         } else {
@@ -106,7 +106,7 @@ class Products extends ProductsQueries
 
     public function setMaterial($value)
     {
-        if (Validator::validateString($value, 1, 250)) {
+        if (Validator::validateNaturalNumber($value)) {
             $this->material = $value;
             return true;
         } else {
@@ -116,7 +116,7 @@ class Products extends ProductsQueries
 
     public function setProveedor($value)
     {
-        if (Validator::validateBoolean($value)) {
+        if (Validator::validateNaturalNumber($value)) {
             $this->proveedor = $value;
             return true;
         } else {

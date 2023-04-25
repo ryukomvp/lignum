@@ -74,7 +74,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'delete':
-                if (! $materials->setId($_POST['id_tipo_materal'])) {
+                if (! $materials->setId($_POST['id_tipo_material'])) {
                     $result['exception'] = 'Material incorrecta';
                 } elseif (!$data =  $materials->readOne()) {
                     $result['exception'] = 'Material inexistente';

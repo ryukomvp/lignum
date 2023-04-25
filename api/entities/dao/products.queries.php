@@ -14,17 +14,18 @@ class ProductsQueries
     {
         $sql = 'SELECT id_producto, nombre_producto, foto , descripcion_producto, precio_producto, codigo_producto, dimensiones, id_categoria, id_tipo_material, id_proveedor, id_estado_producto, cantidad_existencias
                 FROM producto INNER JOIN categorias USING(id_categoria)
-                WHERE nombre_producto ILIKE ? OR descripcion_producto ILIKE ?
+                WHERE nombre_producto ILIKE ? OR descripcion_producto ILIKE ? OR categorias ILIKE ?
                 ORDER BY nombre_producto';
-        $params = array("%$value%", "%$value%");
+        $params = array("%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
 
     public function createRow()
     {
+        // , $_SESSION['id_usuario_privado']
         $sql = 'INSERT INTO producto(nombre_producto, foto , descripcion_producto, precio_producto, codigo_producto, dimensiones, id_categoria, id_tipo_material, id_proveedor, id_estado_producto, cantidad_existencias)
                 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombre, $this->imagen, $this->descripcion, $this->precio, $this->codigo, $this->dimensiones, $this->categoria, $this->material, $this->proveedor, $this->estado, $this->existencia, $_SESSION['id_usuario_privado']);
+        $params = array($this->nombre, $this->imagen, $this->descripcion, $this->precio, $this->codigo, $this->dimensiones, $this->categoria, $this->material, $this->proveedor, $this->estado, $this->existencia);
         return Database::executeRow($sql, $params);
     }
 

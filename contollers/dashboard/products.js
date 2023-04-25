@@ -1,7 +1,8 @@
 // Constantes para completar las rutas de la API.
 const PRODUCTO_API = 'business/dashboard/products.php';
 const CATEGORIES_API = 'business/dashboard/categories.php';
-const SUPPLIERS_API = 'business/dashbard/suppliers.php';
+const SUPPLIERS_API = 'business/dashboard/suppliers.php';
+const MATERIALS_API = 'business/dashboard/materials.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('search-form');
 // Constante para establecer el formulario de guardar.
@@ -45,7 +46,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
     // Petición para guardar los datos del formulario.
-    const JSON = await dataFetch(CATEGORIA_API, action, FORM);
+    const JSON = await dataFetch(PRODUCTO_API, action, FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
         // Se carga nuevamente la tabla para visualizar los cambios.
@@ -129,7 +130,8 @@ function openCreate() {
     document.getElementById('archivo').required = true;
     // Llamada a la función para llenar el select del formulario. Se encuentra en el archivo components.js
     fillSelect(CATEGORIES_API, 'readAll', 'categoria');
-    fillSelect(SUPPLIERS_API, 'readAll', 'categoria');
+    fillSelect(MATERIALS_API, 'readAll', 'tipo_material');
+    fillSelect(SUPPLIERS_API, 'readAll', 'proveedor');
 }
 
 /*
@@ -159,6 +161,8 @@ async function openUpdate(id) {
         document.getElementById('precio').value = JSON.dataset.precio_producto;
         document.getElementById('descripcion').value = JSON.dataset.descripcion_producto;
         fillSelect(CATEGORIES_API, 'readAll', 'categoria', JSON.dataset.id_categoria);
+        fillSelect(MATERIALS_API, 'readAll', 'tipo_material', JSON.dataset.id_tipo_material);
+        fillSelect(SUPPLIERS_API, 'readAll', 'proveedor', JSON.dataset.id_proveedor);
         if (JSON.dataset.estado_producto) {
             document.getElementById('estado').checked = true;
         } else {
@@ -182,7 +186,7 @@ async function openDelete(id) {
     if (RESPONSE) {
         // Se define una constante tipo objeto con los datos del registro seleccionado.
         const FORM = new FormData();
-        FORM.append('id_categoria', id);
+        FORM.append('id_prooducto', id);
         // Petición para eliminar el registro seleccionado.
         const JSON = await dataFetch(PRODUCTO_API, 'delete', FORM);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.

@@ -48,15 +48,15 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Precio incorrecto';
                 } elseif (!$products->setCodigo($_POST['codigo'])) {
                     $result['exception'] = 'codigo incorrecto';
-                } elseif (!$products->setDimenciones($_POST['dimenciones'])) {
-                    $result['exception'] = 'dimenciones incorrecto';
+                } elseif (!$products->setDimensiones($_POST['dimensiones'])) {
+                    $result['exception'] = 'dimensiones incorrecto';
                 } elseif (!isset($_POST['categoria'])) {
                     $result['exception'] = 'Seleccione una categoría';
                 } elseif (!$products->setCategoria($_POST['categoria'])) {
                     $result['exception'] = 'Categoría incorrecta';
-                } elseif (!isset($_POST['material'])) {
+                } elseif (!isset($_POST['tipo_material'])) {
                     $result['exception'] = 'Seleccione un material';
-                } elseif (!$products->setMaterial($_POST['material'])) {
+                } elseif (!$products->setMaterial($_POST['tipo_material'])) {
                     $result['exception'] = 'Material incorrecta';
                 } elseif (!isset($_POST['proveedor'])) {
                     $result['exception'] = 'Seleccione un proveedor';
@@ -64,7 +64,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Proveedor incorrecta';
                 } elseif (!isset($_POST['estado'])) {
                     $result['exception'] = 'Seleccione un estado';
-                } elseif (!$products->setEstado($_POST['estado'])) {
+                } elseif (!$products->setEstado($_POST['estado'])? 1 : 0) {
                     $result['exception'] = 'Estado incorrecta';
                 } elseif (!$products->setExistencia($_POST['existencia'])) {
                     $result['exception'] = 'existencia incorrecto';
@@ -109,11 +109,11 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Precio incorrecto';
                 } elseif (!$products->setCodigo($_POST['codigo'])) {
                     $resut['exception'] = 'codigo incorrecto';
-                } elseif (!$products->setDimenciones($_POST['dimenciones'])) {
-                    $result['exception'] = 'dimenciones incorrecto';
+                } elseif (!$products->setDimensiones($_POST['dimensiones'])) {
+                    $result['exception'] = 'dimensiones incorrecto';
                 } elseif (!$products->setCategoria($_POST['categoria'])) {
                     $result['exception'] = 'Seleccione una categoría';
-                } elseif (!$products->setMaterial($_POST['material'])) {
+                } elseif (!$products->setMaterial($_POST['tipo_material'])) {
                     $result['exception'] = 'Seleccione un material';
                 } elseif (!$products->setProveedor($_POST['proveedor'])) {
                     $result['exception'] = 'Seleccione un proveedor';

@@ -158,9 +158,9 @@ async function openDelete(id) {
     if (RESPONSE) {
         // Se define una constante tipo objeto con los datos del registro seleccionado.
         const FORM = new FormData();
-        FORM.append('id_tip_material', id);
+        FORM.append('id_tipo_material', id);
         // Petición para eliminar el registro seleccionado.
-        const JSON = await dataFetch(MATERIALs_API, 'delete', FORM);
+        const JSON = await dataFetch(MATERIALS_API, 'delete', FORM);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
         if (JSON.status) {
             // Se carga nuevamente la tabla para visualizar los cambios.
