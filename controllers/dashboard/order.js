@@ -1,4 +1,4 @@
-// Constante para completar la ruta de la API.
+// Constante para completar las rutas de las APIs.
 const PEDIDO_API = 'business/dashboard/order.php';
 const CLIENTE_API = 'business/dashboard/cliente.php';
 const ESTADO_API = 'business/dashboard/order_status';
@@ -56,9 +56,11 @@ async function fillTable(form = null){
             TBODY_ROWS.innerHTML += `
             <tr>
                 <td>${row.codigo_pedido}</td>
-                <td>${row.descripcion.pedido}</td>
+                <td>${row.descripcion_pedido}</td>
                 <td>${row.nombre_cliente}</td>
                 <td>${row.estado_pedido}</td>
+                <td>${row.direccion_pedido}</td>
+                <td>${row.fecha}</td>
                 <td>
                     <a onclick="openUpdate(${row.id_pedido})" class="btn waves-effect blue tooltipped" href=data-tooltip="Actualizar">
                         <i class="material-icons">mode_edit</i>
