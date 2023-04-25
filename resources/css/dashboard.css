@@ -19,6 +19,10 @@ main {
     margin-bottom: 1%;
 }
 
+.reiniciar{
+    background-color: #cfd8dc;
+}
+
 .guardar{
     background-color: #cfd8dc;
 }
@@ -29,6 +33,10 @@ main {
 
 .salir{
     background-color: #cfd8dc;
+}
+
+.reiniciar:hover{
+    background-color: #42a5f5;
 }
 
 .guardar:hover{

@@ -1,6 +1,6 @@
 <?php
 require_once('../../helpers/validator.php');
-require_once('../../entities/dao/genero_queries.php');
+require_once('../../entities/dao/gender_queries.php');
 /*
 *	Clase para manejar la transferencia de datos de la entidad CLIENTE.
 */

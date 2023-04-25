@@ -1,11 +1,10 @@
 // Constantes para completar las rutas de la API.
-const CLIENTE_API = 'business/dashboard/cliente.php';
-const GENERO_API = 'business/dashboard/genero.php';
-const TIPO_CLIENTE_API = 'business/dashboard/tipo_cliente.php';
+const CLIENTE_API = 'business/dashboard/customers.php';
+const GENERO_API = 'business/dashboard/gender.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('search-form');
 // Constante para establecer el formulario de guardar.
-const SAVE_FORM = document.getElementById('save-form');
+const SAVE_FORM = document.getElementById('customers-form');
 // Constante para establecer el título de la modal.
 const MODAL_TITLE = document.getElementById('modal-title');
 // Constantes para establecer el contenido de la tabla.
@@ -76,21 +75,22 @@ async function fillTable(form = null) {
         // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
         JSON.dataset.forEach(row => {
             // Se establece un icono para el estado del producto.
-            (row.acceso) ? icon = 'visibility' : icon = 'visibility_off';
+            (row.afiliado) ? icon_afiliado = 'verified_user' : icon = 'block';
+            (row.acceso) ? icon_acceso = 'lock_open' : icon = 'lock_outline';
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TBODY_ROWS.innerHTML += `
                 <tr>
-                    // <td><img src="${SERVER_URL}images/clientes/${row.foto}" class="materialboxed" height="100"></td>
+                    <td><img src="${SERVER_URL}images/clientes/${row.foto}" class="materialboxed" height="100"></td>
                     <td>${row.nombre_cliente}</td>
                     <td>${row.apellido_cliente}</td>
                     <td>${row.dui_cliente}</td>
                     <td>${row.correo_cliente}</td>
                     <td>${row.telefono_cliente}</td>
-                    <td>${row.id_genero}</td>
-                    <td>${row.id_tipo_cliente}</td>
+                    <td>${row.genero}</td>
+                    <td><i class="material-icons">${icon_afiliado}</i></td>
                     <td>${row.direccion_cliente}</td>
                     <td>${row.usuario_publico}</td>
-                    // <td><i class="material-icons">${icon}</i></td>
+                    <td><i class="material-icons">${icon_acceso}</i></td>
                     <td>
                         <a onclick="openUpdate(${row.id_cliente})" class="waves-effect waves-light btn tooltipped"
                             data-position="top" data-tooltip="Editar"><i class="material-icons">create</i>
@@ -162,7 +162,11 @@ async function openUpdate(id) {
         document.getElementById('correo').value = JSON.dataset.correo_cliente;
         document.getElementById('telefono').value = JSON.dataset.telefono_cliente;
         fillSelect(GENERO_API, 'readAll', 'genero', JSON.dataset.id_genero);
-        fillSelect(TIPO_CLIENTE_API, 'readAll', 'tipo_cliente', JSON.dataset.id_tipo_cliente);
+        if (JSON.dataset.afiliado) {
+            document.getElementById('afiliado').checked = true;
+        } else {
+            document.getElementById('afiliado').checked = false;
+        }
         document.getElementById('direccion_cliente').value = JSON.dataset.direccion_cliente;
         document.getElementById('usuario_publico').value = JSON.dataset.usuario_publico;
         if (JSON.dataset.acceso) {
