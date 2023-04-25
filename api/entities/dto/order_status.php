@@ -4,8 +4,8 @@ require_once('../../entities/dao/');
 
 class EstadoPedido extends EstadoPedidoQueries
 {
-    protected id_estado_pedido = null;
-    protected estado_pedido = null;
+    protected $id_estado_pedido = null;
+    protected $estado_pedido = null;
 
     public function setIdEstadoPedido($value)
     {
@@ -20,7 +20,7 @@ class EstadoPedido extends EstadoPedidoQueries
     public function setEstadoPedido($value)
     {
         if(Validator::validateAlphanumeric($value,1,30)){
-            this->estado_pedido = $value;
+            $this->estado_pedido = $value;
             return true;
         }else{
             return false;
@@ -34,7 +34,7 @@ class EstadoPedido extends EstadoPedidoQueries
 
     public function getEstadoPedido()
     {
-        return this->estado_pedido;
+        return $this->estado_pedido;
     }
 }
 ?>

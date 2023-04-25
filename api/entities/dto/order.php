@@ -12,6 +12,8 @@ class Pedidos extends PedidosQueries
     protected $descripcion = null;
     protected $cliente = null;
     protected $estado = null;
+    protected $direccion = null;
+    protected $fecha = null;
 
 
     public function setIdPedido($value)
@@ -64,6 +66,27 @@ class Pedidos extends PedidosQueries
         }
     }
 
+    public function setDireccion($value)
+    {
+        if(Validator::validateAlphanumeric($value, 1, 250))
+        {
+            $this->direccion = $value;
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function setFecha($value)
+    {
+        if(Validator::validateDate($value))
+        {
+            $this->fecha = $value;
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     //Metodo de obtencion de valores de atributos
     public function getIdPedido()
@@ -89,6 +112,16 @@ class Pedidos extends PedidosQueries
     public function getIdEstado()
     {
         return $this->estado;
+    }
+
+    public function getDireccion()
+    {
+        return $this->direccion;
+    }
+
+    public function getFecha()
+    {
+        return $this->fecha;
     }
 }
 
