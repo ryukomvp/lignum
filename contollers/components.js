@@ -70,7 +70,7 @@ function sweetAlert(type, text, timer, url = null) {
             className: 'cyan'
         }
     };
-    
+
     // Se verifica el uso del temporizador.
     (timer) ? options.timer = 3000 : options.timer = null;
     // Se muestra el mensaje. Requiere la librería sweetalert para funcionar.

@@ -187,5 +187,4 @@ class Products extends ProductsQueries
     {
         return $this->ruta;
     }
-
 }

@@ -53,7 +53,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
         SAVE_MODAL.close();
         // Se muestra un mensaje de éxito.
         sweetAlert(1, JSON.message, true);
-    } 
+    }
     else {
         sweetAlert(2, JSON.exception, false);
     }

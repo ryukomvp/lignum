@@ -4,4 +4,3 @@ define('SERVER', 'localhost');
 define('DATABASE', 'lignum');
 define('USERNAME', 'postgres');
 define('PASSWORD', '1234');
-?>

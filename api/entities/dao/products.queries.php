@@ -53,7 +53,7 @@ class ProductsQueries
         $sql = 'UPDATE producto
                 SET nombre_producto = ?, foto =?,descripcion_producto = ?, precio_producto =?, codigo_producto = ?, dimensiones = ?, id_categoria = ?, id_tipo_material = ?, id_proveedor = ?, id_estado_producto = ?, cantidad_existencias = ?
                 WHERE id_producto = ?';
-        $params = array($this->nombre, $this->imagen , $this->descripcion ,$this->precio, $this->codigo, $this->dimenciones, $this->categoria, $this->material, $this->proveedor, $this->estado,  $this->existencia);
+        $params = array($this->nombre, $this->imagen, $this->descripcion, $this->precio, $this->codigo, $this->dimenciones, $this->categoria, $this->material, $this->proveedor, $this->estado,  $this->existencia);
         return Database::executeRow($sql, $params);
     }
 

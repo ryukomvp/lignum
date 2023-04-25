@@ -95,5 +95,4 @@ class Suppliers extends SuppliersQueries
     {
         return $this->telefono;
     }
-
 }
