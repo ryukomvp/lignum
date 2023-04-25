@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!-- deficion del lenguaje del sitio -->
+<html lang="es">
+
+<head>
+    <!-- Codificación de caracteres para el documento -->
+    <meta charset="utf-8">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/materialize.min.css" media="screen,projection" />
+    <!-- importacion de css -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/dashboard.css" media="screen,projection" />
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- titulo de la pagina -->
+    <title>Usuarios</title>
+</head>
+
+<body>
+    <!-- header del sitio -->
+    <header></header>
+    <!-- contenido del sitio -->
+    <main class="container">
+        <h1 class="center-align">Gestión de usuarios</h1>
+        <div class="row">
+            <!-- Formulario de búsqueda -->
+            <div class="col s10 m6">
+                <nav>
+                    <div class="nav-wrapper">
+                        <form>
+                            <div class="input-field">
+                                <input char id="search-form" type="search" required>
+                                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                                <i class="material-icons">close</i>
+                            </div>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+            <div class="col s2 m6 right-align">
+                <!-- boton de agregar -->
+                <a href="#save-modal" onclick="openCreate()"
+                    class="waves-effect waves-light btn-large tooltipped modal-trigger" data-position="right"
+                    data-tooltip="Agregar un usuarios"><i class="material-icons">person_add</i></a>
+            </div>
+        </div>
+        <!-- Tabla para mostrar los registros existentes -->
+        <table class="highlight">
+            <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
+            <thead>
+                <tr id="records"></tr>
+                <tr>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>DUI</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>Usuario</th>
+                    <th>Acceso</th>
+                </tr>
+            </thead>
+            <!-- Cuerpo de la tabla para mostrar un registro por fila -->
+            <tbody id="tbody-rows"></tbody>
+        </table>
+        <div id="save-modal" class="modal">
+            <div class="modal-content">
+                <!-- Título para la caja de diálogo -->
+                <h4 id="modal-title" class="center-align"></h4>
+                <form class="row" method="post" id="save-form" enctype="multipart/form-data">
+                    <!-- campo para id -->
+                    <input class="hide" type="number" id="id" name="id">
+                    <div class="input-field col s12 m6">
+                        <input id="nombres" type="text" name="nombres">
+                        <label for="nombres">Nombres</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input id="apellidos" type="text" name="apellidos">
+                        <label for="apellidos">Apellidos</label>
+                    </div>
+                    <div class="input-field col s12 m3">
+                        <input id="dui" type="text" name="dui">
+                        <label for="dui">DUI</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input id="correo" type="email" name="correo">
+                        <label for="correo">Correo</label>
+                    </div>
+                    <div class="input-field col s12 m3">
+                        <input id="telefono" type="text" name="telefono">
+                        <label for="telefono">Teléfono</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input id="apellidos" type="text" name="apellidos">
+                        <label for="apellidos">Usuario</label>
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <!-- footer del sitio -->
+    <footer class="page-footer"></footer>
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../controllers/components.js"></script>
+    <script type="text/javascript" src="../../controllers/dashboard/account.js"></script>
+    <!-- <script type="text/javascript" src="../../controllers/dashboard/customers.js"></script> -->
+</body>

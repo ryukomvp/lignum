@@ -3,7 +3,7 @@ require_once('../../helpers/database.php');
 /*
 *	Clase para manejar el acceso a datos de la entidad USUARIO.
 */
-class UsuarioQueries
+class UserQueries
 {
     /*
     *   Métodos para gestionar la cuenta del usuario.
@@ -84,7 +84,7 @@ class UsuarioQueries
     {
         $sql = 'SELECT id_usuario_privado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, telefono_empleado, usuario_privado
                 FROM usuario_privado
-                ORDER BY apellido_empleado';
+                ORDER BY id_usuario_privado';
         return Database::getRows($sql);
     }
 

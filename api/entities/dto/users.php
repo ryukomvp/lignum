@@ -4,7 +4,7 @@ require_once('../../entities/dao/users_queries.php');
 /*
 *	Clase para manejar la transferencia de datos de la entidad USUARIO.
 */
-class Usuario extends UsuarioQueries
+class User extends UserQueries
 {
     // Declaración de atributos (propiedades).
     protected $id = null;
