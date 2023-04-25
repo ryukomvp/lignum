@@ -5,7 +5,7 @@ require_once('../../helpers/database.php');
 
 class PedidosQueries{
 
-//Operaciones SCRUD
+//Operaciones SCRUD 
 
 public function searchOrder($value)
 {
@@ -17,7 +17,7 @@ public function searchOrder($value)
 
 public function createOrder()
 {
-    $sql = 'INSERT INTO pedido(codigo_pedido, descripcion_pedido, id_cliente, id_estado_pedido) VALUES(?, ?, (SELECT id_cliente FROM cliente WHERE id_cliente = ?), (SELECT id_estado_pedido FROM estado_pedido WHERE id_estado_pedido = ?))';
+    $sql = 'INSERT INTO pedido(codigo_pedido, descripcion_pedido, id_cliente, id_estado_pedido) VALUES(?, ?, ?, ?)';
     $params = array($this->codigo, $this->descripcion, $this->cliente, $this->estado);
     return Database::executeRows($sql, $params);
 }
