@@ -94,57 +94,57 @@
     <div id="save-modal" class="modal">
       <!-- Enlace para cerrar el componente Modal -->
       <div class="row right">
-          <a class="black-text tooltipped modal-close" data-tooltip="Cerrar">
-              <i class="small material-icons">close</i>
-          </a>
+        <a class="black-text tooltipped modal-close" data-tooltip="Cerrar">
+          <i class="small material-icons">close</i>
+        </a>
       </div>
       <!-- Contenido del componente Modal -->
       <div class="modal-content">
-          <!-- Título para la caja de diálogo -->
-          <h4 id="modal-title" class="center-align"></h4>
-          <!-- Formulario para crear o actualizar un registro -->
-          <form class="row" method="post" id="save-form" enctype="multipart/form-data">
-              <!-- Campo oculto para asignar el id del registro al momento de modificar -->
-              <input class="hide" type="number" id="id" name="id">
-              <div class="input-field col s12 m6">
-                  <i class="material-icons prefix">note_add</i>
-                  <input id="nombre" type="text" name="nombre" class="validate" required>
-                  <label for="nombre">Codigo de pedido</label>
-              </div>
-              <div class="input-field col s12 m6">
-                  <i class="material-icons prefix">description</i>
-                  <input id="descripcion" type="text" name="descripcion" class="validate" required>
-                  <label for="descripcion">Descripción</label>
-              </div>
-              <div class="input-field col s12 m6">
-                  <select id="cliente" name="cliente">
-                  </select>
-                  <label>Cliente</label>
-              </div>
-              <div class="col s12 m6">
-                  <p>
-                  <div class="switch">
-                      <span>Estado:</span>
-                      <label>
-                          <input id="estado" type="checkbox" name="estado" checked>
-                          <span class="lever"></span>
-                      </label>
-                  </div>
-                  </p>
-              </div>
-              <div class="col s12 center-align">
-                  <button type="reset" class="btn waves-effect grey tooltipped" data-tooltip="Reiniciar">
-                      <i class="material-icons">autorenew</i>
-                  </button>
-                  <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Guardar">
-                      <i class="material-icons">save</i>
-                  </button>
-              </div>
-          </form>
+        <!-- Título para la caja de diálogo -->
+        <h4 id="modal-title" class="center-align"></h4>
+        <!-- Formulario para crear o actualizar un registro -->
+        <form class="row" method="post" id="save-form" enctype="multipart/form-data">
+          <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+          <input class="hide" type="number" id="id" name="id">
+          <div class="input-field col s12 m6">
+            <i class="material-icons prefix">note_add</i>
+            <input id="nombre" type="text" name="nombre" class="validate" required>
+            <label for="nombre">Codigo de pedido</label>
+          </div>
+          <div class="input-field col s12 m6">
+            <i class="material-icons prefix">description</i>
+            <input id="descripcion" type="text" name="descripcion" class="validate" required>
+            <label for="descripcion">Descripción</label>
+          </div>
+          <div class="input-field col s12 m6">
+            <select id="cliente" name="cliente">
+            </select>
+            <label>Cliente</label>
+          </div>
+          <div class="col s12 m6">
+            <p>
+            <div class="switch">
+              <span>Estado:</span>
+              <label>
+                <input id="estado" type="checkbox" name="estado" checked>
+                <span class="lever"></span>
+              </label>
+            </div>
+            </p>
+          </div>
+          <div class="col s12 center-align">
+            <button type="reset" class="btn waves-effect grey tooltipped" data-tooltip="Reiniciar">
+              <i class="material-icons">autorenew</i>
+            </button>
+            <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Guardar">
+              <i class="material-icons">save</i>
+            </button>
+          </div>
+        </form>
       </div>
-  </div>
-</main>
+    </div>
   </main>
+
 
   <!-- Footer -->
   <footer class="page-footer">
