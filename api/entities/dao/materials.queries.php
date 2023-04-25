@@ -20,7 +20,7 @@ class MaterialsQueries
 
     public function createRow()
     {
-        $sql = 'INSERT INTO tipo_material
+        $sql = 'INSERT INTO tipo_material(tipo_material)
                 VALUES(?)';
         $params = array($this->nombre);
         return Database::executeRow($sql, $params);

@@ -79,15 +79,15 @@ async function fillTable(form = null) {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TBODY_ROWS.innerHTML += `
                 <tr>
-                    <td>${row.id_tip_material}</td>
-                    <td>${row.tip_material}</td>
+                    <td>${row.id_tipo_material}</td>
+                    <td>${row.tipo_material}</td>
                     <td>
-                        <button onclick="openUpdate(${row.id_tip_material})" class="btn blue tooltipped" data-tooltip="Actualizar">
+                        <button onclick="openUpdate(${row.id_tipo_material})" class="btn blue tooltipped" data-tooltip="Actualizar">
                             <i class="material-icons">mode_edit</i>
                         </button>
                     </td>
                     <td>
-                        <button onclick="openDelete(${row.id_tip_material})" class="btn red tooltipped" data-tooltip="Eliminar">
+                        <button onclick="openDelete(${row.id_tipo_material})" class="btn red tooltipped" data-tooltip="Eliminar">
                             <i class="material-icons">delete</i>
                         </button>
                     </td>
@@ -114,7 +114,7 @@ function openCreate() {
     // Se restauran los elementos del formulario.
     SAVE_FORM.reset();
     // Se asigna título a la caja de diálogo.
-    MODAL_TITLE.textContent = 'Crear categoría';
+    MODAL_TITLE.textContent = 'Crear material';
 }
 
 /*
@@ -135,10 +135,10 @@ async function openUpdate(id) {
         // Se restauran los elementos del formulario.
         SAVE_FORM.reset();
         // Se asigna título para la caja de diálogo.
-        MODAL_TITLE.textContent = 'Actualizar categoría';
+        MODAL_TITLE.textContent = 'Actualizar material';
         // Se inicializan los campos del formulario.
-        document.getElementById('id').value = JSON.dataset.id_tip_material;
-        document.getElementById('nombre').value = JSON.dataset.tip_material;
+        document.getElementById('id').value = JSON.dataset.id_tipo_material;
+        document.getElementById('nombre').value = JSON.dataset.tipo_material;
         // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
         M.updateTextFields();
     } else {
