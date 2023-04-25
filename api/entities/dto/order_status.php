@@ -1,6 +1,6 @@
 <?php
 require_once('../../helpers/validator.php');
-require_once('../../entities/dao/');
+require_once('../../entities/dao/order_status_queries.php');
 
 class EstadoPedido extends EstadoPedidoQueries
 {
