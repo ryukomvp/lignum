@@ -4,7 +4,7 @@ require_once('../../entities/dao/products.queries.php');
 /*
 *	Clase para manejar la transferencia de datos de la entidad PRODUCTO.
 */
-class Producto extends ProductoQueries
+class Products extends ProductsQueries
 {
     // Declaración de atributos (propiedades).
     protected $id = null;
