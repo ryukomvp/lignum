@@ -29,7 +29,7 @@
             <div class="col s10 m6">
                 <nav>
                     <div class="nav-wrapper">
-                        <form>
+                        <form method="post" id="search-form">
                             <div class="input-field">
                                 <input char id="search-form" type="search" required>
                                 <label class="label-icon" for="search"><i class="material-icons">search</i></label>
@@ -41,16 +41,16 @@
             </div>
             <div class="col s2 m6 right-align">
                 <!-- boton de agregar -->
-                <a href="#save-modal" onclick="openCreate()"
-                    class="waves-effect waves-light btn-large tooltipped modal-trigger" data-position="right"
-                    data-tooltip="Agregar un usuarios"><i class="material-icons">person_add</i></a>
+                <a onclick="openCreate()" class="btn-large waves-effect tooltipped" data-tooltip="Crear">
+                    <i class="material-icons">person_add</i>
+                </a>
             </div>
         </div>
         <!-- Tabla para mostrar los registros existentes -->
         <table class="highlight">
             <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
             <thead>
-                <tr id="records"></tr>
+                <!-- <tr id="records"></tr> -->
                 <tr>
                     <th>Nombres</th>
                     <th>Apellidos</th>
@@ -59,6 +59,8 @@
                     <th>Teléfono</th>
                     <th>Usuario</th>
                     <th>Acceso</th>
+                    <th>Actualizar</th>
+                    <th>Eliminar</th>
                 </tr>
             </thead>
             <!-- Cuerpo de la tabla para mostrar un registro por fila -->
@@ -72,29 +74,57 @@
                     <!-- campo para id -->
                     <input class="hide" type="number" id="id" name="id">
                     <div class="input-field col s12 m6">
-                        <input id="nombres" type="text" name="nombres">
+                        <input id="nombres" type="text" name="nombres" required>
                         <label for="nombres">Nombres</label>
                     </div>
                     <div class="input-field col s12 m6">
-                        <input id="apellidos" type="text" name="apellidos">
+                        <input id="apellidos" type="text" name="apellidos" required>
                         <label for="apellidos">Apellidos</label>
                     </div>
                     <div class="input-field col s12 m3">
-                        <input id="dui" type="text" name="dui">
+                        <input id="dui" type="text" name="dui" required>
                         <label for="dui">DUI</label>
                     </div>
-                    <div class="input-field col s12 m6">
-                        <input id="correo" type="email" name="correo">
+                    <div class="input-field col s12 m9">
+                        <input id="correo" type="email" name="correo" required>
                         <label for="correo">Correo</label>
                     </div>
-                    <div class="input-field col s12 m3">
-                        <input id="telefono" type="text" name="telefono">
+                    <div class="input-field col s12 m6">
+                        <input id="telefono" type="text" name="telefono" required>
                         <label for="telefono">Teléfono</label>
                     </div>
                     <div class="input-field col s12 m6">
-                        <input id="apellidos" type="text" name="apellidos">
-                        <label for="apellidos">Usuario</label>
-                        
+                        <input id="usuario" type="text" name="usuario" required>
+                        <label for="usuario">Usuario</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input id="clave" type="password" name="clave" required>
+                        <label for="clave">Clave</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input id="confirmar" type="password" name="confirmar" required>
+                        <label for="confirmar">Confirmar clave</label>
+                    </div>
+                    <div>
+                        <p>
+                        <div class="switch">
+                            <span>Acceso:</span>
+                            <label>
+                                <input id="acceso" type="checkbox" name="acceso" checked>
+                                <span class="lever"></span>
+                            </label>
+                        </div>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn-flat waves-effect tooltipped reiniciar"
+                            data-tooltip="Vaciar campos">
+                            <i class="material-icons">autorenew</i>
+                        </button>
+                        <button type="submit" class="btn-flat waves-effect tooltipped guardar"
+                            data-tooltip="Guardar cambios"><i class="material-icons">save</i></button>
+                        <button class="btn-flat waves-effect tooltipped modal-close salir"
+                            data-tooltip="Salir sin guardar cambios"><i class="material-icons">close</i></button>
                     </div>
                 </form>
             </div>
@@ -108,5 +138,5 @@
     <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
     <script type="text/javascript" src="../../controllers/components.js"></script>
     <script type="text/javascript" src="../../controllers/dashboard/account.js"></script>
-    <!-- <script type="text/javascript" src="../../controllers/dashboard/customers.js"></script> -->
+    <script type="text/javascript" src="../../controllers/dashboard/users.js"></script>
 </body>

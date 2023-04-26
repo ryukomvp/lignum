@@ -48,9 +48,9 @@ if (isset($_GET['action'])) {
                 } elseif (!$usuario->setCorreoEmpleado($_POST['correo_empleado'])) {
                     $result['exception'] = 'Correo incorrecto';
                 } elseif (!$usuario->setTelefonoEmpleado($_POST['telefono_empleado'])) {
-                    $result['exception'] = 'Alias incorrecto';
+                    $result['exception'] = 'Teléfono incorrecto';
                 } elseif (!$usuario->setUsuarioPrivado($_POST['usuario_privado'])) {
-                    $result['exception'] = 'Alias incorrecto';
+                    $result['exception'] = 'Usuario incorrecto';
                 } elseif ($usuario->editProfile()) {
                     $result['status'] = 1;
                     $_SESSION['usuario_privado'] = $usuario->getUsuarioPrivado();
@@ -61,7 +61,7 @@ if (isset($_GET['action'])) {
                 break;
             case 'changePassword':
                 $_POST = Validator::validateForm($_POST);
-                if (!$usuario->setId($_SESSION['id_usuario'])) {
+                if (!$usuario->setId($_SESSION['id_usuario_privado'])) {
                     $result['exception'] = 'Usuario incorrecto';
                 } elseif (!$usuario->checkPassword($_POST['actual'])) {
                     $result['exception'] = 'Clave actual incorrecta';
@@ -123,7 +123,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOne':
-                if (!$usuario->setId($_POST['id'])) {
+                if (!$usuario->setId($_POST['id_usuario_privado'])) {
                     $result['exception'] = 'Usuario incorrecto';
                 } elseif ($result['dataset'] = $usuario->readOne()) {
                     $result['status'] = 1;
@@ -135,7 +135,7 @@ if (isset($_GET['action'])) {
                 break;
             case 'update':
                 $_POST = Validator::validateForm($_POST);
-                if (!$usuario->setId($_POST['id'])) {
+                if (!$usuario->setId($_POST['id_usuario_privado'])) {
                     $result['exception'] = 'Usuario incorrecto';
                 } elseif (!$usuario->readOne()) {
                     $result['exception'] = 'Usuario inexistente';
@@ -143,10 +143,12 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Nombres incorrectos';
                 } elseif (!$usuario->setApellidoEmpleado($_POST['apellido_empleado'])) {
                     $result['exception'] = 'Apellidos incorrectos';
+                } elseif (!$usuario->setDuiEmpleado($_POST['dui_empleado'])) {
+                    $result['exception'] = 'Dui incorrecto';
                 } elseif (!$usuario->setCorreoEmpleado($_POST['correo_empleado'])) {
                     $result['exception'] = 'Correo incorrecto';
-                } elseif (!$usuario->setCorreoEmpleado($_POST['correo_empleado'])) {
-                    $result['exception'] = 'Correo incorrecto';
+                } elseif (!$usuario->setTelefonoEmpleado($_POST['telefono_empleado'])) {
+                    $result['exception'] = 'Teléfono incorrecto';
                 } elseif ($usuario->updateRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Usuario modificado correctamente';
@@ -155,9 +157,9 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'delete':
-                if ($_POST['id_usuario'] == $_SESSION['id_usuario']) {
+                if ($_POST['id_usuario_privado'] == $_SESSION['id_usuario_privado']) {
                     $result['exception'] = 'No se puede eliminar a sí mismo';
-                } elseif (!$usuario->setId($_POST['id_usuario'])) {
+                } elseif (!$usuario->setId($_POST['id_usuario_privado'])) {
                     $result['exception'] = 'Usuario incorrecto';
                 } elseif (!$usuario->readOne()) {
                     $result['exception'] = 'Usuario inexistente';

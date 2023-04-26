@@ -82,7 +82,7 @@ CREATE TABLE producto(
 	id_categoria int not null,
 	id_tipo_material int not null,
 	id_proveedor int not null,
-	id_estado_producto int not null,
+	estado_producto boolean DEFAULT true not null,
 	cantidad_existencias int not null,
 	
 	
@@ -100,6 +100,21 @@ CREATE TABLE proveedor(
 	direccion_proveedor varchar(256) not null,
 	correo_proveedor varchar(120) not null,
 	telefono_proveedor varchar(9) not null
+);
+
+CREATE TABLE usuario_privado(
+    id_usuario_privado SERIAL not null PRIMARY KEY,
+    nombre_empleado VARCHAR(70) not null,
+    apellido_empleado VARCHAR(70) not null,
+    dui_empleado VARCHAR(10) not null,
+    correo_empleado VARCHAR(120) not null,
+    telefono_empleado VARCHAR(9) not null,
+
+    usuario_privado VARCHAR(30) not null,
+    clave VARCHAR(2048) not null,
+	acceso boolean DEFAULT true not null,
+
+    CONSTRAINT dui_empleado UNIQUE (dui_empleado)
 );
 
 ALTER TABLE valoracion
