@@ -1,5 +1,5 @@
 <?php
-require_once('../../entities/dto/pedidos.php');
+require_once('../../entities/dto/order.php');
 
 
 if (isset($_GET['action'])) {

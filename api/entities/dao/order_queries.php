@@ -17,7 +17,7 @@ public function searchOrder($value)
 
 public function createOrder()
 {
-    $sql = 'INSERT INTO pedido(codigo_pedido, descripcion_pedido, id_cliente, id_estado_pedido, direccion_pedido, fecha) VALUES(?, ?, ?, ?,)';
+    $sql = 'INSERT INTO pedido(codigo_pedido, descripcion_pedido, id_cliente, id_estado_pedido, direccion_pedido, fecha) VALUES(?, ?, ?, ?, ?, ?)';
     $params = array($this->codigo, $this->descripcion, $this->cliente, $this->estado, $this->direccion, $this->fecha);
     return Database::executeRows($sql, $params);
 }
