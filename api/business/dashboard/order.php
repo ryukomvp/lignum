@@ -10,7 +10,7 @@ if (isset($_GET['action'])) {
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'dataset' => null);
     // Se verifica si existe una sesión iniciada como cliente para realizar las acciones correspondientes.
-    if (isset($_SESSION['id_usuario'])) {
+    if (isset($_SESSION['id_usuario_privado'])) {
         // Se compara la acción a realizar cuando un cliente ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readAll':
@@ -20,36 +20,40 @@ if (isset($_GET['action'])) {
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
-                    $result['exception'] = 'No hay datos registrados';
+                    $result['exception'] = 'No hay ningun pedido en curso';
                 }
                 break;
             case 'search':
                 $_POST = Validator::validateForm($_POST);
-                if ($_POST['search'] == '') {
+                if($_POST['search'] == ''){
                     $result['exception'] = 'Ingrese un valor para buscar';
-                } elseif ($result['dataset'] = $pedido->searchOrder($_POST['search'])) {
+                }elseif($result['dataset'] = $pedido->searchOrder($_POST['search'])){
                     $result['status'] = 1;
                     $result['message'] = 'Existen '.count($result['dataset']).' coincidencias';
-                } elseif (Database::getException()) {
+                } elseif (Database::getException()){
                     $result['exception'] = Database::getException();
-                } else {
+                }else{
                     $result['exception'] = 'No hay coincidencias';
                 }
                 break;
             case 'create':
                 $_POST = Validator::validateForm($_POST);
-                if (!$pedido->setCodigo($_POST['codigo'])) {
-                    $result['exception'] = 'Nombre incorrecto';
-                }elseif(!$pedido->setDescripcion($_POST['descripcion'])) {
+                if (!$pedido->setCodigo($_POST['codigo'])){
+                    $result['exception'] = 'Codigo incorrecto';
+                }elseif(!$pedido->setDescripcion($_POST['descripcion'])){
                     $result['exception'] = 'Descripción incorrecta';
-                }elseif(!isset($_POST['cliente'])) {
+                }elseif(!isset($_POST['cliente'])){
                     $result['exception'] = 'Seleccione un cliente';
-                }elseif(!$pedido->setIdCliente($_POST['cliente'])) {
+                }elseif(!$pedido->setIdCliente($_POST['cliente'])){
                     $result['exception'] = 'Cliente incorrecto';
                 }elseif(!isset($_POST['estado'])){
                     $result['exception'] = 'Seleccione un estado';
                 }elseif(!$pedido->setEstado($_POST['estado'])){
                     $result['exception'] = 'Estado incorrecto';
+                }elseif(!$pedido->setDireccion($_POST['direccion'])){
+                    $result['exception'] = 'Direccion incorrecta'
+                }elseif(!$pedido->setFecha($_POST['fecha'])){
+                    $result['exception'] = 'Fecha incorrecta';
                 }elseif($pedido->createOrder()) {
                     $result['status'] = 1;
                     $result['message'] = 'Pedido ingresado correctamente';
@@ -74,9 +78,9 @@ if (isset($_GET['action'])) {
                   $result['exception'] = 'Pedido incorrecto';
                 }elseif(!$data->readOne()){
                   $result['exception'] = 'Pedido inexistente'; 
-                }elseif (!$pedido->setCodigo($_POST['codigo'])) {
+                }elseif (!$pedido->setCodigo($_POST['codigo'])){
                     $result['exception'] = 'Nombre incorrecto';
-                }elseif(!$pedido->setDescripcion($_POST['descripcion'])) {
+                }elseif(!$pedido->setDescripcion($_POST['descripcion'])){
                     $result['exception'] = 'Descripción incorrecta';
                 }elseif(!$pedido->setIdCliente($_POST['cliente'])){
                     $result['exception'] = 'Seleccione un cliente';
