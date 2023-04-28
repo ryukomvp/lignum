@@ -14,13 +14,9 @@ main {
     background-color: #1a120b;
 }
 
-/* .acciones{
+.acciones{
     margin-top: 5%;
     margin-bottom: 1%;
-} */
-
-.reiniciar{
-    background-color: #cfd8dc;
 }
 
 .guardar{
@@ -35,10 +31,6 @@ main {
     background-color: #cfd8dc;
 }
 
-.reiniciar:hover{
-    background-color: #42a5f5;
-}
-
 .guardar:hover{
     background-color: #66bb6a;
 }
@@ -50,3 +42,144 @@ main {
 .salir:hover{
     background-color: #ffee58;
 }
+
+.entradas{
+    display: flex;
+    align-items: center;
+}
+
+.titulo{
+    font-family: 'Times New Roman', Times, serif;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.textbox{
+    height: 50px;
+    width: auto;
+    margin-top: 10px;
+    background-color: #eeeeee;
+    border-radius: 100px;
+    padding: 14px!important;
+}
+
+.textbox input{
+    position: relative;
+    padding-left: 30px;
+    border-style: none;
+    background-color: transparent;
+    outline: none;
+}
+
+.textbox i{
+    position: absolute;
+    color: darkgray;
+    transition: all 2s ease 0s;
+}
+
+.recuperacion{
+    text-align: right;
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+i.icon-blue {
+    color: blue;
+}
+
+
+.container-ratings{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    border-radius: 10%;
+    height: fit-content;
+}
+
+
+.right_align{
+    flex-basis: 25%;
+    display: flex;
+    width: auto;
+    flex-direction: row;
+    gap: 0;
+    justify-content: right;
+    align-items: right;
+    margin: 10px;
+}
+.right_align img {
+    height: 30px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.left_align{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 75%;
+    text-align: left;
+    justify-content: left;
+    margin: 10px;
+}
+
+
+#boton-ratings{
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+    color:#eeeeee;
+    width: 100px;
+    background-color: #66bb6a;
+}
+
+#ratings{
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+}
+
+#contenedor{
+    width: auto;
+    background-color: rgb(242, 242, 242);
+    height: fit-content;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 5px  5px  0 rgb(88, 88, 88) ;
+  }
+
+  #arriba{
+    display: flex;
+    height: 75%;
+    flex-direction: column;
+  }
+
+  #abajo{
+    display: flex;
+    flex-direction: column;
+  }
+
+  #horizontal {
+    display: flex;
+    flex-direction: row;
+    height: 15%;
+  }
+
+  .left_align {
+    flex-basis: 75%;
+    display: flex;
+    justify-self: left;
+  }
+
+  .right_align{
+    display: flex;
+    text-align: right;
+    justify-content: right;
+  }
+
+  h1{
+    margin-top: 4px;
+  }
