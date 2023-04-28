@@ -10,12 +10,12 @@ class RatingQueries
     */
     public function searchRows($value)
     {
-        $sql = 'SELECT v.puntaje, v.comentario,  a.fecha, p.nombre_producto, c.nombre_cliente FROM cliente c
+        $sql = 'SELECT v.puntaje, v.comentario,  d.fecha, p.nombre_producto, c.nombre_cliente FROM cliente c
         INNER JOIN pedido d ON c.id_cliente = d.id_cliente
         INNER JOIN detalle_pedido a ON d.id_pedido = a.id_pedido
         INNER JOIN producto p ON a.id_producto = p.id_producto
         INNER JOIN valoracion v ON a.id_detalle_pedido = v.id_detalle_pedido
-        WHERE p.nombre_producto ILIKE ? OR CAST (a.fecha as varchar) ILIKE ?';
+        WHERE p.nombre_producto ILIKE ? OR CAST (d.fecha as varchar) ILIKE ?';
         $params = array("%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
@@ -30,7 +30,7 @@ class RatingQueries
 
     public function readAll()
     {
-        $sql = 'SELECT v.puntaje, v.comentario,  d.fecha, p.nombre_producto, c.nombre_cliente FROM valoracion v
+        $sql = 'SELECT v.puntaje, v.comentario,  a.fecha, p.nombre_producto, c.nombre_cliente FROM valoracion v
                 INNER JOIN detalle_pedido d ON v.id_detalle_pedido = d.id_detalle_pedido
                 INNER JOIN pedido a ON d.id_pedido = a.id_pedido
                 INNER JOIN cliente c ON a.id_cliente = c.id_cliente 

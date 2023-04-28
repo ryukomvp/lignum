@@ -45,8 +45,6 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Nombres incorrectos';
                 } elseif (!$user->setApellidoEmpleado($_POST['apellidos'])) {
                     $result['exception'] = 'Apellidos incorrectos';
-                } elseif (!$user->setDuiEmpleado($_POST['dui'])) {
-                    $result['exception'] = 'DUI incorrecto';
                 } elseif (!$user->setCorreoEmpleado($_POST['correo'])) {
                     $result['exception'] = 'Teléfono incorrecto';
                 } elseif (!$user->setTelefonoEmpleado($_POST['telefono'])) {

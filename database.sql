@@ -307,6 +307,7 @@ VALUES ('jfuch', 'djaiAPS', 1, 1, 1),
 	   ('mhoneywood', 'KjaVSA1', 9, 3, 1),
 	   ('lmccoy', 'KLSo123', 10, 2, 2);
 
+
 INSERT INTO producto(nombre_producto, foto, descripcion_producto, precio_producto, codigo_producto, dimensiones, id_categoria, id_tipo_material, id_proveedor, estado, cantidad_existencias)
 VALUES ('Mesa de centro', 'foto', 'Mesa pequeña de centro', 95.00, 'MC201AS2', '9x9', 5, 2, 1, 1, 10),
        ('Mueble para televisor', 'foto', 'Mueble para televisor', 80.00, 'TVA2003P', '14x10', 5, 1, 1, 1, 15),

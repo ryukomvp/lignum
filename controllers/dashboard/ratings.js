@@ -243,9 +243,9 @@ async function fillTable(form = null) {
                     break;
                 case 5:
                     RATINGS.innerHTML += `
-                    
+
                 <div id="contenedor">
-                    <div id="arriba"> 
+                    <div id="arriba">
                         <h5>${row.nombre_producto}</h5>
                         <p>${row.comentario}</p>
                     </div>
@@ -263,23 +263,22 @@ async function fillTable(form = null) {
                                 <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
                             </div>
                         </div>
-                        <p>
-                                <div class="switch">
-                                    <span>Estado:</span>
-                                    <label>
-                                        <input  id="estado" type="checkbox" name="estado" checked>
-                                        <span class="lever"></span>
-                                    </label>
-                                </div>
+                         <p>
+                            <div class="switch">
+                                <span>Estado:</span>
+                                <label>
+                                    <input id="estado" type="checkbox" name="estado" checked>
+                                    <span class="lever"></span>
+                                </label>
+                            </div>
                         </p>
                         <div class="boton-ratings">
-                            <button onclick="openUpdate(${row.id_valoracion})" type = "submit" class=" waves-effect waves-green guardar btn-flat tooltipped" data-tooltip="Guardar">
+                            <button type="submit" class=" waves-effect waves-green btn-flat guardar tooltipped"data-tooltip="Guardar">
                                 <i class="material-icons">save</i>
                             </button>
                         </div>
                     </div>
                 </div>
-                    
                     `;
                     break;
                 default:

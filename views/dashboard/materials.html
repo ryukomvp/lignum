@@ -48,14 +48,15 @@
     <main>
         <!-- contenedor para acciones de busqueda y agregar -->
         <div class="container acciones">
+            <h1 class="center-align">Gestión de materialies</h1>
             <div class="row">
-                <div class="col s10 m8 offset-m1">
+                <!-- Formulario de búsqueda -->
+                <div class="col s10 m6">
                     <nav>
-                        <!-- barra de busqueda -->
                         <div class="nav-wrapper">
-                            <form id="search-form">
+                            <form method="post" id="search-form">
                                 <div class="input-field">
-                                    <input char id="search" name="search" type="search" required>
+                                    <input id="search" type="search" name="search" required>
                                     <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                                     <i class="material-icons">close</i>
                                 </div>
@@ -63,11 +64,14 @@
                         </div>
                     </nav>
                 </div>
-                <div class="col s2 m2">
+                <div class="col s2 m6 right-align">
                     <!-- boton de agregar -->
-                    <a onclick="openCreate()" class="waves-effect waves-light btn-large tooltipped"
-                        data-position="right" data-tooltip="Agregar una categoria"><i
-                            class="material-icons">person_add</i></a>
+                    <a onclick="openCreate()" class="btn-large waves-effect tooltipped" data-tooltip="Crear material">
+                        <i class="material-icons">add</i>
+                    </a>
+                    <a onclick="fillTable()" class="btn-large waves-effect tooltipped" data-tooltip="Recargar tabla">
+                        <i class="material-icons">autorenew</i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -150,8 +154,8 @@
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
     <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
-    <script type="text/javascript" src="../../resources/js/inicializar_dashboard.js"></script>
     <script type="text/javascript" src="../../controllers/components.js"></script>
+    <script type="text/javascript" src="../../controllers/dashboard/account.js"></script>
     <script type="text/javascript" src="../../controllers/dashboard/materials.js"></script>
 </body>
 
