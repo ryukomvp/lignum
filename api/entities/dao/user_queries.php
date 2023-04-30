@@ -52,7 +52,7 @@ class UserQueries
 
     public function editProfile()
     {
-        $sql = 'UPDATE nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, telefono_empleado, usuario_privado
+        $sql = 'UPDATE usuario_privado
                 SET nombre_empleado = ?, apellido_empleado = ?, dui_empleado = ?, correo_empleado = ?, telefono_empleado = ?, usuario_privado = ?
                 WHERE id_usuario_privado = ?';
         $params = array($this->nombre_empleado, $this->apellido_empleado, $this->dui_empleado, $this->correo_empleado, $this->telefono_empleado, $this->usuario_privado, $_SESSION['id_usuario_privado']);
@@ -82,7 +82,7 @@ class UserQueries
 
     public function readAll()
     {
-        $sql = 'SELECT id_usuario_privado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, telefono_empleado, usuario_privado
+        $sql = 'SELECT id_usuario_privado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, telefono_empleado, usuario_privado, acceso
                 FROM usuario_privado
                 ORDER BY id_usuario_privado';
         return Database::getRows($sql);
@@ -90,7 +90,7 @@ class UserQueries
 
     public function readOne()
     {
-        $sql = 'SELECT id_usuario_privado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, telefono_empleado, usuario_privado
+        $sql = 'SELECT id_usuario_privado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, telefono_empleado, usuario_privado, acceso
                 FROM usuario_privado
                 WHERE id_usuario_privado = ?';
         $params = array($this->id);
@@ -100,9 +100,9 @@ class UserQueries
     public function updateRow()
     {
         $sql = 'UPDATE usuario_privado 
-                SET nombre_empleado = ?, apellido_empleado = ?, dui_empleado = ?, correo_empleado = ?, telefono_empleado = ?, usuario_privado = ?
+                SET nombre_empleado = ?, apellido_empleado = ?, dui_empleado = ?, correo_empleado = ?, telefono_empleado = ?, usuario_privado = ?, acceso = ?
                 WHERE id_usuario_privado = ?';
-        $params = array($this->nombre_empleado, $this->apellido_empleado, $this->dui_empleado, $this->correo_empleado, $this->telefono_empleado, $this->usuario_privado, $this->id);
+        $params = array($this->nombre_empleado, $this->apellido_empleado, $this->dui_empleado, $this->correo_empleado, $this->telefono_empleado, $this->usuario_privado, $this->acceso, $this->id);
         return Database::executeRow($sql, $params);
     }
 

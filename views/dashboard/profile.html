@@ -1,136 +1,77 @@
 <!DOCTYPE html>
-<!-- definicion del lenguaje del sitio -->
+<!-- definicion de lenguaje del sitio -->
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Codificación de caracteres para el documento -->
+    <meta charset="utf-8">
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-
-    <link type="text/css" rel="stylesheet" href="/resources/css/materialize.min.css" media="screen,projection" />
-    <link type="text/css" rel="stylesheet" href="/resources/css/diseño_priv.css" media="screen,projection" />
-    <link type="text/css" rel="stylesheet" href="/resources/css/dashboard.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../resources/css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../resources/css/dashboard.css" media="screen,projection" />
 
     <!--Let browser know website is optimized for mobile-->
-    <title>Perfil</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi perfil</title>
 </head>
 
 <body>
-    <!-- Menu tipo Navbar  -->
-    <header>
-        <!-- etiqueta para menu -->
-        <div class="navbar-fixed">
-            <nav>
-                <div class="nav-wrapper">
-                    <a href="main.html" class="brand-logo"><img src="/resources/img/2.png" alt=""></a>
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="#" class="tooltipped" data-position="bottom" data-tooltip="Inicio de la página"><i
-                                    class="material-icons">arrow_upward</i></a></li>
-                        <li><a href="profile.html" class="tooltipped" data-position="bottom"
-                                data-tooltip="Perfil del usuario"><i class="material-icons">account_circle</i></a></li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </header>
-
-
-    <main>
-        <!-- carta para actualizar foto de perfil -->
-        <div class="row">
-            <div class="col s12 m3">
-                <div class="card">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="/resources/img/Persona 1.jpeg">
-                    </div>
-                    <div class="card-content">
-                        <div class="modal-footer center">
-                            <form action="#">
-                                <div class="file-field input-field">
-                                    <div class="btn">
-                                        <span>Foto</span>
-                                        <input type="file">
-                                    </div>
-                                    <div class="file-path-wrapper">
-                                        <input class="file-path validate" type="text">
-                                    </div>
-                                </div>
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
+    <!-- Encabezado de la plagina -->
+    <header></header>
+    <!-- Contenido principal de la pagina -->
+    <main class="container">
+        <div id="bienvenida"></div>
+        <form class="row" method="post" id="profile-form">
+            <div class="input-field col s12 m6">
+                <i class="material-icons prefix">person</i>
+                <input id="nombres" type="text" name="nombres" required>
+                <label for="nombres">Nombres</label>
             </div>
-            <!-- Contenedir de campos de usuario -->
-            <div class="conteiner profile">
-                <div class="row">
-                    <form class="container">
-                        <div class="input-field col s12 m6">
-                            <input id="first_name" type="text" class="validate">
-                            <label for="first_name">Nombre</label>
-                        </div>
-                        <div class="input-field col s12 m6">
-                            <input id="last_name" type="text" class="validate">
-                            <label for="last_name">Apellido</label>
-                        </div>
-
-                        <div class="input-field col s12 m6">
-                            <input id="dui" type="text">
-                            <label for="dui">Dui</label>
-                        </div>
-                        <div class="input-field col s12 m6">
-                            <input id="email" type="email" class="validate">
-                            <label for="email">Email</label>
-                        </div>
-                        <div class="input-field col s12 m6">
-                            <input id="telefono" type="text">
-                            <label for="telefono">Telefono</label>
-                        </div>
-                        <div class="input-field col s12 m6">
-                            <select>
-                                <option value="" disabled selected>No binario</option>
-                                <option value="1">Hombre</option>
-                                <option value="2">Mujer</option>
-                            </select>
-                            <label>Genero</label>
-                        </div>
-                        <div class="col s12 center">
-                            <a href="#!" class=" modal-close btn">Descartar</a>
-                            <a href="#!" class=" modal-close btn">Actualizar</a>
-                        </div>
-                    </form>
-                </div>
+            <div class="input-field col s12 m6">
+                <i class="material-icons prefix">person</i>
+                <input id="apellidos" type="text" name="apellidos" required>
+                <label for="apellidos">Apellidos</label>
             </div>
-        </div>
+            <div class="input-field col s12 m6">
+                <i class="material-icons prefix">credit_card</i>
+                <input id="dui" type="text" name="dui" required>
+                <label for="dui">DUI</label>
+            </div>
+            <div class="input-field col s12 m6">
+                <i class="material-icons prefix">email</i>
+                <input id="correo" type="email" name="correo" required>
+                <label for="correo">Correo</label>
+            </div>
+            <div class="input-field col s12 m6">
+                <i class="material-icons prefix">phone</i>
+                <input id="telefono" type="text" name="telefono" required>
+                <label for="telefono">Teléfono</label>
+            </div>
+            <div class="input-field col s12 m6">
+                <i class="material-icons prefix">person</i>
+                <input id="usuario" type="text" name="usuario" required>
+                <label for="usuario">Usuario</label>
+            </div>
+            <div class="col s12 center-align">
+                <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Guardar registro">
+                    <i class="material-icons">save</i>
+                </button>
+                <button onclick="openPassword()" class="btn waves-effect blue tooltipped" data-tooltip="Cambiar contraseña">
+                    <i class="material-icons">key</i>
+                </button>
+            </div>
+        </form>
     </main>
+    <!-- Pie de la pagina -->
+    <footer></footer>
 
-    <footer class="page-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col l6 s12">
-                    <a href="about-us.html">
-                        <h5 class="white-text">Dashboard footer</h5>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class=" footer-copyright">
-            <div class="container">
-                © 2014 Copyright Text
-                <a class="grey-text text-lighten-4 right" href="https://www.instagram.com/dnlhernandez_"
-                    target="_blank">More
-                    Links</a>
-            </div>
-        </div>
-    </footer>
     <!--JavaScript at end of body for optimized loading-->
-    <script type="text/javascript" src="/resources/js/materialize.min.js"></script>
-    <script type="text/javascript" src="/resources/js/inicializar_dashboard.js"></script>
-    <script type="text/javascript" src="/resources/js/dashboard.js"></script>
-
+    <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../controllers/components.js"></script>
+    <script type="text/javascript" src="../../controllers/dashboard/account.js"></script>
+    <script type="text/javascript" src="../../controllers/dashboard/profile.js"></script>
 </body>
 
 </html>

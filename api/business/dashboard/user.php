@@ -1,5 +1,5 @@
 <?php
-require_once('../../entities/dto/users.php');
+require_once('../../entities/dto/user.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
@@ -41,15 +41,17 @@ if (isset($_GET['action'])) {
                 break;
             case 'editProfile':
                 $_POST = Validator::validateForm($_POST);
-                if (!$usuario->setNombreEmpleado($_POST['nombre_empleado'])) {
+                if (!$usuario->setNombreEmpleado($_POST['nombres'])) {
                     $result['exception'] = 'Nombres incorrectos';
-                } elseif (!$usuario->setApellidoEmpleado($_POST['apellido_empleado'])) {
+                } elseif (!$usuario->setApellidoEmpleado($_POST['apellidos'])) {
                     $result['exception'] = 'Apellidos incorrectos';
-                } elseif (!$usuario->setCorreoEmpleado($_POST['correo_empleado'])) {
-                    $result['exception'] = 'Correo incorrecto';
-                } elseif (!$usuario->setTelefonoEmpleado($_POST['telefono_empleado'])) {
+                } elseif (!$usuario->setDuiEmpleado($_POST['dui'])) {
+                    $result['exception'] = 'DUI incorrecto';
+                } elseif (!$usuario->setCorreoEmpleado($_POST['correo'])) {
                     $result['exception'] = 'Teléfono incorrecto';
-                } elseif (!$usuario->setUsuarioPrivado($_POST['usuario_privado'])) {
+                } elseif (!$usuario->setTelefonoEmpleado($_POST['telefono'])) {
+                    $result['exception'] = 'Teléfono incorrecto';
+                } elseif (!$usuario->setUsuarioPrivado($_POST['usuario'])) {
                     $result['exception'] = 'Usuario incorrecto';
                 } elseif ($usuario->editProfile()) {
                     $result['status'] = 1;

@@ -1,5 +1,5 @@
 // Constante para completar la ruta de la API.
-// const USER_API = 'business/dashboard/users.php';
+// const USER_API = 'business/dashboard/user.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('search-form');
 // Constante para establecer el formulario de guardar.

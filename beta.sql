@@ -1,7 +1,7 @@
-CREATE TABLE cargo(
-  id_cargo serial not null PRIMARY KEY,
-  cargo varchar(30)
-);
+-- CREATE TABLE cargo(
+--   id_cargo serial not null PRIMARY KEY,
+--   cargo varchar(30)
+-- );
 
 CREATE TABLE categoria(
 	id_categoria serial not null PRIMARY KEY,
@@ -36,10 +36,10 @@ CREATE TABLE cliente(
 	direccion_cliente varchar(250) not null,
 	usuario_publico varchar(30) not null,
 	clave varchar(2048) not null,
-	acceso boolean not null,
+	acceso boolean DEFAULT true not null,
 	
-	CONSTRAINT dui_cliente UNIQUE (dui_cliente),
-	CONSTRAINT usuario_publico UNIQUE (usuario_publico)
+	CONSTRAINT dui_cliente_unique UNIQUE (dui_cliente),
+	CONSTRAINT usuario_publico_unique UNIQUE (usuario_publico)
 );
 
 CREATE TABLE pedido(
@@ -51,7 +51,7 @@ CREATE TABLE pedido(
 	direccion_pedido varchar(250) not null,
 	fecha date null,
 
-	CONSTRAINT codigo_pedido UNIQUE (codigo_pedido)
+	CONSTRAINT codigo_pedido_unique UNIQUE (codigo_pedido)
 );
 
 CREATE TABLE detalle_pedido(
@@ -59,7 +59,7 @@ CREATE TABLE detalle_pedido(
 	id_pedido int not null,
 	id_producto int not null,
 	precio_producto float not null,
-	cantidad int null, -- en caso de llevar más de un producto puede especificar aqui
+	cantidad int null -- en caso de llevar más de un producto puede especificar aqui
 );
 
 CREATE TABLE valoracion(
@@ -67,7 +67,7 @@ CREATE TABLE valoracion(
 	puntaje int null,
 	comentario varchar null,
 	id_detalle_pedido int not null
-	estado boolean NOT NULL,
+	estado boolean DEFAULT true not null
 );
 
 CREATE TABLE producto(
@@ -86,7 +86,7 @@ CREATE TABLE producto(
 	cantidad_existencias int not null,
 	
 	
-	CONSTRAINT codigo_producto UNIQUE (codigo_producto)
+	CONSTRAINT codigo_producto_unique UNIQUE (codigo_producto)
 );
 
 CREATE TABLE imagen(
@@ -103,20 +103,49 @@ CREATE TABLE proveedor(
 );
 
 CREATE TABLE usuario_privado(
-    id_usuario_privado SERIAL not null PRIMARY KEY,
-    nombre_empleado VARCHAR(70) not null,
-    apellido_empleado VARCHAR(70) not null,
-    dui_empleado VARCHAR(10) not null,
-    correo_empleado VARCHAR(120) not null,
-    telefono_empleado VARCHAR(9) not null,
+    id_usuario_privado serial not null PRIMARY KEY,
+    nombre_empleado varchar(70) not null,
+    apellido_empleado varchar(70) not null,
+    dui_empleado varchar(10) not null,
+    correo_empleado varchar(120) not null,
+    telefono_empleado varchar(9) not null,
 
-    usuario_privado VARCHAR(30) not null,
-    clave VARCHAR(2048) not null,
+    usuario_privado varchar(30) not null,
+    clave varchar(2048) not null,
 	acceso boolean DEFAULT true not null,
 
-    CONSTRAINT dui_empleado UNIQUE (dui_empleado)
+    CONSTRAINT dui_empleado_unique UNIQUE (dui_empleado),
+	CONSTRAINT usuario_privado_unique UNIQUE (usuario_privado)
 );
+
+CREATE TABLE inventario(
+	id_inventario serial not null PRIMARY KEY,
+	codigo_inventario varchar(10) not null,
+	cantidad_entrada int not null,
+	fecha_entrada date not null,
+	id_proveedor int not null
+)
+
+ALTER TABLE cliente
+ADD CONSTRAINT cliente_genero_fkey FOREIGN KEY (id_genero)
+REFERENCES genero(id_genero);
+
+ALTER TABLE producto
+ADD CONSTRAINT categoria_producto_fkey FOREIGN KEY (id_categoria)
+REFERENCES categoria(id_categoria);
+
+ALTER TABLE producto
+ADD CONSTRAINT proveedor_producto_fkey FOREIGN KEY (id_proveedor)
+REFERENCES proveedor(id_proveedor);
+
+ALTER TABLE producto
+ADD CONSTRAINT material_producto_fkey FOREIGN KEY (id_tipo_material)
+REFERENCES tipo_material(id_tipo_material);
 
 ALTER TABLE valoracion
 ADD CONSTRAINT pedido_valoracion_fkey FOREIGN KEY (id_detalle_pedido)
 REFERENCES detalle_pedido(id_detalle_pedido);
+
+ALTER TABLE inventario
+ADD CONSTRAINT inventario_proveedor_fkey FOREIGN KEY(id_proveedor)
+REFERENCES proveedor(id_proveedor)

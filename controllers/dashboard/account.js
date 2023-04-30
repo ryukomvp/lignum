@@ -4,10 +4,11 @@
 */
 
 // Constante para completar la ruta de la API.
-const USER_API = 'business/dashboard/users.php';
+const USER_API = 'business/dashboard/user.php';
 // Constantes para establecer las etiquetas de encabezado y pie de la página web.
 const HEADER = document.querySelector('header');
 const FOOTER = document.querySelector('footer');
+const BIENVENIDA = document.getElementById('bienvenida');
 
 // Método manejador de eventos para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
@@ -25,36 +26,43 @@ document.addEventListener('DOMContentLoaded', async () => {
                             <a href="main.html" class="brand-logo"><i class="material-icons">polymer</i></a>
                             <a href="#" data-target="menu-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                                <li><a href="#" class="tooltipped" data-position="bottom" data-tooltip="Inicio de la página"><i
+                                <li><a href="#" class="tooltipped" data-tooltip="Inicio de la página"><i
                                     class="material-icons">arrow_upward</i></a></li>
-                                <li><a href="../../views/dashboard/index.html" class="tooltipped" data-position="bottom" data-tooltip="${JSON.username}"><i
+                                <li><a href="../../views/dashboard/profile.html" class="tooltipped" data-tooltip="Editar perfil"><i
                                     class="material-icons">account_circle</i></a></li>
-                                <li><a onclick="logOut()" class="tooltipped" data-position="bottom" data-tooltip="Cerrar sesión"><i class="material-icons">exit_to_app</i></a></li>
+                                <li><a onclick="logOut()" class="tooltipped" data-tooltip="Cerrar sesión"><i class="material-icons">exit_to_app</i></a></li>
                             </ul>
                         </div>
                     </nav>
                 </div>
             `;
             FOOTER.innerHTML = `
-                <div class="container">
-                    <div class="row">
-                        <div class="col l6 s12">
-                            <h5 class="white-text">Dashboard</h5>
+                <div class="page-footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col l6 s12">
+                                <h5 class="white-text">Dashboard</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" footer-copyright">
+                        <div class="container">
+                            Lignum
+                            <a class="grey-text text-lighten-4 right" href="https://www.instagram.com/dnlhernandez_"
+                            target="_blank"><img src="https://img.icons8.com/material-outlined/24/FFFFFF/instagram-new--v1.png"/></a>
                         </div>
                     </div>
                 </div>
-                <div class=" footer-copyright">
-                    <div class="container">
-                        Lignum
-                        <a class="grey-text text-lighten-4 right" href="https://www.instagram.com/dnlhernandez_"
-                        target="_blank"><img src="https://img.icons8.com/material-outlined/24/FFFFFF/instagram-new--v1.png"/></a>
-                    </div>
-                </div>
+            `;
+            BIENVENIDA.innerHTML = `
+                <h1 class="center-align">Bienvenido <b>${JSON.username}</b></h1>
             `;
             // Se inicializa el componente Dropdown para que funcione la lista desplegable en los menús.
-            M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'));
+            // M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'));
             // Se inicializa el componente Sidenav para que funcione la navegación lateral.
-            M.Sidenav.init(document.querySelectorAll('.sidenav'));
+            // M.Sidenav.init(document.querySelectorAll('.sidenav'));
+            // Inicialización del componente tooltiped
+            M.Tooltip.init(document.querySelectorAll('.tooltipped'));
         } else {
             sweetAlert(3, JSON.exception, false, 'index.html');
         }
