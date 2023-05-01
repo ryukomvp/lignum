@@ -119,15 +119,14 @@ function openCreate() {
     SAVE_FORM.reset();
     // Se asigna título a la caja de diálogo.
     MODAL_TITLE.textContent = 'Crear usuario';
-    // Se habilitan los campos necesarios.
-    // document.getElementById('alias').disabled = false;
-    // document.getElementById('clave').disabled = false;
-    // document.getElementById('confirmar').disabled = false;
+    // Se habilitan los campos necesarios para crear un registro
+    document.getElementById('clave').disabled = false;
+    document.getElementById('confirmar').disabled = false;
 }
 
 /*
 *   Función asíncrona para preparar el formulario al momento de actualizar un registro.
-*   Parámetros: id (identificador del registro seleccionado).
+*   Parámetros: id (se utiliza para identificar el registro a modificar).
 *   Retorno: ninguno.
 */
 async function openUpdate(id) {
@@ -145,7 +144,6 @@ async function openUpdate(id) {
         // Se asigna título a la caja de diálogo.
         MODAL_TITLE.textContent = 'Actualizar usuario';
         // Se deshabilitan los campos necesarios.
-        // document.getElementById('usuario').disabled = true;
         document.getElementById('clave').disabled = true;
         document.getElementById('confirmar').disabled = true;
         // Se inicializan los campos del formulario.
@@ -156,6 +154,8 @@ async function openUpdate(id) {
         document.getElementById('correo').value = JSON.dataset.correo_empleado;
         document.getElementById('telefono').value = JSON.dataset.telefono_empleado;
         document.getElementById('usuario').value = JSON.dataset.usuario_privado;
+        // document.getElementById('clave').value = JSON.dataset.clave;
+        // document.getElementById('confirmar').value = JSON.dataset.clave;
         if (JSON.dataset.acceso) {
             document.getElementById('acceso').checked = true;
         } else {

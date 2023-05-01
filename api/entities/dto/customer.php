@@ -1,10 +1,10 @@
 <?php
 require_once('../../helpers/validator.php');
-require_once('../../entities/dao/customers_queries.php');
+require_once('../../entities/dao/customer_queries.php');
 /*
 *	Clase para manejar la transferencia de datos de la entidad CLIENTE.
 */
-class Cliente extends ClienteQueries
+class Customer extends CustomerQueries
 {
     // Declaración de atributos (propiedades).
     protected $id_cliente = null;
@@ -15,7 +15,7 @@ class Cliente extends ClienteQueries
     protected $correo_cliente = null;
     protected $telefono_cliente = null;
     protected $genero = null;
-    protected $tipo_cliente = null;
+    protected $afiliado = null;
     protected $direccion_cliente = null;
     protected $usuario_publico = null;
     protected $clave = null;
@@ -57,7 +57,7 @@ class Cliente extends ClienteQueries
 
     public function setFoto($file)
     {
-        if (Validator::validateImageFile($file, 500, 500)) {
+        if (Validator::validateImageFile($file, 5000, 5000)) {
             $this->foto = Validator::getFileName();
             return true;
         } else {
@@ -67,7 +67,7 @@ class Cliente extends ClienteQueries
 
     public function setDuiCliente($value)
     {
-        if (Validator::validateAlphabetic($value)) {
+        if (Validator::validateAlphabetic($value, 1, 10)) {
             $this->dui_cliente = $value;
             return true;
         } else {
@@ -105,10 +105,20 @@ class Cliente extends ClienteQueries
         }
     }
 
-    public function setTipoCliente($value)
+    public function setAfiliado($value)
     {
-        if (Validator::validateNaturalNumber($value)) {
-            $this->tipo_cliente = $value;
+        if (Validator::validateBoolean($value)) {
+            $this->afiliado = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setDireccionCliente($value)
+    {
+        if (Validator::validateString($value, 1, 250)) {
+            $this->direccion_cliente = $value;
             return true;
         } else {
             return false;
@@ -117,7 +127,7 @@ class Cliente extends ClienteQueries
 
     public function setUsuarioPublico($value)
     {
-        if (Validator::validateString($value, 1, 30)) {
+        if (Validator::validateAlphanumeric($value, 1, 30)) {
             $this->usuario_publico = $value;
             return true;
         } else {
@@ -188,9 +198,9 @@ class Cliente extends ClienteQueries
         return $this->genero;
     }
 
-    public function getTipoCliente()
+    public function getAfiliado()
     {
-        return $this->tipo_cliente;
+        return $this->afiliado;
     }
 
     public function getUsuarioPublico()

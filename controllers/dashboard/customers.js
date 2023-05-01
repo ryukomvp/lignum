@@ -9,7 +9,7 @@ const SAVE_FORM = document.getElementById('customers-form');
 const MODAL_TITLE = document.getElementById('modal-title');
 // Constantes para establecer el contenido de la tabla.
 const TBODY_ROWS = document.getElementById('tbody-rows');
-const RECORDS = document.getElementById('records');
+// const RECORDS = document.getElementById('records');
 // Constante tipo objeto para establecer las opciones del componente Modal.
 const OPTIONS = {
     dismissible: false
@@ -65,7 +65,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 async function fillTable(form = null) {
     // Se inicializa el contenido de la tabla.
     TBODY_ROWS.innerHTML = '';
-    RECORDS.textContent = '';
+    // RECORDS.textContent = '';
     // Se verifica la acción a realizar.
     (form) ? action = 'search' : action = 'readAll';
     // Petición para obtener los registros disponibles.
@@ -109,7 +109,7 @@ async function fillTable(form = null) {
         // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
         M.Tooltip.init(document.querySelectorAll('.tooltipped'));
         // Se muestra un mensaje de acuerdo con el resultado.
-        RECORDS.textContent = JSON.message;
+        // RECORDS.textContent = JSON.message;
     } else {
         sweetAlert(4, JSON.exception, true);
     }
@@ -120,18 +120,16 @@ async function fillTable(form = null) {
 *   Parámetros: ninguno.
 *   Retorno: ninguno.
 */
-// function openCreate() {
-//     // Se abre la caja de diálogo que contiene el formulario.
-//     SAVE_MODAL.open();
-//     // Se restauran los elementos del formulario.
-//     SAVE_FORM.reset();
-//     // Se asigna el título a la caja de diálogo.
-//     MODAL_TITLE.textContent = 'Crear cliente';
-//     // Se establece el campo de archivo como obligatorio.
-//     document.getElementById('archivo').required = true;
-//     // Llamada a la función para llenar el select del formulario. Se encuentra en el archivo components.js
-//     fillSelect(CATEGORIA_API, 'readAll', 'categoria');
-// }
+function openCreate() {
+    // Se abre la caja de diálogo que contiene el formulario.
+    SAVE_MODAL.open();
+    // Se restauran los elementos del formulario.
+    SAVE_FORM.reset();
+    // Se asigna el título a la caja de diálogo.
+    MODAL_TITLE.textContent = 'Crear cliente';
+    // Llamada a la función para llenar el select del formulario. Se encuentra en el archivo components.js
+    fillSelect(GENERO_API, 'readAll', 'genero');
+}
 
 /*
 *   Función asíncrona para preparar el formulario al momento de actualizar un registro.
@@ -141,7 +139,7 @@ async function fillTable(form = null) {
 async function openUpdate(id) {
     // Se define un objeto con los datos del registro seleccionado.
     const FORM = new FormData();
-    FORM.append('id', id);
+    FORM.append('id_cliente', id);
     // Petición para obtener los datos del registro solicitado.
     const JSON = await dataFetch(CLIENTE_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
@@ -152,8 +150,6 @@ async function openUpdate(id) {
         SAVE_FORM.reset();
         // Se asigna el título para la caja de diálogo (modal).
         MODAL_TITLE.textContent = 'Actualizar cliente';
-        // Se establece el campo de archivo como opcional.
-        document.getElementById('foto').required = false;
         // Se inicializan los campos del formulario.
         document.getElementById('id').value = JSON.dataset.id_cliente;
         document.getElementById('nombre').value = JSON.dataset.nombre_cliente;

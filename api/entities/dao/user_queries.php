@@ -59,16 +59,25 @@ class UserQueries
         return Database::executeRow($sql, $params);
     }
 
+    public function changeStatus()
+    {
+        $sql = 'UPDATE usuario_privado
+                SET acceso = ?
+                WHERE id_usuario_privado = ?';
+        $params = array($this->acceso, $this->id);
+        return Database::executeRow($sql, $params);
+    }
+
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
     */
     public function searchRows($value)
     {
-        $sql = 'SELECT id_usuario_privado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, telefono_empleado, usuario_privado
+        $sql = 'SELECT id_usuario_privado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, telefono_empleado, usuario_privado, acceso
                 FROM usuario_privado
-                WHERE nombre_empleado ILIKE ? OR apellido_empleado ILIKE ?
-                ORDER BY apellido_empleado';
-        $params = array("%$value%", "%$value%");
+                WHERE nombre_empleado ILIKE ? OR apellido_empleado ILIKE ? OR usuario_privado ILIKE ?
+                ORDER BY id_usuario_privado';
+        $params = array("%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
 

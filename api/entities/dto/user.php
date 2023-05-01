@@ -82,7 +82,7 @@ class User extends UserQueries
 
     public function setUsuarioPrivado($value)
     {
-        if (Validator::validateAlphabetic($value, 1, 30)) {
+        if (Validator::validateAlphanumeric($value, 1, 30)) {
             $this->usuario_privado = $value;
             return true;
         } else {

@@ -4,7 +4,7 @@ require_once('../../entities/dao/gender_queries.php');
 /*
 *	Clase para manejar la transferencia de datos de la entidad CLIENTE.
 */
-class Cliente extends ClienteQueries
+class Gender extends GenderQueries
 {
     // Declaración de atributos (propiedades).
     protected $id_genero = null;

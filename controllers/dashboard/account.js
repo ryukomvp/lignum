@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <div class="navbar-fixed">
                     <nav>
                         <div class="nav-wrapper center-align">
-                            <a href="index.html" class="brand-logo"><i class="material-icons">polymer</i></a>
+                            <a class="brand-logo"><i class="material-icons">polymer</i></a>
                         </div>
                     </nav>
                 </div>
@@ -109,10 +109,10 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   // inicializacion de ventana modal
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.modal');
-    var instances = M.Modal.init(elems);
-  });
+//   document.addEventListener('DOMContentLoaded', function() {
+//     var elems = document.querySelectorAll('.modal');
+//     var instances = M.Modal.init(elems);
+//   });
   
   // inicializacion de selecionador
   document.addEventListener('DOMContentLoaded', function() {

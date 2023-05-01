@@ -31,7 +31,7 @@
                     <div class="nav-wrapper">
                         <form method="post" id="search-form">
                             <div class="input-field">
-                                <input char id="search" type="search" required>
+                                <input id="search" type="search" name="search" required>
                                 <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                                 <i class="material-icons">close</i>
                             </div>
@@ -85,7 +85,7 @@
                         <label for="apellidos">Apellidos</label>
                     </div>
                     <div class="input-field col s12 m3">
-                        <input id="dui" type="text" name="dui" required>
+                        <input id="dui" type="text" name="dui" maxlength="10" required>
                         <label for="dui">DUI</label>
                     </div>
                     <div class="input-field col s12 m9">
@@ -93,7 +93,7 @@
                         <label for="correo">Correo</label>
                     </div>
                     <div class="input-field col s12 m6">
-                        <input id="telefono" type="text" name="telefono" required>
+                        <input id="telefono" type="text" name="telefono" maxlength="9" required>
                         <label for="telefono">Teléfono</label>
                     </div>
                     <div class="input-field col s12 m6">
@@ -126,8 +126,8 @@
                         </button>
                         <button type="submit" class="btn-flat waves-effect tooltipped guardar"
                             data-tooltip="Guardar cambios"><i class="material-icons">save</i></button>
-                        <button class="btn-flat waves-effect tooltipped modal-close salir"
-                            data-tooltip="Salir sin guardar cambios"><i class="material-icons">close</i></button>
+                        <a class="btn-flat waves-effect tooltipped modal-close salir"
+                            data-tooltip="Salir sin guardar cambios"><i class="material-icons">close</i></a>
                     </div>
                 </form>
             </div>

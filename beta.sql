@@ -32,7 +32,7 @@ CREATE TABLE cliente(
 	correo_cliente varchar(120) not null,
 	telefono_cliente varchar(9),
 	id_genero int not null,
-	afiliado boolean not null,
+	afiliado boolean DEFAULT false not null,
 	direccion_cliente varchar(250) not null,
 	usuario_publico varchar(30) not null,
 	clave varchar(2048) not null,

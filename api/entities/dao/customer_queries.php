@@ -3,7 +3,7 @@ require_once('../../helpers/database.php');
 /*
 *	Clase para manejar el acceso a datos de la entidad CLIENTE.
 */
-class ClienteQueries
+class CustomerQueries
 {
     /*
     *   Métodos para gestionar la cuenta del cliente.
@@ -72,25 +72,25 @@ class ClienteQueries
         return Database::getRows($sql, $params);
     }
 
-    // public function createRow()
-    // {
-    //     $sql = 'INSERT INTO clientes(nombres_cliente, apellidos_cliente, correo_cliente, dui_cliente, telefono_cliente, nacimiento_cliente, direccion_cliente, clave_cliente)
-    //             VALUES(?, ?, ?, ?, ?, ?, ?, ?)';
-    //     $params = array($this->nombres, $this->apellidos, $this->correo, $this->dui, $this->telefono, $this->nacimiento, $this->direccion, $this->clave);
-    //     return Database::executeRow($sql, $params);
-    // }
+    public function createRow()
+    {
+        $sql = 'INSERT INTO cliente(nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, id_genero, direccion_cliente, usuario_publico, clave)
+                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+        $params = array($this->nombre_cliente, $this->apellido_cliente, $this->foto, $this->dui_cliente, $this->correo_cliente, $this->telefono_cliente, $this->genero, $this->direccion_cliente, $this->usuario_publico, $this->clave);
+        return Database::executeRow($sql, $params);
+    }
 
     public function readAll()
     {
-        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, genero, tipo_cliente, direccion_cliente, usuario_publico
+        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, id_genero, afiliado, direccion_cliente, usuario_publico, acceso
                 FROM cliente
-                ORDER BY apellido_cliente';
+                ORDER BY id_cliente';
         return Database::getRows($sql);
     }
 
     public function readOne()
     {
-        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, genero, tipo_cliente, direccion_cliente, usuario_publico
+        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, id_genero, tipo_cliente, direccion_cliente, usuario_publico
                 FROM cliente
                 WHERE id_cliente = ?';
         $params = array($this->id_cliente);
