@@ -10,9 +10,9 @@ class GenderQueries
     */
     public function readAll()
     {
-        $sql = 'SELECT id_tipo_cliente, tipo_cliente
-                FROM tipo_cliente
-                ORDER BY tipo_cliente';
+        $sql = 'SELECT id_genero, genero
+                FROM genero
+                ORDER BY id_genero';
         return Database::getRows($sql);
     }
 }

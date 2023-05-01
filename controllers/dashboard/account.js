@@ -8,7 +8,6 @@ const USER_API = 'business/dashboard/user.php';
 // Constantes para establecer las etiquetas de encabezado y pie de la página web.
 const HEADER = document.querySelector('header');
 const FOOTER = document.querySelector('footer');
-const BIENVENIDA = document.getElementById('bienvenida');
 
 // Método manejador de eventos para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
@@ -53,9 +52,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                         </div>
                     </div>
                 </div>
-            `;
-            BIENVENIDA.innerHTML = `
-                <h1 class="center-align">Bienvenido <b>${JSON.username}</b></h1>
             `;
             // Se inicializa el componente Dropdown para que funcione la lista desplegable en los menús.
             // M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'));

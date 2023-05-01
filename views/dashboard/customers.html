@@ -53,31 +53,30 @@
             </div>
         </div>
         <!-- contenedor para tabla -->
-        <div class="row">
-            <div class="col m12">
-                <table class="responsive-table highlight">
-                    <thead>
-                        <tr>
-                            <th>Foto</th>
-                            <th>Nombres</th>
-                            <th>Apellidos</th>
-                            <th>DUI</th>
-                            <th>Correo</th>
-                            <th>Teléfono</th>
-                            <th>Genero</th>
-                            <th>Afiliado</th>
-                            <th>Dirección</th>
-                            <th>Usuario</th>
-                            <th>Acceso</th>
-                            <th>Editar</th>
-                            <th>Eliminar</th>
-                        </tr>
-                    </thead>
-                    <!-- contenido de tabla -->
-                    <tbody id="tbody-rows"></tbody>
-                </table>
-            </div>
-        </div>
+        <!-- Tabla para mostrar los registros existentes -->
+        <table class="highlight">
+            <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
+            <thead>
+                <!-- <tr id="records"></tr> -->
+                <tr>
+                    <th>Foto</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>DUI</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>Genero</th>
+                    <th>Afiliado</th>
+                    <th>Dirección</th>
+                    <th>Usuario</th>
+                    <th>Acceso</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <!-- Cuerpo de la tabla para mostrar un registro por fila -->
+            <tbody id="tbody-rows"></tbody>
+        </table>
         <!-- contenido de ventana modal -->
         <div id="save-modal" class="modal">
             <div class="modal-content">
@@ -144,7 +143,7 @@
                     </div>
                     <!-- textbox usaurio -->
                     <div class="input-field col s12 m6">
-                        <input id="usuario" type="text">
+                        <input id="usuario" type="text" name="usuario" required>
                         <label for="usuario">Usuario</label>
                     </div>
                     <!-- textbox clave -->

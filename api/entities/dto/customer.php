@@ -67,7 +67,7 @@ class Customer extends CustomerQueries
 
     public function setDuiCliente($value)
     {
-        if (Validator::validateAlphabetic($value, 1, 10)) {
+        if (Validator::validateDUI($value)) {
             $this->dui_cliente = $value;
             return true;
         } else {

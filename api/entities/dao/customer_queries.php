@@ -64,10 +64,10 @@ class CustomerQueries
     */
     public function searchRows($value)
     {
-        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, correo_cliente, dui_cliente, telefono_cliente, nacimiento_cliente, direccion_cliente
+        $sql = 'SELECT id_cliente, foto, nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, id_genero, afiliado, direccion_cliente, usuario_publico, acceso 
                 FROM cliente
                 WHERE apellido_cliente ILIKE ? OR nombre_cliente ILIKE ? OR usuario_publico ILIKE ?
-                ORDER BY apellido_cliente';
+                ORDER BY id_cliente';
         $params = array("%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
@@ -90,7 +90,7 @@ class CustomerQueries
 
     public function readOne()
     {
-        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, id_genero, tipo_cliente, direccion_cliente, usuario_publico
+        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, id_genero, afiliado, direccion_cliente, usuario_publico, acceso
                 FROM cliente
                 WHERE id_cliente = ?';
         $params = array($this->id_cliente);
@@ -100,9 +100,10 @@ class CustomerQueries
     public function updateRow()
     {
         $sql = 'UPDATE cliente
-                SET nombre_cliente = ?, apellido_cliente = ?, foto = ?, correo_cliente = ?, telefono_cliente = ?, direccion_cliente = ?
+                SET nombre_cliente = ?, apellido_cliente = ?, foto = ?, dui_cliente = ?, correo_cliente = ?, telefono_cliente = ?,
+                id_genero = ?, afiliado = ?, direccion_cliente = ?, usuario_publico = ?, acceso = ?
                 WHERE id_cliente = ?';
-        $params = array($this->nombre_cliente, $this->apellido_cliente, $this->foto, $this->correo_cliente, $this->telefono_cliente, $this->direccion_cliente, $this->id_cliente);
+        $params = array($this->nombre_cliente, $this->apellido_cliente, $this->foto, $this->dui_cliente, $this->correo_cliente, $this->telefono_cliente, $this->genero, $this->afiliado, $this->direccion_cliente,  $this->usuario_publico, $this->acceso,  $this->id_cliente);
         return Database::executeRow($sql, $params);
     }
 
@@ -110,7 +111,7 @@ class CustomerQueries
     {
         $sql = 'DELETE FROM cliente
                 WHERE id_cliente = ?';
-        $params = array($this->id);
+        $params = array($this->id_cliente);
         return Database::executeRow($sql, $params);
     }
 }

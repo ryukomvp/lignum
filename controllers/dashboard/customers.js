@@ -1,5 +1,5 @@
 // Constantes para completar las rutas de la API.
-const CLIENTE_API = 'business/dashboard/customers.php';
+const CLIENTE_API = 'business/dashboard/customer.php';
 const GENERO_API = 'business/dashboard/gender.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('search-form');
@@ -69,7 +69,7 @@ async function fillTable(form = null) {
     // Se verifica la acción a realizar.
     (form) ? action = 'search' : action = 'readAll';
     // Petición para obtener los registros disponibles.
-    const JSON = await dataFetch(PRODUCTO_API, action, form);
+    const JSON = await dataFetch(CLIENTE_API, action, form);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
         // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
@@ -92,13 +92,13 @@ async function fillTable(form = null) {
                     <td>${row.usuario_publico}</td>
                     <td><i class="material-icons">${icon_acceso}</i></td>
                     <td>
-                        <a onclick="openUpdate(${row.id_cliente})" class="waves-effect waves-light btn tooltipped"
-                            data-position="top" data-tooltip="Editar"><i class="material-icons">create</i>
+                        <a onclick="openUpdate(${row.id_usuario_privado})" class="btn waves-effect tooltipped" data-tooltip="Actualizar">
+                            <i class="material-icons">edit</i>
                         </a>
                     </td>
                     <td>
-                        <a onclick="openDelete(${row.id_cliente})" class="waves-effect waves-light btn tooltipped"
-                            data-position="top" data-tooltip="Eliminar"><i class="material-icons">delete</i>
+                        <a onclick="openDelete(${row.id_usuario_privado})" class="btn waves-effect tooltipped"
+                            data-tooltip="Eliminar"><i class="material-icons">delete</i>
                         </a>
                     </td>
                 </tr>
@@ -150,6 +150,8 @@ async function openUpdate(id) {
         SAVE_FORM.reset();
         // Se asigna el título para la caja de diálogo (modal).
         MODAL_TITLE.textContent = 'Actualizar cliente';
+        // Se establece el campo de archivo como opcional.
+        document.getElementById('archivo').required = false;
         // Se inicializan los campos del formulario.
         document.getElementById('id').value = JSON.dataset.id_cliente;
         document.getElementById('nombre').value = JSON.dataset.nombre_cliente;
@@ -189,7 +191,7 @@ async function openDelete(id) {
     if (RESPONSE) {
         // Se define una constante tipo objeto con los datos del registro seleccionado.
         const FORM = new FormData();
-        FORM.append('id_cliente', id_cliente);
+        FORM.append('id_cliente', id);
         // Petición para eliminar el registro seleccionado.
         const JSON = await dataFetch(CLIENTE_API, 'delete', FORM);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
