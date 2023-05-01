@@ -62,10 +62,8 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Seleccione un proveedor';
                 } elseif (!$products->setProveedor($_POST['proveedor'])) {
                     $result['exception'] = 'Proveedor incorrecta';
-                } elseif (!isset($_POST['estado'])) {
-                    $result['exception'] = 'Seleccione un estado';
-                } elseif (!$products->setEstado($_POST['estado'])? 1 : 0) {
-                    $result['exception'] = 'Estado incorrecta';
+                } elseif (!$products->setEstado(isset($_POST['estado']) ? 1 : 0)) {
+                    $result['exception'] = 'Estado incorrecto';
                 } elseif (!$products->setExistencia($_POST['existencia'])) {
                     $result['exception'] = 'existencia incorrecto';
                 } elseif (!is_uploaded_file($_FILES['archivo']['tmp_name'])) {
@@ -117,7 +115,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Seleccione un material';
                 } elseif (!$products->setProveedor($_POST['proveedor'])) {
                     $result['exception'] = 'Seleccione un proveedor';
-                } elseif (!$products->setEstado(isset($_POST['estado']))) {
+                } elseif (!$products->setEstado(isset($_POST['estado']) ? 1 : 0)) {
                     $result['exception'] = 'Estado incorrecto';
                 } elseif (!$products->setExistencia($_POST['existencia'])) {
                     $result['exception'] = 'existencia incorrecto';

@@ -83,12 +83,13 @@ async function fillTable(form = null) {
             <div class="col s10 m3">
               <div class="card">
                 <div class="card-image waves-effect waves-block waves-light">
-                   <img src="${SERVER_URL}images/productos/${row.foto}" class="activator" >  
+                   <img src="${SERVER_URL}images/products/${row.foto}" class="activator" >  
                 </div>
                 <div class="card-content">
-                  <span class="card-title activator grey-text text-darken-4">${row.nombre_producto}</span>
+                  <h3 class="card-title activator grey-text text-darken-4">${row.nombre_producto}</h3>
                     <div class="modal-footerD">
-                    <p>${row.descripcion_producto}</p>
+                    <span>Codigo: ${row.codigo_producto}</span>
+                    <h5>$ ${row.precio_producto}</h5>
                     </div>
 
                     <div class ="card-action">
@@ -158,12 +159,15 @@ async function openUpdate(id) {
         // Se inicializan los campos del formulario.
         document.getElementById('id').value = JSON.dataset.id_producto;
         document.getElementById('nombre').value = JSON.dataset.nombre_producto;
-        document.getElementById('precio').value = JSON.dataset.precio_producto;
         document.getElementById('descripcion').value = JSON.dataset.descripcion_producto;
+        document.getElementById('precio').value = JSON.dataset.precio_producto;
+        document.getElementById('codigo').value = JSON.dataset.codigo_producto;
+        document.getElementById('dimensiones').value = JSON.dataset.dimensiones;
+        document.getElementById('existencia').value = JSON.dataset.cantidad_existencias;
         fillSelect(CATEGORIES_API, 'readAll', 'categoria', JSON.dataset.id_categoria);
         fillSelect(MATERIALS_API, 'readAll', 'tipo_material', JSON.dataset.id_tipo_material);
         fillSelect(SUPPLIERS_API, 'readAll', 'proveedor', JSON.dataset.id_proveedor);
-        if (JSON.dataset.estado_producto) {
+        if (JSON.dataset.estado) {
             document.getElementById('estado').checked = true;
         } else {
             document.getElementById('estado').checked = false;
@@ -186,7 +190,7 @@ async function openDelete(id) {
     if (RESPONSE) {
         // Se define una constante tipo objeto con los datos del registro seleccionado.
         const FORM = new FormData();
-        FORM.append('id_prooducto', id);
+        FORM.append('id_producto', id);
         // Petición para eliminar el registro seleccionado.
         const JSON = await dataFetch(PRODUCTO_API, 'delete', FORM);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.

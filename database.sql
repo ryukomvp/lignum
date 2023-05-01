@@ -32,11 +32,6 @@ CREATE TABLE estado_pedido(
   estado_pedido varchar(30)
 );
 
-CREATE TABLE estado_producto(
-  id_estado_producto serial not null PRIMARY KEY,
-  estado_producto varchar(30)
-);
-
 CREATE TABLE estado_usuario(
   id_estado_usuario serial not null PRIMARY KEY,
   estado_usuario varchar(30)
@@ -122,13 +117,13 @@ CREATE TABLE producto(
 	foto varchar not null,
 	descripcion_producto varchar(120) not null,
 	precio_producto float not null,
+	estado boolean not null,
 
 	codigo_producto varchar(10) not null,
 	dimensiones varchar(100) not null,
 	id_categoria int not null,
 	id_tipo_material int not null,
 	id_proveedor int not null,
-	id_estado_producto int not null,
 	cantidad_existencias int not null,
 	
 	
@@ -247,10 +242,6 @@ VALUES	('Anulado'),
 		('En revisión'),
 		('Procesando');
 
-INSERT INTO estado_producto(estado_producto)
-VALUES	('En existencia'),
-		('Agotado');
-
 INSERT INTO estado_usuario(estado_usuario)
 VALUES	('Activo'),
 		('Inactivo'),
@@ -315,7 +306,7 @@ VALUES ('jfuch', 'djaiAPS', 1, 1, 1),
 	   ('mhoneywood', 'KjaVSA1', 9, 3, 1),
 	   ('lmccoy', 'KLSo123', 10, 2, 2);
 
-INSERT INTO producto(nombre_producto, foto, descripcion_producto, precio_producto, codigo_producto, dimensiones, id_categoria, id_tipo_material, id_proveedor, id_estado_producto, cantidad_existencias)
+INSERT INTO producto(nombre_producto, foto, descripcion_producto, precio_producto, codigo_producto, dimensiones, id_categoria, id_tipo_material, id_proveedor, estado, cantidad_existencias)
 VALUES ('Mesa de centro', 'foto', 'Mesa pequeña de centro', 95.00, 'MC201AS2', '9x9', 5, 2, 1, 1, 10),
        ('Mueble para televisor', 'foto', 'Mueble para televisor', 80.00, 'TVA2003P', '14x10', 5, 1, 1, 1, 15),
 	   ('Mesa de comedor', 'foto', 'Mesa grande para comedor', 125.00, 'PSAO0123', '20x15', 5, 1, 1, 2, 0),
@@ -558,7 +549,6 @@ SET id_categoria = 2
 FROM detalle_pedido d
 WHERE p.id_producto = d.id_producto 
 AND id_tipo_material = 1 AND id_estado_producto = 1;
-
 -- Alec
 DELETE producto p
 FROM detalle_pedido d

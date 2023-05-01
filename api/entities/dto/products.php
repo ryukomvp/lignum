@@ -19,7 +19,7 @@ class Products extends ProductsQueries
     protected $proveedor = null;
     protected $estado = null;
     protected $existencia = null;
-    protected $ruta = '../../images/productos/';
+    protected $ruta = '../../images/products/';
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -97,7 +97,7 @@ class Products extends ProductsQueries
     public function setCategoria($value)
     {
         if (Validator::validateNaturalNumber($value)) {
-            $this->estado = $value;
+            $this->categoria = $value;
             return true;
         } else {
             return false;
@@ -173,9 +173,29 @@ class Products extends ProductsQueries
         return $this->precio;
     }
 
+    public function getCodigo()
+    {
+        return $this->codigo;
+    }
+   
+    public function getDimensiones()
+    {
+        return $this->dimensiones;
+    }
+    
     public function getCategoria()
     {
         return $this->categoria;
+    }
+
+    public function getMaterial()
+    {
+        return $this->material;
+    }
+
+    public function getProveedor()
+    {
+        return $this->proveedor;
     }
 
     public function getEstado()
@@ -183,6 +203,11 @@ class Products extends ProductsQueries
         return $this->estado;
     }
 
+    public function getExistencia()
+    {
+        return $this->existencia;
+    }
+    
     public function getRuta()
     {
         return $this->ruta;
