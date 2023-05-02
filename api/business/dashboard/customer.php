@@ -16,7 +16,7 @@ if (isset($_GET['action'])) {
             case 'readAll':
                 if ($result['dataset'] = $cliente->readAll()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                    // $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
@@ -67,9 +67,9 @@ if (isset($_GET['action'])) {
                 } elseif ($cliente->createRow()) {
                     $result['status'] = 1;
                     if (Validator::saveFile($_FILES['archivo'], $cliente->getRuta(), $cliente->getFoto())) {
-                        $result['message'] = 'Producto creado correctamente';
+                        $result['message'] = 'Cliente creado correctamente';
                     } else {
-                        $result['message'] = 'Producto creado pero no se guardó la imagen';
+                        $result['message'] = 'Cliente creado pero no se guardó la imagen';
                     }
                 } else {
                     $result['exception'] = Database::getException();;

@@ -66,7 +66,7 @@ CREATE TABLE valoracion(
 	id_valoracion serial not null PRIMARY KEY,
 	puntaje int null,
 	comentario varchar null,
-	id_detalle_pedido int not null
+	id_detalle_pedido int not null,
 	estado boolean DEFAULT true not null
 );
 
@@ -121,10 +121,12 @@ CREATE TABLE usuario_privado(
 CREATE TABLE inventario(
 	id_inventario serial not null PRIMARY KEY,
 	codigo_inventario varchar(10) not null,
-	cantidad_entrada int not null,
+	cantidad_entrante int not null,
 	fecha_entrada date not null,
-	id_proveedor int not null
-)
+	id_producto int not null,
+
+	CONSTRAINT codigo_inventario_unique UNIQUE (codigo_inventario)
+);
 
 ALTER TABLE cliente
 ADD CONSTRAINT cliente_genero_fkey FOREIGN KEY (id_genero)
@@ -147,5 +149,5 @@ ADD CONSTRAINT pedido_valoracion_fkey FOREIGN KEY (id_detalle_pedido)
 REFERENCES detalle_pedido(id_detalle_pedido);
 
 ALTER TABLE inventario
-ADD CONSTRAINT inventario_proveedor_fkey FOREIGN KEY(id_proveedor)
-REFERENCES proveedor(id_proveedor)
+ADD CONSTRAINT inventario_producto_fkey FOREIGN KEY(id_producto)
+REFERENCES producto(id_producto)

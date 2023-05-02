@@ -203,6 +203,11 @@ class Customer extends CustomerQueries
         return $this->afiliado;
     }
 
+    public function getDireccionCliente()
+    {
+        return $this->direccion_cliente;
+    }
+
     public function getUsuarioPublico()
     {
         return $this->usuario_publico;
