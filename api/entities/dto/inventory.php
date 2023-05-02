@@ -27,7 +27,7 @@ class Inventory extends InventoryQueries
 
     public function setCodigoInventario($value)
     {
-        if (Validator::validateAlphabetic($value, 1, 10)) {
+        if (Validator::validateString($value, 1, 10)) {
             $this->codigo_inventario = $value;
             return true;
         } else {

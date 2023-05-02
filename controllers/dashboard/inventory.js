@@ -114,6 +114,8 @@ function openCreate() {
     SAVE_FORM.reset();
     // Se asigna título a la caja de diálogo.
     MODAL_TITLE.textContent = 'Crear entrada en inventario';
+    // Se cargan los cmb
+    fillSelect(PRODUCT_API, 'readAll', 'producto');
 }
 
 /*
@@ -124,7 +126,7 @@ function openCreate() {
 async function openUpdate(id) {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
-    FORM.append('id_usuario_privado', id);
+    FORM.append('id_inventario', id);
     // Petición para obtener los datos del registro solicitado.
     const JSON = await dataFetch(INVENTORY_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
@@ -140,7 +142,7 @@ async function openUpdate(id) {
         document.getElementById('codigo').value = JSON.dataset.codigo_inventario;
         document.getElementById('cantidad').value = JSON.dataset.cantidad_entrante;
         document.getElementById('fecha').value = JSON.dataset.fecha_entrada;
-        fillSelect(PRODUCT_API, 'readAll', 'categoria', JSON.dataset.id_producto);
+        fillSelect(PRODUCT_API, 'readAll', 'producto', JSON.dataset.id_producto);
         // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
         M.updateTextFields();
     } else {
