@@ -6,7 +6,7 @@ if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
     // Se instancia la clase correspondiente.
-    $cliente = new Customer;
+    $customer = new Customer;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null, 'dataset' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
@@ -14,7 +14,7 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readAll':
-                if ($result['dataset'] = $cliente->readAll()) {
+                if ($result['dataset'] = $customer->readAll()) {
                     $result['status'] = 1;
                     // $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
                 } elseif (Database::getException()) {
@@ -27,7 +27,7 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if ($_POST['search'] == '') {
                     $result['exception'] = 'Ingrese un valor para buscar';
-                } elseif ($result['dataset'] = $cliente->searchRows($_POST['search'])) {
+                } elseif ($result['dataset'] = $customer->searchRows($_POST['search'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' coincidencias';
                 } elseif (Database::getException()) {
@@ -38,35 +38,35 @@ if (isset($_GET['action'])) {
                 break;
             case 'create':
                 $_POST = Validator::validateForm($_POST);
-                if (!$cliente->setNombreCliente($_POST['nombre'])) {
+                if (!$customer->setNombreCliente($_POST['nombre'])) {
                     $result['exception'] = 'Nombre incorrecto';
-                } elseif (!$cliente->setApellidoCliente($_POST['apellido'])) {
+                } elseif (!$customer->setApellidoCliente($_POST['apellido'])) {
                     $result['exception'] = 'Apellido incorrecta';
                 } elseif (!is_uploaded_file($_FILES['archivo']['tmp_name'])) {
                     $result['exception'] = 'Seleccione una imagen';
-                } elseif (!$cliente->setFoto($_FILES['archivo'])) {
+                } elseif (!$customer->setFoto($_FILES['archivo'])) {
                     $result['exception'] = Validator::getFileError();
-                } elseif (!$cliente->setDuiCliente($_POST['dui'])) {
+                } elseif (!$customer->setDuiCliente($_POST['dui'])) {
                     $result['exception'] = 'DUI incorrecto';
-                } elseif (!$cliente->setCorreoCliente($_POST['correo'])) {
+                } elseif (!$customer->setCorreoCliente($_POST['correo'])) {
                     $result['exception'] = 'Correo incorrecta';
-                } elseif (!$cliente->setTelefonoCliente($_POST['telefono'])) {
+                } elseif (!$customer->setTelefonoCliente($_POST['telefono'])) {
                     $result['exception'] = 'Teléfono incorrecta';
                 } elseif (!isset($_POST['genero'])) {
                     $result['exception'] = 'Seleccione una genero';
-                } elseif (!$cliente->setGenero($_POST['genero'])) {
+                } elseif (!$customer->setGenero($_POST['genero'])) {
                     $result['exception'] = 'Genero incorrecto';
-                } elseif (!$cliente->setDireccionCliente($_POST['direccion'])) {
+                } elseif (!$customer->setDireccionCliente($_POST['direccion'])) {
                     $result['exception'] = 'Dirección incorrecta';
-                } elseif (!$cliente->setUsuarioPublico($_POST['usuario'])) {
+                } elseif (!$customer->setUsuarioPublico($_POST['usuario'])) {
                     $result['exception'] = 'Usuario incorrecto';
                 } elseif ($_POST['clave'] != $_POST['confirmar']) {
                     $result['exception'] = 'Claves diferentes';
-                } elseif (!$cliente->setClave($_POST['clave'])) {
+                } elseif (!$customer->setClave($_POST['clave'])) {
                     $result['exception'] = Validator::getPasswordError();
-                } elseif ($cliente->createRow()) {
+                } elseif ($customer->createRow()) {
                     $result['status'] = 1;
-                    if (Validator::saveFile($_FILES['archivo'], $cliente->getRuta(), $cliente->getFoto())) {
+                    if (Validator::saveFile($_FILES['archivo'], $customer->getRuta(), $customer->getFoto())) {
                         $result['message'] = 'Cliente creado correctamente';
                     } else {
                         $result['message'] = 'Cliente creado pero no se guardó la imagen';
@@ -76,9 +76,9 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOne':
-                if (!$cliente->setIdCliente($_POST['id_cliente'])) {
+                if (!$customer->setIdCliente($_POST['id_cliente'])) {
                     $result['exception'] = 'Cliente incorrecto';
-                } elseif ($result['dataset'] = $cliente->readOne()) {
+                } elseif ($result['dataset'] = $customer->readOne()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -88,53 +88,58 @@ if (isset($_GET['action'])) {
                 break;
             case 'update':
                 $_POST = Validator::validateForm($_POST);
-                if (!$cliente->setIdCliente($_POST['id'])) {
+                if (!$customer->setIdCliente($_POST['id'])) {
                     $result['exception'] = 'Cliente incorrecto';
-                } elseif (!$cliente->setNombreCliente($_POST['nombre'])) {
-                    $result['exception'] = 'Nombre incorrecto';
-                } elseif (!$cliente->setApellidoCliente($_POST['apellido'])) {
-                    $result['exception'] = 'Apellido incorrecta';
-                } elseif (!is_uploaded_file($_FILES['archivo']['tmp_name'])) {
-                    $result['exception'] = 'Seleccione una imagen';
-                } elseif (!$cliente->setFoto($_FILES['archivo'])) {
-                    $result['exception'] = Validator::getFileError();
-                } elseif (!$cliente->setDuiCliente($_POST['dui'])) {
-                    $result['exception'] = 'DUI incorrecto';
-                } elseif (!$cliente->setCorreoCliente($_POST['correo'])) {
-                    $result['exception'] = 'Correo incorrecta';
-                } elseif (!$cliente->setTelefonoCliente($_POST['telefono'])) {
-                    $result['exception'] = 'Teléfono incorrecta';
-                } elseif (!isset($_POST['genero'])) {
-                    $result['exception'] = 'Seleccione una genero';
-                } elseif (!$cliente->setGenero($_POST['genero'])) {
+                } elseif (!$data = $customer->readOne()) {
+                    $result['exception'] = 'Cliente inexistente';
+                } elseif (!$customer->setNombreCliente($_POST['nombre'])) {
+                    $result['exception'] = 'Nombres incorrecto';
+                } elseif (!$customer->setApellidoCliente($_POST['apellido'])) {
+                    $result['exception'] = 'Apellidos incorrecta';
+                } elseif (!$customer->setDuiCliente($_POST['dui'])) {
+                    $result['exception'] = 'Dui incorrecto';
+                } elseif (!$customer->setCorreoCliente($_POST['correo'])) {
+                    $result['exception'] = 'Correo incorrecto';
+                } elseif (!$customer->setTelefonoCliente($_POST['telefono'])) {
+                    $result['exception'] = 'Teléfono incorrecto';
+                } elseif (!$customer->setGenero($_POST['genero'])) {
                     $result['exception'] = 'Genero incorrecto';
-                } elseif (!$cliente->setDireccionCliente($_POST['direccion'])) {
-                    $result['exception'] = 'Dirección incorrecta';
-                } elseif (!$cliente->setUsuarioPublico($_POST['usuario'])) {
+                } elseif (!$customer->setAfiliado(isset($_POST['afiliado']) ? 1 : 0)) {
+                    $result['exception'] = 'Afiliado incorrecto';
+                } elseif (!$customer->setDireccionCliente($_POST['direccion'])) {
+                    $result['exception'] = 'Direccion incorrecta';
+                } elseif (!$customer->setUsuarioPublico($_POST['usuario'])) {
                     $result['exception'] = 'Usuario incorrecto';
-                } elseif ($_POST['clave'] != $_POST['confirmar']) {
-                    $result['exception'] = 'Claves diferentes';
-                } elseif (!$cliente->setClave($_POST['clave'])) {
-                    $result['exception'] = Validator::getPasswordError();
-                } elseif ($cliente->updateRow()) {
+                } elseif (!$customer->setAcceso(isset($_POST['acceso']) ? 1 : 0)) {
+                    $result['exception'] = 'acceso incorrecto';
+                } elseif (!is_uploaded_file($_FILES['archivo']['tmp_name'])) {
+                    if ($customer->updateRow($data['foto'])) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Cliente modificado correctamente';
+                    } else {
+                        $result['exception'] = Database::getException();
+                    }
+                } elseif (!$customer->setFoto($_FILES['archivo'])) {
+                    $result['exception'] = Validator::getFileError();
+                } elseif ($customer->updateRow($data['foto'])) {
                     $result['status'] = 1;
-                    if (Validator::saveFile($_FILES['archivo'], $cliente->getRuta(), $cliente->getFoto())) {
+                    if (Validator::saveFile($_FILES['archivo'], $customer->getRuta(), $customer->getFoto())) {
                         $result['message'] = 'Cliente modificado correctamente';
                     } else {
                         $result['message'] = 'Cliente modificado pero no se guardó la imagen';
                     }
                 } else {
-                    $result['exception'] = Database::getException();;
+                    $result['exception'] = Database::getException();
                 }
                 break;
             case 'delete':
-                if (!$cliente->setIdCliente($_POST['id_cliente'])) {
+                if (!$customer->setIdCliente($_POST['id_cliente'])) {
                     $result['exception'] = 'Cliente incorrecto';
-                } elseif (!$data = $cliente->readOne()) {
+                } elseif (!$data = $customer->readOne()) {
                     $result['exception'] = 'Cliente inexistente';
-                } elseif ($cliente->deleteRow()) {
+                } elseif ($customer->deleteRow()) {
                     $result['status'] = 1;
-                    if (Validator::deleteFile($cliente->getRuta(), $data['foto'])) {
+                    if (Validator::deleteFile($customer->getRuta(), $data['foto'])) {
                         $result['message'] = 'Cliente eliminado correctamente';
                     } else {
                         $result['message'] = 'Cliente eliminado pero no se borró la imagen';

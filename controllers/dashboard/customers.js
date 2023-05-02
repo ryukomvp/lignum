@@ -1,6 +1,6 @@
 // Constantes para completar las rutas de la API.
-const CLIENTE_API = 'business/dashboard/customer.php';
-const GENERO_API = 'business/dashboard/gender.php';
+const CUSTOMER_API = 'business/dashboard/customer.php';
+const GENDER_API = 'business/dashboard/gender.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('search-form');
 // Constante para establecer el formulario de guardar.
@@ -42,7 +42,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
     // Petición para guardar los datos del formulario.
-    const JSON = await dataFetch(CLIENTE_API, action, FORM);
+    const JSON = await dataFetch(CUSTOMER_API, action, FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
         // Se carga nuevamente la tabla para visualizar los cambios.
@@ -67,7 +67,7 @@ async function fillTable(form = null) {
     // Se verifica la acción a realizar.
     (form) ? action = 'search' : action = 'readAll';
     // Petición para obtener los registros disponibles.
-    const JSON = await dataFetch(CLIENTE_API, action, form);
+    const JSON = await dataFetch(CUSTOMER_API, action, form);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
         // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
@@ -124,7 +124,7 @@ function openCreate() {
     // Se asigna el título a la caja de diálogo.
     MODAL_TITLE.textContent = 'Crear cliente';
     // Llamada a la función para llenar el select del formulario. Se encuentra en el archivo components.js
-    fillSelect(GENERO_API, 'readAll', 'genero');
+    fillSelect(GENDER_API, 'readAll', 'genero');
 }
 
 /*
@@ -137,7 +137,7 @@ async function openUpdate(id) {
     const FORM = new FormData();
     FORM.append('id_cliente', id);
     // Petición para obtener los datos del registro solicitado.
-    const JSON = await dataFetch(CLIENTE_API, 'readOne', FORM);
+    const JSON = await dataFetch(CUSTOMER_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
         // Se abre la caja de diálogo que contiene el formulario.
@@ -148,6 +148,8 @@ async function openUpdate(id) {
         MODAL_TITLE.textContent = 'Actualizar cliente';
         // Se establece el campo de archivo como opcional.
         document.getElementById('archivo').required = false;
+        document.getElementById('clave').required = false;
+        document.getElementById('confirmar').required = false;
         // Se inicializan los campos del formulario.
         document.getElementById('id').value = JSON.dataset.id_cliente;
         document.getElementById('nombre').value = JSON.dataset.nombre_cliente;
@@ -155,14 +157,14 @@ async function openUpdate(id) {
         document.getElementById('dui').value = JSON.dataset.dui_cliente;
         document.getElementById('correo').value = JSON.dataset.correo_cliente;
         document.getElementById('telefono').value = JSON.dataset.telefono_cliente;
-        fillSelect(GENERO_API, 'readAll', 'genero', JSON.dataset.id_genero);
+        fillSelect(GENDER_API, 'readAll', 'genero', JSON.dataset.id_genero);
         if (JSON.dataset.afiliado) {
             document.getElementById('afiliado').checked = true;
         } else {
             document.getElementById('afiliado').checked = false;
         }
         document.getElementById('direccion').value = JSON.dataset.direccion_cliente;
-        document.getElementById('usuario_publico').value = JSON.dataset.usuario_publico;
+        document.getElementById('usuario').value = JSON.dataset.usuario_publico;
         if (JSON.dataset.acceso) {
             document.getElementById('acceso').checked = true;
         } else {
@@ -189,7 +191,7 @@ async function openDelete(id) {
         const FORM = new FormData();
         FORM.append('id_cliente', id);
         // Petición para eliminar el registro seleccionado.
-        const JSON = await dataFetch(CLIENTE_API, 'delete', FORM);
+        const JSON = await dataFetch(CUSTOMER_API, 'delete', FORM);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
         if (JSON.status) {
             // Se carga nuevamente la tabla para visualizar los cambios.

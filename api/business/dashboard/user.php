@@ -6,7 +6,7 @@ if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
     // Se instancia la clase correspondiente.
-    $usuario = new User;
+    $user = new User;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'dataset' => null, 'username' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
@@ -31,7 +31,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readProfile':
-                if ($result['dataset'] = $usuario->readProfile()) {
+                if ($result['dataset'] = $user->readProfile()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -41,21 +41,21 @@ if (isset($_GET['action'])) {
                 break;
             case 'editProfile':
                 $_POST = Validator::validateForm($_POST);
-                if (!$usuario->setNombreEmpleado($_POST['nombres'])) {
+                if (!$user->setNombreEmpleado($_POST['nombres'])) {
                     $result['exception'] = 'Nombres incorrectos';
-                } elseif (!$usuario->setApellidoEmpleado($_POST['apellidos'])) {
+                } elseif (!$user->setApellidoEmpleado($_POST['apellidos'])) {
                     $result['exception'] = 'Apellidos incorrectos';
-                } elseif (!$usuario->setDuiEmpleado($_POST['dui'])) {
+                } elseif (!$user->setDuiEmpleado($_POST['dui'])) {
                     $result['exception'] = 'DUI incorrecto';
-                } elseif (!$usuario->setCorreoEmpleado($_POST['correo'])) {
+                } elseif (!$user->setCorreoEmpleado($_POST['correo'])) {
                     $result['exception'] = 'Teléfono incorrecto';
-                } elseif (!$usuario->setTelefonoEmpleado($_POST['telefono'])) {
+                } elseif (!$user->setTelefonoEmpleado($_POST['telefono'])) {
                     $result['exception'] = 'Teléfono incorrecto';
-                } elseif (!$usuario->setUsuarioPrivado($_POST['usuario'])) {
+                } elseif (!$user->setUsuarioPrivado($_POST['usuario'])) {
                     $result['exception'] = 'Usuario incorrecto';
-                } elseif ($usuario->editProfile()) {
+                } elseif ($user->editProfile()) {
                     $result['status'] = 1;
-                    $_SESSION['usuario_privado'] = $usuario->getUsuarioPrivado();
+                    $_SESSION['usuario_privado'] = $user->getUsuarioPrivado();
                     $result['message'] = 'Perfil modificado correctamente';
                 } else {
                     $result['exception'] = Database::getException();
@@ -63,15 +63,15 @@ if (isset($_GET['action'])) {
                 break;
             case 'changePassword':
                 $_POST = Validator::validateForm($_POST);
-                if (!$usuario->setId($_SESSION['id_usuario_privado'])) {
+                if (!$user->setId($_SESSION['id_usuario_privado'])) {
                     $result['exception'] = 'Usuario incorrecto';
-                } elseif (!$usuario->checkPassword($_POST['actual'])) {
+                } elseif (!$user->checkPassword($_POST['actual'])) {
                     $result['exception'] = 'Clave actual incorrecta';
                 } elseif ($_POST['nueva'] != $_POST['confirmar']) {
                     $result['exception'] = 'Claves nuevas diferentes';
-                } elseif (!$usuario->setClave($_POST['nueva'])) {
+                } elseif (!$user->setClave($_POST['nueva'])) {
                     $result['exception'] = Validator::getPasswordError();
-                } elseif ($usuario->changePassword()) {
+                } elseif ($user->changePassword()) {
                     $result['status'] = 1;
                     $result['message'] = 'Contraseña cambiada correctamente';
                 } else {
@@ -79,7 +79,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readAll':
-                if ($result['dataset'] = $usuario->readAll()) {
+                if ($result['dataset'] = $user->readAll()) {
                     $result['status'] = 1;
                     // $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
                 } elseif (Database::getException()) {
@@ -92,7 +92,7 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if ($_POST['search'] == '') {
                     $result['exception'] = 'Ingrese un valor para buscar';
-                } elseif ($result['dataset'] = $usuario->searchRows($_POST['search'])) {
+                } elseif ($result['dataset'] = $user->searchRows($_POST['search'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' coincidencias';
                 } elseif (Database::getException()) {
@@ -103,23 +103,23 @@ if (isset($_GET['action'])) {
                 break;
             case 'create':
                 $_POST = Validator::validateForm($_POST);
-                if (!$usuario->setNombreEmpleado($_POST['nombres'])) {
+                if (!$user->setNombreEmpleado($_POST['nombres'])) {
                     $result['exception'] = 'Nombres incorrectos';
-                } elseif (!$usuario->setApellidoEmpleado($_POST['apellidos'])) {
+                } elseif (!$user->setApellidoEmpleado($_POST['apellidos'])) {
                     $result['exception'] = 'Apellidos incorrectos';
-                } elseif (!$usuario->setDuiEmpleado($_POST['dui'])) {
+                } elseif (!$user->setDuiEmpleado($_POST['dui'])) {
                     $result['exception'] = 'DUI incorrecto';
-                } elseif (!$usuario->setCorreoEmpleado($_POST['correo'])) {
+                } elseif (!$user->setCorreoEmpleado($_POST['correo'])) {
                     $result['exception'] = 'Correo incorrecto';
-                } elseif (!$usuario->setTelefonoEmpleado($_POST['telefono'])) {
+                } elseif (!$user->setTelefonoEmpleado($_POST['telefono'])) {
                     $result['exception'] = 'Teléfono incorrecto';
-                } elseif (!$usuario->setUsuarioPrivado($_POST['usuario'])) {
+                } elseif (!$user->setUsuarioPrivado($_POST['usuario'])) {
                     $result['exception'] = 'Usuario incorrecto';
                 } elseif ($_POST['clave'] != $_POST['confirmar']) {
                     $result['exception'] = 'Claves diferentes';
-                } elseif (!$usuario->setClave($_POST['clave'])) {
+                } elseif (!$user->setClave($_POST['clave'])) {
                     $result['exception'] = Validator::getPasswordError();
-                } elseif ($usuario->createRow()) {
+                } elseif ($user->createRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Usuario creado correctamente';
                 } else {
@@ -127,9 +127,9 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOne':
-                if (!$usuario->setId($_POST['id_usuario_privado'])) {
+                if (!$user->setId($_POST['id_usuario_privado'])) {
                     $result['exception'] = 'Usuario incorrecto';
-                } elseif ($result['dataset'] = $usuario->readOne()) {
+                } elseif ($result['dataset'] = $user->readOne()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -139,25 +139,25 @@ if (isset($_GET['action'])) {
                 break;
             case 'update':
                 $_POST = Validator::validateForm($_POST);
-                if (!$usuario->setId($_POST['id'])) {
+                if (!$user->setId($_POST['id'])) {
                     $result['exception'] = 'Usuario incorrecto';
-                } elseif (!$usuario->readOne()) {
+                } elseif (!$user->readOne()) {
                     $result['exception'] = 'Usuario inexistente';
-                } elseif (!$usuario->setNombreEmpleado($_POST['nombres'])) {
+                } elseif (!$user->setNombreEmpleado($_POST['nombres'])) {
                     $result['exception'] = 'Nombres incorrectos';
-                } elseif (!$usuario->setApellidoEmpleado($_POST['apellidos'])) {
+                } elseif (!$user->setApellidoEmpleado($_POST['apellidos'])) {
                     $result['exception'] = 'Apellidos incorrectos';
-                } elseif (!$usuario->setDuiEmpleado($_POST['dui'])) {
+                } elseif (!$user->setDuiEmpleado($_POST['dui'])) {
                     $result['exception'] = 'Dui incorrecto';
-                } elseif (!$usuario->setCorreoEmpleado($_POST['correo'])) {
+                } elseif (!$user->setCorreoEmpleado($_POST['correo'])) {
                     $result['exception'] = 'Correo incorrecto';
-                } elseif (!$usuario->setTelefonoEmpleado($_POST['telefono'])) {
+                } elseif (!$user->setTelefonoEmpleado($_POST['telefono'])) {
                     $result['exception'] = 'Teléfono incorrecto';
-                } elseif (!$usuario->setUsuarioPrivado($_POST['usuario'])) {
+                } elseif (!$user->setUsuarioPrivado($_POST['usuario'])) {
                     $result['exception'] = 'Usuario incorrecto';
-                } elseif (!$usuario->setAcceso(isset($_POST['acceso']) ? 1 : 0)) {
+                } elseif (!$user->setAcceso(isset($_POST['acceso']) ? 1 : 0)) {
                     $result['exception'] = 'Acceso incorrecto';
-                } elseif ($usuario->updateRow()) {
+                } elseif ($user->updateRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Usuario modificado correctamente';
                 } else {
@@ -167,11 +167,11 @@ if (isset($_GET['action'])) {
             case 'delete':
                 if ($_POST['id_usuario_privado'] == $_SESSION['id_usuario_privado']) {
                     $result['exception'] = 'No se puede eliminar a sí mismo';
-                } elseif (!$usuario->setId($_POST['id_usuario_privado'])) {
+                } elseif (!$user->setId($_POST['id_usuario_privado'])) {
                     $result['exception'] = 'Usuario incorrecto';
-                } elseif (!$usuario->readOne()) {
+                } elseif (!$user->readOne()) {
                     $result['exception'] = 'Usuario inexistente';
-                } elseif ($usuario->deleteRow()) {
+                } elseif ($user->deleteRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Usuario eliminado correctamente';
                 } else {
@@ -185,7 +185,7 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando el administrador no ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readUsers':
-                if ($usuario->readAll()) {
+                if ($user->readAll()) {
                     $result['status'] = 1;
                     $result['message'] = 'Debe autenticarse para ingresar';
                 } else {
@@ -194,21 +194,21 @@ if (isset($_GET['action'])) {
                 break;
             case 'signup':
                 $_POST = Validator::validateForm($_POST);
-                if (!$usuario->setNombreEmpleado($_POST['nombres'])) {
+                if (!$user->setNombreEmpleado($_POST['nombres'])) {
                     $result['exception'] = 'Nombres incorrectos';
-                } elseif (!$usuario->setApellidoEmpleado($_POST['apellidos'])) {
+                } elseif (!$user->setApellidoEmpleado($_POST['apellidos'])) {
                     $result['exception'] = 'Apellidos incorrectos';
-                } elseif (!$usuario->setDuiEmpleado($_POST['dui'])) {
+                } elseif (!$user->setDuiEmpleado($_POST['dui'])) {
                     $result['exception'] = 'DUI incorrecto';
-                } elseif (!$usuario->setCorreoEmpleado($_POST['correo'])) {
+                } elseif (!$user->setCorreoEmpleado($_POST['correo'])) {
                     $result['exception'] = 'Correo incorrecto';
-                } elseif (!$usuario->setTelefonoEmpleado($_POST['telefono'])) {
+                } elseif (!$user->setTelefonoEmpleado($_POST['telefono'])) {
                     $result['exception'] = 'Telefono incorrecto';
-                } elseif (!$usuario->setUsuarioPrivado($_POST['usuario-pu'])) {
+                } elseif (!$user->setUsuarioPrivado($_POST['usuario-pu'])) {
                     $result['exception'] = 'Usuario incorrecto';
-                } elseif (!$usuario->setClave($_POST['clave-pu'])) {
+                } elseif (!$user->setClave($_POST['clave-pu'])) {
                     $result['exception'] = Validator::getPasswordError();
-                } elseif ($usuario->createRow()) {
+                } elseif ($user->createRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Usuario registrado correctamente';
                 } else {
@@ -217,36 +217,22 @@ if (isset($_GET['action'])) {
                 break;
             case 'login':
                 $_POST = Validator::validateForm($_POST);
-                if (!$usuario->checkUser($_POST['usuario'])) {
+                if (!$user->checkUser($_POST['usuario'])) {
                     $result['exception'] = 'Usuario incorrecto';
-                } elseif ($usuario->checkPassword($_POST['clave'])) {
+                } elseif ($user->checkPassword($_POST['clave'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';
-                    $_SESSION['id_usuario_privado'] = $usuario->getId();
-                    $_SESSION['usuario_privado'] = $usuario->getUsuarioPrivado();
+                    $_SESSION['id_usuario_privado'] = $user->getId();
+                    $_SESSION['usuario_privado'] = $user->getUsuarioPrivado();
                 } else {
                     $result['exception'] = 'Clave incorrecta';
                 }
                 break;
             default:
                 $result['exception'] = 'Acción no disponible fuera de la sesión';
-                // case 'login':
-                //     $_POST = Validator::validateForm($_POST);
-                //     if (!$usuario->checkUser($_POST['usuario'])) {
-                //         $result['exception'] = 'Usuario incorrecto';
-                //     } elseif (!$usuario->getAcceso()) {
-                //         $result['exception'] = 'La cuenta ha sido desactivada';
-                //     } elseif ($usuario->checkPassword($_POST['clave'])) {
-                //         $result['status'] = 1;
-                //         $result['message'] = 'Autenticación correcta';
-                //         $_SESSION['id_usuario_privado'] = $usuario->getId();
-                //         $_SESSION['usuario_privado'] = $usuario->getUsuarioPrivado();
-                //     } else {
-                //         $result['exception'] = 'Clave incorrecta';
-                //     }
-                //     break;
-                // default:
-                //     $result['exception'] = 'Acción no disponible fuera de la sesión';
+                // elseif (!$user->getAcceso()) {
+                //     $result['exception'] = 'La cuenta ha sido desactivada';
+                // }
         }
     }
     // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.

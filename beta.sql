@@ -82,7 +82,7 @@ CREATE TABLE producto(
 	id_categoria int not null,
 	id_tipo_material int not null,
 	id_proveedor int not null,
-	estado_producto boolean DEFAULT true not null,
+	estado boolean DEFAULT true not null,
 	cantidad_existencias int not null,
 	
 	
