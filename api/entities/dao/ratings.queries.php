@@ -15,8 +15,8 @@ class RatingsQueries
         INNER JOIN detalle_pedido a ON d.id_pedido = a.id_pedido
         INNER JOIN producto p ON a.id_producto = p.id_producto
         INNER JOIN valoracion v ON a.id_detalle_pedido = v.id_detalle_pedido
-        WHERE p.nombre_producto ILIKE ?';
-        $params = array("%$value%");
+        WHERE p.nombre_producto ILIKE ? OR CAST (a.fecha as varchar) ILIKE ?';
+        $params = array("%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
 
