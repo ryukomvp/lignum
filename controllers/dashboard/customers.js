@@ -90,12 +90,12 @@ async function fillTable(form = null) {
                     <td>${row.usuario_publico}</td>
                     <td><i class="material-icons">${icon_acceso}</i></td>
                     <td>
-                        <a onclick="openUpdate(${row.id_usuario_privado})" class="btn waves-effect tooltipped" data-tooltip="Actualizar">
+                        <a onclick="openUpdate(${row.id_cliente})" class="btn waves-effect tooltipped" data-tooltip="Actualizar">
                             <i class="material-icons">edit</i>
                         </a>
                     </td>
                     <td>
-                        <a onclick="openDelete(${row.id_usuario_privado})" class="btn waves-effect tooltipped"
+                        <a onclick="openDelete(${row.id_cliente})" class="btn waves-effect tooltipped"
                             data-tooltip="Eliminar"><i class="material-icons">delete</i>
                         </a>
                     </td>
@@ -161,7 +161,7 @@ async function openUpdate(id) {
         } else {
             document.getElementById('afiliado').checked = false;
         }
-        document.getElementById('direccion_cliente').value = JSON.dataset.direccion_cliente;
+        document.getElementById('direccion').value = JSON.dataset.direccion_cliente;
         document.getElementById('usuario_publico').value = JSON.dataset.usuario_publico;
         if (JSON.dataset.acceso) {
             document.getElementById('acceso').checked = true;
