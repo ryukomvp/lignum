@@ -91,15 +91,14 @@ async function fillTable(form = null) {
                     <span>Codigo: ${row.codigo_producto}</span>
                     <h5>$ ${row.precio_producto}</h5>
                     </div>
-
                     <div class ="card-action">
-                    <button onclick="openUpdate(${row.id_producto})" class="btn blue tooltipped" data-tooltip="Actualizar">
-                    <i class="material-icons">mode_edit</i>
-                </button>
-                    <button onclick="openDelete(${row.id_producto})" class="btn red tooltipped" data-tooltip="Eliminar">
-                            <i class="material-icons">delete</i>
+                        <button onclick="openUpdate(${row.id_producto})" class="btn blue tooltipped" data-tooltip="Actualizar">
+                        <i class="material-icons">mode_edit</i>
                         </button>
-                        </div>
+                        <button onclick="openDelete(${row.id_producto})" class="btn red tooltipped" data-tooltip="Eliminar">
+                                <i class="material-icons">delete</i>
+                        </button>
+                    </div>
                 </div>
               </div>
             </div>

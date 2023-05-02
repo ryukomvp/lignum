@@ -90,16 +90,13 @@ i.icon-blue {
     color: blue;
 }
 
-.card-action{
-    display: flex;
-    flex-direction: column;
-    align-items: right;
-    justify-content: right;
-    margin: auto;
-}
+
 .container-ratings{
     display: flex;
     flex-direction: row;
+    width: 100%;
+    border-radius: 10%;
+    height: fit-content;
 }
 
 
@@ -137,3 +134,52 @@ i.icon-blue {
     width: 100px;
     background-color: #66bb6a;
 }
+
+#ratings{
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+}
+
+#contenedor{
+    width: auto;
+    background-color: rgb(217, 218, 218);
+    height: fit-content;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 5px  5px  0 rgb(88, 88, 88) ;
+  }
+
+  #arriba{
+    display: flex;
+    height: 75%;
+    flex-direction: column;
+  }
+
+  #abajo{
+    display: flex;
+    flex-direction: column;
+  }
+
+  #horizontal {
+    display: flex;
+    flex-direction: row;
+    height: 15%;
+  }
+
+  .left_align {
+    flex-basis: 75%;
+    display: flex;
+    justify-self: left;
+  }
+
+  .right_align{
+    display: flex;
+    text-align: right;
+    justify-content: right;
+  }
+
+  h1{
+    margin-top: 4px;
+  }

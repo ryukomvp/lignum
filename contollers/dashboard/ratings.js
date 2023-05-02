@@ -8,7 +8,6 @@ const SAVE_FORM = document.getElementById('save-form');
 const MODAL_TITLE = document.getElementById('modal-title');
 // Constantes para establecer el contenido de la tabla.
 const RATINGS = document.getElementById('ratings');
-const RECORDS = document.getElementById('records');
 // Constante tipo objeto para establecer las opciones del componente Modal.
 const OPTIONS = {
     dismissible: false
@@ -36,22 +35,28 @@ SEARCH_FORM.addEventListener('submit', (event) => {
 
 // Método manejador de eventos para cuando se envía el formulario de guardar.
 SAVE_FORM.addEventListener('submit', async (event) => {
-    // Se evita recargar la página web después de enviar el formulario.
-    event.preventDefault();
-    // Se verifica la acción a realizar.
-    (document.getElementById('id').value) ? action = 'update' : action = 'create';
-    // Constante tipo objeto con los datos del formulario.
-    const FORM = new FormData(SAVE_FORM);
-    // Petición para guardar los datos del formulario.
-    const JSON = await dataFetch(RATINGS_API, action, FORM);
+    // Se define un objeto con los datos del registro seleccionado.
+    const FORM = new FormData();
+    FORM.append('id', id);
+    // Petición para obtener los datos del registro solicitado.
+    const JSON = await dataFetch(RATINGS_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
-        // Se carga nuevamente la tabla para visualizar los cambios.
-        fillTable();
-        // Se cierra la caja de diálogo.
-        SAVE_MODAL.close();
-        // Se muestra un mensaje de éxito.
-        sweetAlert(1, JSON.message, true);
+        // Se abre la caja de diálogo que contiene el formulario.
+        SAVE_MODAL.open();
+        // Se restauran los elementos del formulario.
+        SAVE_FORM.reset();
+        // Se asigna el título para la caja de diálogo (modal).
+        MODAL_TITLE.textContent = 'Actualizar valoracion';
+        // Se inicializan los campos del formulario.
+        document.getElementById('id').value = JSON.dataset.id_valoracion;
+        if (JSON.dataset.estado) {
+            document.getElementById('estado').checked = true;
+        } else {
+            document.getElementById('estado').checked = false;
+        }
+        // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
+        M.updateTextFields();
     } else {
         sweetAlert(2, JSON.exception, false);
     }
@@ -65,7 +70,6 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 async function fillTable(form = null) {
     // Se inicializa el contenido de la tabla.
     RATINGS.innerHTML = '';
-    RECORDS.textContent = '';
     // Se verifica la acción a realizar.
     (form) ? action = 'search' : action = 'readAll';
     // Petición para obtener los registros disponibles.
@@ -80,198 +84,170 @@ async function fillTable(form = null) {
                 case 1:
                     RATINGS.innerHTML += `
          
-                    <div class="container-ratings">
-             <div class="row">
-                <div class="col s12 m15">
-                    <div class="card horizontal">
-                        <div class="card-stacked">
-                            <div class="card-content">
-                                <h4>${row.nombre_producto}</h4>
-                                <p>${row.comentario}.</p>
+                <div id="contenedor">
+                    <div id="arriba">
+                        <h5>${row.nombre_producto}</h5>
+                        <p>${row.comentario}</p>
+                    </div>
+                    <div id="abajo">
+                        <div id="horizontal">
+                            <div class="left_align">
+                                <h6 id = "fecha">Fecha: ${row.fecha}<h6>
+                                <h6 id ="cliente">Cliente: ${row.nombre_cliente}<h6>
                             </div>
-                            <div class="container-ratings">
-                                <div class="left_align">
-                                    <h5 id="fecha">${row.fecha}</h5>
-                                    <h6 id="cliente">${row.nombre_cliente}</h6>
-
-                                    <div class="card-action">
-                                        <button onclick="openUpdate(${row.id_valoracion})" class="btn blue tooltipped" data-tooltip="Actualizar">
-                                        <i class="material-icons">mode_edit</i>
-                                        </button>
-                                    </div>   
-                                </div>
-                                <div class="right_align">
-                                    <img class="icons_ratings"src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                                    <img class="icons_ratings"src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
-                                    <img class="icons_ratings"src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
-                                    <img class="icons_ratings"src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
-                                    <img class="icons_ratings"src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">                  
-                                </div>
-                            </div>   
+                            <div class="right_align">
+                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
+                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
+                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
+                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
+                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
+                            </div>
+                        </div>
+                        <div class="boton-ratings">
+                            <button type="submit" class=" waves-effect waves-green btn-flat guardar tooltipped" data-tooltip="Guardar">
+                                <i class="material-icons">save</i>
+                            </button>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
        
             `;
                     break;
                 case 2:
                     RATINGS.innerHTML += `
          
-                    <div class="container-ratings">
-             <div class="row">
-                <div class="col s12 m15">
-                    <div class="card horizontal">
-                        <div class="card-stacked">
-                            <div class="card-content">
-                                <h4>${row.nombre_producto}</h4>
-                                <p>${row.comentario}.</p>
+                <div id="contenedor">
+                    <div id="arriba">
+                        <h5>${row.nombre_producto}</h5>
+                        <p>${row.comentario}</p>
+                    </div>
+                    <div id="abajo">
+                        <div id="horizontal">
+                            <div class="left_align">
+                                <h6 id = "fecha">Fecha: ${row.fecha}<h6>
+                                <h6 id ="cliente">Cliente: ${row.nombre_cliente}<h6>
                             </div>
-                            <div class="container-ratings">
-                                <div class="left_align">
-                                    <h5 id="fecha">${row.fecha}</h5>
-                                    <h6 id="cliente">${row.nombre_cliente}</h6>
-
-                                    <div class="card-action">
-                                        <button onclick="openUpdate(${row.id_valoracion})" class="btn blue tooltipped" data-tooltip="Actualizar">
-                                        <i class="material-icons">mode_edit</i>
-                                        </button>
-                                    </div>   
-                                </div>
-                                <div class="right_align">
-                                    <img class="icons_ratings"src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                                    <img class="icons_ratings"src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                                    <img class="icons_ratings"src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
-                                    <img class="icons_ratings"src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
-                                    <img class="icons_ratings"src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">                  
-                                </div>
-                            </div>   
+                            <div class="right_align">
+                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
+                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
+                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
+                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
+                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
+                            </div>
+                        </div>
+                        <div class="boton-ratings">
+                            <button type="submit" class=" waves-effect waves-green btn-flat guardar tooltipped"data-tooltip="Guardar">
+                                <i class="material-icons">save</i>
+                            </button>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-       
             `;
 
                     break;
                 case 3:
                     RATINGS.innerHTML += `
          
-                    <div class="container-ratings">
-                    <div class="row">
-                       <div class="col s12 m15">
-                           <div class="card horizontal">
-                               <div class="card-stacked">
-                                   <div class="card-content">
-                                       <h4>${row.nombre_producto}</h4>
-                                       <p>${row.comentario}.</p>
-                                   </div>
-                                   <div class="container-ratings">
-                                       <div class="left_align">
-                                           <h5 id="fecha">${row.fecha}</h5>
-                                           <h6 id="cliente">${row.nombre_cliente}</h6>
-       
-                                           <div class="card-action">
-                                               <button onclick="openUpdate(${row.id_valoracion})" class="btn blue tooltipped" data-tooltip="Actualizar">
-                                               <i class="material-icons">mode_edit</i>
-                                               </button>
-                                           </div>   
-                                       </div>
-                                       <div class="right_align">
-                                           <img class="icons_ratings"src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                                           <img class="icons_ratings"src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                                           <img class="icons_ratings"src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                                           <img class="icons_ratings"src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
-                                           <img class="icons_ratings"src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">                  
-                                       </div>
-                                   </div>   
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </div>
+                <div id="contenedor">
+                    <div id="arriba">
+                        <h5>${row.nombre_producto}</h5>
+                        <p>${row.comentario}</p>
+                    </div>
+                    <div id="abajo">
+                        <div id="horizontal">
+                            <div class="left_align">
+                                <h6 id = "fecha">Fecha: ${row.fecha}<h6>
+                                <h6 id ="cliente">Cliente: ${row.nombre_cliente}<h6>
+                            </div>
+                            <div class="right_align">
+                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
+                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
+                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
+                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
+                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
+                            </div>
+                        </div>
+                        <div class="boton-ratings">
+                            <button type="submit" class=" waves-effect waves-green btn-flat guardar tooltipped"data-tooltip="Guardar">
+                                <i class="material-icons">save</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
        
             `;
                     break;
                 case 4:
                     RATINGS.innerHTML += `
 
-                    <div class="container-ratings">
-                    <div class="row">
-                       <div class="col s12 m15">
-                           <div class="card horizontal">
-                               <div class="card-stacked">
-                                   <div class="card-content">
-                                       <h4>${row.nombre_producto}</h4>
-                                       <p>${row.comentario}.</p>
-                                   </div>
-                                   <div class="container-ratings">
-                                       <div class="left_align">
-                                           <h5 id="fecha">${row.fecha}</h5>
-                                           <h6 id="cliente">${row.nombre_cliente}</h6>
-       
-                                           <div class="card-action">
-                                               <button onclick="openUpdate(${row.id_valoracion})" class="btn blue tooltipped" data-tooltip="Actualizar">
-                                               <i class="material-icons">mode_edit</i>
-                                               </button>
-                                           </div>   
-                                       </div>
-                                       <div class="right_align">
-                                           <img class="icons_ratings"src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                                           <img class="icons_ratings"src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                                           <img class="icons_ratings"src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                                           <img class="icons_ratings"src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                                           <img class="icons_ratings"src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">                  
-                                       </div>
-                                   </div>   
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-               
+                <div id="contenedor">
+                    <div id="arriba">
+                        <h5>${row.nombre_producto}</h5>
+                        <p>${row.comentario}</p>
+                    </div>
+                    <div id="abajo">
+                        <div id="horizontal">
+                            <div class="left_align">
+                                <h6 id = "fecha">Fecha: ${row.fecha}<h6>
+                                <h6 id ="cliente">Cliente: ${row.nombre_cliente}<h6>
+                            </div>
+                            <div class="right_align">
+                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
+                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
+                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
+                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
+                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
+                            </div>
+                        </div>
+                        <div class="boton-ratings">
+                            <button type="submit" class=" waves-effect waves-green btn-flat guardar tooltipped"data-tooltip="Guardar">
+                                <i class="material-icons">save</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
                     `;
 
                     break;
                 case 5:
                     RATINGS.innerHTML += `
                     
-         <div class="container-ratings">
-             <div class="row">
-                <div class="col s12 m15">
-                    <div class="card horizontal">
-                        <div class="card-stacked">
-                            <div class="card-content">
-                                <h4>${row.nombre_producto}</h4>
-                                <p>${row.comentario}.</p>
+                <div id="contenedor">
+                    <div id="arriba"> 
+                            <h6 id = "fecha">Fecha: ${row.fecha}<h6>
+                            <p>${row.comentario}</p>
+                    </div>
+                    <div id="abajo">
+                        <div id="horizontal">
+                            <div class="left_align">
+                                <h6 id = "fecha">Fecha: ${row.fecha}<h6>
+                                <h6 id ="cliente">Cliente: ${row.nombre_cliente}<h6>
                             </div>
-                            <div class="container-ratings">
-                                <div class="left_align">
-                                    <h5 id="fecha">${row.fecha}</h5>
-                                    <h6 id="cliente">${row.nombre_cliente}</h6>
-
-                                    <div class="card-action">
-                                        <button onclick="openUpdate(${row.id_valoracion})" class="btn blue tooltipped" data-tooltip="Actualizar">
-                                        <i class="material-icons">mode_edit</i>
-                                        </button>
-                                    </div>   
+                            <div class="right_align">
+                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
+                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
+                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
+                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
+                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
+                            </div>
+                        </div>
+                        <p>
+                                <div class="switch">
+                                    <span>Estado:</span>
+                                    <label>
+                                        <input id="estado" type="checkbox" name="estado" checked>
+                                        <span class="lever"></span>
+                                    </label>
                                 </div>
-                                <div class="right_align">
-                                    <img class="icons_ratings"src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                                    <img class="icons_ratings"src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                                    <img class="icons_ratings"src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                                    <img class="icons_ratings"src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                                    <img class="icons_ratings"src="../../resources/img/iconos/Icono-estrella-llena-30.png">                  
-                                </div>
-                            </div>   
+                        </p>
+                        <div class="boton-ratings">
+                            <button type="submit" class=" waves-effect waves-green btn-flat guardar tooltipped"data-tooltip="Guardar">
+                                <i class="material-icons">save</i>
+                            </button>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-               
+                    
                     `;
                     break;
                 default:
@@ -288,43 +264,7 @@ async function fillTable(form = null) {
 }
 
 
-/*
-*   Función asíncrona para preparar el formulario al momento de actualizar un registro.
-*   Parámetros: id (identificador del registro seleccionado).
-*   Retorno: ninguno.
-*/
-async function openUpdate(id) {
-    // Se define un objeto con los datos del registro seleccionado.
-    const FORM = new FormData();
-    FORM.append('id', id);
-    // Petición para obtener los datos del registro solicitado.
-    const JSON = await dataFetch(RATINGS_API, 'readOne', FORM);
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-    if (JSON.status) {
-        // Se abre la caja de diálogo que contiene el formulario.
-        SAVE_MODAL.open();
-        // Se restauran los elementos del formulario.
-        SAVE_FORM.reset();
-        // Se asigna el título para la caja de diálogo (modal).
-        MODAL_TITLE.textContent = 'Actualizar valoracion';
-        // Se inicializan los campos del formulario.
-        document.getElementById('id').value = JSON.dataset.id_valoracion;
-        document.getElementById('puntaje').value = JSON.dataset.puntaje;
-        document.getElementById('comentario').value = JSON.dataset.comentario;
-        document.getElementById('producto').value = JSON.dataset.nombre_producto;
-        document.getElementById('cliente').value = JSON.dataset.usuario_publico;
-        document.getElementById('fecha').value = JSON.dateset.fecha
-        // if (JSON.dataset.estado) {
-        //     document.getElementById('estado').checked = true;
-        // } else {
-        //     document.getElementById('estado').checked = false;
-        // }
-        // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
-        M.updateTextFields();
-    } else {
-        sweetAlert(2, JSON.exception, false);
-    }
-}
+
 /*
 *   Función asíncrona para eliminar un registro.
 *   Parámetros: id (identificador del registro seleccionado).
