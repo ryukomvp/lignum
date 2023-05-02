@@ -82,8 +82,8 @@ class CustomerQueries
 
     public function readAll()
     {
-        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, id_genero, afiliado, direccion_cliente, usuario_publico, acceso
-                FROM cliente
+        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, genero, afiliado, direccion_cliente, usuario_publico, acceso
+                FROM cliente INNER JOIN genero USING(id_genero)
                 ORDER BY id_cliente';
         return Database::getRows($sql);
     }

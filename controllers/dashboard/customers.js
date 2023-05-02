@@ -84,7 +84,7 @@ async function fillTable(form = null) {
                     <td>${row.dui_cliente}</td>
                     <td>${row.correo_cliente}</td>
                     <td>${row.telefono_cliente}</td>
-                    <td>${row.id_genero}</td>
+                    <td>${row.genero}</td>
                     <td><i class="material-icons">${icon_afiliado}</i></td>
                     <td>${row.direccion_cliente}</td>
                     <td>${row.usuario_publico}</td>
