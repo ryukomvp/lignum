@@ -40,9 +40,9 @@ class RatingQueries
 
     public function readOne()
     {
-       $sql = 'SELECT id_producto, nombre_producto, foto , descripcion_producto, precio_producto, codigo_producto, dimensiones, id_categoria, id_tipo_material, id_proveedor, estado, cantidad_existencias
-               FROM producto
-               WHERE id_producto = ?';
+       $sql = 'SELECT id_valoracion, estado
+               FROM valoracion
+               WHERE id_valoracion= ?';
         $params = array($this->id);
         return Database::getRows($sql, $params);
     }

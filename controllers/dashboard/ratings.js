@@ -43,7 +43,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
     // Petición para guardar los datos del formulario.
-    const JSON = await dataFetch(PRODUCTO_API, action, FORM);
+    const JSON = await dataFetch(RATINGS_API, action, FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
         // Se carga nuevamente la tabla para visualizar los cambios.
@@ -267,13 +267,13 @@ async function fillTable(form = null) {
                                 <div class="switch">
                                     <span>Estado:</span>
                                     <label>
-                                        <input id="estado" type="checkbox" name="estado" checked>
+                                        <input  id="estado" type="checkbox" name="estado" checked>
                                         <span class="lever"></span>
                                     </label>
                                 </div>
                         </p>
                         <div class="boton-ratings">
-                            <button onclick="openUpdate(${row.id_valoracion})" class=" waves-effect waves-green btn-flat tooltipped" data-tooltip="Guardar">
+                            <button onclick="openUpdate(${row.id_valoracion})" type = "submit" class=" waves-effect waves-green guardar btn-flat tooltipped" data-tooltip="Guardar">
                                 <i class="material-icons">save</i>
                             </button>
                         </div>
@@ -302,6 +302,7 @@ async function openUpdate(id) {
     // Petición para obtener los datos del registro solicitado.
     const JSON = await dataFetch(RATINGS_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    console.log(row.id_valoracion);
     if (JSON.status) {
         // Se abre la caja de diálogo que contiene el formulario.
         SAVE_MODAL.open();
@@ -309,6 +310,9 @@ async function openUpdate(id) {
         SAVE_FORM.reset();
         // Se inicializan los campos del formulario.
         document.getElementById('id').value = JSON.dataset.id_valoracion;
+        document.getElementById('puntaje').value = JSON.dataset.puntaje;
+        document.getElementById('comentario').value = JSON.dataset.comentario;
+        document.getElementById('pedido').value = JSON.dataset.id_detalle_pedido;
         if (JSON.dataset.estado) {
             document.getElementById('estado').checked = true;
         } else {
