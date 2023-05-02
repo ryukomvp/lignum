@@ -57,7 +57,7 @@
                         <div class="nav-wrapper">
                             <form id="search-form">
                                 <div class="input-field">
-                                    <input char id="search" type="search" required>
+                                    <input char id="search" name="search" type="search" required>
                                     <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                                     <i class="material-icons">close</i>
                                 </div>
@@ -69,6 +69,7 @@
         </div>
         
         <div class="row" id="ratings"></div>
+        <div class="row" id="records"></div>
 
         <!-- Ventana modal Detalle de pedido -->
         <div id="save-modal" class="modal">
@@ -98,6 +99,27 @@
             </div>
         </div>
     </main>
+
+    <div id="save-modal" class="modal">
+        <div class="modal-content">
+            <div class="row">
+                <h4 id="modal-title"></h4>
+                <form class="col s12" method="post" id="save-form" enctype="multipart/form-data">
+                    <input class="hide" type="number" id="id" name="id">
+                    <div class="row">
+                        <div class="modal-footer ">
+                            <button type="submit" class=" waves-effect waves-green btn-flat guardar tooltipped"
+                                data-tooltip="Guardar"><i class="material-icons">save</i></button>
+                            <button type="close"
+                                class="modal-close waves-effect waves-green btn-flat salir tooltipped"
+                                data-tooltip="Regresar"><i class="material-icons">exit_to_app</i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Footer -->
     <footer class="page-footer bottom-0">

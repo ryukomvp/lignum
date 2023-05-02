@@ -61,9 +61,9 @@ if (isset($_GET['action'])) {
             case 'update':
                 $_POST = Validator::validateForm($_POST);
                 if (!$ratings->setId($_POST['id'])) {
-                    $result['exception'] = 'Categoría incorrecta';
+                    $result['exception'] = 'valoracion incorrecta';
                 } elseif (!$data = $ratings->readOne()) {
-                    $result['exception'] = 'Categoría inexistente';
+                    $result['exception'] = 'valoracion inexistente';
                 } elseif (!$products->setEstado(isset($_POST['estado']) ? 1 : 0)) {
                     $result['exception'] = 'Estado incorrecto';
                 } elseif ($ratings->updateRow()) {
