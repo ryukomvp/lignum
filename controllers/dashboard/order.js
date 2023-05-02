@@ -101,6 +101,8 @@ async function openUpdate(id_pedido){
        document.getElementById('descripcion');
        document.getElementById('cliente');
        document.getElementById('estado');
+       document.getElementById('direccion');
+       document.getElementById('fecha');
        fillSelect(PEDIDO_API, 'readAll');
        M.updateTextFields();
     }else{
