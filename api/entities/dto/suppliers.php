@@ -4,7 +4,7 @@ require_once('../../entities/dao/suppliers.queries.php');
 /*
 *	Clase para manejar la transferencia de datos de la entidad PRODUCTO.
 */
-class Suppliers extends SuppliersQueries
+class Supplier extends SupplierQueries
 {
     // Declaración de atributos (propiedades).
     protected $id = null;

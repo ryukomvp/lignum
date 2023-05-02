@@ -4,7 +4,7 @@ require_once('../../entities/dao/materials.queries.php');
 /*
 *	Clase para manejar la transferencia de datos de la entidad CATEGORIA.
 */
-class Materials extends MaterialsQueries
+class Material extends MaterialQueries
 {
     // Declaración de atributos (propiedades).
     protected $id = null;

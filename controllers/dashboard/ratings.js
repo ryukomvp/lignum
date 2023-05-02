@@ -294,7 +294,9 @@ async function fillTable(form = null) {
 }
 
 async function openUpdate(id) {
-    // Se define un objeto con los datos del registro seleccionado.
+    const RESPONSE = await confirmAction('¿Desea actualizar el estado de la valoracion?');
+    if (RESPONSE) {
+        // Se define un objeto con los datos del registro seleccionado.
     const FORM = new FormData();
     FORM.append('id', id);
     // Petición para obtener los datos del registro solicitado.
@@ -305,8 +307,6 @@ async function openUpdate(id) {
         SAVE_MODAL.open();
         // Se restauran los elementos del formulario.
         SAVE_FORM.reset();
-        // Se asigna el título para la caja de diálogo (modal).
-        MODAL_TITLE.textContent = '¿Estas seguro que deseas actualizarlo?';
         // Se inicializan los campos del formulario.
         document.getElementById('id').value = JSON.dataset.id_valoracion;
         if (JSON.dataset.estado) {
@@ -320,6 +320,8 @@ async function openUpdate(id) {
     } else {
         sweetAlert(2, JSON.exception, false);
     }
+    }
+    
 }
 
 /*

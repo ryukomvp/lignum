@@ -6,7 +6,7 @@ if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
     // Se instancia la clase correspondiente.
-    $materials = new Materials;
+    $material = new Material;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null, 'dataset' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
@@ -14,7 +14,7 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readAll':
-                if ($result['dataset'] =  $materials->readAll()) {
+                if ($result['dataset'] =  $material->readAll()) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen '.count($result['dataset']).' registros';
                 } elseif (Database::getException()) {
@@ -27,7 +27,7 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if ($_POST['search'] == '') {
                     $result['exception'] = 'Ingrese un valor para buscar';
-                } elseif ($result['dataset'] =  $materials->searchRows($_POST['search'])) {
+                } elseif ($result['dataset'] =  $material->searchRows($_POST['search'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen '.count($result['dataset']).' coincidencias';
                 } elseif (Database::getException()) {
@@ -38,9 +38,9 @@ if (isset($_GET['action'])) {
                 break;
             case 'create':
                 $_POST = Validator::validateForm($_POST);
-                if (! $materials->setNombre($_POST['nombre'])) {
+                if (! $material->setNombre($_POST['nombre'])) {
                     $result['exception'] = 'Nombre incorrecto';
-                }  elseif ( $materials->createRow()) {
+                }  elseif ( $material->createRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Material creado correctamente';
                 }else {
@@ -48,9 +48,9 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOne':
-                if (! $materials->setId($_POST['id'])) {
+                if (! $material->setId($_POST['id'])) {
                     $result['exception'] = 'Material incorrecta';
-                } elseif ($result['dataset'] =  $materials->readOne()) {
+                } elseif ($result['dataset'] =  $material->readOne()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -60,13 +60,13 @@ if (isset($_GET['action'])) {
                 break;
             case 'update':
                 $_POST = Validator::validateForm($_POST);
-                if (! $materials->setId($_POST['id'])) {
+                if (! $material->setId($_POST['id'])) {
                     $result['exception'] = 'Material incorrecta';
-                } elseif (!$data =  $materials->readOne()) {
+                } elseif (!$data =  $material->readOne()) {
                     $result['exception'] = 'Material inexistente';
-                } elseif (! $materials->setNombre($_POST['nombre'])) {
+                } elseif (! $material->setNombre($_POST['nombre'])) {
                     $result['exception'] = 'Nombre incorrecto';
-                } elseif ( $materials->updateRow()) {
+                } elseif ( $material->updateRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Material actualizada correctamente';
                 }else {
@@ -74,11 +74,11 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'delete':
-                if (! $materials->setId($_POST['id_tipo_material'])) {
+                if (! $material->setId($_POST['id_tipo_material'])) {
                     $result['exception'] = 'Material incorrecta';
-                } elseif (!$data =  $materials->readOne()) {
+                } elseif (!$data =  $material->readOne()) {
                     $result['exception'] = 'Material inexistente';
-                } elseif ( $materials->deleteRow()) {
+                } elseif ( $material->deleteRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Material eliminada correctamente';
                 }else {

@@ -4,7 +4,7 @@ require_once('../../entities/dao/categories.queries.php');
 /*
 *	Clase para manejar la transferencia de datos de la entidad CATEGORIA.
 */
-class Categories extends CategoriesQueries
+class Category extends CategoryQueries
 {
     // Declaración de atributos (propiedades).
     protected $id = null;

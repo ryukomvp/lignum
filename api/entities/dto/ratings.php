@@ -4,7 +4,7 @@ require_once('../../entities/dao/ratings.queries.php');
 /*
 *	Clase para manejar la transferencia de datos de la entidad CATEGORIA.
 */
-class Ratings extends RatingsQueries
+class Rating extends RatingQueries
 {
     // Declaración de atributos (propiedades).
     protected $id = null;
