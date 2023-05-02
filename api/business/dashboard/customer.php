@@ -76,7 +76,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOne':
-                if (!$cliente->setIdCliente($_POST['id'])) {
+                if (!$cliente->setIdCliente($_POST['id_cliente'])) {
                     $result['exception'] = 'Cliente incorrecto';
                 } elseif ($result['dataset'] = $cliente->readOne()) {
                     $result['status'] = 1;
@@ -116,12 +116,12 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Claves diferentes';
                 } elseif (!$cliente->setClave($_POST['clave'])) {
                     $result['exception'] = Validator::getPasswordError();
-                } elseif ($cliente->createRow()) {
+                } elseif ($cliente->updateRow()) {
                     $result['status'] = 1;
                     if (Validator::saveFile($_FILES['archivo'], $cliente->getRuta(), $cliente->getFoto())) {
-                        $result['message'] = 'Producto creado correctamente';
+                        $result['message'] = 'Cliente modificado correctamente';
                     } else {
-                        $result['message'] = 'Producto creado pero no se guardó la imagen';
+                        $result['message'] = 'Cliente modificado pero no se guardó la imagen';
                     }
                 } else {
                     $result['exception'] = Database::getException();;
@@ -143,20 +143,6 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 }
                 break;
-                // case 'cantidadProductosCategoria':
-                //     if ($result['dataset'] = $cliente->cantidadProductosCategoria()) {
-                //         $result['status'] = 1;
-                //     } else {
-                //         $result['exception'] = 'No hay datos disponibles';
-                //     }
-                //     break;
-                // case 'porcentajeProductosCategoria':
-                //     if ($result['dataset'] = $cliente->porcentajeProductosCategoria()) {
-                //         $result['status'] = 1;
-                //     } else {
-                //         $result['exception'] = 'No hay datos disponibles';
-                //     }
-                //     break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }

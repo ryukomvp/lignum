@@ -1,5 +1,7 @@
 // Constante para completar la ruta de la API.
 const INVENTORY_API = 'business/dashboard/inventory.php';
+// Constante para completar la ruta de la API.
+const PRODUCT_API = 'business/dashboard/products.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('search-form');
 // Constante para establecer el formulario de guardar.
@@ -73,7 +75,6 @@ async function fillTable(form = null) {
     if (JSON.status) {
         // Se recorre el conjunto de registros fila por fila.
         JSON.dataset.forEach(row => {
-            (row.acceso) ? icon = 'lock_open' : icon = 'lock_outline';
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TBODY_ROWS.innerHTML += `
                 <tr>
@@ -82,12 +83,12 @@ async function fillTable(form = null) {
                     <td>${row.fecha_entrada}</td>
                     <td>${row.id_producto}</td>
                     <td>
-                        <a onclick="openUpdate(${row.id_usuario_privado})" class="btn waves-effect tooltipped" data-tooltip="Actualizar">
+                        <a onclick="openUpdate(${row.id_inventario})" class="btn waves-effect tooltipped" data-tooltip="Actualizar">
                             <i class="material-icons">edit</i>
                         </a>
                     </td>
                     <td>
-                        <a onclick="openDelete(${row.id_usuario_privado})" class="btn waves-effect tooltipped"
+                        <a onclick="openDelete(${row.id_inventario})" class="btn waves-effect tooltipped"
                             data-tooltip="Eliminar"><i class="material-icons">delete</i>
                         </a>
                     </td>
@@ -125,7 +126,7 @@ async function openUpdate(id) {
     const FORM = new FormData();
     FORM.append('id_usuario_privado', id);
     // Petición para obtener los datos del registro solicitado.
-    const JSON = await dataFetch(USER_API, 'readOne', FORM);
+    const JSON = await dataFetch(INVENTORY_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
         // Se abre la caja de diálogo que contiene el formulario.
@@ -139,7 +140,7 @@ async function openUpdate(id) {
         document.getElementById('codigo').value = JSON.dataset.codigo_inventario;
         document.getElementById('cantidad').value = JSON.dataset.cantidad_entrante;
         document.getElementById('fecha').value = JSON.dataset.fecha_entrada;
-        fillSelect(CATEGORIA_API, 'readAll', 'categoria', JSON.dataset.id_producto);
+        fillSelect(PRODUCT_API, 'readAll', 'categoria', JSON.dataset.id_producto);
         // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
         M.updateTextFields();
     } else {
@@ -154,12 +155,12 @@ async function openUpdate(id) {
 */
 async function openDelete(id) {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
-    const RESPONSE = await confirmAction('¿Desea eliminar el usuario de forma permanente?');
+    const RESPONSE = await confirmAction('¿Desea eliminar el registro de forma permanente?');
     // Se verifica la respuesta del mensaje.
     if (RESPONSE) {
         // Se define una constante tipo objeto con los datos del registro seleccionado.
         const FORM = new FormData();
-        FORM.append('id_usuario_privado', id);
+        FORM.append('id_inventario', id);
         // Petición para eliminar el registro seleccionado.
         const JSON = await dataFetch(USER_API, 'delete', FORM);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
