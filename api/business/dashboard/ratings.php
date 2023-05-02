@@ -64,8 +64,8 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Categoría incorrecta';
                 } elseif (!$data = $ratings->readOne()) {
                     $result['exception'] = 'Categoría inexistente';
-                } elseif (!$ratings->setNombre($_POST['nombre'])) {
-                    $result['exception'] = 'Nombre incorrecto';
+                } elseif (!$products->setEstado(isset($_POST['estado']) ? 1 : 0)) {
+                    $result['exception'] = 'Estado incorrecto';
                 } elseif ($ratings->updateRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'categoria actualizada correctamente';

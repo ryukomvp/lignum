@@ -152,7 +152,8 @@ CREATE TABLE valoracion(
 	id_valoracion serial not null PRIMARY KEY,
 	puntaje int null,
 	comentario varchar null,
-	id_detalle_pedido int not null
+	id_detalle_pedido int not null,
+	estado boolean DEFAULT true not null
 );
 
 ALTER TABLE cliente

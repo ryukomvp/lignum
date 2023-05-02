@@ -48,14 +48,14 @@ class RatingsQueries
         return Database::getRows($sql, $params);
     }
 
-    // public function updateRow()
-    // {
-    //     $sql = 'UPDATE categoria
-    //             SET  categoria = ?
-    //             WHERE id_categoria = ?';
-    //     $params = array($this->nombre, $this->id);
-    //     return Database::executeRow($sql, $params);
-    // }
+    public function updateRow()
+    {
+        $sql = 'UPDATE valoracion
+                SET  estado = ?
+                WHERE id_valoracion = ?';
+        $params = array($this->estado, $this->id);
+        return Database::executeRow($sql, $params);
+    }
 
     // public function deleteRow()
     // {

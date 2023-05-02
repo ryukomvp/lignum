@@ -42,12 +42,6 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     const JSON = await dataFetch(RATINGS_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
-        // Se abre la caja de diálogo que contiene el formulario.
-        SAVE_MODAL.open();
-        // Se restauran los elementos del formulario.
-        SAVE_FORM.reset();
-        // Se asigna el título para la caja de diálogo (modal).
-        MODAL_TITLE.textContent = 'Actualizar valoracion';
         // Se inicializan los campos del formulario.
         document.getElementById('id').value = JSON.dataset.id_valoracion;
         if (JSON.dataset.estado) {
@@ -57,6 +51,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
         }
         // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
         M.updateTextFields();
+        console.log(JSON);
     } else {
         sweetAlert(2, JSON.exception, false);
     }
@@ -103,6 +98,15 @@ async function fillTable(form = null) {
                                 <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
                             </div>
                         </div>
+                        <p>
+                            <div class="switch">
+                                <span>Estado:</span>
+                                <label>
+                                    <input id="estado" type="checkbox" name="estado" checked>
+                                    <span class="lever"></span>
+                                </label>
+                            </div>
+                        </p>
                         <div class="boton-ratings">
                             <button type="submit" class=" waves-effect waves-green btn-flat guardar tooltipped" data-tooltip="Guardar">
                                 <i class="material-icons">save</i>
@@ -135,6 +139,15 @@ async function fillTable(form = null) {
                                 <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
                             </div>
                         </div>
+                         <p>
+                                <div class="switch">
+                                    <span>Estado:</span>
+                                    <label>
+                                        <input id="estado" type="checkbox" name="estado" checked>
+                                        <span class="lever"></span>
+                                    </label>
+                                </div>
+                        </p>
                         <div class="boton-ratings">
                             <button type="submit" class=" waves-effect waves-green btn-flat guardar tooltipped"data-tooltip="Guardar">
                                 <i class="material-icons">save</i>
@@ -167,6 +180,15 @@ async function fillTable(form = null) {
                                 <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
                             </div>
                         </div>
+                         <p>
+                            <div class="switch">
+                                <span>Estado:</span>
+                                <label>
+                                    <input id="estado" type="checkbox" name="estado" checked>
+                                    <span class="lever"></span>
+                                </label>
+                            </div>
+                        </p>
                         <div class="boton-ratings">
                             <button type="submit" class=" waves-effect waves-green btn-flat guardar tooltipped"data-tooltip="Guardar">
                                 <i class="material-icons">save</i>
@@ -199,6 +221,15 @@ async function fillTable(form = null) {
                                 <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
                             </div>
                         </div>
+                         <p>
+                            <div class="switch">
+                                <span>Estado:</span>
+                                <label>
+                                    <input id="estado" type="checkbox" name="estado" checked>
+                                    <span class="lever"></span>
+                                </label>
+                            </div>
+                        </p>
                         <div class="boton-ratings">
                             <button type="submit" class=" waves-effect waves-green btn-flat guardar tooltipped"data-tooltip="Guardar">
                                 <i class="material-icons">save</i>
@@ -256,8 +287,6 @@ async function fillTable(form = null) {
         });
         // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
         M.Tooltip.init(document.querySelectorAll('.tooltipped'));
-        // Se muestra un mensaje de acuerdo con el resultado.
-        RECORDS.textContent = JSON.message;
     } else {
         sweetAlert(4, JSON.exception, true);
     }

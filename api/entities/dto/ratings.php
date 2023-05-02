@@ -14,6 +14,7 @@ class Ratings extends RatingsQueries
     protected $fecha = null;
     protected $cliente = null;
     protected $pedido = null;
+    protected $estado = null;
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -88,6 +89,16 @@ class Ratings extends RatingsQueries
         }
     }
 
+    public function setEstado($value)
+    {
+        if (Validator::validateBoolean($value)) {
+            $this->estado = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /*
     *   Métodos para obtener valores de los atributos.
     */
@@ -96,8 +107,38 @@ class Ratings extends RatingsQueries
         return $this->id;
     }
 
-    public function getNombre()
+    public function getPuntaje()
     {
-        return $this->nombre;
+        return $this->puntaje;
+    }
+
+    public function getComentario()
+    {
+        return $this->comentario;
+    }
+
+    public function getProducto()
+    {
+        return $this->producto;
+    }
+
+    public function getFecha()
+    {
+        return $this->fecha;
+    }
+
+    public function getCliente()
+    {
+        return $this->cliente;
+    }
+
+    public function getPedido()
+    {
+        return $this->pedido;
+    }
+
+    public function getEstado()
+    {
+        return $this->estado;
     }
 }
