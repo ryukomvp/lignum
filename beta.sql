@@ -150,4 +150,104 @@ REFERENCES detalle_pedido(id_detalle_pedido);
 
 ALTER TABLE inventario
 ADD CONSTRAINT inventario_producto_fkey FOREIGN KEY(id_producto)
-REFERENCES producto(id_producto)
+REFERENCES producto(id_producto);
+
+INSERT INTO categoria(categoria)
+VALUES	('Cocina'),
+		('Gamer'),
+		('Jardin'),
+		('Oficina'),
+		('Sala de estar');
+
+INSERT INTO estado_pedido(estado_pedido)
+VALUES	('Anulado'),
+		('Completado'),
+		('En revisión'),
+		('Procesando');
+
+INSERT INTO genero(genero)
+VALUES	('Femenino'),
+		('Masculino');
+
+INSERT INTO tipo_material(tipo_material)
+VALUES	('Aglomerado'),
+		('Fibras de baja densidad'),
+		('Fibras de densidad media'),
+		('Fibras de alta densidad'),
+		('Madera contrachapada'),
+		('Virutas orientadas');
+
+		
+INSERT INTO cliente(nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, id_genero, direccion_cliente, usuario_publico, clave)
+VALUES  ('Robina', 'Bonniface' , 'foto', '76168-013', 'rbonniface0@ifeng.com', '8566-9159', 1, '0 Westport Trail', 'rbonniface0', 'QdNQFar'),
+        ('Judd', 'Drew' , 'foto', '23138-014', 'jdrew1@ed.gov', '2412-7332', 2, '44 Messerschmidt Plaza', 'jdrew1', 'RXSxcTWyD'),
+		('Gwyneth', 'Samsworth' , 'foto', '09123-224', 'gsamsworth2@accuweather.com', '7283-1345', 1, '6 Schurz Hill', 'gsamsworth2', 'BL7U44'),
+        ('Hillary', 'Alonso' , 'foto', '12122-312', 'halonso3@privacy.gov.au', '2312-9120', 2, '423 Pierstorff Avenue', 'halonso3', '6GFPKMEfvX'),
+		('Halli', 'Gorey' , 'foto', '72341-901', 'hgorey4@wikia.com', '0213-4561', 1, '3 American Ash Circle', 'hgorey4', 'uFr4LUgmpr'),
+		('Frank', 'Hemingway' , 'foto', '23455-134', 'fhemingway@yandex.com.ru', '1213-1752', 2, '8 Columbus Drive', 'fhemingw5', 'BtGRnqy'),
+		('Eddie', 'Low' , 'foto', '09213-661', 'elow@eyesearch.com', '1979-2123', 2, '669 Pennsylvania Lane', 'elow6', 'cZNxps'),
+		('Jim', 'Sorrel' , 'foto', '27031-309', 'jsorrel@slideshare.net', '1427-2134', 2, '45 High Crossing Center', 'jsorrel7', 'Yqe9H8Bq7'),
+		('Berton', 'Kivlin' , 'foto', '21034-123', 'bkivlin@gmail.com', '4321-3456', 2, '67609 Dapin Park', 'bkivlin8', '2D1XPXYxHRc7'),
+		('John', 'Garcia' , 'foto', '12453-121', 'jgarcia@gmail.com', '1234-1234', 2, '02037 Montana Way', 'jgarcia9', 'SVutvhE5R');
+
+INSERT INTO pedido (codigo_pedido, descripcion_pedido, id_cliente, id_estado_pedido)
+VALUES 	(1234567812, 'Mesa de centro de 9x9', 1, 4),
+       	(9855723656, 'Mueble para televisor 14x10', 2, 4),
+	   	(2463563234, 'Mesa de centro de 9x9', 3, 4),
+	  	(6332452635, 'Mesa de centro de 9x9', 4, 4),
+	   	(7656433577, 'Mesa de comedor de 20x15', 5, 4),
+	   	(9876245785, 'Escritorio pequeño de 10x5', 6, 4),
+	   	(3534635744, 'Escritorio de oficina de 10x15', 7, 4),
+	   	(8954565353, 'Gavetero pequeño de 10x5', 8, 4),
+	   	(7453546359, 'Mueble para televisor de 14x10', 9, 4),
+	   	(7458769098, 'Mesa de centro de 9x9, Escritorio pequeño de 10x5, Mueble para televisor de 14x10', 9, 4);
+
+INSERT INTO detalle_pedido (id_pedido, id_producto, precio_producto, cantidad, fecha)
+VALUES 	(1, 1, 95, 3, '2022-01-01'),
+       	(2, 2, 80, 1, '2022-01-05'),
+	   	(3, 1, 95, 5, '2022-01-10'),
+	   	(4, 1, 95, 2, '2022-01-15'),
+	   	(5, 3, 125, 3, '2022-01-20'),
+	   	(6, 4, 75, 3, '2022-01-25'),
+	   	(7, 5, 100, 3, '2022-02-01'),
+	   	(8, 6, 75, 3, '2022-02-05'),
+	   	(9, 2, 80, 3, '2022-02-10'),
+	   	(10, 1, 95, 3, '2022-12-15'),
+	   	(10, 4, 95, 3, '2022-12-15'),
+       	(10, 2, 95, 3, '2022-12-15');
+
+INSERT INTO producto(nombre_producto, foto, descripcion_producto, precio_producto, codigo_producto, dimensiones, id_categoria, id_tipo_material, id_proveedor, cantidad_existencias)
+VALUES 	('Mesa de centro', 'foto', 'Mesa pequeña de centro', 95.00, 'MC201AS2', '9x9', 5, 2, 1, 10),
+       	('Mueble para televisor', 'foto', 'Mueble para televisor', 80.00, 'TVA2003P', '14x10', 5, 1, 1, 15),
+	   	('Mesa de comedor', 'foto', 'Mesa grande para comedor', 125.00, 'PSAO0123', '20x15', 5, 1, 1, 0),
+		('Escritorio pequeño', 'foto', 'Escritorio pequeño', 75.00, 'OSD1PO2S', '10x5', 5, 3, 1, 10),
+	   	('Escritorio de oficina', 'foto', 'Escritorio de oficina', 100.00, 'ESC3IL12', '10x15', 4, 1, 1, 20),
+	  	('Gavetero pequeño', 'foto', 'Gavetero pequeño', 75.00, 'LOS12XKA', '10x5', 5, 1, 1, 20),
+	  	('Gavetero grande', 'foto', 'Gavetero grande', 85.00, 'OASD0123', '10x15', 5, 1, 1, 20),
+	   	('Silla', 'foto', 'Silla de madera', 60.00, 'ASDF0032', '5x5', 5, 2, 1, 0),
+	   	('Ropero', 'foto', 'Ropero de madera', 105.00, 'ALSJ0921', '20x20', 5, 1, 1, 10),
+	   	('Escalera', 'foto', 'Escalera de madera', 50.00, 'LADD0451', '20x5', 5, 2, 1, 15);
+
+INSERT INTO proveedor(nombre_proveedor, direccion_proveedor, correo_proveedor, telefono_proveedor)
+VALUES	('Weston Logging Co.', '9355 Blackbird Way', 'westonlogging@contact', '0381-0101'),
+		('Weston Logging Co.', '9355 Blackbird Way', 'westonlogging@contact', '0381-0101'),
+		('Weston Logging Co.', '9355 Blackbird Way', 'westonlogging@contact', '0381-0101'),
+		('Weston Logging Co.', '9355 Blackbird Way', 'westonlogging@contact', '0381-0101'),
+		('Weston Logging Co.', '9355 Blackbird Way', 'westonlogging@contact', '0381-0101'),
+		('Weston Logging Co.', '9355 Blackbird Way', 'westonlogging@contact', '0381-0101'),
+		('Weston Logging Co.', '9355 Blackbird Way', 'westonlogging@contact', '0381-0101'),
+		('Weston Logging Co.', '9355 Blackbird Way', 'westonlogging@contact', '0381-0101'),
+		('Weston Logging Co.', '9355 Blackbird Way', 'westonlogging@contact', '0381-0101'),
+       	('McAllen Hardware Store', '81 Grove Avenue', 'mcallenhardware@support', '2134-0312');
+
+INSERT INTO usuario_privado(nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, telefono_empleado, usuario_privado, clave)
+VALUES	('Daniel Alejandro', 'Hernández Figueroa', '06795006-2', 'daniel123hernandez15@gmail.com', '7053-7276' 'rookie', '$2y$10$23qci/810Kh1kXTSivFhEO4Lblnzjv4iPW3SzRaSNkIbmMe5cB6/G')
+		('Manya', 'Praundl', '20523865-6', 'mpraundl0@sphinn.com', '4925-3672', 'mpraundl0', '3hS1joaI6m'),
+		('Quinta', 'Knotton', '15075023-8', 'qknotton1@gmpg.org', '1805-1272', 'qknotton1', '9xCz9g'),
+		('Nanon', 'Stother', '03624448-7', 'nstother2@stanford.edu', '5675-9510', 'nstother2', '7Cn72Dql'),
+		('Ina', 'Calles', '12969091-0', 'icalles3@altervista.org', '7252-8782', 'icalles3', 'NsOxG5'),
+		('Roxine', 'Gravenall', '44228264-9', 'rgravenall4@123-reg.co.uk', '8422-9837', 'rgravenall4', 'PBzmOfrN'),
+		('Bianka', 'Keers', '37418417-0', 'bkeers5@fda.gov', '6910-2694', 'bkeers5', 'snX0IowZ'),
+		('Parrnell', 'Caress', '43023674-3', 'pcaress6@artisteer.com', '9787-7573', 'pcaress6','GJoEeWAVuaBE'),
+		('Myranda', 'Dehmel', '60768877-6', 'mdehmel7@furl.net', '2877-1107', 'mdehmel7', 'ZqtgvSEnU'),
+		('Rene', 'Stops', '13192485-7', 'rstops8@com.com', '1989-2425', 'rstops8', 'ThY1w0K');
