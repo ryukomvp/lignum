@@ -15,11 +15,11 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un cliente ha iniciado sesión.
         switch ($_GET['action']) {
             case 'getUser':
-                if (isset($_SESSION['usuario'])) {
+                if (isset($_SESSION['usuario_publico'])) {
                     $result['status'] = 1;
-                    $result['username'] = $_SESSION['usuario'];
+                    $result['username'] = $_SESSION['usuario_publico'];
                 } else {
-                    $result['exception'] = 'Correo de usuario indefinido';
+                    $result['exception'] = 'Nombre de usuario indefinido';
                 }
                 break;
             case 'logOut':

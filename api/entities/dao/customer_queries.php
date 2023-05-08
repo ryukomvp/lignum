@@ -11,9 +11,9 @@ class CustomerQueries
     public function checkUser($usuario_publico)
     {
         $sql = 'SELECT id_cliente, acceso FROM cliente WHERE usuario_publico = ?';
-        $params = array($correo);
+        $params = array($usuario_publico);
         if ($data = Database::getRow($sql, $params)) {
-            $this->id = $data['id_cliente'];
+            $this->id_cliente = $data['id_cliente'];
             $this->acceso = $data['acceso'];
             $this->usuario_publico = $usuario_publico;
             return true;
@@ -25,7 +25,7 @@ class CustomerQueries
     public function checkPassword($password)
     {
         $sql = 'SELECT clave FROM cliente WHERE id_cliente = ?';
-        $params = array($this->id);
+        $params = array($this->id_cliente);
         $data = Database::getRow($sql, $params);
         if (password_verify($password, $data['clave'])) {
             return true;
