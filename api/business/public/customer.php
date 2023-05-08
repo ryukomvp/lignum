@@ -15,11 +15,11 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un cliente ha iniciado sesión.
         switch ($_GET['action']) {
             case 'getUser':
-                if (isset($_SESSION['usuario_publico'])) {
+                if (isset($_SESSION['usuario_privado'])) {
                     $result['status'] = 1;
-                    $result['username'] = $_SESSION['usuario_publico'];
+                    $result['username'] = $_SESSION['usuario_privado'];
                 } else {
-                    $result['exception'] = 'Nombre de usuario indefinido';
+                    $result['exception'] = 'nombre de usuario indefinido';
                 }
                 break;
             case 'logOut':
@@ -85,13 +85,13 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if (!$customer->checkUser($_POST['usuario'])) {
                     $result['exception'] = 'Correo incorrecto';
-                } elseif (!$customer->getAcceso()) {
+                } elseif (!$customer->getEstado()) {
                     $result['exception'] = 'La cuenta ha sido desactivada';
                 } elseif ($customer->checkPassword($_POST['clave'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';
-                    $_SESSION['id_cliente'] = $customer->getIdCliente();
-                    $_SESSION['usuario_publico'] = $customer->getNombreCliente();
+                    $_SESSION['id_cliente'] = $customer->getId();
+                    $_SESSION['correo_cliente'] = $customer->getCorreo();
                 } else {
                     $result['exception'] = 'Clave incorrecta';
                 }
