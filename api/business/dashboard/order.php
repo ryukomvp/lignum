@@ -51,7 +51,7 @@ if (isset($_GET['action'])) {
                 }elseif(!$pedido->setEstado($_POST['estado'])){
                     $result['exception'] = 'Estado incorrecto';
                 }elseif(!$pedido->setDireccion($_POST['direccion'])){
-                    $result['exception'] = 'Direccion incorrecta'
+                    $result['exception'] = 'Direccion incorrecta';
                 }elseif(!$pedido->setFecha($_POST['fecha'])){
                     $result['exception'] = 'Fecha incorrecta';
                 }elseif($pedido->createOrder()) {
