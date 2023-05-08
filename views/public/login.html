@@ -2,64 +2,59 @@
 <html lang="es">
 
 <head>
+    <!-- Codificación de caracteres para el documento -->
+    <meta charset="utf-8">
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="/resources/css/materialize.min.css" media="screen,projection" />
-    <link type="text/css" rel="stylesheet" href="/resources/css/public.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../resources/css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../resources/css/public.css" media="screen,projection" />
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lignum</title>
 </head>
 
 <body>
     <!-- encabezado de la pagina -->
-    <header>
-        <!-- menu -->
-        <div class="navbar-fixed">
-            <nav>
-                <div class="nav-wrapper">
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <header></header>
     <!-- contenido principal de la página -->
     <main class="container">
-        <div class="row">
             <!-- titulo de bienvenida -->
             <h1 class="text center">Bienvenido</h1>
             <!-- formulario para inicio de sesion -->
-            <form class="col s12" action="">
-                <div class="row">
-                    <!-- input para ingresar usuario -->
-                    <div class="input-field col s4 offset-s4">
-                        <i class="material-icons prefix">account_circle</i>
-                        <input id="usuario" type="text" required>
-                        <label for="usuario">Ingrese su usuario</label>
-                    </div>
-                    <!-- input para ingresar clave -->
-                    <div class="input-field col s4 offset-s4">
-                        <i class="material-icons prefix">lock</i>
-                        <input id="clave" type="password" required>
-                        <label for="clave">Ingrese su contraseña</label>
-                    </div>
+            <form class="row" method="post" id="session-form">
+                <!-- input para ingresar usuario -->
+                <div class="input-field col s12 m4 offset-m4">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="usuario" type="text" name="usuario" required>
+                    <label for="usuario">Ingrese su usuario</label>
                 </div>
-                <div class="center-align">
-                    <button href="index.html" type="submit" class="waves-effect btn-large blue"><i
+                <!-- input para ingresar clave -->
+                <div class="input-field col s12 m4 offset-m4">
+                    <i class="material-icons prefix">lock</i>
+                    <input id="clave" type="password" name="clave" required>
+                    <label for="clave">Ingrese su contraseña</label>
+                </div>
+                <div class="col s12 center-align">
+                    <button type="submit" class="btn-large waves-effect blue"><i
                             class="material-icons">chevron_right</i></button>
-                    </button>
                 </div>
             </form>
-        </div>
+            <div class="row center-align">
+                <!-- Enlace para crear una cuenta de usuario -->
+                <a href="signup.html" class="btn-large waves-effect tooltipped" data-tooltip="Registrarse">
+                    <i class="material-icons">person</i>
+                </a>
+            </div>
     </main>
     <!-- pie de la pagina -->
     <footer></footer>
 
     <!--JavaScript at end of body for optimized loading-->
-    <script type="text/javascript" src="/resources/js/materialize.min.js"></script>
-    <script type="text/javascript" src="/controllers/public/account.js"></script>
+    <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../../controllers/public/account.js"></script>
+    <script type="text/javascript" src="../../controllers/public/login.js"></script>
 </body>
 
 </html>

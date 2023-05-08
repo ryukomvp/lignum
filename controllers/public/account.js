@@ -1,5 +1,10 @@
-// Archivo para crear la plantilla del sitio privado
+/*
+*   Controlador es de uso general en las páginas web del sitio público.
+*   Sirve para manejar las plantillas del encabezado y pie del documento.
+*/
 
+// Constante para completar la ruta de la API.
+const USER_API = 'business/public/customer.php';
 // Constantes para establecer las etiquetas de encabezado y pie de la página web.
 const HEADER = document.querySelector('header');
 const FOOTER = document.querySelector('footer');
