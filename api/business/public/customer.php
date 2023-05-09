@@ -60,25 +60,37 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Nombres incorrectos';
                 } elseif (!$customer->setApellidoCliente($_POST['apellido'])) {
                     $result['exception'] = 'Apellidos incorrectos';
-                } elseif (!$customer->setCorreo($_POST['correo'])) {
-                    $result['exception'] = 'Correo incorrecto';
-                } elseif (!$customer->setDireccion($_POST['direccion'])) {
-                    $result['exception'] = 'Dirección incorrecta';
-                } elseif (!$customer->setDUI($_POST['dui'])) {
+                } elseif (!is_uploaded_file($_FILES['archivo']['tmp_name'])) {
+                    $result['exception'] = 'Seleccione una imagen';
+                } elseif (!$customer->setFoto($_FILES['archivo'])) {
+                    $result['exception'] = Validator::getFileError();
+                } elseif (!$customer->setDuiCliente($_POST['dui'])) {
                     $result['exception'] = 'DUI incorrecto';
-                } elseif (!$customer->setNacimiento($_POST['nacimiento'])) {
-                    $result['exception'] = 'Fecha de nacimiento incorrecta';
-                } elseif (!$customer->setTelefono($_POST['telefono'])) {
-                    $result['exception'] = 'Teléfono incorrecto';
-                } elseif ($_POST['clave'] != $_POST['confirmar_clave']) {
+                } elseif (!$customer->setCorreoCliente($_POST['correo'])) {
+                    $result['exception'] = 'Correo incorrecta';
+                } elseif (!$customer->setTelefonoCliente($_POST['telefono'])) {
+                    $result['exception'] = 'Teléfono incorrecta';
+                } elseif (!isset($_POST['genero'])) {
+                    $result['exception'] = 'Seleccione una genero';
+                } elseif (!$customer->setGenero($_POST['genero'])) {
+                    $result['exception'] = 'Genero incorrecto';
+                } elseif (!$customer->setDireccionCliente($_POST['direccion'])) {
+                    $result['exception'] = 'Dirección incorrecta';
+                } elseif (!$customer->setUsuarioPublico($_POST['usuario'])) {
+                    $result['exception'] = 'Usuario incorrecto';
+                } elseif ($_POST['clave'] != $_POST['confirmar']) {
                     $result['exception'] = 'Claves diferentes';
                 } elseif (!$customer->setClave($_POST['clave'])) {
                     $result['exception'] = Validator::getPasswordError();
                 } elseif ($customer->createRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Cuenta registrada correctamente';
+                    if (Validator::saveFile($_FILES['archivo'], $customer->getRuta(), $customer->getFoto())) {
+                        $result['message'] = 'Cuenta registrada correctamente';
+                    } else {
+                        $result['message'] = 'Cliente creado pero no se guardó la imagen';
+                    }
                 } else {
-                    $result['exception'] = Database::getException();
+                    $result['exception'] = Database::getException();;
                 }
                 break;
             case 'login':
