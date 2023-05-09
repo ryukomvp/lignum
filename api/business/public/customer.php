@@ -56,9 +56,9 @@ if (isset($_GET['action'])) {
                 if (!$captcha['success']) {
                     $result['recaptcha'] = 1;
                     $result['exception'] = 'No eres humano';
-                } elseif (!$customer->setNombres($_POST['nombres'])) {
+                } elseif (!$customer->setNombreCliente($_POST['nombre'])) {
                     $result['exception'] = 'Nombres incorrectos';
-                } elseif (!$customer->setApellidos($_POST['apellidos'])) {
+                } elseif (!$customer->setApellidoCliente($_POST['apellido'])) {
                     $result['exception'] = 'Apellidos incorrectos';
                 } elseif (!$customer->setCorreo($_POST['correo'])) {
                     $result['exception'] = 'Correo incorrecto';
