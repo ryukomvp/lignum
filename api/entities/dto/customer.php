@@ -97,7 +97,7 @@ class Customer extends CustomerQueries
 
     public function setGenero($value)
     {
-        if (Validator::validateNaturalNumber($value)) {
+        if (Validator::validateAlphabetic($value, 1, 9)) {
             $this->genero = $value;
             return true;
         } else {

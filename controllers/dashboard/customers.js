@@ -1,6 +1,6 @@
 // Constantes para completar las rutas de la API.
 const CUSTOMER_API = 'business/dashboard/customer.php';
-const GENDER_API = 'business/dashboard/gender.php';
+const GENDER_API = 'business/public/customer.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('search-form');
 // Constante para establecer el formulario de guardar.
@@ -157,7 +157,7 @@ async function openUpdate(id) {
         document.getElementById('dui').value = JSON.dataset.dui_cliente;
         document.getElementById('correo').value = JSON.dataset.correo_cliente;
         document.getElementById('telefono').value = JSON.dataset.telefono_cliente;
-        fillSelect(GENDER_API, 'readAll', 'genero', JSON.dataset.id_genero);
+        fillSelect(GENDER_API, 'getAllGender', 'genero', JSON.dataset.genero);
         if (JSON.dataset.afiliado) {
             document.getElementById('afiliado').checked = true;
         } else {

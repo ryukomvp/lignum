@@ -74,7 +74,7 @@ class CustomerQueries
 
     public function createRow()
     {
-        $sql = 'INSERT INTO cliente(nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, id_genero, direccion_cliente, usuario_publico, clave)
+        $sql = 'INSERT INTO cliente(nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, genero, direccion_cliente, usuario_publico, clave)
                 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
         $params = array($this->nombre_cliente, $this->apellido_cliente, $this->foto, $this->dui_cliente, $this->correo_cliente, $this->telefono_cliente, $this->genero, $this->direccion_cliente, $this->usuario_publico, $this->clave);
         return Database::executeRow($sql, $params);
@@ -83,7 +83,7 @@ class CustomerQueries
     public function readAll()
     {
         $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, genero, afiliado, direccion_cliente, usuario_publico, acceso
-                FROM cliente INNER JOIN genero USING(id_genero)
+                FROM cliente
                 ORDER BY id_cliente';
         return Database::getRows($sql);
     }
@@ -97,7 +97,7 @@ class CustomerQueries
 
     public function readOne()
     {
-        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, id_genero, afiliado, direccion_cliente, usuario_publico, acceso
+        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, genero, afiliado, direccion_cliente, usuario_publico, acceso
                 FROM cliente
                 WHERE id_cliente = ?';
         $params = array($this->id_cliente);
@@ -108,7 +108,7 @@ class CustomerQueries
     {
         $sql = 'UPDATE cliente
                 SET nombre_cliente = ?, apellido_cliente = ?, foto = ?, dui_cliente = ?, correo_cliente = ?, telefono_cliente = ?,
-                id_genero = ?, afiliado = ?, direccion_cliente = ?, usuario_publico = ?, acceso = ?
+                genero = ?, afiliado = ?, direccion_cliente = ?, usuario_publico = ?, acceso = ?
                 WHERE id_cliente = ?';
         $params = array($this->nombre_cliente, $this->apellido_cliente, $this->foto, $this->dui_cliente, $this->correo_cliente, $this->telefono_cliente, $this->genero, $this->afiliado, $this->direccion_cliente,  $this->usuario_publico, $this->acceso,  $this->id_cliente);
         return Database::executeRow($sql, $params);
