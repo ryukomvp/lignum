@@ -1,15 +1,11 @@
 // Constante para establecer el formulario de registrar cliente.
 const SIGNUP_FORM = document.getElementById('signup-form');
-// Constante para leer los generos
-const GENDER_API = 'business/dashboard/gender.php';
 // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
 M.Tooltip.init(document.querySelectorAll('.tooltipped'));
 
-async function cargarGenero() {
-    // Llamada a la función para llenar el select del formulario. Se encuentra en el archivo components.js
-    fillSelect(GENDER_API, 'readAll', 'genero');
-}
-
+document.addEventListener('DOMContentLoaded', () => {
+    fillSelectType(USER_API, 'getAllGender', 'genero');
+});
 
 // Método manejador de eventos para cuando se envía el formulario de registrar cliente.
 SIGNUP_FORM.addEventListener('submit', async (event) => {

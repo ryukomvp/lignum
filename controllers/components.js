@@ -116,6 +116,38 @@ async function fillSelect(filename, action, select, selected = null) {
 }
 
 /*
+*   Función asíncrona para cargar las opciones en un select de formulario.
+*   Parámetros: filename (nombre del archivo), action (acción a realizar), select (identificador del select en el formulario) y selected (dato opcional con el valor seleccionado).
+*   Retorno: ninguno.
+*/
+async function fillSelectType(filename, action, select, selected = null) {
+    // Petición para obtener los datos.
+    const JSON = await dataFetch(filename, action);
+    let content = '';
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje.
+    if (JSON.status) {
+        content += '<option disabled selected>Seleccione una opción</option>';
+        // Se recorre el conjunto de registros fila por fila a través del objeto row.
+        JSON.dataset.forEach(row => {
+            // Se obtiene el dato del primer campo.
+            value = Object.values(row)[0];
+            // Se verifica cada valor para enlistar las opciones.
+            if (value != selected) {
+                content += `<option value="${value}">${value}</option>`;
+            } else {
+                content += `<option value="${value}" selected>${value}</option>`;
+            }
+        });
+    } else {
+        content += '<option>No hay opciones disponibles</option>';
+    }
+    // Se agregan las opciones a la etiqueta select mediante el id.
+    document.getElementById(select).innerHTML = content;
+    // Se inicializa el componente Select del formulario para que funcione el menú de opciones.
+    M.FormSelect.init(document.querySelectorAll('select'));
+}
+
+/*
 *   Función para generar un gráfico de barras verticales.
 *   Parámetros: canvas (identificador de la etiqueta canvas), xAxis (datos para el eje X), yAxis (datos para el eje Y), legend (etiqueta para los datos) y title (título del gráfico).
 *   Retorno: ninguno.

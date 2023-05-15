@@ -49,7 +49,7 @@
             <!-- input para ingresar dui del cliente -->
             <div class="input-field col s12 m6">
                 <i class="material-icons prefix">credit_card</i>
-                <input id="dui" type="text" name="dui" minlength="10" required>
+                <input id="dui" type="text" name="dui" minlength="10" required disabled>
                 <label for="dui">Ingrese su DUI</label>
             </div>
             <!-- input para ingresar correo del cliente -->
@@ -67,7 +67,7 @@
             <!-- cmb genero -->
             <div class="input-field col s12 m6">
                 <i class="material-icons prefix">wc</i>
-                <select id="genero" name="genero">
+                <select id="genero" name="genero" disabled>
                 </select>
                 <label>Seleccione su genero</label>
             </div>
@@ -81,24 +81,8 @@
             <div class="input-field col s12 m4">
                 <i class="material-icons prefix">account_circle</i>
                 <input id="usuario" type="text" name="usuario" required>
-                <label for="usuario">Cree un usuario</label>
+                <label for="usuario">Nombre de usuario usuario</label>
             </div>
-            <!-- input para ingresar clave del usuario -->
-            <div class="input-field col s12 m4">
-                <i class="material-icons prefix">lock</i>
-                <input id="clave" type="password" name="clave" minlength="8" required>
-                <label for="clave">Ingrese una contraseña</label>
-            </div>
-            <!-- input para confirmar clave -->
-            <div class="input-field col s12 m4">
-                <i class="material-icons prefix">lock</i>
-                <input id="confirmar" type="password" name="confirmar" minlength="8" required>
-                <label for="confirmar">Confirme su contraseña</label>
-            </div>
-            <label class="col s12">
-                <input type="checkbox" id="condicion" name="condicion" required>
-                <span>Acepto <a href="#" class="modal-trigger">términos y condiciones</a></span>
-            </label>
             <div class="col s12 center-align">
                 <button type="reset" class="btn-large waves-effect grey tooltipped" data-tooltip="Reiniciar">
                     <i class="material-icons">autorenew</i>

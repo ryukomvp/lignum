@@ -1,6 +1,5 @@
 /* ajustes de diseño para el cuerpo de la pagina */
 body{
-    font-family: 'Times New Roman', Times, serif;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
@@ -12,6 +11,10 @@ main {
 
 .nav-wrapper, .page-footer{
     background-color: #1a120b;
+}
+
+h1{
+    font-family: 'Times New Roman', Times, serif;
 }
 
 /* main */

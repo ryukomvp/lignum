@@ -15,9 +15,9 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un cliente ha iniciado sesión.
         switch ($_GET['action']) {
             case 'getUser':
-                if (isset($_SESSION['usuario_privado'])) {
+                if (isset($_SESSION['id_cliente'])) {
                     $result['status'] = 1;
-                    $result['username'] = $_SESSION['usuario_privado'];
+                    $result['username'] = $_SESSION['usuario_publico'];
                 } else {
                     $result['exception'] = 'nombre de usuario indefinido';
                 }
@@ -30,12 +30,26 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
                 }
                 break;
+            case 'getAllGender':
+                if ($result['dataset']=$customer->readAllGender()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = 'No se encontraron géneros registrados';
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
     } else {
         // Se compara la acción a realizar cuando el cliente no ha iniciado sesión.
         switch ($_GET['action']) {
+            case 'getAllGender':
+                if ($result['dataset']=$customer->readAllGender()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = 'No se encontraron géneros registrados';
+                }
+                break;
             case 'signup':
                 $_POST = Validator::validateForm($_POST);
                 $secretKey = '6LdBzLQUAAAAAL6oP4xpgMao-SmEkmRCpoLBLri-';
@@ -95,7 +109,7 @@ if (isset($_GET['action'])) {
                 break;
             case 'login':
                 $_POST = Validator::validateForm($_POST);
-                if (!$customer->checkUser($_POST['usuario'])) {
+                if (!$customer->checkUser($_POST['usuario_publico'])) {
                     $result['exception'] = 'Usuario incorrecto';
                 } elseif (!$customer->getAcceso()) {
                     $result['exception'] = 'La cuenta ha sido desactivada';

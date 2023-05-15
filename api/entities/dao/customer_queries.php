@@ -88,6 +88,13 @@ class CustomerQueries
         return Database::getRows($sql);
     }
 
+    
+    public function readAllGender()
+    {
+        $sql = 'SELECT unnest(enum_range(NULL::genero))';
+        return Database::getRows($sql);
+    }
+
     public function readOne()
     {
         $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, id_genero, afiliado, direccion_cliente, usuario_publico, acceso

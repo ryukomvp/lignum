@@ -1,22 +1,11 @@
--- CREATE TABLE cargo(
---   id_cargo serial not null PRIMARY KEY,
---   cargo varchar(30)
--- );
-
 CREATE TABLE categoria(
 	id_categoria serial not null PRIMARY KEY,
 	categoria varchar(30)
 );
 
-CREATE TABLE estado_pedido(
-  id_estado_pedido serial not null PRIMARY KEY,
-  estado_pedido varchar(30)
-);
+CREATE TYPE estado_pedido AS ENUM ('Anulado', 'Completado', 'En revisión', 'Pendiente');
 
-CREATE TABLE genero(
-  id_genero serial not null PRIMARY KEY,
-  genero varchar(30)
-);
+CREATE TYPE genero AS ENUM ('Femenino', 'Masculino');
 
 CREATE TABLE tipo_material(
   id_tipo_material serial not null PRIMARY KEY,
@@ -28,17 +17,17 @@ CREATE TABLE cliente(
 	nombre_cliente varchar(70) not null,
 	apellido_cliente varchar(70) not null,
 	foto varchar not null,
-	dui_cliente varchar(10) null,
+	dui_cliente varchar(10) null UNIQUE,
 	correo_cliente varchar(120) not null,
 	telefono_cliente varchar(9),
-	id_genero int not null,
+	genero genero not null,
 	afiliado boolean DEFAULT false not null,
 	direccion_cliente varchar(250) not null,
 	usuario_publico varchar(30) not null,
 	clave varchar(2048) not null,
 	acceso boolean DEFAULT true not null,
 	
-	CONSTRAINT dui_cliente_unique UNIQUE (dui_cliente),
+	-- CONSTRAINT dui_cliente_unique UNIQUE (dui_cliente),
 	CONSTRAINT usuario_publico_unique UNIQUE (usuario_publico)
 );
 
@@ -47,7 +36,7 @@ CREATE TABLE pedido(
 	codigo_pedido varchar(10) not null,
 	descripcion_pedido varchar(120) not null,
 	id_cliente int not null,
-	id_estado_pedido  int not null,
+	estado_pedido estado_pedido DEFAULT 'Pendiente' not null,
 	direccion_pedido varchar(250) null,
 	fecha date null,
 
@@ -85,7 +74,6 @@ CREATE TABLE producto(
 	estado boolean DEFAULT true not null,
 	cantidad_existencias int not null,
 	
-	
 	CONSTRAINT codigo_producto_unique UNIQUE (codigo_producto)
 );
 
@@ -106,7 +94,7 @@ CREATE TABLE usuario_privado(
     id_usuario_privado serial not null PRIMARY KEY,
     nombre_empleado varchar(70) not null,
     apellido_empleado varchar(70) not null,
-    dui_empleado varchar(10) not null,
+    dui_empleado varchar(10) not null UNIQUE,
     correo_empleado varchar(120) not null,
     telefono_empleado varchar(9) not null,
 
@@ -114,7 +102,7 @@ CREATE TABLE usuario_privado(
     clave varchar(2048) not null,
 	acceso boolean DEFAULT true not null,
 
-    CONSTRAINT dui_empleado_unique UNIQUE (dui_empleado),
+    -- CONSTRAINT dui_empleado_unique UNIQUE (dui_empleado),
 	CONSTRAINT usuario_privado_unique UNIQUE (usuario_privado)
 );
 
@@ -127,10 +115,6 @@ CREATE TABLE inventario(
 
 	CONSTRAINT codigo_inventario_unique UNIQUE (codigo_inventario)
 );
-
-ALTER TABLE cliente
-ADD CONSTRAINT cliente_genero_fkey FOREIGN KEY (id_genero)
-REFERENCES genero(id_genero);
 
 ALTER TABLE producto
 ADD CONSTRAINT categoria_producto_fkey FOREIGN KEY (id_categoria)
@@ -159,16 +143,6 @@ VALUES	('Cocina'),
 		('Oficina'),
 		('Sala de estar');
 
-INSERT INTO estado_pedido(estado_pedido)
-VALUES	('Anulado'),
-		('Completado'),
-		('En revisión'),
-		('Procesando');
-
-INSERT INTO genero(genero)
-VALUES	('Femenino'),
-		('Masculino');
-
 INSERT INTO tipo_material(tipo_material)
 VALUES	('Aglomerado'),
 		('Fibras de baja densidad'),
@@ -178,43 +152,43 @@ VALUES	('Aglomerado'),
 		('Virutas orientadas');
 
 		
-INSERT INTO cliente(nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, id_genero, direccion_cliente, usuario_publico, clave)
-VALUES  ('Robina', 'Bonniface' , 'foto', '76168-013', 'rbonniface0@ifeng.com', '8566-9159', 1, '0 Westport Trail', 'rbonniface0', 'QdNQFar'),
-        ('Judd', 'Drew' , 'foto', '23138-014', 'jdrew1@ed.gov', '2412-7332', 2, '44 Messerschmidt Plaza', 'jdrew1', 'RXSxcTWyD'),
-		('Gwyneth', 'Samsworth' , 'foto', '09123-224', 'gsamsworth2@accuweather.com', '7283-1345', 1, '6 Schurz Hill', 'gsamsworth2', 'BL7U44'),
-        ('Hillary', 'Alonso' , 'foto', '12122-312', 'halonso3@privacy.gov.au', '2312-9120', 2, '423 Pierstorff Avenue', 'halonso3', '6GFPKMEfvX'),
-		('Halli', 'Gorey' , 'foto', '72341-901', 'hgorey4@wikia.com', '0213-4561', 1, '3 American Ash Circle', 'hgorey4', 'uFr4LUgmpr'),
-		('Frank', 'Hemingway' , 'foto', '23455-134', 'fhemingway@yandex.com.ru', '1213-1752', 2, '8 Columbus Drive', 'fhemingw5', 'BtGRnqy'),
-		('Eddie', 'Low' , 'foto', '09213-661', 'elow@eyesearch.com', '1979-2123', 2, '669 Pennsylvania Lane', 'elow6', 'cZNxps'),
-		('Jim', 'Sorrel' , 'foto', '27031-309', 'jsorrel@slideshare.net', '1427-2134', 2, '45 High Crossing Center', 'jsorrel7', 'Yqe9H8Bq7'),
-		('Berton', 'Kivlin' , 'foto', '21034-123', 'bkivlin@gmail.com', '4321-3456', 2, '67609 Dapin Park', 'bkivlin8', '2D1XPXYxHRc7'),
-		('John', 'Garcia' , 'foto', '12453-121', 'jgarcia@gmail.com', '1234-1234', 2, '02037 Montana Way', 'jgarcia9', 'SVutvhE5R');
+INSERT INTO cliente(nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, genero, direccion_cliente, usuario_publico, clave)
+VALUES  ('Robina', 'Bonniface' , 'foto', '55912790-1', 'rbonniface0@ifeng.com', '8566-9159', 'Femenino', '0 Westport Trail', 'rbonniface0', 'QdNQFar'),
+        ('Judd', 'Drew' , 'foto', '90621783-8', 'jdrew1@ed.gov', '2412-7332', 'Masculino', '44 Messerschmidt Plaza', 'jdrew1', 'RXSxcTWyD'),
+		('Gwyneth', 'Samsworth' , 'foto', '70274521-1', 'gsamsworth2@accuweather.com', '7283-1345', 'Femenino', '6 Schurz Hill', 'gsamsworth2', 'BL7U44'),
+        ('Hillary', 'Alonso' , 'foto', '52279444-8', 'halonso3@privacy.gov.au', '2312-9120', 'Femenino', '423 Pierstorff Avenue', 'halonso3', '6GFPKMEfvX'),
+		('Halli', 'Gorey' , 'foto', '85031034-4', 'hgorey4@wikia.com', '0213-4561', 'Masculino', '3 American Ash Circle', 'hgorey4', 'uFr4LUgmpr'),
+		('Frank', 'Hemingway' , 'foto', '88887930-6', 'fhemingway@yandex.com.ru', '1213-1752', 'Femenino', '8 Columbus Drive', 'fhemingw5', 'BtGRnqy'),
+		('Eddie', 'Low' , 'foto', '43667637-3', 'elow@eyesearch.com', '1979-2123', 'Femenino', '669 Pennsylvania Lane', 'elow6', 'cZNxps'),
+		('Jim', 'Sorrel' , 'foto', '10539686-4', 'jsorrel@slideshare.net', '1427-2134', 'Femenino', '45 High Crossing Center', 'jsorrel7', 'Yqe9H8Bq7'),
+		('Berton', 'Kivlin' , 'foto', '85080671-6', 'bkivlin@gmail.com', '4321-3456', 'Femenino', '67609 Dapin Park', 'bkivlin8', '2D1XPXYxHRc7'),
+		('John', 'Garcia' , 'foto', '97442969-7', 'jgarcia@gmail.com', '1234-1234', 'Femenino', '02037 Montana Way', 'jgarcia9', 'SVutvhE5R');
 
-INSERT INTO pedido (codigo_pedido, descripcion_pedido, id_cliente, id_estado_pedido)
-VALUES 	(1234567812, 'Mesa de centro de 9x9', 1, 4),
-       	(9855723656, 'Mueble para televisor 14x10', 2, 4),
-	   	(2463563234, 'Mesa de centro de 9x9', 3, 4),
-	  	(6332452635, 'Mesa de centro de 9x9', 4, 4),
-	   	(7656433577, 'Mesa de comedor de 20x15', 5, 4),
-	   	(9876245785, 'Escritorio pequeño de 10x5', 6, 4),
-	   	(3534635744, 'Escritorio de oficina de 10x15', 7, 4),
-	   	(8954565353, 'Gavetero pequeño de 10x5', 8, 4),
-	   	(7453546359, 'Mueble para televisor de 14x10', 9, 4),
-	   	(7458769098, 'Mesa de centro de 9x9, Escritorio pequeño de 10x5, Mueble para televisor de 14x10', 9, 4);
+INSERT INTO pedido(codigo_pedido, descripcion_pedido, id_cliente, fecha)
+VALUES 	(1234567812, 'Mesa de centro de 9x9', 1, '2022-01-01'),
+       	(9855723656, 'Mueble para televisor 14x10', 2, '2022-01-05'),
+	   	(2463563234, 'Mesa de centro de 9x9', 3, '2022-01-10'),
+	  	(6332452635, 'Mesa de centro de 9x9', 4, '2022-01-15'),
+	   	(7656433577, 'Mesa de comedor de 20x15', 5, '2022-01-20'),
+	   	(9876245785, 'Escritorio pequeño de 10x5', 6, '2022-01-25'),
+	   	(3534635744, 'Escritorio de oficina de 10x15', 7, '2022-02-01'),
+	   	(8954565353, 'Gavetero pequeño de 10x5', 8, '2022-02-05'),
+	   	(7453546359, 'Mueble para televisor de 14x10', 9, '2022-02-10'),
+	   	(7458769098, 'Mesa de centro de 9x9, Escritorio pequeño de 10x5, Mueble para televisor de 14x10', 9, '2022-12-15');
 
-INSERT INTO detalle_pedido (id_pedido, id_producto, precio_producto, cantidad, fecha)
-VALUES 	(1, 1, 95, 3, '2022-01-01'),
-       	(2, 2, 80, 1, '2022-01-05'),
-	   	(3, 1, 95, 5, '2022-01-10'),
-	   	(4, 1, 95, 2, '2022-01-15'),
-	   	(5, 3, 125, 3, '2022-01-20'),
-	   	(6, 4, 75, 3, '2022-01-25'),
-	   	(7, 5, 100, 3, '2022-02-01'),
-	   	(8, 6, 75, 3, '2022-02-05'),
-	   	(9, 2, 80, 3, '2022-02-10'),
-	   	(10, 1, 95, 3, '2022-12-15'),
-	   	(10, 4, 95, 3, '2022-12-15'),
-       	(10, 2, 95, 3, '2022-12-15');
+INSERT INTO detalle_pedido(id_pedido, id_producto, precio_producto, cantidad)
+VALUES 	(1, 1, 95, 3),
+       	(2, 2, 80, 1),
+	   	(3, 1, 95, 5),
+	   	(4, 1, 95, 2),
+	   	(5, 3, 125, 3),
+	   	(6, 4, 75, 3),
+	   	(7, 5, 100, 3),
+	   	(8, 6, 75, 3),
+	   	(9, 2, 80, 3),
+	   	(10, 1, 95, 3),
+	   	(10, 4, 95, 3),
+       	(10, 2, 95, 3);
 
 INSERT INTO producto(nombre_producto, foto, descripcion_producto, precio_producto, codigo_producto, dimensiones, id_categoria, id_tipo_material, id_proveedor, cantidad_existencias)
 VALUES 	('Mesa de centro', 'foto', 'Mesa pequeña de centro', 95.00, 'MC201AS2', '9x9', 5, 2, 1, 10),

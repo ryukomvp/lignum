@@ -37,11 +37,11 @@
                 <!-- input para ingresar clave -->
                 <div class="input-field col s12 m4 offset-m4">
                     <i class="material-icons prefix">lock</i>
-                    <input id="clave" type="password" name="clave" required>
+                    <input id="clave" type="password" name="clave" minlength="8" required>
                     <label for="clave">Ingrese su contraseña</label>
                 </div>
                 <div class="col s12 center-align">
-                    <button type="submit" class="waves-effect btn-large blue"><i
+                    <button type="submit" class="btn-large waves-effect blue"><i
                             class="material-icons">chevron_right</i></button>
                 </div>
             </form>
@@ -49,7 +49,7 @@
         <!-- Contenedor del formulario para registrar el primer empleado del sitio privado -->
         <div class="hide" id="signup-container">
             <!-- Título del contenido principal -->
-            <h4 class="center-align">Registrar primer usuario</h4>
+            <h1 class="center-align">Registrar primer usuario</h1>
             <!-- Formulario para crear el primer usuario -->
             <form class="row" method="post" id="signup-form">
                 <div class="input-field col s12 m6">
@@ -64,7 +64,7 @@
                 </div>
                 <div class="input-field col s12 m6">
                     <i class="material-icons prefix">credit_card</i>
-                    <input id="dui" type="text" name="dui" required>
+                    <input id="dui" type="text" name="dui" minlength="10" required>
                     <label for="dui">DUI</label>
                 </div>
                 <div class="input-field col s12 m6">
@@ -74,7 +74,7 @@
                 </div>
                 <div class="input-field col s12 m6">
                     <i class="material-icons prefix">phone</i>
-                    <input id="telefono" type="text" name="telefono" required>
+                    <input id="telefono" type="text" name="telefono" minlength="9" required>
                     <label for="telefono">Teléfono</label>
                 </div>
                 <div class="input-field col s12 m6">
@@ -84,19 +84,19 @@
                 </div>
                 <div class="input-field col s12 m6">
                     <i class="material-icons prefix">lock</i>
-                    <input id="clave-pu" type="password" name="clave-pu" required>
+                    <input id="clave-pu" type="password" name="clave-pu" minlength="8" required>
                     <label for="clave-pu">Contraseña</label>
                 </div>
                 <div class="input-field col s12 m6">
                     <i class="material-icons prefix">lock</i>
-                    <input id="confirmar" type="password" name="confirmar" required>
+                    <input id="confirmar" type="password" name="confirmar" minlength="8" required>
                     <label for="confirmar">Confirmar contraseña</label>
                 </div>
                 <div class="col s12 center-align">
-                    <button type="reset" class="btn waves-effect grey tooltipped" data-tooltip="Limpiar campos">
+                    <button type="reset" class="btn-large waves-effect grey tooltipped" data-tooltip="Limpiar campos">
                         <i class="material-icons">autorenew</i>
                     </button>
-                    <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Guardar registro">
+                    <button type="submit" class="btn-large waves-effect blue tooltipped" data-tooltip="Guardar registro">
                         <i class="material-icons">save</i>
                     </button>
                 </div>
