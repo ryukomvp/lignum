@@ -31,7 +31,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'getAllGender':
-                if ($result['dataset']=$customer->readAllGender()) {
+                if ($result['dataset'] = $customer->readAllGender()) {
                     $result['status'] = 1;
                 } else {
                     $result['exception'] = 'No se encontraron géneros registrados';
@@ -44,7 +44,7 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando el cliente no ha iniciado sesión.
         switch ($_GET['action']) {
             case 'getAllGender':
-                if ($result['dataset']=$customer->readAllGender()) {
+                if ($result['dataset'] = $customer->readAllGender()) {
                     $result['status'] = 1;
                 } else {
                     $result['exception'] = 'No se encontraron géneros registrados';
@@ -71,9 +71,9 @@ if (isset($_GET['action'])) {
                     $result['recaptcha'] = 1;
                     $result['exception'] = 'No eres humano';
                 } elseif (!$customer->setNombreCliente($_POST['nombre'])) {
-                    $result['exception'] = 'Nombres incorrectos';
+                    $result['exception'] = 'Nombre incorrecto';
                 } elseif (!$customer->setApellidoCliente($_POST['apellido'])) {
-                    $result['exception'] = 'Apellidos incorrectos';
+                    $result['exception'] = 'Apellido incorrecta';
                 } elseif (!is_uploaded_file($_FILES['archivo']['tmp_name'])) {
                     $result['exception'] = 'Seleccione una imagen';
                 } elseif (!$customer->setFoto($_FILES['archivo'])) {
@@ -99,7 +99,7 @@ if (isset($_GET['action'])) {
                 } elseif ($customer->createRow()) {
                     $result['status'] = 1;
                     if (Validator::saveFile($_FILES['archivo'], $customer->getRuta(), $customer->getFoto())) {
-                        $result['message'] = 'Cuenta registrada correctamente';
+                        $result['message'] = 'Cliente creado correctamente';
                     } else {
                         $result['message'] = 'Cliente creado pero no se guardó la imagen';
                     }

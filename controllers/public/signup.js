@@ -3,8 +3,11 @@ const SIGNUP_FORM = document.getElementById('signup-form');
 // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
 M.Tooltip.init(document.querySelectorAll('.tooltipped'));
 
-// Evento para cargar los generos
+// Evento para cuando se carga la página
 document.addEventListener('DOMContentLoaded', () => {
+    // LLamada a la función para asignar el token del reCAPTCHA al formulario.
+    reCAPTCHA();
+    // Evento para cargar cmb
     fillSelectType(USER_API, 'getAllGender', 'genero');
 });
 
