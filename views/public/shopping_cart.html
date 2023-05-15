@@ -51,110 +51,18 @@
     <!--Etiqueta main-->
     <main>
         <!--Total y pago-->
-        <div class="container">
-            <div class="col s12 m7">
-                <div class="card horizontal">
-                    <div class="card-image">
-                        <p class="total">Total: $##.##</p>
-                    </div>
-                    <div class="card-stacked">
-                        <div class="card-content">
-                            <button class="pago">Proceder al pago</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--Detalle del producto-->
-        <div class="container">
-            <div class="col s12 m7">
-                <h2 class="header"></h2>
-                <div class="card horizontal" id="card-carrito">
-                    <div class="card-image" id="img-carrito">
-                        <img src="../../resources/img/silla.jpg">
-                    </div>
-                    <div class="card-stacked">
-                        <div class="card-content">
-                            <span class="nombre">Silla</span>
-                            <p class="precio">$##.##</p>
-                            <p class="descripcion">Descripcion no disponible</p>
-                            <p class="cantidad"><button class="detalle-cantidad">+</button> 1 <button
-                                    class="detalle-cantidad">-</button></p>
-                        </div>
-                        <div class="card-action">
-                            <a href="#"><i class="material-icons">delete</i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- contenedor para cartas de productos -->
-        <div class="container">
-            <div class="col s12 m7">
-                <h2 class="header"></h2>
-                <div class="card horizontal" id="card-carrito">
-                    <div class="card-image" id="img-carrito">
-                        <img src="../../resources/img/mueble 2.jpg">
-                    </div>
-                    <div class="card-stacked">
-                        <div class="card-content">
-                            <span class="nombre">Gabinete</span>
-                            <p class="precio">$##.##</p>
-                            <p class="descripcion">Descripcion no disponible</p>
-                            <p class="cantidad"><button class="detalle-cantidad">+</button> 1 <button
-                                    class="detalle-cantidad">-</button></p>
-                        </div>
-                        <div class="card-action">
-                            <a href="#"><i class="material-icons">delete</i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <h3 class="center">Pedido</h3>
+        <div class="row" id="productos"></div>
     </main>
 
     <!--Etiqueta footer-->
-    <footer>
-        <footer class="page-footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col l6 s12">
-                        <a href="about_us.html">
-                            <h5 class="white-text">Sobre lignum</h5>
-                        </a>
-                        <p class="grey-text text-lighten-4">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Dolorem, ipsum magnam quam nesciunt ratione molestias laboriosam. Magnam in, earum quod nam
-                            aliquam, minus debitis quidem eveniet et unde tempore quam.
-                            content.</p>
-                    </div>
-                    <div class="col l4 offset-l2 s12">
-                        <h5 class="white-text">Links</h5>
-                        <ul>
-                            <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/dnlhernandez_">Link
-                                    1</a></li>
-                            <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/dnlhernandez_">Link
-                                    2</a></li>
-                            <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/dnlhernandez_">Link
-                                    3</a></li>
-                            <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/dnlhernandez_">Link
-                                    4</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-copyright">
-                <div class="container">
-                    © 2014 Copyright Text
-                    <a class="grey-text text-lighten-4 right" href="https://www.instagram.com/dnlhernandez_">More
-                        Links</a>
-                </div>
-            </div>
-        </footer>
-    </footer>
+    <footer class="page-footer"> </footer>
 
     <!--Link con archivos js-->
-    <script type="text/javascript" src="/resources/js/materialize.min.js"></script>
-    <script type="text/javascript" src="/resources/js/public.js"></script>
+    <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../controllers/components.js"></script>
+    <script type="text/javascript" src="../../controllers/dashboard/shopping_card.js"></script>
 </body>
 
 </html>
