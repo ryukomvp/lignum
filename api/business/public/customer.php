@@ -109,7 +109,7 @@ if (isset($_GET['action'])) {
                 break;
             case 'login':
                 $_POST = Validator::validateForm($_POST);
-                if (!$customer->checkUser($_POST['usuario_publico'])) {
+                if (!$customer->checkUser($_POST['usuario'])) {
                     $result['exception'] = 'Usuario incorrecto';
                 } elseif (!$customer->getAcceso()) {
                     $result['exception'] = 'La cuenta ha sido desactivada';
