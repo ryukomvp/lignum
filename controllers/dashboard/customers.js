@@ -124,7 +124,7 @@ function openCreate() {
     // Se asigna el título a la caja de diálogo.
     MODAL_TITLE.textContent = 'Crear cliente';
     // Llamada a la función para llenar el select del formulario. Se encuentra en el archivo components.js
-    fillSelect(GENDER_API, 'readAll', 'genero');
+    fillSelectType(GENDER_API, 'getAllGender', 'genero');
 }
 
 /*
@@ -157,7 +157,7 @@ async function openUpdate(id) {
         document.getElementById('dui').value = JSON.dataset.dui_cliente;
         document.getElementById('correo').value = JSON.dataset.correo_cliente;
         document.getElementById('telefono').value = JSON.dataset.telefono_cliente;
-        fillSelect(GENDER_API, 'getAllGender', 'genero', JSON.dataset.genero);
+        fillSelectType(GENDER_API, 'getAllGender', 'genero', JSON.dataset.genero);
         if (JSON.dataset.afiliado) {
             document.getElementById('afiliado').checked = true;
         } else {

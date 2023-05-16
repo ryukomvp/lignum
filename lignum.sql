@@ -23,12 +23,13 @@ CREATE TABLE cliente(
 	genero genero not null,
 	afiliado boolean DEFAULT false not null,
 	direccion_cliente varchar(250) not null,
-	usuario_publico varchar(30) not null,
+
+	usuario_publico varchar(30) not null UNIQUE,
 	clave varchar(2048) not null,
-	acceso boolean DEFAULT true not null,
+	acceso boolean DEFAULT true not null
 	
 	-- CONSTRAINT dui_cliente_unique UNIQUE (dui_cliente),
-	CONSTRAINT usuario_publico_unique UNIQUE (usuario_publico)
+	-- CONSTRAINT usuario_publico_unique UNIQUE (usuario_publico)
 );
 
 CREATE TABLE pedido(
@@ -98,12 +99,12 @@ CREATE TABLE usuario_privado(
     correo_empleado varchar(120) not null,
     telefono_empleado varchar(9) not null,
 
-    usuario_privado varchar(30) not null,
+    usuario_privado varchar(30) not null UNIQUE,
     clave varchar(2048) not null,
-	acceso boolean DEFAULT true not null,
+	acceso boolean DEFAULT true not null
 
     -- CONSTRAINT dui_empleado_unique UNIQUE (dui_empleado),
-	CONSTRAINT usuario_privado_unique UNIQUE (usuario_privado)
+	-- CONSTRAINT usuario_privado_unique UNIQUE (usuario_privado)
 );
 
 CREATE TABLE inventario(
