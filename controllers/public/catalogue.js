@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const FORM = new FormData();
     FORM.append('id_categoria', PARAMS.get('id'));
     //Peticion para solicitar los productos de la categoria seleccionada
-    const JSON = await dataFetch(PRODUCTO_API, 'readProductosCategoria', FORM);
+    const JSON = await dataFetch(PRODUCTO_API, 'readproductoCategoria', FORM);
     if(JSON.status){
         //Se inicializa el contenedor de productos
         PRODUCTOS.innerHTML = '';

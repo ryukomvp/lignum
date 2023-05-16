@@ -46,62 +46,11 @@
             <li><a href="login.html">Cuenta</a></li>
         </ul>
     </header>
-    <!--Etiqueta main-->
-    <main>
-        <!-- columna para contenido -->
-        <div class="row">
-            <div class="col s3">
-                <!--Barra de busqueda-->
-                <div id="search-container">
-                    <h6 class="encabezado">Filtro por busqueda</h6>
-                    <input type="search" id="search-input" placeholder="Buscar producto..." />
-                    <button id="search"><i class="material-icons">search</i></button>
-                    <!--Filtros de categoria-->
-                </div>
-                <div id="buttons">
-                    <h6 class="encabezado">Filtro por categorias</h6>
-                    <form action="#">
-                        <p>
-                            <label>
-                                <input class="with-gap" name="group1" type="radio" checked />
-                                <span>Todos los productos</span>
-                            </label>
-                        </p>
-                        <p>
-                            <label>
-                                <input class="with-gap" name="group1" type="radio" />
-                                <span>Cocina</span>
-                            </label>
-                        </p>
-                        <p>
-                            <label>
-                                <input class="with-gap" name="group1" type="radio" />
-                                <span>Gamer</span>
-                            </label>
-                        </p>
-                        <p>
-                            <label>
-                                <input class="with-gap" name="group1" type="radio" />
-                                <span>Jardin</span>
-                            </label>
-                        </p>
-                        <p>
-                            <label>
-                                <input class="with-gap" name="group1" type="radio" />
-                                <span>Oficina</span>
-                            </label>
-                        </p>
-                        <p>
-                            <label>
-                                <input class="with-gap" name="group1" type="radio" />
-                                <span>Sala</span>
-                            </label>
-                        </p>
-                    </form>
-                </div>
-                <div id="products"></div>
-            </div>
 
+    <!--Etiqueta main-->
+    <main class="container">
+        <!-- columna para contenido -->
+        <div class="row" id="productos"></div>
             
     </main>
     <!--Etiqueta footer-->
@@ -144,6 +93,7 @@
     <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
     <script type="text/javascript" src="../../resources/js/public.js"></script>
     <script type="text/javascript" src="../../resources/js/inicializar.js"></script>
+    <script type="text/javascript" src="../../controllers/public/catalogue.js"></script>
 </body>
 
 </html>
