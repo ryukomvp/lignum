@@ -22,6 +22,15 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'nombre de usuario indefinido';
                 }
                 break;
+            case 'readProfile':
+                if ($result['dataset'] = $customer->readProfile()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'Usuario inexistente';
+                }
+                break;
             case 'logOut':
                 if (session_destroy()) {
                     $result['status'] = 1;

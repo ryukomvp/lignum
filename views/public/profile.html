@@ -21,9 +21,12 @@
     <!-- contenido principal de la página -->
     <main class="container">
         <!-- titulo de bienvenida -->
-        <h1 class="text center">Bienvenido</h1>
+        <div id="bienvenida"></div>
         <!-- formulario para inicio de sesion -->
-        <form class="row" method="post" id="signup-form">
+        <form class="row" method="post" id="profile-form">
+            <div class="col m4 offset-m4">
+                <img id="foto" name="foto" class="materialboxed" src="" width="200">
+            </div>
             <!-- textbox nombres -->
             <div class="input-field col s12 m6">
                 <i class="material-icons prefix">account_box</i>
@@ -81,7 +84,7 @@
             <div class="input-field col s12 m4">
                 <i class="material-icons prefix">account_circle</i>
                 <input id="usuario" type="text" name="usuario" required>
-                <label for="usuario">Nombre de usuario usuario</label>
+                <label for="usuario">Nombre de usuario</label>
             </div>
             <div class="col s12 center-align">
                 <button type="reset" class="btn-large waves-effect grey tooltipped" data-tooltip="Reiniciar">
@@ -92,8 +95,6 @@
                 </button>
             </div>
         </form>
-        <!-- Importación de la librería para que funcione el reCAPTCHA. Para más información https://developers.google.com/recaptcha/docs/v3 -->
-        <script src="https://www.google.com/recaptcha/api.js?render=6LdBzLQUAAAAAJvH-aCUUJgliLOjLcmrHN06RFXT"></script>
     </main>
     <!-- pie de la pagina -->
     <footer></footer>
@@ -103,7 +104,8 @@
     <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
     <script type="text/javascript" src="../../controllers/components.js"></script>
     <script type="text/javascript" src="../../controllers/public/account.js"></script>
-    <script type="text/javascript" src="../../controllers/public/signup.js"></script>
+    <script type="text/javascript" src="../../controllers/public/profile.js"></script>
+    <script type="text/javascript" src="../../controllers/welcome.js"></script>
 </body>
 
 </html>

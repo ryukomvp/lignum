@@ -41,6 +41,15 @@ class CustomerQueries
         return Database::executeRow($sql, $params);
     }
 
+    public function readProfile()
+    {
+        $sql = 'SELECT nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, genero, direccion_cliente, usuario_publico
+                FROM cliente
+                WHERE id_cliente = ?';
+        $params = array($_SESSION['id_cliente']);
+        return Database::getRow($sql, $params);
+    }
+
     public function editProfile()
     {
         $sql = 'UPDATE clientes

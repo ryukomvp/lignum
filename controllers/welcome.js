@@ -3,8 +3,6 @@
 *   Sirve para manejar las plantillas del encabezado y pie del documento.
 */
 
-// Constante para completar la ruta de la API.
-// const USER_API = 'business/dashboard/user.php';
 // Constantes para establecer las etiquetas de encabezado y pie de la página web.
 const BIENVENIDA = document.getElementById('bienvenida');
 
