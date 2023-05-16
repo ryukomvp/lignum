@@ -46,7 +46,7 @@ if (isset($_GET['action'])) {
                 } elseif (!$customer->setApellidoCliente($_POST['apellido'])) {
                     $result['exception'] = 'Apellidos incorrectos';
                 } elseif (!$customer->setCorreoCliente($_POST['correo'])) {
-                    $result['exception'] = 'Teléfono incorrecto';
+                    $result['exception'] = 'Correo incorrecto';
                 } elseif (!$customer->setTelefonoCliente($_POST['telefono'])) {
                     $result['exception'] = 'Teléfono incorrecto';
                 } elseif (!$customer->setDireccionCliente($_POST['direccion'])) {
