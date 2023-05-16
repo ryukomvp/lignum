@@ -6,6 +6,9 @@ const PASSWORD_FORM = document.getElementById('password-form')
 const OPTIONS = {
     dismissible: false
 }
+// Constante para insertar foto del cliente
+const FOTO = document.getElementById('foto');
+
 // Inicialización del componente Modal para que funcionen las cajas de diálogo.
 M.Modal.init(document.querySelectorAll('.modal'), OPTIONS);
 // Constante para establecer la modal de cambiar contraseña.
@@ -20,16 +23,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
         document.getElementById('dui').disabled = true;
+        document.getElementById('genero').disabled = true;
         // Campos con la info del usuario activo
+        FOTO.innerHTML = `
+        <img src="${SERVER_URL}images/clientes/${JSON.dataset.foto}" class="materialboxed" height="200">`;
         document.getElementById('nombre').value = JSON.dataset.nombre_cliente;
         document.getElementById('apellido').value = JSON.dataset.apellido_cliente;
         document.getElementById('dui').value = JSON.dataset.dui_cliente;
         document.getElementById('correo').value = JSON.dataset.correo_cliente;
         document.getElementById('telefono').value = JSON.dataset.telefono_cliente;
+        fillSelectType(USER_API, 'readAllGender', 'genero', JSON.dataset.genero);
         document.getElementById('direccion').value = JSON.dataset.direccion_cliente;
         document.getElementById('usuario').value = JSON.dataset.usuario_publico;
         // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
         M.updateTextFields();
+        // Se inicializa el componente materialbox
+        M.Materialbox.init(document.querySelectorAll('.materialboxed'));
     } else {
         sweetAlert(2, JSON.exception, null);
     }
@@ -45,7 +54,7 @@ PROFILE_FORM.addEventListener('submit', async (event) => {
     const JSON = await dataFetch(USER_API, 'editProfile', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
-        sweetAlert(1, JSON.message, true, 'main.html');
+        sweetAlert(1, JSON.message, true, 'index.html');
     } else {
         sweetAlert(2, JSON.exception, false);
     }

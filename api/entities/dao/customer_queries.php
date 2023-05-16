@@ -52,10 +52,10 @@ class CustomerQueries
 
     public function editProfile()
     {
-        $sql = 'UPDATE clientes
-                SET nombre_cliente = ?, apellido_cliente = ?, foto = ?, correo_cliente = ?, telefono_cliente = ?, direccion_cliente = ?
+        $sql = 'UPDATE cliente
+                SET nombre_cliente = ?, apellido_cliente = ?, foto = ?, correo_cliente = ?, telefono_cliente = ?, direccion_cliente = ?, usuario_publico
                 WHERE id_cliente = ?';
-        $params = array($this->nombre_cliente, $this->apellido_cliente, $this->foto, $this->correo_cliente, $this->telefono_cliente, $this->direccion_cliente, $this->id_cliente);
+        $params = array($this->nombre_cliente, $this->apellido_cliente, $this->foto, $this->correo_cliente, $this->telefono_cliente, $this->direccion_cliente, $this->usuario_publico, $this->id_cliente);
         return Database::executeRow($sql, $params);
     }
 

@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // LLamada a la función para asignar el token del reCAPTCHA al formulario.
     reCAPTCHA();
     // Evento para cargar cmb
-    fillSelectType(USER_API, 'getAllGender', 'genero');
+    fillSelectType(USER_API, 'readAllGender', 'genero');
 });
 
 // Método manejador de eventos para cuando se envía el formulario de registrar cliente.

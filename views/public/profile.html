@@ -24,9 +24,7 @@
         <div id="bienvenida"></div>
         <!-- formulario para inicio de sesion -->
         <form class="row" method="post" id="profile-form">
-            <div class="col m4 offset-m4">
-                <img id="foto" name="foto" class="materialboxed" src="" width="200">
-            </div>
+            <div id="foto" class=""></div>
             <!-- textbox nombres -->
             <div class="input-field col s12 m6">
                 <i class="material-icons prefix">account_box</i>
@@ -70,7 +68,7 @@
             <!-- cmb genero -->
             <div class="input-field col s12 m6">
                 <i class="material-icons prefix">wc</i>
-                <select id="genero" name="genero" disabled>
+                <select id="genero" name="genero">
                 </select>
                 <label>Seleccione su genero</label>
             </div>
@@ -95,6 +93,54 @@
                 </button>
             </div>
         </form>
+        <div class="center-align">
+            <button onclick="openPassword()" class="btn-large waves-effect blue tooltipped" data-tooltip="Cambiar contraseña">
+                <i class="material-icons">key</i>
+            </button>
+        </div>
+        <!-- Componente Modal para mostrar una caja de diálogo -->
+        <div id="password-modal" class="modal">
+            <!-- Enlace para cerrar el componente Modal -->
+            <div class="row right">
+                <a class="black-text tooltipped modal-close" data-tooltip="Cerrar">
+                    <i class="small material-icons">close</i>
+                </a>
+            </div>
+            <!-- Contenido del componente Modal -->
+            <div class="modal-content">
+                <!-- Título para la caja de diálogo -->
+                <h1 class="center-align">Cambio de clave</h1>
+                <!-- Formulario para actualizar contraseña -->
+                <form class="row" method="post" id="password-form">
+                    <div class="input-field col s12 m6 offset-m3">
+                        <i class="material-icons prefix">security</i>
+                        <input id="actual" type="password" name="actual" class="validate" required>
+                        <label for="actual">Clave actual</label>
+                    </div>
+                    <div class="col s12 center-align">
+                        <label>CLAVE NUEVA</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">security</i>
+                        <input id="nueva" type="password" name="nueva" class="validate" required>
+                        <label for="nueva">Clave</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">security</i>
+                        <input id="confirmar" type="password" name="confirmar" class="validate" required>
+                        <label for="confirmar">Confirmar clave</label>
+                    </div>
+                    <div class="col s12 center-align">
+                        <button type="reset" class="btn waves-effect grey tooltipped" data-tooltip="Reiniciar">
+                            <i class="material-icons">autorenew</i>
+                        </button>
+                        <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Guardar">
+                            <i class="material-icons">save</i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </main>
     <!-- pie de la pagina -->
     <footer></footer>
