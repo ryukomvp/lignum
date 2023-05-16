@@ -18,5 +18,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     //Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepcion
     if(JSON.status){
         //Se colocan los datos en la pagina web de acuerdo con el producto seleccionado previamente
+        document.getElementById()
     }
 }) 
