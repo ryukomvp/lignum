@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
         document.getElementById('dui').disabled = true;
+        document.getElementById('archivo').disabled = true;
         document.getElementById('genero').disabled = true;
         // Campos con la info del usuario activo
         FOTO.innerHTML = `
