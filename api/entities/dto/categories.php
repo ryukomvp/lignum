@@ -9,6 +9,9 @@ class Category extends CategoryQueries
     // Declaración de atributos (propiedades).
     protected $id = null;
     protected $nombre = null;
+    protected $descripcion = null;
+    protected $foto = null;
+    protected $ruta = '../../images/categories/';
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -25,8 +28,28 @@ class Category extends CategoryQueries
 
     public function setNombre($value)
     {
-        if (Validator::validateString($value, 1, 50)) {
+        if (Validator::validateAlphabetic($value, 1, 50)) {
             $this->nombre = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setDescripcion($value)
+    {
+        if (Validator::validateString($value, 1, 128)) {
+            $this->descripcion = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setFoto($file)
+    {
+        if (Validator::validateImageFile($file, 30, 30)) {
+            $this->foto = Validator::getFileName();
             return true;
         } else {
             return false;
@@ -44,5 +67,20 @@ class Category extends CategoryQueries
     public function getNombre()
     {
         return $this->nombre;
+    }
+
+    public function getDescripcion()
+    {
+        return $this->descripcion;
+    }
+
+    public function getFoto()
+    {
+        return $this->foto;
+    }
+
+    public function getRuta()
+    {
+        return $this->ruta;
     }
 }
