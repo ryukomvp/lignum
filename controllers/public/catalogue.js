@@ -1,5 +1,5 @@
 //Constante para completar la ruta de la API
-const PRODUCTO_API = 'business/dashboard/products.php';
+const PRODUCTO_API = 'business/public/catalogue.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('search-form');
 //Constantes para establecer el contenido principal de la pagina web
@@ -25,7 +25,7 @@ async function cargarProductos(form = null) {
     // Se inicializa el contenido de la tabla.
     PRODUCTOS.innerHTML = '';
     // Se verifica la acción a realizar.
-    (form) ? action = 'search' : action = 'readAll';
+    (form) ? action = 'search' : action = 'readCatalogue';
     // Petición para obtener los registros disponibles.
     const JSON = await dataFetch(PRODUCTO_API, action, form);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
