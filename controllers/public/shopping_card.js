@@ -1,5 +1,5 @@
 // Constantes para completar las rutas de la API.
-const PRODUCTO_API = 'business/dashboard/shopping_card.php';
+const PRODUCTO_API = 'business/public/shopping_card.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('search-form');
 // Constante para establecer el formulario de guardar.
