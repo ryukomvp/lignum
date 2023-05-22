@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <div class="card grey darken-4">
                     <div class="card-content white-text">
                         <span class="card-title center-align">${row.categoria}</span>
-                        <p>Aqui iria la img de la categoria</p>
+                        <img src="${SERVER_URL}images/categories/${row.foto}">
                     </div>
                         <div class="card-action">
                             <p class="white-text">${row.descripcion}</p>
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         M.Tooltip.init(document.querySelectorAll('.tooltipped'));
     } else {
         // Se asigna al título del contenido de la excepción cuando no existen datos para mostrar.
-        document.getElementById('title').textContent = JSON.exception;
+        // document.getElementById('title').textContent = JSON.exception;
     }
 });
 

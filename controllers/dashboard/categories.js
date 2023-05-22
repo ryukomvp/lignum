@@ -140,6 +140,7 @@ async function openUpdate(id) {
         // Se inicializan los campos del formulario.
         document.getElementById('id').value = JSON.dataset.id_categoria;
         document.getElementById('nombre').value = JSON.dataset.categoria;
+        document.getElementById('descripcion').value = JSON.dataset.descripcion;
         // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
         M.updateTextFields();
     } else {

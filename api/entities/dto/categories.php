@@ -48,7 +48,7 @@ class Category extends CategoryQueries
 
     public function setFoto($file)
     {
-        if (Validator::validateImageFile($file, 30, 30)) {
+        if (Validator::validateImageFile($file, 100, 100)) {
             $this->foto = Validator::getFileName();
             return true;
         } else {
