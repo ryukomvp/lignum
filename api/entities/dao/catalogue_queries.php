@@ -5,10 +5,6 @@ require_once('../../helpers/database.php');
 */
 class CatalogueQueries
 {
-    /*
-    *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
-    */
-
     /*metodo para buscar registros*/
     public function searchRows($value)
     {
