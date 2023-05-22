@@ -1,7 +1,8 @@
 CREATE TABLE categoria(
 	id_categoria serial not null PRIMARY KEY,
-	categoria varchar(30),
-	descripcion varchar(128)
+	categoria varchar(30) not null,
+	descripcion varchar(128) not null,
+	foto varchar not null
 );
 
 CREATE TYPE estado_pedido AS ENUM ('Anulado', 'Completado', 'En revisión', 'Pendiente');
