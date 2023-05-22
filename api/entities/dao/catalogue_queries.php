@@ -12,7 +12,7 @@ class CatalogueQueries
     /*metodo para buscar registros*/
     public function searchRows($value)
     {
-        $sql = 'SELECT id_producto, nombre_producto, foto , descripcion_producto, precio_producto, codigo_producto, dimensiones, id_categoria, id_tipo_material, id_proveedor, estado, cantidad_existencias
+        $sql = 'SELECT id_producto, nombre_producto, foto , descripcion_producto, precio_producto, codigo_producto, dimensiones, categoria, id_tipo_material, id_proveedor, estado, cantidad_existencias
                 FROM producto INNER JOIN categoria USING(id_categoria)
                 WHERE estado = true AND nombre_producto ILIKE ? OR descripcion_producto ILIKE ? OR categoria ILIKE ?
                 ORDER BY nombre_producto';
@@ -30,7 +30,7 @@ class CatalogueQueries
 
     public function readCatalogue()
     {
-        $sql = 'SELECT id_producto, nombre_producto, foto , descripcion_producto, precio_producto, codigo_producto, dimensiones, id_categoria, id_tipo_material, id_proveedor, estado, cantidad_existencias
+        $sql = 'SELECT id_producto, nombre_producto, foto , descripcion_producto, precio_producto, codigo_producto, dimensiones, categoria, id_tipo_material, id_proveedor, estado, cantidad_existencias
                 FROM producto INNER JOIN categoria USING(id_categoria)
                 WHERE estado = true
                 ORDER BY nombre_producto';

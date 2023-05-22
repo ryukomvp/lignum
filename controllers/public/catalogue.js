@@ -37,7 +37,8 @@ async function cargarProductos(form = null) {
             <div class="col s12 m3">
                 <div class="card">
                     <div class="card-image">
-                      <img src="${SERVER_URL}images/products/${row.foto}" class="materialboxed">
+                        <img src="${SERVER_URL}images/products/${row.foto}" class="materialboxed">
+                        <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-tooltip="Agregar a carrito"><i class="material-icons">add</i></a>
                     </div>
                     <div class="card-content">
                         <span class="card-title">${row.nombre_producto}</span>
@@ -45,7 +46,7 @@ async function cargarProductos(form = null) {
                         <h5>$ ${row.precio_producto}</h5>
                     </div>
                     <div class="card-action">
-                      <a href="#">This is a link</a>
+                        <span>Categoria: <b>${row.categoria}</b></span>
                     </div>
                   </div>
             </div>
