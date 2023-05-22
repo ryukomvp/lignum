@@ -23,28 +23,18 @@ document.addEventListener('DOMContentLoaded', async () => {
             url = `articles.html?id=${row.id_categoria}&nombre=${row.nombre_categoria}`;
             // Se crean y concatenan las tarjetas con los datos de cada categoría.
             CATEGORIAS.innerHTML += `
-                <div class="col s12 m6 l4">
+                <div class="col s12 m4">
                     <div class="card hoverable">
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <img src="${SERVER_URL}images/categorias/${row.imagen_categoria}" class="activator">
+                        <div class="card-image">
+                            <img class="materialboxed" src="${SERVER_URL}images/categorias/${row.imagen_producto}" class="activator">
+                            <a href="${url}" class="tooltipped" data-tooltip="Ver detalle">
+                                    <i class="material-icons">info</i>
+                                </a>
                         </div>
                         <div class="card-content">
                             <span class="card-title activator grey-text text-darken-4">
-                                <b>${row.nombre_categoria}</b>
-                                <i class="material-icons right tooltipped" data-tooltip="Descripción">more_vert</i>
+                                <b>${row.nombre_producto}</b>
                             </span>
-                            <p class="center">
-                                <a href="${url}" class="tooltipped" data-tooltip="Ver productos">
-                                    <i class="material-icons">local_cafe</i>
-                                </a>
-                            </p>
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4">
-                                <b>${row.nombre_categoria}</b>
-                                <i class="material-icons right tooltipped" data-tooltip="Cerrar">close</i>
-                            </span>
-                            <p>${row.descripcion_categoria}</p>
                         </div>
                     </div>
                 </div>
