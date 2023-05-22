@@ -44,9 +44,9 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Validator::getFileError();
                 } elseif (!$product->setDescripcion($_POST['descripcion'])) {
                     $result['exception'] = 'Descripción incorrecta';
+                }    $result['exception'] = 'Precio incorrecto';
                 } elseif (!$product->setPrecio($_POST['precio'])) {
-                    $result['exception'] = 'Precio incorrecto';
-                } elseif (!$product->setCodigo($_POST['codigo'])) {
+                 elseif (!$product->setCodigo($_POST['codigo'])) {
                     $result['exception'] = 'codigo incorrecto';
                 } elseif (!$product->setDimensiones($_POST['dimensiones'])) {
                     $result['exception'] = 'dimensiones incorrecto';

@@ -10,7 +10,7 @@ if (isset($_GET['action'])) {
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null, 'dataset' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
-    if (isset($_SESSION['id_usuario_privado']) or 1) {
+    if (isset($_SESSION['id_usuario_privado'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readAll':
@@ -40,10 +40,20 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if (!$category->setNombre($_POST['nombre'])) {
                     $result['exception'] = 'Nombre incorrecto';
-                }  elseif ($category->createRow()) {
+                } elseif (!$category->setDescripcion($_POST['descripcion'])) {
+                    $result['exception'] = 'Descripción incorrecto';
+                } elseif (!$category->setFoto($_FILES['archivo'])) {
+                    $result['exception'] = Validator::getFileError();
+                } elseif (!is_uploaded_file($_FILES['archivo']['tmp_name'])) {
+                    $result['exception'] = 'Seleccione una imagen';
+                } elseif ($category->createRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'categoria creado correctamente';
-                }else {
+                    if (Validator::saveFile($_FILES['archivo'], $category->getRuta(), $category->getFoto())) {
+                        $result['message'] = 'Categoria creada correctamente';
+                    } else {
+                        $result['message'] = 'Categoria creada pero no se guardó la imagen';
+                    }
+                } else {
                     $result['exception'] = Database::getException();
                 }
                 break;
