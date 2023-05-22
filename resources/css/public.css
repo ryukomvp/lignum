@@ -113,7 +113,7 @@ a {
     color: gray;
 }
 
-#search{
+/* #search{
     font-family: Arial;
     width: 200px;
     text-align: center;
@@ -121,7 +121,7 @@ a {
     color: white;
     border: 0px;
     border-radius: 4px;
-}
+} */
 
 .card:hover{
     box-shadow: #1a120b;
