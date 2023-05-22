@@ -53,9 +53,9 @@ class UserQueries
     public function editProfile()
     {
         $sql = 'UPDATE usuario_privado
-                SET nombre_empleado = ?, apellido_empleado = ?, dui_empleado = ?, correo_empleado = ?, telefono_empleado = ?, usuario_privado = ?
+                SET nombre_empleado = ?, apellido_empleado = ?, correo_empleado = ?, telefono_empleado = ?, usuario_privado = ?
                 WHERE id_usuario_privado = ?';
-        $params = array($this->nombre_empleado, $this->apellido_empleado, $this->dui_empleado, $this->correo_empleado, $this->telefono_empleado, $this->usuario_privado, $_SESSION['id_usuario_privado']);
+        $params = array($this->nombre_empleado, $this->apellido_empleado, $this->correo_empleado, $this->telefono_empleado, $this->usuario_privado, $_SESSION['id_usuario_privado']);
         return Database::executeRow($sql, $params);
     }
 

@@ -1,10 +1,10 @@
 <?php
 require_once('../../helpers/validator.php');
-require_once('../../entities/dao/products_queries.php');
+require_once('../../entities/dao/products.queries.php');
 /*
 *	Clase para manejar la transferencia de datos de la entidad PRODUCTO.
 */
-class Products extends ProductsQueries
+class Product extends ProductQueries
 {
     // Declaración de atributos (propiedades).
     protected $id = null;

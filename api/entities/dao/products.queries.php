@@ -3,7 +3,7 @@ require_once('../../helpers/database.php');
 /*
 *	Clase para manejar el acceso a datos de la entidad PRODUCTO.
 */
-class ProductsQueries
+class ProductQueries
 {
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
@@ -31,7 +31,7 @@ class ProductsQueries
 
     public function readAll()
     {
-        $sql = 'SELECT id_producto, nombre_producto, foto , descripcion_producto, precio_producto, codigo_producto, dimensiones, id_categoria, id_tipo_material, id_proveedor, estado_producto, cantidad_existencias
+        $sql = 'SELECT id_producto, nombre_producto, foto , descripcion_producto, precio_producto, codigo_producto, dimensiones, id_categoria, id_tipo_material, id_proveedor, estado, cantidad_existencias
                 FROM producto INNER JOIN categoria USING(id_categoria)
                 ORDER BY nombre_producto';
         return Database::getRows($sql);

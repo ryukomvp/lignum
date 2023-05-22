@@ -20,50 +20,89 @@
 <body>
 
     <!-- Menu tipo Navbar  -->
-    <header></header>
+    <header>
+        <!-- etiqueta para menu -->
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="main.html" class="brand-logo"><img src="/resources/img/2.png" alt=""></a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href="#" class="tooltipped" data-position="bottom" data-tooltip="Inicio de la página"><i
+                                    class="material-icons">arrow_upward</i></a></li>
+                        <li><a href="profile.html" class="tooltipped" data-position="bottom"
+                                data-tooltip="Perfil del usuario"><i class="material-icons">account_circle</i></a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
     <!-- contenido principal -->
     <main>
         <div class="container">
             <div class="row">
-                <div id="bienvenida"></div>
+                <div id="bienvenida" class="col s12 m12">
+                </div>
                 <div class="col s12 m12">
                     <!-- botones para direccionar a los SCRUD -->
                     <div class="social-btns">
-                        <a class="btn Empleados" href="employees.html"><img class="Iconos_menu"
-                                src="/resources/img/Icono_Employeers_priv_menu.png"><i class="fa fa-Empleados"><i>
-                                    <h5 class="Letra_Menu">Empleados</h5>
-                        </a>
+                        <a class="btn Empleados" href="customers.html"><img class="Iconos_menu"
+                                src="../../resources/img/iconos/Icono_Employeers_priv_menu.png"><i class="fa fa-Empleados"><i>
+                                    <h5 class="Letra_Menu">Clientes</h5>
+                                </a>
                         <a class="btn Usuarios" href="users.html"><img class="Iconos_menu"
-                                src="/resources/img/Icono_User_priv_menu.png"> <i class="fa fa-Usuarios"></i>
+                                src="../../resources/img/iconos/Icono_User_priv_menu.png"> <i class="fa fa-Usuarios"></i>
                             <h5 class="Letra_Menu">Usuarios</h5>
                         </a>
                         <a class="btn Productos" href="products.html"><img class="Iconos_menu"
-                                src="/resources/img/Icono_Productos_priv_menu.png"> <i class="fa fa-Productos"></i>
+                                src="../../resources/img/iconos/Icono_Productos_priv_menu.png"> <i class="fa fa-Productos"></i>
                             <h5 class="Letra_Menu">Productos</h5>
                         </a>
                         <a class="btn Proveedores" href="suppliers.html"><img class="Iconos_menu"
-                                src="/resources/img/Icono_Proveedor_priv_menu.png"> <i class="fa fa-Proveedores"><i>
+                                src="../../resources/img/iconos/Icono_Proveedor_priv_menu.png"> <i class="fa fa-Proveedores"><i>
                                     <h5 class="Letra_Menu">Proveedores</h5>
-                        </a>
+                                </a>
                         <a class="btn Pedidos" href="orders.html"><img class="Iconos_menu"
-                                src="/resources/img/Icono_Pedidos_priv_menu.png"><i class="fa fa-Pedidos"><i>
+                                src="../../resources/img/iconos/Icono_Pedidos_priv_menu.png"><i class="fa fa-Pedidos"><i>
                                     <h5 class="Letra_Menu">Pedidos</h5>
-                        </a>
-                        <a class="btn Valoracion" href="inventory.html"><img class="Iconos_menu"
-                                src="/resources/img/Icono_Valoracion_priv_menu.png"><i class="fa fa-Valoracion"><i>
-                                    <h5 class="Letra_Menu">Valoracion y comentarios</h5>
-                        </a>
-                        <a class="btn Valoracion" href="customers.html"><img class="Iconos_menu"
-                            src="/resources/img/Icono_Valoracion_priv_menu.png"><i class="fa fa-Valoracion"><i>
-                                <h5 class="Letra_Menu">Clientes</h5>
-                    </a>
+                                </a>
+                        <a class="btn Valoracion" href="ratings.html"><img class="Iconos_menu"
+                            src="../../resources/img/iconos/Icono_Valoracion_priv_menu.png"><i class="fa fa-Valoracion"><i>
+                                <h5 class="Letra_Menu">Valoracion y comentarios</h5>
+                            </a>
+                        <a class="btn Categories" href="categories.html"><img class="Iconos_menu"
+                            src="../../resources/img/iconos/Icono-Categoria-96.png"><i class="fa fa-Categorias"><i>
+                                <h5 class="Letra_Menu">Categorias</h5>
+                            </a>
+                        <a class="btn Materials" href="materials.html"><img class="Iconos_menu"
+                            src="../../resources/img/iconos/Icono-Material-96.png"><i class="fa fa-Categorias"><i>
+                                <h5 class="Letra_Menu">Material</h5>
+                            </a>
                     </div>
                 </div>
             </div>
         </div>
     </main>
     <!-- Footer -->
-    <footer class="page-footer"></footer>
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <a href="about-us.html">
+                        <h5 class="white-text">Dashboard footer</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class=" footer-copyright bottom-0">
+            <div class="container">
+                © 2014 Copyright Text
+                <a class="grey-text text-lighten-4 right" href="https://www.instagram.com/dnlhernandez_"
+                    target="_blank">More
+                    Links</a>
+            </div>
+        </div>
+    </footer>
+    <!--JavaScript at end of body for optimized loading-->
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
     <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
