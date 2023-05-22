@@ -115,6 +115,9 @@ class CustomerQueries
 
     public function updateRow()
     {
+        // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
+        ($this->foto) ? Validator::deleteFile($this->getRuta(), $current_image) : $this->imagen = $current_image;
+
         $sql = 'UPDATE cliente
                 SET nombre_cliente = ?, apellido_cliente = ?, foto = ?, dui_cliente = ?, correo_cliente = ?, telefono_cliente = ?,
                 genero = ?, afiliado = ?, direccion_cliente = ?, usuario_publico = ?, acceso = ?

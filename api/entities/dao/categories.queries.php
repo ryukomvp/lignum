@@ -10,7 +10,7 @@ class CategoryQueries
     */
     public function searchRows($value)
     {
-        $sql = 'SELECT id_categoria, categoria
+        $sql = 'SELECT id_categoria, categoria, descripcion
                 FROM categoria
                 WHERE categoria ILIKE ?
                 ORDER BY categoria';
@@ -20,7 +20,7 @@ class CategoryQueries
 
     public function createRow()
     {
-        $sql = 'INSERT INTO categoria(categoria)
+        $sql = 'INSERT INTO categoria(categoria, descripcion)
                 VALUES(?)';
         $params = array($this->nombre);
         return Database::executeRow($sql, $params);
@@ -28,7 +28,7 @@ class CategoryQueries
 
     public function readAll()
     {
-        $sql = 'SELECT id_categoria, categoria
+        $sql = 'SELECT id_categoria, categoria, descripcion
                 FROM categoria
                 ORDER BY categoria';
         return Database::getRows($sql);
@@ -36,7 +36,7 @@ class CategoryQueries
 
     public function readOne()
     {
-        $sql = 'SELECT id_categoria, categoria
+        $sql = 'SELECT id_categoria, categoria, descripcion
                 FROM categoria
                 WHERE id_categoria = ?';
         $params = array($this->id);
