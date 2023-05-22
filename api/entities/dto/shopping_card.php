@@ -9,20 +9,58 @@ class Shopping extends ShoppingQueries
     // Declaración de atributos (propiedades).
     protected $id_pedido = null;
     protected $id_detalle = null;
+    protected $producto = null;
+    protected $cantidad = null;
     protected $codigo = null;
     protected $descripcion = null;
     protected $cliente = null;
     protected $estado = null;
     protected $fecha = null;
 
+    /*   ESTADOS PARA UN PEDIDO
+    *   1: Anulado. Es cuando el cliente se arrepiente de haber realizado el pedido.
+    *   2: Entregado. Es cuando la tienda ha entregado el pedido al cliente.
+    *   3: Pendiente. Es cuando el pedido esta en proceso por parte del cliente y se puede modificar el detalle.
+    *   4: procesando. Es cuando el cliente finaliza el pedido y ya no es posible modificar el detalle.
+    */
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
     */
-    public function setId($value)
+    public function setIdPedido($value)
     {
         if (Validator::validateNaturalNumber($value)) {
-            $this->id = $value;
+            $this->id_pedido = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setIdDetalle($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->id_detalle = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setProducto($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->producto = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setCantidad($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->cantidad = $value;
             return true;
         } else {
             return false;
@@ -61,8 +99,18 @@ class Shopping extends ShoppingQueries
 
     public function setEstado($value)
     {
-        if (Validator::validateNaturalNumber($value)) {
+        if (Validator::validateBoolean($value)) {
             $this->estado = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setFecha($value)
+    {
+        if (Validator::validateDate($value)) {
+            $this->fecha = $value;
             return true;
         } else {
             return false;
@@ -73,9 +121,24 @@ class Shopping extends ShoppingQueries
     /*
     *   Métodos para obtener valores de los atributos.
     */
-    public function getId()
+    public function getIdPedido()
     {
-        return $this->id;
+        return $this->id_pedido;
+    }
+
+    public function getIdDetalle()
+    {
+        return $this->id_detalle;
+    }
+
+    public function getProducto()
+    {
+        return $this->producto;
+    }
+
+    public function getCantidad()
+    {
+        return $this->cantidad;
     }
 
     public function getCodigo()

@@ -6,7 +6,7 @@ if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
     // Se instancia la clase correspondiente.
-    $rating = new Rating;
+    $shopping = new Shopping;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null, 'dataset' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
@@ -14,7 +14,7 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readAll':
-                if ($result['dataset'] = $rating->readAll()) {
+                if ($result['dataset'] = $shopping->readAll()) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen '.count($result['dataset']).' registros';
                 } elseif (Database::getException()) {
@@ -27,7 +27,7 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if ($_POST['search'] == '') {
                     $result['exception'] = 'Ingrese un valor para buscar';
-                } elseif ($result['dataset'] = $rating->searchRows($_POST['search'])) {
+                } elseif ($result['dataset'] = $shopping->searchRows($_POST['search'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen '.count($result['dataset']).' coincidencias';
                 } elseif (Database::getException()) {
@@ -36,37 +36,42 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay coincidencias';
                 }
                 break;
-            // case 'create':
-            //     $_POST = Validator::validateForm($_POST);
-            //     if (!$rating->setNombre($_POST['nombre'])) {
-            //         $result['exception'] = 'Nombre incorrecto';
-            //     }  elseif ($rating->createRow()) {
-            //         $result['status'] = 1;
-            //         $result['message'] = 'categoria creado correctamente';
-            //     }else {
-            //         $result['exception'] = Database::getException();
-            //     }
-            //     break;
-            case 'readOne':
-                if (!$rating->setId($_POST['id'])) {
-                    $result['exception'] = 'Valoracion incorrecta';
-                } elseif ($result['dataset'] = $rating->readOne()) {
+            case 'createDetail':
+                $_POST = Validator::validateForm($_POST);
+                if (!$shopping->startOrder()) {
+                    $result['exception'] = 'Ocurrió un problema al obtener el shopping';
+                } elseif (!$shopping->setProducto($_POST['id_producto'])) {
+                    $result['exception'] = 'Producto incorrecto';
+                } elseif (!$shopping->setCantidad($_POST['cantidad'])) {
+                    $result['exception'] = 'Cantidad incorrecta';
+                } elseif ($shopping->createDetail()) {
                     $result['status'] = 1;
+                    $result['message'] = 'Producto agregado correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
+            case 'readOrderDetail':
+                if (!$shopping->startOrder()) {
+                    $result['exception'] = 'Debe agregar un producto al carrito';
+                } elseif ($result['dataset'] = $shopping->readOrderDetail()) {
+                    $result['status'] = 1;
+                    $_SESSION['id_pedido'] = $shopping->getIdPedido();
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
-                    $result['exception'] = 'Valoracion inexistente';
+                    $result['exception'] = 'No tiene productos en el carrito';
                 }
                 break;
-            case 'update':
+            case 'updateDetail':
                 $_POST = Validator::validateForm($_POST);
-                if (!$rating->setId($_POST['id'])) {
+                if (!$shopping->setIdDetalle($_POST['id_detalle'])) {
                     $result['exception'] = 'valoracion incorrecta';
-                } elseif (!$data = $rating->readOne()) {
+                } elseif (!$data = $shopping->readOrderDetail()) {
                     $result['exception'] = 'valoracion inexistente';
                 } elseif (!$products->setEstado(isset($_POST['estado']) ? 1 : 0)) {
                     $result['exception'] = 'Estado incorrecto';
-                } elseif ($rating->updateRow()) {
+                } elseif ($shopping->updateRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'categoria actualizada correctamente';
                 }else {
@@ -74,11 +79,11 @@ if (isset($_GET['action'])) {
                 }
                 break;
             // case 'delete':
-            //     if (!$rating->setId($_POST['id_categoria'])) {
+            //     if (!$shopping->setId($_POST['id_categoria'])) {
             //         $result['exception'] = 'Categoría incorrecta';
-            //     } elseif (!$data = $rating->readOne()) {
+            //     } elseif (!$data = $shopping->readOrderDetail()) {
             //         $result['exception'] = 'Categoría inexistente';
-            //     } elseif ($rating->deleteRow()) {
+            //     } elseif ($shopping->deleteRow()) {
             //         $result['status'] = 1;
             //         $result['message'] = 'categoria eliminada correctamente';
             //     }else {
