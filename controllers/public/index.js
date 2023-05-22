@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <div class="col s12 m4">
                     <div class="card hoverable">
                         <div class="card-image">
-                            <img class="materialboxed" src="${SERVER_URL}images/categorias/${row.imagen_producto}" class="activator">
+                            <img class="materialboxed" src="${SERVER_URL}images/categorias/${row.foto}" class="activator">
                             <a href="${url}" class="tooltipped" data-tooltip="Ver detalle">
                                     <i class="material-icons">info</i>
                                 </a>
