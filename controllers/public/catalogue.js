@@ -1,9 +1,8 @@
 //Constante para completar la ruta de la API
 const PRODUCTO_API = 'business/dashboard/products.php';
-//Constante tipo objeto para obtener los parametros disponibles en la URL
-const PARAMS = new URLSearchParams(location.search);
+// Constante para establecer el formulario de buscar.
+const SEARCH_FORM = document.getElementById('search-form');
 //Constantes para establecer el contenido principal de la pagina web
-const TITULO = document.getElementById('title');
 const PRODUCTOS = document.getElementById('productos');
 
 // Método manejador de eventos para cuando el documento ha cargado.
@@ -25,7 +24,6 @@ SEARCH_FORM.addEventListener('submit', (event) => {
 async function cargarProductos(form = null) {
     // Se inicializa el contenido de la tabla.
     PRODUCTOS.innerHTML = '';
-    RECORDS.textContent = '';
     // Se verifica la acción a realizar.
     (form) ? action = 'search' : action = 'readAll';
     // Petición para obtener los registros disponibles.
@@ -36,36 +34,28 @@ async function cargarProductos(form = null) {
         JSON.dataset.forEach(row => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             PRODUCTOS.innerHTML += `
-         
-            <div class="col s10 m3">
-              <div class="card">
-                <div class="card-image waves-effect waves-block waves-light">
-                   <img src="${SERVER_URL}images/products/${row.foto}" class="activator" >  
-                </div>
-                <div class="card-content">
-                  <h3 class="card-title activator grey-text text-darken-4">${row.nombre_producto}</h3>
-                    <div class="modal-footerD">
-                    <span>Codigo: ${row.codigo_producto}</span>
-                    <h5>$ ${row.precio_producto}</h5>
+            <div class="col s12 m3">
+                <div class="card">
+                    <div class="card-image">
+                      <img src="${SERVER_URL}images/products/${row.foto}" class="materialboxed">
                     </div>
-                    <div class ="card-action">
-                        <button onclick="openUpdate(${row.id_producto})" class="btn blue tooltipped" data-tooltip="Actualizar">
-                        <i class="material-icons">mode_edit</i>
-                        </button>
-                        <button onclick="openDelete(${row.id_producto})" class="btn red tooltipped" data-tooltip="Eliminar">
-                                <i class="material-icons">delete</i>
-                        </button>
+                    <div class="card-content">
+                        <span class="card-title">${row.nombre_producto}</span>
+                        <span>${row.descripcion_producto}</span>
+                        <h5>$ ${row.precio_producto}</h5>
                     </div>
-                </div>
-              </div>
+                    <div class="card-action">
+                      <a href="#">This is a link</a>
+                    </div>
+                  </div>
             </div>
        
             `;
         });
-        // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
+        // Se inicializa el componente materialbox
+        M.Materialbox.init(document.querySelectorAll('.materialboxed'));
+        // Se inicializa el componente tooltipped
         M.Tooltip.init(document.querySelectorAll('.tooltipped'));
-        // Se muestra un mensaje de acuerdo con el resultado.
-        RECORDS.textContent = JSON.message;
     } else {
         sweetAlert(4, JSON.exception, true);
     }
