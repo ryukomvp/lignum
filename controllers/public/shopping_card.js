@@ -1,5 +1,5 @@
 // Constantes para completar las rutas de la API.
-const PRODUCTO_API = 'business/dashboard/products.php';
+const PRODUCTO_API = 'business/dashboard/shopping_card.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('search-form');
 // Constante para establecer el formulario de guardar.
@@ -72,35 +72,52 @@ async function fillTable(form = null) {
     const JSON = await dataFetch(PRODUCTO_API, action, form);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
+        let subtotal = 0;
+        let total = 0;
         // Se recorre el conjunto de registros fila por fila.
         JSON.dataset.forEach(row => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             PRODUCTOS.innerHTML += `
          
-        <div class="container">
-            <div class="col s12 m7">
-                <h2 class="header"></h2>
-                <div class="card horizontal" id="card-carrito">
-                    <div class="card-image" id="img-carrito">
-                        <img src="${SERVER_URL}images/products/${row.foto}" class="activator" >
-                    </div>
-                    <div class="card-stacked">
-                        <div class="card-content">
-                            <span class="nombre">${row.nombre_producto}</span>
-                            <p class="precio">$${row.precio_producto}</p>
-                            <p class="descripcion">${row.descripcion_producto}</p>
-                            <p class="cantidad"><button class="detalle-cantidad">+</button> 1 <button
-                                    class="detalle-cantidad">-</button></p>
-                        </div>
-                        <div class="card-action">
-                           <button onclick="openDelete(${row.id_producto})" class="btn red tooltipped" data-tooltip="Eliminar">
-                                <i class="material-icons">delete</i>
-                           </button>
-                        </div>
-                    </div>
-                </div>
+            <div class="col s10 m3">
+            <div class="card">
+              <div class="card-image waves-effect waves-block waves-light">
+                 <img src="${SERVER_URL}images/products/${row.foto}" class="activator" >  
+              </div>
+              <div class="card-content">
+                <h3 class="card-title activator grey-text text-darken-4">${row.nombre_producto}</h3>
+                  <div class="modal-footerD">
+                  <span>Codigo: ${row.codigo_producto}</span>
+                  <h5>$ ${row.precio_producto}</h5>
+                  </div>
+                  <div class ="card-action">
+                      <button onclick="openUpdate(${row.id_producto})" class="btn blue tooltipped" data-tooltip="Actualizar">
+                      <i class="material-icons">mode_edit</i>
+                      </button>
+                      <button onclick="openDelete(${row.id_producto})" class="btn red tooltipped" data-tooltip="Eliminar">
+                              <i class="material-icons">delete</i>
+                      </button>
+                  </div>
+              </div>
             </div>
-        </div>
+          </div>
+
+
+
+          <div class="col s10 m3">
+            <div class="card">
+             
+              <div class="card-content">
+                <h3 class="card-title activator grey-text text-darken-4">Precio total</h3>
+                  <div class="modal-footerD">
+                  <h5>Total:</h5>
+                  <div class="right_align">
+                    <h5>${subtotal.toFixed(2)}</h5>
+                  </div>
+                  </div>
+              </div>
+            </div>
+          </div>
        
             `;
         });
