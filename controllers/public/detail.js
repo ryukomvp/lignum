@@ -1,6 +1,6 @@
 //Constantes para completar la ruta de las API
 const PRODUCTO_API = 'business/public/products.php';
-const PEDIDO_API = 'business/public/dashboard/order';
+const PEDIDO_API = 'business/public/dashboard/order.php';
 //Constante tipo objeto para obtener los parametros
 const PARAMS = new URLSearchParams(location.search);
 //Constante para establecer el formulario de agregar un producto al carrito de compras
@@ -18,6 +18,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     //Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepcion
     if(JSON.status){
         //Se colocan los datos en la pagina web de acuerdo con el producto seleccionado previamente
-        document.getElementById()
+        document.getElementById('imagen').src = SERVER_URL.concat('images/products/', JSON.dataset.foto);
+        document.getElementById('nombre').textContent = JSON.dataset.nombre_producto;
+        document.getElementById('descripcion').textContent = JSON.dataset.descripcion_producto;
+        document.getElementById('precio').textContent = JSON.dataset.precio_producto;
+        document.getElementById('id_producto').value = JSON.dataset.id_producto;
+    }else{
+        // Se presenta un mensaje de error cuando no existen datos para mostrar.
+        document.getElementById('title').textContent = JSON.exception;
+        // Se limpia el contenido cuando no hay datos para mostrar.
+        document.getElementById('detalle').innerHTML = '';
     }
-}) 
+});
+
