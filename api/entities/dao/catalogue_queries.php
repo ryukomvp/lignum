@@ -26,8 +26,8 @@ class CatalogueQueries
 
     public function readCatalogue()
     {
-        $sql = 'SELECT id_producto, nombre_producto, foto , descripcion_producto, precio_producto, codigo_producto, dimensiones, categoria, id_tipo_material, id_proveedor, estado, cantidad_existencias
-                FROM producto INNER JOIN categoria USING(id_categoria)
+        $sql = 'SELECT id_producto, nombre_producto, p.foto, descripcion_producto, precio_producto, codigo_producto, dimensiones, categoria, id_tipo_material, id_proveedor, estado, cantidad_existencias
+                FROM producto p INNER JOIN categoria c USING(id_categoria)
                 WHERE estado = true
                 ORDER BY nombre_producto';
         return Database::getRows($sql);
