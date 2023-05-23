@@ -10,7 +10,7 @@ class CatalogueQueries
     {
         $sql = 'SELECT id_producto, nombre_producto, p.foto, descripcion_producto, precio_producto, codigo_producto, dimensiones, categoria, id_tipo_material, id_proveedor, estado, cantidad_existencias
                 FROM producto p INNER JOIN categoria c USING(id_categoria)
-                WHERE estado = true AND nombre_producto ILIKE ? OR descripcion_producto ILIKE ? OR categoria ILIKE ?
+                WHERE estado = true AND (nombre_producto ILIKE ? OR descripcion_producto ILIKE ? OR categoria ILIKE ?)
                 ORDER BY nombre_producto';
         $params = array("%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
