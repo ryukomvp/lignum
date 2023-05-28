@@ -25,7 +25,7 @@ async function cargarProductos(form = null) {
     // Se inicializa el contenido de la tabla.
     PRODUCTOS.innerHTML = '';
     // Se verifica la acción a realizar.
-    (form) ? action = 'search' : action = 'readCatalogue';
+    (form) ? action = 'search' : action = 'readCategories';
     // Petición para obtener los registros disponibles.
     const JSON = await dataFetch(PRODUCTO_API, action, form);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
@@ -34,25 +34,22 @@ async function cargarProductos(form = null) {
         JSON.dataset.forEach(row => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             PRODUCTOS.innerHTML += `
-            <div class="col s12 m3">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="${SERVER_URL}images/products/${row.foto}" class="materialboxed">
-                        <a href="product.html?id=${row.id_producto}" class="btn-floating halfway-fab waves-effect red tooltipped"            data-tooltip="Ver detalle">
-                                <i class="material-icons">more_horiz</i>
-                        </a>
+                <div class="col s12 m3">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="${SERVER_URL}images/products/${row.foto}" class="materialboxed">
+                            <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-tooltip="Agregar a carrito"><i class="material-icons">add</i></a>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title">${row.nombre_producto}</span>
+                            <span>${row.descripcion_producto}</span>
+                            <h5>$ ${row.precio_producto}</h5>
+                        </div>
+                        <div class="card-action">
+                            <span>Categoria: <b>${row.categoria}</b></span>
+                        </div>
                     </div>
-                    <div class="card-content">
-                        <span class="card-title">${row.nombre_producto}</span>
-                        <span>${row.descripcion_producto}</span>
-                        <h5>$ ${row.precio_producto}</h5>
-                    </div>
-                    <div class="card-action">
-                        <span>Categoria: <b>${row.categoria}</b></span>
-                    </div>
-                  </div>
-            </div>
-       
+                </div>
             `;
         });
         // Se inicializa el componente materialbox

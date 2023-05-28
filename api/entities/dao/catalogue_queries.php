@@ -16,20 +16,30 @@ class CatalogueQueries
         return Database::getRows($sql, $params);
     }
 
-    public function readAll()
-    {
-        $sql = 'SELECT id_producto, nombre_producto, foto , descripcion_producto, precio_producto, codigo_producto, dimensiones, id_categoria, id_tipo_material, id_proveedor, estado, cantidad_existencias
-                FROM producto INNER JOIN categoria USING(id_categoria)
-                ORDER BY nombre_producto';
-        return Database::getRows($sql);
-    }
-
     public function readCatalogue()
     {
         $sql = 'SELECT id_producto, nombre_producto, p.foto, descripcion_producto, precio_producto, codigo_producto, dimensiones, categoria, id_tipo_material, id_proveedor, estado, cantidad_existencias
                 FROM producto p INNER JOIN categoria c USING(id_categoria)
                 WHERE estado = true
                 ORDER BY nombre_producto';
+        return Database::getRows($sql);
+    }
+
+    public function readCategories()
+    {
+        $sql = 'SELECT id_producto, nombre_producto, p.foto,  descripcion_producto, precio_producto
+                FROM producto p INNER JOIN categoria c USING(id_categoria)
+                WHERE estado = true AND (id_categoria = ?)
+                ORDER BY nombre_producto';
+        $params = array($this->id);
+        return Database::getRows($sql, $params);
+    }
+
+    public function readAllCategories()
+    {
+        $sql = 'SELECT id_categoria, categoria, descripcion, foto
+                FROM categoria
+                ORDER BY categoria';
         return Database::getRows($sql);
     }
 
@@ -40,15 +50,5 @@ class CatalogueQueries
                 WHERE id_producto = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
-    }
-
-    public function readproductoCategoria()
-    {
-        $sql = 'SELECT id_producto, nombre_producto, foto,  descripcion_producto, precio_producto
-                FROM producto INNER JOIN categoria USING(id_categoria)
-                WHERE id_categoria = ? AND estado = true
-                ORDER BY nombre_producto';
-        $params = array($this->id);
-        return Database::getRows($sql, $params);
     }
 }
