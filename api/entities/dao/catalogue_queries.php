@@ -5,14 +5,23 @@ require_once('../../helpers/database.php');
 */
 class CatalogueQueries
 {
-    /*metodo para buscar registros*/
     public function searchRows($value)
     {
         $sql = 'SELECT id_producto, nombre_producto, p.foto, descripcion_producto, precio_producto, codigo_producto, dimensiones, categoria, id_tipo_material, id_proveedor, estado, cantidad_existencias
                 FROM producto p INNER JOIN categoria c USING(id_categoria)
-                WHERE estado = true AND (nombre_producto ILIKE ? OR descripcion_producto ILIKE ? OR categoria ILIKE ?)
+                WHERE estado = true AND (nombre_producto ILIKE ? OR categoria ILIKE ?)
                 ORDER BY nombre_producto';
-        $params = array("%$value%", "%$value%", "%$value%");
+        $params = array("%$value%", "%$value%");
+        return Database::getRows($sql, $params);
+    }
+
+    public function searchRowsCategories($value)
+    {
+        $sql = 'SELECT id_producto, nombre_producto, p.foto, descripcion_producto, precio_producto, codigo_producto, dimensiones, categoria, id_tipo_material, id_proveedor, estado, cantidad_existencias
+                FROM producto p INNER JOIN categoria c USING(id_categoria)
+                WHERE id_categoria = ? AND estado = true AND (nombre_producto ILIKE ? OR categoria ILIKE ?)
+                ORDER BY nombre_producto';
+        $params = array($this->id, "%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
 
@@ -29,7 +38,7 @@ class CatalogueQueries
     {
         $sql = 'SELECT id_producto, nombre_producto, p.foto,  descripcion_producto, precio_producto
                 FROM producto p INNER JOIN categoria c USING(id_categoria)
-                WHERE estado = true AND (id_categoria = ?)
+                WHERE id_categoria = ? AND estado = true
                 ORDER BY nombre_producto';
         $params = array($this->id);
         return Database::getRows($sql, $params);

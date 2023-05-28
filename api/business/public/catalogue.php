@@ -21,6 +21,18 @@ if (isset($_GET['action'])) {
                 $result['exception'] = 'No hay coincidencias';
             }
             break;
+        case 'searchCategories':
+            $_POST = Validator::validateForm($_POST);
+            if ($_POST['search'] == '') {
+                $result['exception'] = 'Ingrese un valor para buscar';
+            } elseif ($result['dataset'] = $catalogue->searchRowsCategories($_POST['search'])) {
+                $result['status'] = 1;
+            } elseif (Database::getException()) {
+                $result['exception'] = Database::getException();
+            } else {
+                $result['exception'] = 'No hay coincidencias';
+            }
+            break;
         case 'readCatalogue':
             if ($result['dataset'] = $catalogue->readCatalogue()) {
                 $result['status'] = 1;
