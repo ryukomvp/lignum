@@ -70,4 +70,17 @@ class ShoppingQueries
      $params = array($this->id_detalle, $_SESSION['id_pedido']);
      return Database::executeRow($sql, $params);
  }
+
+ // Método para finalizar un pedido por parte del cliente.
+ public function finishOrder()
+    {
+        // Se establece la zona horaria local para obtener la fecha del servidor.
+        $date = date('Y-m-d');
+        $this->estado = 1;
+        $sql = 'UPDATE pedido
+                SET id_estado_pedido = ?, fecha = ?
+                WHERE id_pedido = ?';
+        $params = array($this->estado_pedido, $date, $_SESSION['id_pedido']);
+        return Database::executeRow($sql, $params);
+    }
 }

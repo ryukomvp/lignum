@@ -10,32 +10,10 @@ if (isset($_GET['action'])) {
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null, 'dataset' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
-    if (isset($_SESSION['id_usuario_privado']) or 1) {
+    if (isset($_SESSION['id_cliente']) ) {
+        $result['session'] = 1;
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
-            case 'readAll':
-                if ($result['dataset'] = $shopping->readAll()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Existen '.count($result['dataset']).' registros';
-                } elseif (Database::getException()) {
-                    $result['exception'] = Database::getException();
-                } else {
-                    $result['exception'] = 'No hay datos registrados';
-                }
-                break;
-            case 'search':
-                $_POST = Validator::validateForm($_POST);
-                if ($_POST['search'] == '') {
-                    $result['exception'] = 'Ingrese un valor para buscar';
-                } elseif ($result['dataset'] = $shopping->searchRows($_POST['search'])) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Existen '.count($result['dataset']).' coincidencias';
-                } elseif (Database::getException()) {
-                    $result['exception'] = Database::getException();
-                } else {
-                    $result['exception'] = 'No hay coincidencias';
-                }
-                break;
             case 'createDetail':
                 $_POST = Validator::validateForm($_POST);
                 if (!$shopping->startOrder()) {
@@ -65,31 +43,37 @@ if (isset($_GET['action'])) {
                 break;
             case 'updateDetail':
                 $_POST = Validator::validateForm($_POST);
-                if (!$shopping->setIdDetalle($_POST['id_detalle'])) {
+                if (!$shopping->setIdDetalle($_POST['id_detalle_pedido'])) {
                     $result['exception'] = 'valoracion incorrecta';
                 } elseif (!$data = $shopping->readOrderDetail()) {
                     $result['exception'] = 'valoracion inexistente';
                 } elseif (!$products->setEstado(isset($_POST['estado']) ? 1 : 0)) {
                     $result['exception'] = 'Estado incorrecto';
-                } elseif ($shopping->updateRow()) {
+                } elseif ($shopping->updateDetail()) {
                     $result['status'] = 1;
                     $result['message'] = 'categoria actualizada correctamente';
                 }else {
                     $result['exception'] = Database::getException();
                 }
                 break;
-            // case 'delete':
-            //     if (!$shopping->setId($_POST['id_categoria'])) {
-            //         $result['exception'] = 'Categoría incorrecta';
-            //     } elseif (!$data = $shopping->readOrderDetail()) {
-            //         $result['exception'] = 'Categoría inexistente';
-            //     } elseif ($shopping->deleteRow()) {
-            //         $result['status'] = 1;
-            //         $result['message'] = 'categoria eliminada correctamente';
-            //     }else {
-            //         $result['exception'] = Database::getException();
-            //     }
-            //     break;
+            case 'deleteDetail':
+                if (!$pedido->setIdDetalle($_POST['id_detalle_pedido'])) {
+                    $result['exception'] = 'Detalle incorrecto';
+                } elseif ($pedido->deleteDetail()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Producto removido correctamente';
+                } else {
+                    $result['exception'] = 'Ocurrió un problema al remover el producto';
+                }
+                break;
+            case 'finishOrder':
+                    if ($pedido->finishOrder()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Pedido finalizado correctamente';
+                    } else {
+                        $result['exception'] = 'Ocurrió un problema al finalizar el pedido';
+                    }
+                    break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }

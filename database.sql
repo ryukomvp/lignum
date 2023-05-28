@@ -2,15 +2,15 @@
 
 -- DROP DATABASE IF EXISTS lignum;
 
-CREATE DATABASE lignum
-    WITH
-    OWNER = postgres
-    ENCODING = 'UTF8'
-    LC_COLLATE = 'Spanish_Spain.1252'
-    LC_CTYPE = 'Spanish_Spain.1252'
-    TABLESPACE = pg_default
-    CONNECTION LIMIT = -1
-    IS_TEMPLATE = False;
+-- CREATE DATABASE lignum
+--     WITH
+--     OWNER = postgres
+--     ENCODING = 'UTF8'
+--     LC_COLLATE = 'Spanish_Spain.1252'
+--     LC_CTYPE = 'Spanish_Spain.1252'
+--     TABLESPACE = pg_default
+--     CONNECTION LIMIT = -1
+--     IS_TEMPLATE = False;
 	
 CREATE TABLE cargo(
   id_cargo serial not null PRIMARY KEY,
@@ -97,6 +97,7 @@ CREATE TABLE pedido(
 	descripcion_pedido varchar(120) not null,
 	id_cliente int not null,
 	id_estado_pedido  int not null,
+	fecha date null,
 	
 	CONSTRAINT codigo_pedido UNIQUE (codigo_pedido)
 );
@@ -106,8 +107,7 @@ CREATE TABLE detalle_pedido(
 	id_pedido int not null,
 	id_producto int not null,
 	precio_producto float not null,
-	cantidad int null, -- en caso de llevar más de un producto puede especificar aqui
-	fecha date null
+	cantidad int null -- en caso de llevar más de un producto puede especificar aqui	
 );
 
 
@@ -308,43 +308,42 @@ VALUES ('jfuch', 'djaiAPS', 1, 1, 1),
 	   ('lmccoy', 'KLSo123', 10, 2, 2);
 
 INSERT INTO producto(nombre_producto, foto, descripcion_producto, precio_producto, codigo_producto, dimensiones, id_categoria, id_tipo_material, id_proveedor, estado, cantidad_existencias)
-VALUES ('Mesa de centro', 'foto', 'Mesa pequeña de centro', 95.00, 'MC201AS2', '9x9', 5, 2, 1, 1, 10),
-       ('Mueble para televisor', 'foto', 'Mueble para televisor', 80.00, 'TVA2003P', '14x10', 5, 1, 1, 1, 15),
-	   ('Mesa de comedor', 'foto', 'Mesa grande para comedor', 125.00, 'PSAO0123', '20x15', 5, 1, 1, 2, 0),
-	   ('Escritorio pequeño', 'foto', 'Escritorio pequeño', 75.00, 'OSD1PO2S', '10x5', 5, 3, 1, 1, 10),
-	   ('Escritorio de oficina', 'foto', 'Escritorio de oficina', 100.00, 'ESC3IL12', '10x15', 4, 1, 1, 1, 20),
-	   ('Gavetero pequeño', 'foto', 'Gavetero pequeño', 75.00, 'LOS12XKA', '10x5', 5, 1, 1, 1, 20),
-	   ('Gavetero grande', 'foto', 'Gavetero grande', 85.00, 'OASD0123', '10x15', 5, 1, 1, 1, 20),
-	   ('Silla', 'foto', 'Silla de madera', 60.00, 'ASDF0032', '5x5', 5, 2, 1, 2, 0),
-	   ('Ropero', 'foto', 'Ropero de madera', 105.00, 'ALSJ0921', '20x20', 5, 1, 1, 1, 10),
-	   ('Escalera', 'foto', 'Escalera de madera', 50.00, 'LADD0451', '20x5', 5, 2, 1, 1, 15);
-	   
+VALUES ('Mesa de centro', 'foto', 'Mesa pequeña de centro', 95.00, 'MC201AS2', '9x9', 5, 2, 1, 't', 10),
+       ('Mueble para televisor', 'foto', 'Mueble para televisor', 80.00, 'TVA2003P', '14x10', 5, 1, 1, 't', 15),
+	   ('Mesa de comedor', 'foto', 'Mesa grande para comedor', 125.00, 'PSAO0123', '20x15', 5, 1, 1, 'f', 0),
+	   ('Escritorio pequeño', 'foto', 'Escritorio pequeño', 75.00, 'OSD1PO2S', '10x5', 5, 3, 1, 't', 10),
+	   ('Escritorio de oficina', 'foto', 'Escritorio de oficina', 100.00, 'ESC3IL12', '10x15', 4, 1, 1, 't', 20),
+	   ('Gavetero pequeño', 'foto', 'Gavetero pequeño', 75.00, 'LOS12XKA', '10x5', 5, 1, 1, 't', 20),
+	   ('Gavetero grande', 'foto', 'Gavetero grande', 85.00, 'OASD0123', '10x15', 5, 1, 1, 't', 20),
+	   ('Silla', 'foto', 'Silla de madera', 60.00, 'ASDF0032', '5x5', 5, 2, 1, 'f', 0),
+	   ('Ropero', 'foto', 'Ropero de madera', 105.00, 'ALSJ0921', '20x20', 5, 1, 1, 't', 10),
+	   ('Escalera', 'foto', 'Escalera de madera', 50.00, 'LADD0451', '20x5', 5, 2, 1, 'f', 15);
 
-INSERT INTO pedido (codigo_pedido, descripcion_pedido, id_cliente, id_estado_pedido)
-VALUES (1234567812, 'Mesa de centro de 9x9', 1, 4),
-       (9855723656, 'Mueble para televisor 14x10', 2, 4),
-	   (2463563234, 'Mesa de centro de 9x9', 3, 4),
-	   (6332452635, 'Mesa de centro de 9x9', 4, 4),
-	   (7656433577, 'Mesa de comedor de 20x15', 5, 4),
-	   (9876245785, 'Escritorio pequeño de 10x5', 6, 4),
-	   (3534635744, 'Escritorio de oficina de 10x15', 7, 4),
-	   (8954565353, 'Gavetero pequeño de 10x5', 8, 4),
-	   (7453546359, 'Mueble para televisor de 14x10', 9, 4),
-	   (7458769098, 'Mesa de centro de 9x9, Escritorio pequeño de 10x5, Mueble para televisor de 14x10', 9, 4);
+INSERT INTO pedido (codigo_pedido, descripcion_pedido, id_cliente, fecha, id_estado_pedido)
+VALUES (1234567812, 'Mesa de centro de 9x9', 1, '2022-01-01', 4),
+       (9855723656, 'Mueble para televisor 14x10', 2 , '2022-01-05', 4),
+	   (2463563234, 'Mesa de centro de 9x9', 3 , '2022-01-10', 4),
+	   (6332452635, 'Mesa de centro de 9x9', 4, '2022-01-10', 4),
+	   (7656433577, 'Mesa de comedor de 20x15', 5 , '2022-01-15', 4),
+	   (9876245785, 'Escritorio pequeño de 10x5', 6 , '2022-01-20', 4),
+	   (3534635744, 'Escritorio de oficina de 10x15', 7 , '2022-01-25', 4),
+	   (8954565353, 'Gavetero pequeño de 10x5', 8 , '2022-02-01', 4),
+	   (7453546359, 'Mueble para televisor de 14x10', 9 , '2022-02-05', 4),
+	   (7458769098, 'Mesa de centro de 9x9, Escritorio pequeño de 10x5, Mueble para televisor de 14x10', 9 , '2022-02-10', 4);
 
-INSERT INTO detalle_pedido (id_pedido, id_producto, precio_producto, cantidad, fecha)
-VALUES (1, 1, 95, 3, '2022-01-01'),
-       (2, 2, 80, 1, '2022-01-05'),
-	   (3, 1, 95, 5, '2022-01-10'),
-	   (4, 1, 95, 2, '2022-01-15'),
-	   (5, 3, 125, 3, '2022-01-20'),
-	   (6, 4, 75, 3, '2022-01-25'),
-	   (7, 5, 100, 3, '2022-02-01'),
-	   (8, 6, 75, 3, '2022-02-05'),
-	   (9, 2, 80, 3, '2022-02-10'),
-	   (10, 1, 95, 3, '2022-12-15'),
-	   (10, 4, 95, 3, '2022-12-15'),
-       (10, 2, 95, 3, '2022-12-15');
+INSERT INTO detalle_pedido (id_pedido, id_producto, precio_producto, cantidad)
+VALUES (1, 1, 95, 3),
+       (2, 2, 80, 1),
+	   (3, 1, 95, 5),
+	   (4, 1, 95, 2),
+	   (5, 3, 125, 3),
+	   (6, 4, 75, 3),
+	   (7, 5, 100, 3),
+	   (8, 6, 75, 3),
+	   (9, 2, 80, 3),
+	   (10, 1, 95, 3),
+	   (10, 4, 95, 3),
+       (10, 2, 95, 3);
 	   
 INSERT INTO valoracion(puntaje, comentario, id_detalle_pedido)
 VALUES (5,'Esta super bonita la mesa de centro ', 1),
