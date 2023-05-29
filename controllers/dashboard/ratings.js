@@ -1,5 +1,5 @@
 // Constante para completar la ruta de la API.
-const CATEGORIES_API = 'business/dashboard/categories.php';
+const RATING_API = 'business/public/rating.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('search-form');
 // Constante para establecer el formulario de guardar.
@@ -43,7 +43,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
     // Petición para guardar los datos del formulario.
-    const JSON = await dataFetch(CATEGORIES_API, action, FORM);
+    const JSON = await dataFetch(RATING_API, action, FORM);
     console.log(JSON);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
@@ -71,7 +71,7 @@ async function fillTable(form = null) {
     // Se verifica la acción a realizar.
     (form) ? action = 'search' : action = 'readAll';
     // Petición para obtener los registros disponibles.
-    const JSON = await dataFetch(CATEGORIES_API, action, form);
+    const JSON = await dataFetch(RATING_API , action, form);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
         // Se recorre el conjunto de registros fila por fila.
@@ -114,75 +114,5 @@ function openCreate() {
     // Se restauran los elementos del formulario.
     SAVE_FORM.reset();
     // Se asigna título a la caja de diálogo.
-    MODAL_TITLE.textContent = 'Crear categoría';
+    MODAL_TITLE.textContent = 'Valoracion';
 }
-
-/*
-*   Función asíncrona para preparar el formulario al momento de actualizar un registro.
-*   Parámetros: id (identificador del registro seleccionado).
-*   Retorno: ninguno.
-*/
-async function openUpdate(id) {
-    // Se define una constante tipo objeto con los datos del registro seleccionado.
-    const FORM = new FormData();
-    FORM.append('id', id);
-    // Petición para obtener los datos del registro solicitado.
-    const JSON = await dataFetch(CATEGORIES_API, 'readOne', FORM);
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-    if (JSON.status) {
-        // Se abre la caja de diálogo que contiene el formulario.
-        SAVE_MODAL.open();
-        // Se restauran los elementos del formulario.
-        SAVE_FORM.reset();
-        // Se asigna título para la caja de diálogo.
-        MODAL_TITLE.textContent = 'Actualizar categoría';
-        // Se inicializan los campos del formulario.
-        document.getElementById('id').value = JSON.dataset.id_categoria;
-        document.getElementById('nombre').value = JSON.dataset.categoria;
-        // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
-        M.updateTextFields();
-    } else {
-        sweetAlert(2, JSON.exception, false);
-    }
-}
-
-/*
-*   Función asíncrona para eliminar un registro.
-*   Parámetros: id (identificador del registro seleccionado).
-*   Retorno: ninguno.
-*/
-async function openDelete(id) {
-    // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
-    const RESPONSE = await confirmAction('¿Desea eliminar la categoría de forma permanente?');
-    // Se verifica la respuesta del mensaje.
-    if (RESPONSE) {
-        // Se define una constante tipo objeto con los datos del registro seleccionado.
-        const FORM = new FormData();
-        FORM.append('id_categoria', id);
-        // Petición para eliminar el registro seleccionado.
-        const JSON = await dataFetch(CATEGORIES_API, 'delete', FORM);
-        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-        if (JSON.status) {
-            // Se carga nuevamente la tabla para visualizar los cambios.
-            fillTable();
-            // Se muestra un mensaje de éxito.
-            sweetAlert(1, JSON.message, true);
-        } else {
-            sweetAlert(2, JSON.exception, false);
-        }
-    }
-}
-
-/*
-*   Función para abrir el reporte de productos de una categoría.
-*   Parámetros: id (identificador del registro seleccionado).
-*   Retorno: ninguno.
-*/
-// function openReport(id) {
-//     // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
-//     const PATH = new URL(`${SERVER_URL}reports/dashboard/productos_categoria.php`);
-//     // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
-//     PATH.searchParams.append('id_categoria', id);
-//     // Se abre el reporte en una nueva pestaña del navegador web.
-//     window.open(PATH.href);
-// }
