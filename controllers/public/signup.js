@@ -1,3 +1,4 @@
+const USER_API = 'business/public/customer.php';
 // Constante para establecer el formulario de registrar cliente.
 const SIGNUP_FORM = document.getElementById('signup-form');
 // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.

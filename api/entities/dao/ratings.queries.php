@@ -22,9 +22,9 @@ class RatingQueries
 
     public function createRow()
     {
-        $sql = 'INSERT INTO valoracion(puntaje, comentario, id_detalle_pedido)
+        $sql = 'INSERT INTO valoracion(puntaje, comentario, id_producto)
                 VALUES(?, ?, ?)';
-        $params = array($this->puntaje, $this->comentario, $this->pedido);
+        $params = array($this->puntaje, $this->comentario, $this->producto);
         return Database::executeRow($sql, $params);
     }
 

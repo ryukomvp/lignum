@@ -1,4 +1,4 @@
--- Database: lignum
+ -- Database: lignum
 
 -- DROP DATABASE IF EXISTS lignum;
 
@@ -57,6 +57,9 @@ CREATE TABLE tipo_usuario(
   tipo_usuario varchar(30)
 );
 
+
+CREATE TYPE genero AS ENUM ('Femenino','Masculino');
+
 CREATE TABLE cliente(
 	id_cliente serial not null PRIMARY KEY,
 	nombre_cliente varchar(70) not null,
@@ -65,7 +68,7 @@ CREATE TABLE cliente(
 	dui_cliente varchar(10) null,
 	correo_cliente varchar(120) not null,
 	telefono_cliente varchar(9),
-	id_genero int not null,
+	genero genero not null,
 	id_tipo_cliente int not null,
 
 	usuario_publico varchar(30) not null,
@@ -85,7 +88,7 @@ CREATE TABLE empleado(
 	nacimiento_empleado date not null,
 	correo_empleado varchar(120) not null,
 	telefono_empleado varchar(9),
-	id_genero int not null,
+	genero genero not null,
 	id_cargo int not null,
 	
 	CONSTRAINT dui_empleado UNIQUE (dui_empleado)
@@ -152,13 +155,8 @@ CREATE TABLE valoracion(
 	id_valoracion serial not null PRIMARY KEY,
 	puntaje int null,
 	comentario varchar null,
-	id_detalle_pedido int not null,
 	estado boolean DEFAULT true not null
 );
-
-ALTER TABLE cliente
-ADD CONSTRAINT cliente_genero_fkey FOREIGN KEY (id_genero)
-REFERENCES genero(id_genero);
 
 ALTER TABLE cliente
 ADD CONSTRAINT tipo_cliente_fkey FOREIGN KEY (id_tipo_cliente)
@@ -167,10 +165,6 @@ REFERENCES tipo_cliente(id_tipo_cliente);
 ALTER TABLE cliente
 ADD CONSTRAINT estado_usuario_fkey FOREIGN KEY (id_estado_usuario)
 REFERENCES estado_usuario(id_estado_usuario);
-
-ALTER TABLE empleado
-ADD CONSTRAINT empleado_genero_fkey FOREIGN KEY (id_genero)
-REFERENCES genero(id_genero);
 
 ALTER TABLE empleado
 ADD CONSTRAINT empleado_cargo_fkey FOREIGN KEY (id_cargo)
@@ -248,10 +242,6 @@ VALUES	('Activo'),
 		('Inactivo'),
 		('Bloqueado');
 
-INSERT INTO genero(genero)
-VALUES	('Femenino'),
-		('Masculino');
-
 INSERT INTO tipo_cliente(tipo_cliente)
 VALUES  ('Estandar'),
 		('Afiliado');
@@ -267,29 +257,29 @@ VALUES	('root'), -- superusuario
 	    ('Empleado general'),
 		('Cajero');
 		
-INSERT INTO cliente(nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, id_genero, id_tipo_cliente, usuario_publico, clave, id_estado_usuario)
-VALUES  ('Robina', 'Bonniface' , 'foto', '76168-013', 'rbonniface0@ifeng.com', '8566-9159', 1, 1, 'rbonniface0', 'QdNQFar', 1),
-        ('Judd', 'Drew' , 'foto', '23138-014', 'jdrew1@ed.gov', '2412-7332', 2, 1, 'jdrew1', 'RXSxcTWyD', 1),
-		('Gwyneth', 'Samsworth' , 'foto', '09123-224', 'gsamsworth2@accuweather.com', '7283-1345', 1, 1, 'gsamsworth2', 'BL7U44', 1),
-        ('Hillary', 'Alonso' , 'foto', '12122-312', 'halonso3@privacy.gov.au', '2312-9120', 2, 1, 'halonso3', '6GFPKMEfvX', 1),
-		('Halli', 'Gorey' , 'foto', '72341-901', 'hgorey4@wikia.com', '0213-4561', 1, 1, 'hgorey4', 'uFr4LUgmpr', 1),
-		('Frank', 'Hemingway' , 'foto', '23455-134', 'fhemingway@yandex.com.ru', '1213-1752', 2, 1, 'fhemingw5', 'BtGRnqy', 1),
-		('Eddie', 'Low' , 'foto', '09213-661', 'elow@eyesearch.com', '1979-2123', 2, 1, 'elow6', 'cZNxps', 1),
-		('Jim', 'Sorrel' , 'foto', '27031-309', 'jsorrel@slideshare.net', '1427-2134', 2, 1, 'jsorrel7', 'Yqe9H8Bq7', 1),
-		('Berton', 'Kivlin' , 'foto', '21034-123', 'bkivlin@gmail.com', '4321-3456', 2, 1, 'bkivlin8', '2D1XPXYxHRc7', 1),
-		('John', 'Garcia' , 'foto', '12453-121', 'jgarcia@gmail.com', '1234-1234', 2, 1, 'jgarcia9', 'SVutvhE5R', 1);
+INSERT INTO cliente(nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, genero, id_tipo_cliente, usuario_publico, clave, id_estado_usuario)
+VALUES  ('Robina', 'Bonniface' , 'foto', '76168-013', 'rbonniface0@ifeng.com', '8566-9159', 'Femenino', 1, 'rbonniface0', 'QdNQFar', 1),
+        ('Judd', 'Drew' , 'foto', '23138-014', 'jdrew1@ed.gov', '2412-7332', 'Masculino', 1, 'jdrew1', 'RXSxcTWyD', 1),
+		('Gwyneth', 'Samsworth' , 'foto', '09123-224', 'gsamsworth2@accuweather.com', '7283-1345', 'Femenino', 1, 'gsamsworth2', 'BL7U44', 1),
+        ('Hillary', 'Alonso' , 'foto', '12122-312', 'halonso3@privacy.gov.au', '2312-9120', 'Masculino', 1, 'halonso3', '6GFPKMEfvX', 1),
+		('Halli', 'Gorey' , 'foto', '72341-901', 'hgorey4@wikia.com', '0213-4561', 'Femenino', 1, 'hgorey4', 'uFr4LUgmpr', 1),
+		('Frank', 'Hemingway' , 'foto', '23455-134', 'fhemingway@yandex.com.ru', '1213-1752', 'Masculino', 1, 'fhemingw5', 'BtGRnqy', 1),
+		('Eddie', 'Low' , 'foto', '09213-661', 'elow@eyesearch.com', '1979-2123', 'Masculino', 1, 'elow6', 'cZNxps', 1),
+		('Jim', 'Sorrel' , 'foto', '27031-309', 'jsorrel@slideshare.net', '1427-2134', 'Masculino', 1, 'jsorrel7', 'Yqe9H8Bq7', 1),
+		('Berton', 'Kivlin' , 'foto', '21034-123', 'bkivlin@gmail.com', '4321-3456', 'Masculino', 1, 'bkivlin8', '2D1XPXYxHRc7', 1),
+		('John', 'Garcia' , 'foto', '12453-121', 'jgarcia@gmail.com', '1234-1234', 'Masculino', 1, 'jgarcia9', 'SVutvhE5R', 1);
 		
-INSERT INTO empleado(nombre_empleado, apellido_empleado, foto, dui_empleado, nacimiento_empleado, correo_empleado, telefono_empleado, id_genero, id_cargo)
-VALUES  ('Jerome', 'Fruchon' , 'foto', '56187-013', '11-02-1990', 'jfruchon@lignum.com', '8576-9123', 2, 1),
-        ('Nevile', 'Byron' , 'foto', '12942-212', '23-06-1997', 'nbyron@lignum.com', '8213-9812', 2, 2),
-		('Pammie', 'Hatt' , 'foto', '41234-233', '02-11-1989', 'pamhatt@lignum.com', '1456-9031', 1, 3),
-		('Richard', 'Hawke' , 'foto', '44512-413', '11-08-1995', 'rhawke@lignum.com', '0912-9182', 2, 2),
-		('Eric', 'Chamberlain' , 'foto', '54123-541', '01-05-1992', 'ericcham@lignum.com', '1236-4012', 2, 2),
-		('Tobyn', 'Newart' , 'foto', '12345-012', '14-03-1997', 'tnewart@lignum.com', '8431-2212', 2, 2),
-		('Trey', 'Pearl' , 'foto', '44214-110', '18-12-1990', 'tpearl@lignum.com' , '8339-7812', 2, 3),
-		('Bobby', 'Maloney' , 'foto', '31417-003', '28-09-1993', 'bmaloney@lignum.com', '1234-4123', 2, 4),
-		('Morty', 'Honeywood' , 'foto', '23347-053', '09-07-1993', 'mhoneywood0@lignum.com', '9102-0301', 2, 4),
-		('Louis', 'McCoy' , 'foto', '12357-995', '27-03-1990', 'lmccoy@lignum.com', '3012-3312', 2, 5);
+INSERT INTO empleado(nombre_empleado, apellido_empleado, foto, dui_empleado, nacimiento_empleado, correo_empleado, telefono_empleado, genero, id_cargo)
+VALUES  ('Jerome', 'Fruchon' , 'foto', '56187-013', '11-02-1990', 'jfruchon@lignum.com', '8576-9123', 'Masculino', 1),
+        ('Nevile', 'Byron' , 'foto', '12942-212', '23-06-1997', 'nbyron@lignum.com', '8213-9812', 'Masculino', 2),
+		('Pammie', 'Hatt' , 'foto', '41234-233', '02-11-1989', 'pamhatt@lignum.com', '1456-9031', 'Femenino', 3),
+		('Richard', 'Hawke' , 'foto', '44512-413', '11-08-1995', 'rhawke@lignum.com', '0912-9182', 'Masculino', 2),
+		('Eric', 'Chamberlain' , 'foto', '54123-541', '01-05-1992', 'ericcham@lignum.com', '1236-4012', 'Masculino', 2),
+		('Tobyn', 'Newart' , 'foto', '12345-012', '14-03-1997', 'tnewart@lignum.com', '8431-2212', 'Masculino', 2),
+		('Trey', 'Pearl' , 'foto', '44214-110', '18-12-1990', 'tpearl@lignum.com' , '8339-7812', 'Masculino', 3),
+		('Bobby', 'Maloney' , 'foto', '31417-003', '28-09-1993', 'bmaloney@lignum.com', '1234-4123', 'Masculino', 4),
+		('Morty', 'Honeywood' , 'foto', '23347-053', '09-07-1993', 'mhoneywood0@lignum.com', '9102-0301', 'Masculino', 4),
+		('Louis', 'McCoy' , 'foto', '12357-995', '27-03-1990', 'lmccoy@lignum.com', '3012-3312', 'Masculino', 5);
 		
 INSERT INTO proveedor(nombre_proveedor, direccion_proveedor, correo_proveedor, telefono_proveedor)
 VALUES ('Weston Logging Co.', '9355 Blackbird Way', 'westonlogging@contact', '0381-0101'),

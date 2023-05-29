@@ -73,7 +73,7 @@ class CustomerQueries
     */
     public function searchRows($value)
     {
-        $sql = 'SELECT id_cliente, foto, nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, id_genero, afiliado, direccion_cliente, usuario_publico, acceso 
+        $sql = 'SELECT id_cliente, foto, nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, genero, afiliado, direccion_cliente, usuario_publico, acceso 
                 FROM cliente
                 WHERE apellido_cliente ILIKE ? OR nombre_cliente ILIKE ? OR usuario_publico ILIKE ?
                 ORDER BY id_cliente';
