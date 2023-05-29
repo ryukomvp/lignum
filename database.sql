@@ -27,19 +27,9 @@ CREATE TABLE estado_empleado(
   estado_empleado varchar(20)
 );
 
-CREATE TABLE estado_pedido(
-  id_estado_pedido serial not null PRIMARY KEY,
-  estado_pedido varchar(30)
-);
-
 CREATE TABLE estado_usuario(
   id_estado_usuario serial not null PRIMARY KEY,
   estado_usuario varchar(30)
-);
-
-CREATE TABLE genero(
-  id_genero serial not null PRIMARY KEY,
-  genero varchar(30)
 );
 
 CREATE TABLE tipo_cliente(
@@ -57,6 +47,8 @@ CREATE TABLE tipo_usuario(
   tipo_usuario varchar(30)
 );
 
+CREATE TYPE estado_pedido AS ENUM ('Anulado', 'Completado', 'En revisión', 'Pendiente');
+
 
 CREATE TYPE genero AS ENUM ('Femenino','Masculino');
 
@@ -65,33 +57,19 @@ CREATE TABLE cliente(
 	nombre_cliente varchar(70) not null,
 	apellido_cliente varchar(70) not null,
 	foto varchar not null,
-	dui_cliente varchar(10) null,
+	dui_cliente varchar(10) null UNIQUE,
 	correo_cliente varchar(120) not null,
 	telefono_cliente varchar(9),
 	genero genero not null,
-	id_tipo_cliente int not null,
+	afiliado boolean DEFAULT false not null,
+	direccion_cliente varchar(250) not null,
 
-	usuario_publico varchar(30) not null,
+	usuario_publico varchar(30) not null UNIQUE,
 	clave varchar(2048) not null,
-	id_estado_usuario int not null,
+	acceso boolean DEFAULT true not null
 	
-	CONSTRAINT dui_cliente UNIQUE (dui_cliente),
-	CONSTRAINT usuario_publico UNIQUE (usuario_publico)
-);
-
-CREATE TABLE empleado(
-	id_empleado serial not null PRIMARY KEY,
-	nombre_empleado varchar(70) not null,
-	apellido_empleado varchar(70) not null,
-	foto varchar not null,
-	dui_empleado varchar(10) not null,
-	nacimiento_empleado date not null,
-	correo_empleado varchar(120) not null,
-	telefono_empleado varchar(9),
-	genero genero not null,
-	id_cargo int not null,
-	
-	CONSTRAINT dui_empleado UNIQUE (dui_empleado)
+	-- CONSTRAINT dui_cliente_unique UNIQUE (dui_cliente),
+	-- CONSTRAINT usuario_publico_unique UNIQUE (usuario_publico)
 );
 
 CREATE TABLE pedido(
@@ -99,10 +77,10 @@ CREATE TABLE pedido(
 	codigo_pedido varchar(10) not null,
 	descripcion_pedido varchar(120) not null,
 	id_cliente int not null,
-	id_estado_pedido  int not null,
+	estado_pedido estado_pedido DEFAULT 'Pendiente' not null,
 	fecha date null,
-	
-	CONSTRAINT codigo_pedido UNIQUE (codigo_pedido)
+
+	CONSTRAINT codigo_pedido_unique UNIQUE (codigo_pedido)
 );
 
 CREATE TABLE detalle_pedido(
@@ -120,18 +98,24 @@ CREATE TABLE producto(
 	foto varchar not null,
 	descripcion_producto varchar(120) not null,
 	precio_producto float not null,
-	estado boolean not null,
 
 	codigo_producto varchar(10) not null,
 	dimensiones varchar(100) not null,
 	id_categoria int not null,
 	id_tipo_material int not null,
 	id_proveedor int not null,
+	estado boolean DEFAULT true not null,
 	cantidad_existencias int not null,
 	
-	
-	CONSTRAINT codigo_producto UNIQUE (codigo_producto)
+	CONSTRAINT codigo_producto_unique UNIQUE (codigo_producto)
 );
+
+
+CREATE TABLE imagen(
+	id_imagen serial not null PRIMARY KEY,
+	ruta varchar(2048) not null
+);
+
 
 CREATE TABLE proveedor(
 	id_proveedor serial not null PRIMARY KEY,
@@ -142,37 +126,44 @@ CREATE TABLE proveedor(
 );
 
 CREATE TABLE usuario_privado(
-	id_usuario_privado serial not null PRIMARY KEY,
-	usuario_privado varchar(30) not null,
-	clave varchar(2048) not null,
-	id_empleado int not null,
-	id_tipo_usuario int not null,
-	id_estado_usuario int not null
-	
+    id_usuario_privado serial not null PRIMARY KEY,
+    nombre_empleado varchar(70) not null,
+    apellido_empleado varchar(70) not null,
+    dui_empleado varchar(10) not null UNIQUE,
+    correo_empleado varchar(120) not null,
+    telefono_empleado varchar(9) not null,
+	genero genero not null,
+	id_cargo int not null,
+
+    usuario_privado varchar(30) not null UNIQUE,
+    clave varchar(2048) not null,
+	acceso boolean DEFAULT true not null
+
+    -- CONSTRAINT dui_empleado_unique UNIQUE (dui_empleado),
+	-- CONSTRAINT usuario_privado_unique UNIQUE (usuario_privado)
 );
 
 CREATE TABLE valoracion(
 	id_valoracion serial not null PRIMARY KEY,
 	puntaje int null,
 	comentario varchar null,
-	estado boolean DEFAULT true not null
+	estado boolean DEFAULT true not null,
+	id_detalle_pedido int not null
 );
 
-ALTER TABLE cliente
-ADD CONSTRAINT tipo_cliente_fkey FOREIGN KEY (id_tipo_cliente)
-REFERENCES tipo_cliente(id_tipo_cliente);
+CREATE TABLE inventario(
+	id_inventario serial not null PRIMARY KEY,
+	codigo_inventario varchar(10) not null,
+	cantidad_entrante int not null,
+	fecha_entrada date not null,
+	id_producto int not null,
 
-ALTER TABLE cliente
-ADD CONSTRAINT estado_usuario_fkey FOREIGN KEY (id_estado_usuario)
-REFERENCES estado_usuario(id_estado_usuario);
+	CONSTRAINT codigo_inventario_unique UNIQUE (codigo_inventario)
+);
 
-ALTER TABLE empleado
-ADD CONSTRAINT empleado_cargo_fkey FOREIGN KEY (id_cargo)
+ALTER TABLE usuario_privado
+ADD CONSTRAINT usuario_cargo_fkey FOREIGN KEY (id_cargo)
 REFERENCES cargo(id_cargo);
-
-ALTER TABLE pedido
-ADD CONSTRAINT pedido_estado_fkey FOREIGN KEY (id_estado_pedido)
-REFERENCES estado_pedido(id_estado_pedido);
 
 ALTER TABLE detalle_pedido
 ADD CONSTRAINT detalle_pedido_fkey FOREIGN KEY (id_pedido)
@@ -198,17 +189,6 @@ ALTER TABLE producto
 ADD CONSTRAINT material_producto_fkey FOREIGN KEY (id_tipo_material)
 REFERENCES tipo_material(id_tipo_material);
 
-ALTER TABLE usuario_privado
-ADD CONSTRAINT usuario_privado_empleado_fkey FOREIGN KEY (id_empleado)
-REFERENCES empleado(id_empleado);
-
-ALTER TABLE usuario_privado
-ADD CONSTRAINT usuario_privado_tipo_fkey FOREIGN KEY (id_tipo_usuario)
-REFERENCES tipo_usuario(id_tipo_usuario);
-
-ALTER TABLE usuario_privado
-ADD CONSTRAINT usuario_privado_estado_fkey FOREIGN KEY (id_estado_usuario)
-REFERENCES estado_usuario(id_estado_usuario);
 
 INSERT INTO cargo(cargo)
 VALUES	('Gerente general'),
@@ -231,17 +211,6 @@ VALUES	('Activo'),
 		('Ausente justificado'),
 		('Ausente sin motivo');
 
-INSERT INTO estado_pedido(estado_pedido)
-VALUES	('Anulado'),
-		('Completado'),
-		('En revisión'),
-		('Procesando');
-
-INSERT INTO estado_usuario(estado_usuario)
-VALUES	('Activo'),
-		('Inactivo'),
-		('Bloqueado');
-
 INSERT INTO tipo_cliente(tipo_cliente)
 VALUES  ('Estandar'),
 		('Afiliado');
@@ -256,8 +225,8 @@ VALUES	('root'), -- superusuario
 		('Gerente'),
 	    ('Empleado general'),
 		('Cajero');
-		
-INSERT INTO cliente(nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, genero, id_tipo_cliente, usuario_publico, clave, id_estado_usuario)
+	
+INSERT INTO cliente(nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, genero, afiliado, direccion, usuario_publico, clave, acceso)
 VALUES  ('Robina', 'Bonniface' , 'foto', '76168-013', 'rbonniface0@ifeng.com', '8566-9159', 'Femenino', 1, 'rbonniface0', 'QdNQFar', 1),
         ('Judd', 'Drew' , 'foto', '23138-014', 'jdrew1@ed.gov', '2412-7332', 'Masculino', 1, 'jdrew1', 'RXSxcTWyD', 1),
 		('Gwyneth', 'Samsworth' , 'foto', '09123-224', 'gsamsworth2@accuweather.com', '7283-1345', 'Femenino', 1, 'gsamsworth2', 'BL7U44', 1),
@@ -267,25 +236,33 @@ VALUES  ('Robina', 'Bonniface' , 'foto', '76168-013', 'rbonniface0@ifeng.com', '
 		('Eddie', 'Low' , 'foto', '09213-661', 'elow@eyesearch.com', '1979-2123', 'Masculino', 1, 'elow6', 'cZNxps', 1),
 		('Jim', 'Sorrel' , 'foto', '27031-309', 'jsorrel@slideshare.net', '1427-2134', 'Masculino', 1, 'jsorrel7', 'Yqe9H8Bq7', 1),
 		('Berton', 'Kivlin' , 'foto', '21034-123', 'bkivlin@gmail.com', '4321-3456', 'Masculino', 1, 'bkivlin8', '2D1XPXYxHRc7', 1),
-		('John', 'Garcia' , 'foto', '12453-121', 'jgarcia@gmail.com', '1234-1234', 'Masculino', 1, 'jgarcia9', 'SVutvhE5R', 1);
-		
-INSERT INTO empleado(nombre_empleado, apellido_empleado, foto, dui_empleado, nacimiento_empleado, correo_empleado, telefono_empleado, genero, id_cargo)
-VALUES  ('Jerome', 'Fruchon' , 'foto', '56187-013', '11-02-1990', 'jfruchon@lignum.com', '8576-9123', 'Masculino', 1),
-        ('Nevile', 'Byron' , 'foto', '12942-212', '23-06-1997', 'nbyron@lignum.com', '8213-9812', 'Masculino', 2),
-		('Pammie', 'Hatt' , 'foto', '41234-233', '02-11-1989', 'pamhatt@lignum.com', '1456-9031', 'Femenino', 3),
-		('Richard', 'Hawke' , 'foto', '44512-413', '11-08-1995', 'rhawke@lignum.com', '0912-9182', 'Masculino', 2),
-		('Eric', 'Chamberlain' , 'foto', '54123-541', '01-05-1992', 'ericcham@lignum.com', '1236-4012', 'Masculino', 2),
-		('Tobyn', 'Newart' , 'foto', '12345-012', '14-03-1997', 'tnewart@lignum.com', '8431-2212', 'Masculino', 2),
-		('Trey', 'Pearl' , 'foto', '44214-110', '18-12-1990', 'tpearl@lignum.com' , '8339-7812', 'Masculino', 3),
-		('Bobby', 'Maloney' , 'foto', '31417-003', '28-09-1993', 'bmaloney@lignum.com', '1234-4123', 'Masculino', 4),
-		('Morty', 'Honeywood' , 'foto', '23347-053', '09-07-1993', 'mhoneywood0@lignum.com', '9102-0301', 'Masculino', 4),
-		('Louis', 'McCoy' , 'foto', '12357-995', '27-03-1990', 'lmccoy@lignum.com', '3012-3312', 'Masculino', 5);
-		
+		('John', 'Garcia' , 'foto', '12453-121', 'jgarcia@gmail.com', '1234-1234', 'Masculino', 1, 'jgarcia9', 'SVutvhE5R', 1);	
+
 INSERT INTO proveedor(nombre_proveedor, direccion_proveedor, correo_proveedor, telefono_proveedor)
 VALUES ('Weston Logging Co.', '9355 Blackbird Way', 'westonlogging@contact', '0381-0101'),
        ('McAllen Hardware Store', '81 Grove Avenue', 'mcallenhardware@support', '2134-0312');
 	   
-INSERT INTO usuario_privado(usuario_privado, clave, id_empleado, id_tipo_usuario, id_estado_usuario)
+	   CREATE TABLE usuario_privado(
+    id_usuario_privado serial not null PRIMARY KEY,
+    nombre_empleado varchar(70) not null,
+    apellido_empleado varchar(70) not null,
+    dui_empleado varchar(10) not null UNIQUE,
+    correo_empleado varchar(120) not null,
+    telefono_empleado varchar(9) not null,
+	genero genero not null,
+	id_cargo int not null,
+
+    usuario_privado varchar(30) not null UNIQUE,
+    clave varchar(2048) not null,
+	acceso boolean DEFAULT true not null
+
+    -- CONSTRAINT dui_empleado_unique UNIQUE (dui_empleado),
+	-- CONSTRAINT usuario_privado_unique UNIQUE (usuario_privado)
+);
+	   
+	   
+	   
+INSERT INTO usuario_privado(nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, telefono_empleado, genero, id_cargo, usuario_privado, clave, acceso)
 VALUES ('jfuch', 'djaiAPS', 1, 1, 1),
        ('nbyron', 'Asdoq21', 2, 2, 1),
 	   ('pamhatt', '21FWEp', 3, 2, 1),
@@ -310,16 +287,16 @@ VALUES ('Mesa de centro', 'foto', 'Mesa pequeña de centro', 95.00, 'MC201AS2', 
 	   ('Escalera', 'foto', 'Escalera de madera', 50.00, 'LADD0451', '20x5', 5, 2, 1, 'f', 15);
 
 INSERT INTO pedido (codigo_pedido, descripcion_pedido, id_cliente, fecha, id_estado_pedido)
-VALUES (1234567812, 'Mesa de centro de 9x9', 1, '2022-01-01', 4),
-       (9855723656, 'Mueble para televisor 14x10', 2 , '2022-01-05', 4),
-	   (2463563234, 'Mesa de centro de 9x9', 3 , '2022-01-10', 4),
-	   (6332452635, 'Mesa de centro de 9x9', 4, '2022-01-10', 4),
-	   (7656433577, 'Mesa de comedor de 20x15', 5 , '2022-01-15', 4),
-	   (9876245785, 'Escritorio pequeño de 10x5', 6 , '2022-01-20', 4),
-	   (3534635744, 'Escritorio de oficina de 10x15', 7 , '2022-01-25', 4),
-	   (8954565353, 'Gavetero pequeño de 10x5', 8 , '2022-02-01', 4),
-	   (7453546359, 'Mueble para televisor de 14x10', 9 , '2022-02-05', 4),
-	   (7458769098, 'Mesa de centro de 9x9, Escritorio pequeño de 10x5, Mueble para televisor de 14x10', 9 , '2022-02-10', 4);
+VALUES (1234567812, 'Mesa de centro de 9x9', 1, '2022-01-01', 'Pendiente'),
+       (9855723656, 'Mueble para televisor 14x10', 2 , '2022-01-05', 'Pendiente'),
+	   (2463563234, 'Mesa de centro de 9x9', 3 , '2022-01-10', 'Pendiente'),
+	   (6332452635, 'Mesa de centro de 9x9', 4, '2022-01-10', 'Pendiente'),
+	   (7656433577, 'Mesa de comedor de 20x15', 5 , '2022-01-15', 'Pendiente'),
+	   (9876245785, 'Escritorio pequeño de 10x5', 6 , '2022-01-20', 'Pendiente'),
+	   (3534635744, 'Escritorio de oficina de 10x15', 7 , '2022-01-25', 'Pendiente'),
+	   (8954565353, 'Gavetero pequeño de 10x5', 8 , '2022-02-01', 'Pendiente'),
+	   (7453546359, 'Mueble para televisor de 14x10', 9 , '2022-02-05', 'Pendiente'),
+	   (7458769098, 'Mesa de centro de 9x9, Escritorio pequeño de 10x5, Mueble para televisor de 14x10', 9 , '2022-02-10', 'Pendiente');
 
 INSERT INTO detalle_pedido (id_pedido, id_producto, precio_producto, cantidad)
 VALUES (1, 1, 95, 3),
@@ -347,6 +324,7 @@ VALUES (5,'Esta super bonita la mesa de centro ', 1),
 	   (3,'Esta raro no se como poner la tele', 9),
 	   (5,'Todos los productos que he comprado ahi me gustan, me gustaria ver cosas nuevas en la tienda para seguir comprando', 10);
 	   
+
 
 -- punto 1	   
 -- 3 consultas utilizando las claúsulas de join, order by, group by.
