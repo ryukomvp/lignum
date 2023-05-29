@@ -30,11 +30,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <div class="card-action">
                             <p class="white-text">${row.descripcion}</p>
                         </div>
-                        <p class="center">
+                        <!-- <p class="center">
                             <a href="${url}" class="tooltipped" data-tooltip="Ver productos">
                                 <i class="material-icons">local_cafe</i>
                             </a>
-                        </p>
+                        </p> -->
                     </div>
                 </div>
             `;
