@@ -3,9 +3,8 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Codificación de caracteres para el documento -->
+    <meta charset="utf-8">
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
@@ -15,78 +14,104 @@
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- titulo de la pagina -->
+    <title>Lignum</title>
 </head>
 
 <body>
-    <!-- etiqueta de header -->
-    <header>
-        <!-- menu -->
-        <div class="navbar-fixed">
-            <nav>
-                <div class="nav-wrapper">
-                    <a href="#" class="brand-logo"><img src="../../resources/img/2.png"></a>
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <!-- encabezado de la pagina -->
+    <header></header>
     <!-- contenido principal de la página -->
-    <main>
-        <!-- contenedor para titulo y textboxs -->
-        <div class="container">
-            <div class="row">
-                <!-- titulo -->
-                <h5 class="titulo center">Bienvenido</h5>
-                <!-- textbox de usuario -->
-                <div class="col s8 m4 offset-s2 offset-m4 textbox">
+    <main class="container">
+        <div class="hide" id="login-container">
+            <!-- titulo de bienvenida -->
+            <h1 class="text center">Bienvenido</h1>
+            <!-- formulario para inicio de sesion -->
+            <form class="row" method="post" id="login-form">
+                <!-- input para ingresar usuario -->
+                <div class="input-field col s12 m4 offset-m4">
                     <i class="material-icons prefix">account_circle</i>
-                    <input class="browser-default" type="text" name="usuario" id="usuario"
-                        placeholder="Ingrese su usuario" autocomplete="off">
+                    <input id="usuario" type="text" name="usuario" required>
+                    <label for="usuario">Ingrese su usuario</label>
                 </div>
-                <!-- textbox de clave -->
-                <div class="col s8 m4 offset-s2 offset-m4 textbox">
+                <!-- input para ingresar clave -->
+                <div class="input-field col s12 m4 offset-m4">
                     <i class="material-icons prefix">lock</i>
-                    <input class="browser-default" type="password" name="clave" id="usuario"
-                        placeholder="Ingrese su clave" autocomplete="off" maxlength="16">
+                    <input id="clave" type="password" name="clave" minlength="8" required>
+                    <label for="clave">Ingrese su contraseña</label>
                 </div>
-            </div>
+                <div class="col s12 center-align">
+                    <button type="submit" class="btn-large waves-effect blue"><i
+                            class="material-icons">chevron_right</i></button>
+                </div>
+            </form>
         </div>
-        <!-- contenedor para boton -->
-        <div class="container">
-            <div class="row">
-                <div class="col s4 m2 offset-s4 offset-m5">
-                    <a href="main.html">
-                        <button class="btn col l12 s12 m12 btn_ingresar">Ingresar</button>
-                    </a>
+        <!-- Contenedor del formulario para registrar el primer empleado del sitio privado -->
+        <div class="hide" id="signup-container">
+            <!-- Título del contenido principal -->
+            <h1 class="center-align">Registrar primer usuario</h1>
+            <!-- Formulario para crear el primer usuario -->
+            <form class="row" method="post" id="signup-form">
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">person</i>
+                    <input id="nombres" type="text" name="nombres" required>
+                    <label for="nombres">Nombres</label>
                 </div>
-            </div>
-        </div>
-        <!-- contenedor para checkbox y recuperacion de clave -->
-        <div class="container">
-            <div class="row">
-                <div class="col s4 m2 offset-s4 offset-m4">
-                    <!-- checkbox para recordar sesion -->
-                    <form action="#">
-                        <p>
-                            <label>
-                                <input type="checkbox" class="filled-in" checked="checked" />
-                                <span>Recuerdame</span>
-                            </label>
-                        </p>
-                    </form>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">person</i>
+                    <input id="apellidos" type="text" name="apellidos" required>
+                    <label for="apellidos">Apellidos</label>
                 </div>
-                <!-- enlace a recuperacion de clave -->
-                <div class="col s6 m6 offset-s3">
-                    <a class="recuperacion" href="">Olvidé mi contraseña</a>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">credit_card</i>
+                    <input id="dui" type="text" name="dui" minlength="10" required>
+                    <label for="dui">DUI</label>
                 </div>
-            </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">email</i>
+                    <input id="correo" type="email" name="correo" required>
+                    <label for="correo">Correo</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">phone</i>
+                    <input id="telefono" type="text" name="telefono" minlength="9" required>
+                    <label for="telefono">Teléfono</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">person</i>
+                    <input id="usuario-pu" type="text" name="usuario-pu" required>
+                    <label for="usuario-pu">Usuario</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">lock</i>
+                    <input id="clave-pu" type="password" name="clave-pu" minlength="8" required>
+                    <label for="clave-pu">Contraseña</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">lock</i>
+                    <input id="confirmar" type="password" name="confirmar" minlength="8" required>
+                    <label for="confirmar">Confirmar contraseña</label>
+                </div>
+                <div class="col s12 center-align">
+                    <button type="reset" class="btn-large waves-effect grey tooltipped" data-tooltip="Limpiar campos">
+                        <i class="material-icons">autorenew</i>
+                    </button>
+                    <button type="submit" class="btn-large waves-effect blue tooltipped" data-tooltip="Guardar registro">
+                        <i class="material-icons">save</i>
+                    </button>
+                </div>
+            </form>
         </div>
     </main>
+    <!-- pie de la pagina -->
+    <footer class="page-footer"></footer>
 
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
-    <script type="text/javascript" src="../../resources/js/dashboard.js"></script>
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../controllers/components.js"></script>
+    <script type="text/javascript" src="../../controllers/dashboard/account.js"></script>
+    <script type="text/javascript" src="../../controllers/dashboard/index.js"></script>
 </body>
 
 </html>
