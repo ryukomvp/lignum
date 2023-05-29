@@ -30,11 +30,12 @@ class RatingQueries
 
     public function readAllR()
     {
-        $sql = 'SELECT p.nombre_producto, p.foto, p.precio_producto, p.id_categoria, p.id_tipo_material, a.fecha FROM producto p
+        $sql = 'SELECT p.nombre_producto, p.foto, p.precio_producto, c.categoria, p.id_tipo_material, a.fecha FROM producto p
         INNER JOIN detalle_pedido d ON p.id_producto = d.id_producto
+        INNER JOIN categoria c ON p.id_categoria = c.id_categoria
         INNER JOIN pedido a ON d.id_pedido = a.id_pedido
         INNER JOIN valoracion v ON d.id_detalle_pedido = v.id_detalle_pedido
-        ORDER BY a.fecha';
+        ORDER BY a.fecha DESC';
         return Database::getRows($sql);
     }
 

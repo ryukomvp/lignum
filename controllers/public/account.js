@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                                         class="material-icons">arrow_upward</i></a></li>
                             <li><a href="catalogue.html" class="tooltipped" 
                                     data-tooltip="Catalogo"><i class="material-icons">library_books</i></a></li>
+                                    <li><a href="ratings.html" class="tooltipped" data-position="bottom"
+                                    data-tooltip="Valoracion de productos"><i class="material-icons">star_border</i></a></li>
                             <li><a href="shopping_cart.html" class="tooltipped" 
                                     data-tooltip="Carrito de compras"><i class="material-icons">shopping_cart</i></a></li>
                             <li><a href="profile.html" class="tooltipped" 
@@ -55,6 +57,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                                     class="material-icons">arrow_upward</i></a></li>
                         <li><a href="catalogue.html" class="tooltipped" data-position="bottom"
                                 data-tooltip="Catalogo"><i class="material-icons">library_books</i></a></li>
+                        <li><a href="ratings.html" class="tooltipped" data-position="bottom"
+                                data-tooltip="Valoracion de productos"><i class="material-icons">star_border</i></a></li>
                         <li><a href="shopping_cart.html" class="tooltipped" data-position="bottom"
                                 data-tooltip="Carrito de compras"><i class="material-icons">shopping_cart</i></a></li>
                         <li><a href="login.html" class="tooltipped" data-tooltip="Iniciar sesión"><i class="material-icons">login</i></a></li>
