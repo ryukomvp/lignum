@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!-- definicion del lenguaje del sitio -->
+<html lang="es">
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../resources/css/public.css" media="screen,projection" />
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Producto</title>
+</head>
+
+<body>
+    <!-- encabezado del sitio -->
+    <header></header>
+    <!-- contenido principal del sitio -->
+    <main class="container">
+        <!-- Componente Horizontal Card para mostrar el detalle de un producto -->
+        <div class="card horizontal" id="detalle">
+            <div class="card-image">
+                <!-- Se muestra una imagen por defecto mientras se carga la imagen del producto -->
+                <img id="imagen" src="../../resources/img/unknown.png">
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+                    <h4 id="nombre" class="header"></h4>
+                    <p id="descripcion"></p>
+                    <p>Precio (US$) <b id="precio"></b></p>
+                </div>
+                <div class="card-action">
+                    <!-- Formulario para agregar el producto al carrito de compras -->
+                    <form class="row" method="post" id="shopping-form">
+                        <!-- Campo oculto para asignar el id del producto -->
+                        <input type="hidden" id="id_producto" name="id_producto">
+                        <div class="input-field col s12 m6">
+                            <i class="material-icons prefix">list</i>
+                            <input type="number" id="cantidad" name="cantidad" min="1" class="validate" required>
+                            <label for="cantidad">Cantidad</label>
+                        </div>
+                        <div class="input-field col s12 m6">
+                            <!-- Botón para enviar el formulario -->
+                            <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Agregar">
+                                <i class="material-icons">add_shopping_cart</i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- pie del sitio -->
+    <footer></footer>
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../controllers/components.js"></script>
+    <script type="text/javascript" src="../../controllers/public/account.js"></script>
+    <script type="text/javascript" src="../../controllers/public/detail.js"></script>
+</body>
+
+</html>
