@@ -240,27 +240,7 @@ VALUES  ('Robina', 'Bonniface' , 'foto', '76168-013', 'rbonniface0@ifeng.com', '
 
 INSERT INTO proveedor(nombre_proveedor, direccion_proveedor, correo_proveedor, telefono_proveedor)
 VALUES ('Weston Logging Co.', '9355 Blackbird Way', 'westonlogging@contact', '0381-0101'),
-       ('McAllen Hardware Store', '81 Grove Avenue', 'mcallenhardware@support', '2134-0312');
-	   
-	   CREATE TABLE usuario_privado(
-    id_usuario_privado serial not null PRIMARY KEY,
-    nombre_empleado varchar(70) not null,
-    apellido_empleado varchar(70) not null,
-    dui_empleado varchar(10) not null UNIQUE,
-    correo_empleado varchar(120) not null,
-    telefono_empleado varchar(9) not null,
-	genero genero not null,
-	id_cargo int not null,
-
-    usuario_privado varchar(30) not null UNIQUE,
-    clave varchar(2048) not null,
-	acceso boolean DEFAULT true not null
-
-    -- CONSTRAINT dui_empleado_unique UNIQUE (dui_empleado),
-	-- CONSTRAINT usuario_privado_unique UNIQUE (usuario_privado)
-);
-	   
-	   
+       ('McAllen Hardware Store', '81 Grove Avenue', 'mcallenhardware@support', '2134-0312');	   
 	   
 INSERT INTO usuario_privado(nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, telefono_empleado, genero, id_cargo, usuario_privado, clave, acceso)
 VALUES ('jfuch', 'djaiAPS', 1, 1, 1),
