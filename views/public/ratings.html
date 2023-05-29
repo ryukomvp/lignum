@@ -44,6 +44,88 @@
                 </div>
             </div>
         </div>
+
+        <div class="container">
+            <div id="modal-empleados" class="modal">
+                <div class="modal-content">
+                    <div class="row">
+                        <!-- titulo -->
+                        <h5 class="center">Empleados</h5>
+                        <!-- textbox nombres -->
+                        <div class="input-field col s12 m6">
+                            <input id="nombre" type="text">
+                            <label for="nombre">Nombres</label>
+                        </div>
+                        <!-- textbox apellidos -->
+                        <div class="input-field col s12 m6">
+                            <input id="apellido" type="text">
+                            <label for="apellido">Apellidos</label>
+                        </div>
+                        <!-- textbox dui -->
+                        <div class="input-field col s12 m3">
+                            <input id="dui" type="text" maxlength="10">
+                            <label for="dui">DUI</label>
+                        </div>
+                        <!-- textbox correo -->
+                        <div class="input-field col s12 m6">
+                            <input id="correo" type="email">
+                            <label for="correo">Correo</label>
+                        </div>
+                        <!-- textbox telefono -->
+                        <div class="input-field col s12 m3">
+                            <input id="telefono" type="text" maxlength="9">
+                            <label for="telefono">Teléfono</label>
+                        </div>
+                        <!-- cmb genero -->
+                        <div class="input-field col s12 m6">
+                            <select>
+                                <option value="" disabled selected>Seleccione el genero</option>
+                                <option value="1">Femenino</option>
+                                <option value="2">Masculino</option>
+                            </select>
+                            <label>Genero</label>
+                        </div>
+                        <!-- cmb cargo -->
+                        <div class="input-field col s12 m6">
+                            <select>
+                                <option value="" disabled selected>Seleccione el cargo</option>
+                                <option value="1">Gerente general</option>
+                                <option value="2">Asistente de gerencia</option>
+                                <option value="3">Carpinteria general</option>
+                                <option value="3">Mozo de almacén</option>
+                                <option value="3">Encargado de limpieza</option>
+                            </select>
+                            <label>Cargo</label>
+                        </div>
+                        <!-- boton para subir foto -->
+                        <div class="col s12 m12">
+                            <form action="#">
+                                <div class="file-field input-field">
+                                    <div class="btn">
+                                        <i class="material-icons">file_upload</i>
+                                        <input type="file">
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- footer de ventana modal -->
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat tooltipped guardar"
+                            data-position="bottom" data-tooltip="Guardar cambios"><i class="material-icons">save</i></a>
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat tooltipped eliminar"
+                            data-position="bottom" data-tooltip="Eliminar registro"><i
+                                class="material-icons">delete</i></a>
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat tooltipped salir"
+                            data-position="bottom" data-tooltip="Salir sin guardar cambios"><i
+                                class="material-icons">exit_to_app</i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
     <!--Etiqueta footer-->
     <footer></footer>
