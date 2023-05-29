@@ -8,7 +8,7 @@ class RatingQueries
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
     */
-    public function searchRows($value)
+    public function searchRowsR($value)
     {
         $sql = 'SELECT v.puntaje, v.comentario,  a.fecha, p.nombre_producto, c.nombre_cliente FROM cliente c
         INNER JOIN pedido d ON c.id_cliente = d.id_cliente
@@ -22,15 +22,25 @@ class RatingQueries
 
     public function createRow()
     {
-        $sql = 'INSERT INTO valoracion(puntaje, comentario, id_producto)
+        $sql = 'INSERT INTO valoracion(puntaje, comentario, id_detalle_pedido)
                 VALUES(?, ?, ?)';
         $params = array($this->puntaje, $this->comentario, $this->producto);
         return Database::executeRow($sql, $params);
     }
 
-    public function readAll()
+    public function readAllR()
     {
-        $sql = 'SELECT v.puntaje, v.comentario,  d.fecha, p.nombre_producto, c.nombre_cliente FROM valoracion v
+        $sql = 'SELECT p.nombre_producto, p.foto, p.precio_producto, p.id_categoria, p.id_tipo_material, a.fecha FROM producto p
+        INNER JOIN detalle_pedido d ON p.id_producto = d.id_producto
+        INNER JOIN pedido a ON d.id_pedido = a.id_pedido
+        INNER JOIN valoracion v ON d.id_detalle_pedido = v.id_detalle_pedido
+        ORDER BY a.fecha';
+        return Database::getRows($sql);
+    }
+
+    public function readAllP()
+    {
+        $sql = 'SELECT P FROM valoracion v
                 INNER JOIN detalle_pedido d ON v.id_detalle_pedido = d.id_detalle_pedido
                 INNER JOIN pedido a ON d.id_pedido = a.id_pedido
                 INNER JOIN cliente c ON a.id_cliente = c.id_cliente 

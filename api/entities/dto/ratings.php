@@ -15,6 +15,7 @@ class Rating extends RatingQueries
     protected $cliente = null;
     protected $pedido = null;
     protected $estado = null;
+    protected $detalle = null;
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -71,7 +72,7 @@ class Rating extends RatingQueries
 
     public function setCliente($value)
     {
-        if (Validator::validateString($value, 1, 150)) {
+        if (Validator::validateNaturalNumber($value)) {
             $this->cliente = $value;
             return true;
         } else {
@@ -99,6 +100,15 @@ class Rating extends RatingQueries
         }
     }
 
+    public function setDetalle($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->detalle = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
     /*
     *   Métodos para obtener valores de los atributos.
     */
@@ -140,5 +150,10 @@ class Rating extends RatingQueries
     public function getEstado()
     {
         return $this->estado;
+    }
+
+    public function getDetalle()
+    {
+        return $this->detalle;
     }
 }

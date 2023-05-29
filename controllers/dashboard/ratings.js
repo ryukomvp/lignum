@@ -1,5 +1,5 @@
-// Constantes para completar las rutas de la API.
-const RATINGS_API = 'business/dashboard/ratings.php';
+// Constante para completar la ruta de la API.
+const CATEGORIES_API = 'business/dashboard/categories.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('search-form');
 // Constante para establecer el formulario de guardar.
@@ -7,7 +7,7 @@ const SAVE_FORM = document.getElementById('save-form');
 // Constante para establecer el título de la modal.
 const MODAL_TITLE = document.getElementById('modal-title');
 // Constantes para establecer el contenido de la tabla.
-const RATINGS = document.getElementById('ratings');
+const TBODY_ROWS = document.getElementById('tbody-rows');
 const RECORDS = document.getElementById('records');
 // Constante tipo objeto para establecer las opciones del componente Modal.
 const OPTIONS = {
@@ -43,7 +43,8 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
     // Petición para guardar los datos del formulario.
-    const JSON = await dataFetch(RATINGS_API, action, FORM);
+    const JSON = await dataFetch(CATEGORIES_API, action, FORM);
+    console.log(JSON);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
         // Se carga nuevamente la tabla para visualizar los cambios.
@@ -52,7 +53,8 @@ SAVE_FORM.addEventListener('submit', async (event) => {
         SAVE_MODAL.close();
         // Se muestra un mensaje de éxito.
         sweetAlert(1, JSON.message, true);
-    } else {
+    }
+    else {
         sweetAlert(2, JSON.exception, false);
     }
 });
@@ -64,268 +66,84 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 */
 async function fillTable(form = null) {
     // Se inicializa el contenido de la tabla.
-    RATINGS.innerHTML = '';
+    TBODY_ROWS.innerHTML = '';
     RECORDS.textContent = '';
     // Se verifica la acción a realizar.
     (form) ? action = 'search' : action = 'readAll';
     // Petición para obtener los registros disponibles.
-    const JSON = await dataFetch(RATINGS_API, action, form);
+    const JSON = await dataFetch(CATEGORIES_API, action, form);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
-
         // Se recorre el conjunto de registros fila por fila.
         JSON.dataset.forEach(row => {
-
-            switch (row.puntaje) {
-                case 1:
-                    RATINGS.innerHTML += `
-         
-                <div id="contenedor">
-                    <div id="arriba">
-                        <h5>${row.nombre_producto}</h5>
-                        <p>${row.comentario}</p>
-                    </div>
-                    <div id="abajo">
-                        <div id="horizontal">
-                            <div class="left_align">
-                                <h6 id = "fecha">Fecha: ${row.fecha}<h6>
-                                <h6 id ="cliente">Cliente: ${row.nombre_cliente}<h6>
-                            </div>
-                            <div class="right_align">
-                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
-                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
-                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
-                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
-                            </div>
-                        </div>
-                        <p>
-                            <div class="switch">
-                                <span>Estado:</span>
-                                <label>
-                                    <input id="estado" type="checkbox" name="estado" checked>
-                                    <span class="lever"></span>
-                                </label>
-                            </div>
-                        </p>
-                        <div class="boton-ratings">
-                            <button onclick="openUpdate(${row.id_valoracion})" class=" waves-effect waves-green btn-flat tooltipped" data-tooltip="Guardar">
-                                <i class="material-icons">save</i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-       
+            // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+            TBODY_ROWS.innerHTML += `
+                <tr>
+                    <td>${row.id_categoria}</td>
+                    <td>${row.categoria}</td>
+                    <td>
+                        <button onclick="openUpdate(${row.id_categoria})" class="btn blue tooltipped" data-tooltip="Actualizar">
+                            <i class="material-icons">mode_edit</i>
+                        </button>
+                    </td>
+                    <td>
+                        <button onclick="openDelete(${row.id_categoria})" class="btn red tooltipped" data-tooltip="Eliminar">
+                            <i class="material-icons">delete</i>
+                        </button>
+                    </td>
+                </tr>
             `;
-                    break;
-                case 2:
-                    RATINGS.innerHTML += `
-         
-                <div id="contenedor">
-                    <div id="arriba">
-                        <h5>${row.nombre_producto}</h5>
-                        <p>${row.comentario}</p>
-                    </div>
-                    <div id="abajo">
-                        <div id="horizontal">
-                            <div class="left_align">
-                                <h6 id = "fecha">Fecha: ${row.fecha}<h6>
-                                <h6 id ="cliente">Cliente: ${row.nombre_cliente}<h6>
-                            </div>
-                            <div class="right_align">
-                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
-                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
-                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
-                            </div>
-                        </div>
-                         <p>
-                                <div class="switch">
-                                    <span>Estado:</span>
-                                    <label>
-                                        <input id="estado" type="checkbox" name="estado" checked>
-                                        <span class="lever"></span>
-                                    </label>
-                                </div>
-                        </p>
-                        <div class="boton-ratings">
-                            <button type="submit" class=" waves-effect waves-green btn-flat guardar tooltipped"data-tooltip="Guardar">
-                                <i class="material-icons">save</i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-                    break;
-                case 3:
-                    RATINGS.innerHTML += `
-         
-                <div id="contenedor">
-                    <div id="arriba">
-                        <h5>${row.nombre_producto}</h5>
-                        <p>${row.comentario}</p>
-                    </div>
-                    <div id="abajo">
-                        <div id="horizontal">
-                            <div class="left_align">
-                                <h6 id = "fecha">Fecha: ${row.fecha}<h6>
-                                <h6 id ="cliente">Cliente: ${row.nombre_cliente}<h6>
-                            </div>
-                            <div class="right_align">
-                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
-                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
-                            </div>
-                        </div>
-                         <p>
-                            <div class="switch">
-                                <span>Estado:</span>
-                                <label>
-                                    <input id="estado" type="checkbox" name="estado" checked>
-                                    <span class="lever"></span>
-                                </label>
-                            </div>
-                        </p>
-                        <div class="boton-ratings">
-                            <button type="submit" class=" waves-effect waves-green btn-flat guardar tooltipped"data-tooltip="Guardar">
-                                <i class="material-icons">save</i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-       
-            `;
-                    break;
-                case 4:
-                    RATINGS.innerHTML += `
-
-                <div id="contenedor">
-                    <div id="arriba">
-                        <h5>${row.nombre_producto}</h5>
-                        <p>${row.comentario}</p>
-                    </div>
-                    <div id="abajo">
-                        <div id="horizontal">
-                            <div class="left_align">
-                                <h6 id = "fecha">Fecha: ${row.fecha}<h6>
-                                <h6 id ="cliente">Cliente: ${row.nombre_cliente}<h6>
-                            </div>
-                            <div class="right_align">
-                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-rating-basio-30.png">
-                            </div>
-                        </div>
-                         <p>
-                            <div class="switch">
-                                <span>Estado:</span>
-                                <label>
-                                    <input id="estado" type="checkbox" name="estado" checked>
-                                    <span class="lever"></span>
-                                </label>
-                            </div>
-                        </p>
-                        <div class="boton-ratings">
-                            <button type="submit" class=" waves-effect waves-green btn-flat guardar tooltipped"data-tooltip="Guardar">
-                                <i class="material-icons">save</i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                    `;
-
-                    break;
-                case 5:
-                    RATINGS.innerHTML += `
-                    
-                <div id="contenedor">
-                    <div id="arriba"> 
-                        <h5>${row.nombre_producto}</h5>
-                        <p>${row.comentario}</p>
-                    </div>
-                    <div id="abajo">
-                        <div id="horizontal">
-                            <div class="left_align">
-                                <h6 id = "fecha">Fecha: ${row.fecha}<h6>
-                                <h6 id ="cliente">Cliente: ${row.nombre_cliente}<h6>
-                            </div>
-                            <div class="right_align">
-                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                                <img class="icons_ratings" src="../../resources/img/iconos/Icono-estrella-llena-30.png">
-                            </div>
-                        </div>
-                        <p>
-                                <div class="switch">
-                                    <span>Estado:</span>
-                                    <label>
-                                        <input  id="estado" type="checkbox" name="estado" checked>
-                                        <span class="lever"></span>
-                                    </label>
-                                </div>
-                        </p>
-                        <div class="boton-ratings">
-                            <button onclick="openUpdate(${row.id_valoracion})" type = "submit" class=" waves-effect waves-green guardar btn-flat tooltipped" data-tooltip="Guardar">
-                                <i class="material-icons">save</i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                    
-                    `;
-                    break;
-                default:
-                    $result['exception'] = 'Acción no disponible dentro de la sesión';
-            }
         });
         // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
         M.Tooltip.init(document.querySelectorAll('.tooltipped'));
+        // Se muestra un mensaje de acuerdo con el resultado.
+        RECORDS.textContent = JSON.message;
     } else {
         sweetAlert(4, JSON.exception, true);
     }
 }
 
+/*
+*   Función para preparar el formulario al momento de insertar un registro.
+*   Parámetros: ninguno.
+*   Retorno: ninguno.
+*/
+function openCreate() {
+    // Se abre la caja de diálogo que contiene el formulario.
+    SAVE_MODAL.open();
+    // Se restauran los elementos del formulario.
+    SAVE_FORM.reset();
+    // Se asigna título a la caja de diálogo.
+    MODAL_TITLE.textContent = 'Crear categoría';
+}
+
+/*
+*   Función asíncrona para preparar el formulario al momento de actualizar un registro.
+*   Parámetros: id (identificador del registro seleccionado).
+*   Retorno: ninguno.
+*/
 async function openUpdate(id) {
-    const RESPONSE = await confirmAction('¿Desea actualizar el estado de la valoracion?');
-    if (RESPONSE) {
-        // Se define un objeto con los datos del registro seleccionado.
+    // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
     FORM.append('id', id);
     // Petición para obtener los datos del registro solicitado.
-    const JSON = await dataFetch(RATINGS_API, 'readOne', FORM);
+    const JSON = await dataFetch(CATEGORIES_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-    console.log(row.id_valoracion);
     if (JSON.status) {
         // Se abre la caja de diálogo que contiene el formulario.
         SAVE_MODAL.open();
         // Se restauran los elementos del formulario.
         SAVE_FORM.reset();
+        // Se asigna título para la caja de diálogo.
+        MODAL_TITLE.textContent = 'Actualizar categoría';
         // Se inicializan los campos del formulario.
-        document.getElementById('id').value = JSON.dataset.id_valoracion;
-        document.getElementById('puntaje').value = JSON.dataset.puntaje;
-        document.getElementById('comentario').value = JSON.dataset.comentario;
-        document.getElementById('pedido').value = JSON.dataset.id_detalle_pedido;
-        if (JSON.dataset.estado) {
-            document.getElementById('estado').checked = true;
-        } else {
-            document.getElementById('estado').checked = false;
-        }
+        document.getElementById('id').value = JSON.dataset.id_categoria;
+        document.getElementById('nombre').value = JSON.dataset.categoria;
         // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
         M.updateTextFields();
-        console.log(JSON);
     } else {
         sweetAlert(2, JSON.exception, false);
     }
-    }
-    
 }
 
 /*
@@ -340,9 +158,9 @@ async function openDelete(id) {
     if (RESPONSE) {
         // Se define una constante tipo objeto con los datos del registro seleccionado.
         const FORM = new FormData();
-        FORM.append('id_valoracion', id);
+        FORM.append('id_categoria', id);
         // Petición para eliminar el registro seleccionado.
-        const JSON = await dataFetch(RATINGS_API, 'delete', FORM);
+        const JSON = await dataFetch(CATEGORIES_API, 'delete', FORM);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
         if (JSON.status) {
             // Se carga nuevamente la tabla para visualizar los cambios.
@@ -356,13 +174,13 @@ async function openDelete(id) {
 }
 
 /*
-*   Función para abrir el reporte de RATINGS de una categoría.
+*   Función para abrir el reporte de productos de una categoría.
 *   Parámetros: id (identificador del registro seleccionado).
 *   Retorno: ninguno.
 */
 // function openReport(id) {
 //     // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
-//     const PATH = new URL(`${SERVER_URL}reports/dashboard/RATINGS_categoria.php`);
+//     const PATH = new URL(`${SERVER_URL}reports/dashboard/productos_categoria.php`);
 //     // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
 //     PATH.searchParams.append('id_categoria', id);
 //     // Se abre el reporte en una nueva pestaña del navegador web.

@@ -8,6 +8,7 @@ if (isset($_GET['action'])) {
     session_start();
     // Se instancia la clase correspondiente.
     $rating = new Rating;
+    $product = new Product;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null, 'dataset' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
@@ -15,7 +16,7 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readAll':
-                if ($result['dataset'] = $rating->readAll()) {
+                if ($result['dataset'] = $rating->readAllR()) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen '.count($result['dataset']).' registros';
                 } elseif (Database::getException()) {
@@ -37,17 +38,24 @@ if (isset($_GET['action'])) {
                         $result['exception'] = 'No hay coincidencias';
                     }
                     break;
-            case 'create':
-                $_POST = Validator::validateForm($_POST);
-                if (!$rating->setNombre($_POST['nombre'])) {
-                    $result['exception'] = 'Nombre incorrecto';
-                }  elseif ($rating->createRow()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'categoria creado correctamente';
-                }else {
-                    $result['exception'] = Database::getException();
-                }
-                break;
+                    case 'create':
+                        $_POST = Validator::validateForm($_POST);
+                        if (!$rating->setPuntaje ($_POST['puntaje'])) {
+                            $result['exception'] = 'Puntaje incorrecto';
+                        } elseif (!$rating->setComentario($_POST['comentario'])) {
+                            $result['exception'] = 'Comentario incorrecta';
+                        } elseif (!$rating->setEstado($_POST['precio'])) {
+                            $result['exception'] = 'Precio incorrecto';
+                        } elseif (!isset($_POST['detalle_pedido'])) {
+                            $result['exception'] = 'detalle un material';
+                        } elseif (!$rating->setDetalle($_POST['detalle_pedido'])) {
+                            $result['exception'] = 'detalle incorrecta';
+                        } elseif ($rating->createRow()) {
+                            $result['status'] = 1;
+                        } else {
+                            $result['exception'] = Database::getException();;
+                        }
+                    break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }

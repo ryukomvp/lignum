@@ -14,7 +14,7 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readAll':
-                if ($result['dataset'] = $rating->readAll()) {
+                if ($result['dataset'] = $rating->readAllR()) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen '.count($result['dataset']).' registros';
                 } elseif (Database::getException()) {
@@ -27,7 +27,7 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if ($_POST['search'] == '') {
                     $result['exception'] = 'Ingrese un valor para buscar';
-                } elseif ($result['dataset'] = $rating->searchRows($_POST['search'])) {
+                } elseif ($result['dataset'] = $rating->searchRowsR($_POST['search'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen '.count($result['dataset']).' coincidencias';
                 } elseif (Database::getException()) {
@@ -36,17 +36,6 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay coincidencias';
                 }
                 break;
-            // case 'create':
-            //     $_POST = Validator::validateForm($_POST);
-            //     if (!$rating->setNombre($_POST['nombre'])) {
-            //         $result['exception'] = 'Nombre incorrecto';
-            //     }  elseif ($rating->createRow()) {
-            //         $result['status'] = 1;
-            //         $result['message'] = 'categoria creado correctamente';
-            //     }else {
-            //         $result['exception'] = Database::getException();
-            //     }
-            //     break;
             case 'readOne':
                 if (!$rating->setId($_POST['id'])) {
                     $result['exception'] = 'Valoracion incorrecta';
