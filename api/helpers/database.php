@@ -1,68 +1,86 @@
 <?php
-header('Access-Control-Allow-Origin');
+header('Access-Control-Allow-Origin: *');
 require_once('config.php');
 
-
-//Clase para realizar acciones en la base de datos
+/*
+*   Clase para realizar las operaciones en la base de datos.
+*/
 class Database
 {
-    //Propiedades de la base.
+    // Propiedades de la clase para manejar las acciones respectivas.
     private static $connection = null;
     private static $statement = null;
     private static $error = null;
 
-
-    //Metodo para ejecucion de sentencias SQL
-    public static function executeRows($query, $values)
+    /*
+    *   Método para ejecutar las sentencias SQL.
+    *   Parámetros: $query (sentencia SQL) y $values (arreglo con los valores para la sentencia SQL).
+    *   Retorno: booleano (true si la sentencia se ejecuta satisfactoriamente o false en caso contrario).
+    */
+    public static function executeRow($query, $values)
     {
-        try{
-            //Creacion de coneccion mediante clase PDO
-            self::$connection = new PDO('pgsql:host' . SERVER . ';dbname=' . DATABASE . ';port=5432', USERNAME, PASSWORD);
-            //Preparacion de sentencia sql
+        try {
+            // Se crea la conexión mediante la clase PDO con el controlador de PostgreSQL.
+            self::$connection = new PDO('pgsql:host=' . SERVER . ';dbname=' . DATABASE . ';port=5432', USERNAME, PASSWORD);
+            // Se prepara la sentencia SQL.
             self::$statement = self::$connection->prepare($query);
-            //Ejecucion de sentencia. Se retorna el resultado
+            // Se ejecuta la sentencia preparada y se retorna el resultado.
             return self::$statement->execute($values);
         } catch (PDOException $error) {
+            // Se obtiene el código y el mensaje de la excepción para establecer un error personalizado.
             self::setException($error->getCode(), $error->getMessage());
             return false;
         }
     }
 
-    //Metodo para obtencion de llave primaria del ultimo registro ingresado
-
+    /*
+    *   Método para obtener el valor de la llave primaria del último registro insertado.
+    *   Parámetros: $query (sentencia SQL) y $values (arreglo con los valores para la sentencia SQL).
+    *   Retorno: numérico entero (último valor de la llave primaria si la sentencia se ejecuta satisfactoriamente o 0 en caso contrario).
+    */
     public static function getLastRow($query, $values)
     {
-        if (self::executeRows($query, $values)) {
+        if (self::executeRow($query, $values)) {
             $id = self::$connection->lastInsertId();
         } else {
             $id = 0;
         }
+        return $id;
     }
 
-    //Metodo de obtencion de un registro mediante sentencia tipo SELECT
-
-    public static function getRows($query, $values = null)
-    {
-        if(self::executeRows($query, $values)){
-           return self::$statement->fetch(PDO::FETCH_ASSOC);
-        } else {
-           return false;
-        }
-    }
-
-    //Metodo de obtencion todos los registros mediante sentencia tipo SELECT
-
+    /*
+    *   Método para obtener un registro de una sentencia SQL tipo SELECT.
+    *   Parámetros: $query (sentencia SQL) y $values (arreglo opcional con los valores para la sentencia SQL).
+    *   Retorno: arreglo asociativo del registro si la sentencia SQL se ejecuta satisfactoriamente o false en caso contrario.
+    */
     public static function getRow($query, $values = null)
     {
-        if(self::executeRows($query, $values)) {
-           return self::$statement->fetchAll(PDO::FETCH_ASSOC);
+        if (self::executeRow($query, $values)) {
+            return self::$statement->fetch(PDO::FETCH_ASSOC);
         } else {
-           return false;
+            return false;
         }
     }
 
-    //Metodo para obtener un error personalizado en caso de alguna excepcion
+    /*
+    *   Método para obtener todos los registros de una sentencia SQL tipo SELECT.
+    *   Parámetros: $query (sentencia SQL) y $values (arreglo opcional con los valores para la sentencia SQL).
+    *   Retorno: arreglo asociativo de los registros si la sentencia SQL se ejecuta satisfactoriamente o false en caso contrario.
+    */
+    public static function getRows($query, $values = null)
+    {
+        if (self::executeRow($query, $values)) {
+            return self::$statement->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            return false;
+        }
+    }
 
+    /*
+    *   Método para establecer un mensaje de error personalizado al ocurrir una excepción.
+    *   Parámetros: $code (código del error) y $message (mensaje original del error).
+    *   Retorno: ninguno.
+    */
     private static function setException($code, $message)
     {
         // Se asigna el mensaje del error original por si se necesita.
@@ -85,17 +103,17 @@ class Database
                 self::$error = 'Violación de llave foránea';
                 break;
             default:
-                self::$error = 'Ocurrió un problema en la base de datos';
+                // self::$error = 'Ocurrió un problema en la base de datos';
         }
     }
 
-    //Metodo para obtencion de error personalizado
-    
+    /*
+    *   Método para obtener un error personalizado cuando ocurre una excepción.
+    *   Parámetros: ninguno.
+    *   Retorno: error personalizado.
+    */
     public static function getException()
     {
         return self::$error;
     }
 }
-
-
-?>

@@ -1,37 +1,43 @@
 <?php
-
-//Clase para validaciones 
-
-class Validator{
-
-    //Propiedades de validaciones
+/*
+*	Clase para validar todos los datos de entrada del lado del servidor.
+*/
+class Validator
+{
+    // Propiedades para manejar algunas validaciones.
     private static $passwordError = null;
     private static $fileError = null;
     private static $fileName = null;
 
-    //Validacion de error de contraseña
-
+    /*
+    *   Método para obtener el error al validar una contraseña.
+    */
     public static function getPasswordError()
     {
         return self::$passwordError;
     }
 
-    //Metodo para obtener nombre del archivo validado
-
+    /*
+    *   Método para obtener el nombre del archivo validado previamente.
+    */
     public static function getFileName()
     {
         return self::$fileName;
     }
 
-    //Validacion de error de archivo
-
+    /*
+    *   Método para obtener el error al validar un archivo.
+    */
     public static function getFileError()
     {
         return self::$fileError;
     }
 
-    //Validacion de saneo de campos
-
+    /*
+    *   Método para sanear todos los campos de un formulario (quitar los espacios en blanco al principio y al final).
+    *   Parámetros: $fields (arreglo con los campos del formulario).
+    *   Retorno: arreglo con los campos saneados del formulario.
+    */
     public static function validateForm($fields)
     {
         foreach ($fields as $index => $value) {
@@ -41,8 +47,11 @@ class Validator{
         return $fields;
     }
 
-    //
-
+    /*
+    *   Método para validar un número natural como por ejemplo llave primaria, llave foránea, entre otros.
+    *   Parámetros: $value (dato a validar).
+    *   Retorno: booleano (true si el valor es correcto o false en caso contrario).
+    */
     public static function validateNaturalNumber($value)
     {
         // Se verifica que el valor sea un número entero mayor o igual a uno.
@@ -53,8 +62,11 @@ class Validator{
         }
     }
 
-    //Validacion de archivo de imagenes
-
+    /*
+    *   Método para validar un archivo de imagen.
+    *   Parámetros: $file (archivo de un formulario), $maxWidth (ancho máximo para la imagen) y $maxHeigth (alto máximo para la imagen).
+    *   Retorno: booleano (true si el archivo es correcto o false en caso contrario).
+    */
     public static function validateImageFile($file, $maxWidth, $maxHeigth)
     {
         // Se obtienen las dimensiones y el tipo de la imagen.
@@ -78,8 +90,11 @@ class Validator{
         }
     }
 
-    //Validacion de correo electronico
-
+    /*
+    *   Método para validar un correo electrónico.
+    *   Parámetros: $value (dato a validar).
+    *   Retorno: booleano (true si el valor es correcto o false en caso contrario).
+    */
     public static function validateEmail($value)
     {
         if (filter_var($value, FILTER_VALIDATE_EMAIL)) {
@@ -243,8 +258,11 @@ class Validator{
         }
     }
 
-    //Metodo de validacion de archivo al ser borrado del servidor
-    
+    /*
+    *   Método para validar un archivo al momento de borrarlo del servidor.
+    *   Parámetros: $path (ruta del archivo) y $name (nombre del archivo).
+    *   Retorno: booleano (true si el archivo fue borrado del servidor o false en caso contrario).
+    */
     public static function deleteFile($path, $name)
     {
         // Se comprueba que el archivo sea borrado del servidor.
@@ -255,8 +273,11 @@ class Validator{
         }
     }
 
-    //Validacion de archivos PDF
-    
+    /*
+    *   Método para validar un archivo PDF.
+    *   Parámetros: $file (archivo de un formulario).
+    *   Retorno: booleano (true si el archivo es correcto o false en caso contrario).
+    */
     public static function validatePDFFile($file)
     {
         // Se comprueba si el archivo tiene un tamaño mayor a 2MB.
@@ -274,8 +295,4 @@ class Validator{
             return false;
         }
     }
-
 }
-
-
-?>

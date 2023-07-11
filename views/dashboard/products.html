@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<!-- definicion del lenguaje del sitio -->
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+
+    <link type="text/css" rel="stylesheet" href="../../resources/css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../resources/css/diseño_priv.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../resources/css/dashboard.css" media="screen,projection" />
+
+    <!--Titulo de pagina-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Productos</title>
+</head>
+
+<body>
+    <!-- Menu tipo Navbar  -->
+    <header></header>
+
+    <main>
+        <!-- contenedor para acciones de busqueda y agregar -->
+        <div class="container acciones">
+            <h1 class="center-align">Gestión de productos</h1>
+            <div class="row">
+                <!-- Formulario de búsqueda -->
+                <div class="col s10 m6">
+                    <nav>
+                        <div class="nav-wrapper">
+                            <form method="post" id="search-form">
+                                <div class="input-field">
+                                    <input id="search" type="search" name="search" required>
+                                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                                    <i class="material-icons">close</i>
+                                </div>
+                            </form>
+                        </div>
+                    </nav>
+                </div>
+                <div class="col s2 m6 right-align">
+                    <!-- boton de agregar -->
+                    <a onclick="openCreate()" class="btn-large waves-effect tooltipped" data-tooltip="Crear usuario">
+                        <i class="material-icons">add</i>
+                    </a>
+                    <a onclick="fillTable()" class="btn-large waves-effect tooltipped" data-tooltip="Recargar tabla">
+                        <i class="material-icons">autorenew</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Contenido de las cartas -->
+        <div class="row" id="records"></div>
+        <div class="row" id="productos"></div>
+
+        <!-- ventana modal para scrud productos -->
+        <div id="save-modal" class="modal">
+            <div class="modal-content">
+                <div class="row">
+                    <h4 id="modal-title"></h4>
+                    <form class="col s12" method="post" id="save-form" enctype="multipart/form-data">
+                        <input class="hide" type="number" id="id" name="id">
+                        <div class="row">
+                            <!--Text imput Productos -->
+                            <div class="input-field col s12 m6">
+                                <input id="nombre" name="nombre" type="text" class="validate">
+                                <label for="nombre">Producto</label>
+                            </div>
+                            <!--Text imput Codigo -->
+                            <div class="input-field col s12 m6">
+                                <input id="codigo" name="codigo" type="number" class="validate">
+                                <label for="codigo">Codigo</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!--Text imput Dimenciones -->
+                            <div class="input-field col s12 m6">
+                                <input id="dimensiones" name="dimensiones" type="text" class="validate">
+                                <label for="dimensiones">Dimensiones</label>
+                            </div>
+                            <!--Text imput Precio -->
+                            <div class="input-field col s12 m6">
+                                <input id="precio" name="precio" type="number" step="0.01" min="1" class="validate">
+                                <label for="precio">Precio</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!--Text imput Descripcion -->
+                            <div class="input-field col s12 m6">
+                                <input id="descripcion" name="descripcion" type="text" class="validate">
+                                <label for="descripcion">Descripcion</label>
+                            </div>
+                            <!--Text imput Descripcion -->
+                            <div class="input-field col s12 m6">
+                                <input id="existencia" name="existencia" type="number" class="validate">
+                                <label for="existencia">Existencia</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!--Select tipo de producto-->
+                            <div class="input-field col s12 m6">
+                                <select id="categoria" name="categoria" class="form-select">
+                                    <option value="" disabled selected>Seleccione una categoria</option>
+                                </select>
+                                <label>Categoria</label>
+                            </div>
+
+                            <!--Select tipo de material-->
+                            <div class="input-field col s12 m6">
+                                <select id="tipo_material" name="tipo_material" class="form-select">
+                                    <option value="" disabled selected>Seleccione un material</option>
+                                </select>
+                                <label>Material</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- Select proveedores -->
+                            <div class="input-field col s12 m6">
+                                <select id="proveedor" name="proveedor" class="form-select">
+                                    <option value="" disabled selected>Seleccione un proveedor</option>
+                                </select>
+                                <label>Proveedor</label>
+                            </div>
+                            <!-- input imagen -->
+                            <div class="file-field input-field col s12 m6">
+                                <div class="btn waves-effect tooltipped"
+                                    data-tooltip="Elegir imagen de al menos 600X600 px">
+                                    <i class="material-icons">Imagen</i>
+                                    <input id="archivo" type="file" name="archivo" accept=".jpg, .png">
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input type="text" class="file-path validate"
+                                        placeholder="Formatos válidos: jpg y png">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- Switch -->
+                            <p>
+                            <div class="switch">
+                                <span>Estado:</span>
+                                <label>
+                                    <input id="estado" type="checkbox" name="estado" checked>
+                                    <span class="lever"></span>
+                                </label>
+                            </div>
+                            </p>
+                        </div>
+                        <!-- Acciones   -->
+                        <div class="col s12 center-align">
+                            <div class="modal-footer ">
+                                <button type="submit" class=" waves-effect waves-green btn-flat guardar tooltipped"
+                                    data-tooltip="Guardar"><i class="material-icons">save</i></button>
+                                <button type="close"
+                                    class="modal-close waves-effect waves-green btn-flat salir tooltipped"
+                                    data-tooltip="Regresar"><i class="material-icons">exit_to_app</i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer></footer>
+
+
+    <!--JavaScript at end of body for optimized loading-->
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../controllers/components.js"></script>
+    <script type="text/javascript" src="../../controllers/dashboard/account.js"></script>
+    <script type="text/javascript" src="../../controllers/dashboard/products.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!-- deficion del lenguaje del sitio -->
+<html lang="es">
+
+<head>
+    <!-- Codificación de caracteres para el documento -->
+    <meta charset="utf-8">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/materialize.min.css" media="screen,projection" />
+    <!-- importacion de css -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/dashboard.css" media="screen,projection" />
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- titulo de la pagina -->
+    <title>Inventario</title>
+</head>
+
+<body>
+    <!-- header del sitio -->
+    <header></header>
+    <!-- contenido del sitio -->
+    <main class="container">
+        <h1 class="center-align">Gestión de inventario</h1>
+        <div class="row">
+            <!-- Formulario de búsqueda -->
+            <div class="col s10 m6">
+                <nav>
+                    <div class="nav-wrapper">
+                        <form method="post" id="search-form">
+                            <div class="input-field">
+                                <input id="search" type="search" name="search" required>
+                                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                                <i class="material-icons">close</i>
+                            </div>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+            <div class="col s2 m6 right-align">
+                <a onclick="openCreate()" class="btn-large waves-effect tooltipped" data-tooltip="Crear registro">
+                    <i class="material-icons">add</i>
+                </a>
+                <a onclick="fillTable()" class="btn-large waves-effect tooltipped" data-tooltip="Recargar tabla">
+                    <i class="material-icons">autorenew</i>
+                </a>
+            </div>
+        </div>
+        <!-- Tabla para mostrar los registros existentes -->
+        <table class="highlight">
+            <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
+            <thead>
+                <!-- <tr id="records"></tr> -->
+                <tr>
+                    <th>Código de inventario</th>
+                    <th>Cantidad entrante</th>
+                    <th>Fecha</th>
+                    <th>Proveedor</th>
+                    <th>Actualizar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <!-- Cuerpo de la tabla para mostrar un registro por fila -->
+            <tbody id="tbody-rows"></tbody>
+        </table>
+        <div id="save-modal" class="modal">
+            <div class="modal-content">
+                <!-- Título para la caja de diálogo -->
+                <h4 id="modal-title" class="center-align"></h4>
+                <form class="row" method="post" id="save-form" enctype="multipart/form-data">
+                    <!-- campo para id -->
+                    <input class="hide" type="number" id="id" name="id">
+                    <div class="input-field col s12 m6">
+                        <input id="codigo" type="text" name="codigo" required>
+                        <label for="codigo">Código de inventario</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input id="cantidad" type="number" name="cantidad" required>
+                        <label for="cantidad">Cantidad de producto entrante</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input type="date" id="fecha" name="fecha" required>
+                        <label for="fecha">Fecha de entrada</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <select id="producto" name="producto" required>
+                        </select>
+                        <label>Producto entrante</label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn-flat waves-effect tooltipped reiniciar"
+                            data-tooltip="Vaciar campos">
+                            <i class="material-icons">autorenew</i>
+                        </button>
+                        <button type="submit" class="btn-flat waves-effect tooltipped guardar"
+                            data-tooltip="Guardar cambios"><i class="material-icons">save</i></button>
+                        <a class="btn-flat waves-effect tooltipped modal-close salir"
+                            data-tooltip="Salir sin guardar cambios"><i class="material-icons">close</i></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <!-- footer del sitio -->
+    <footer></footer>
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../controllers/components.js"></script>
+    <script type="text/javascript" src="../../controllers/dashboard/account.js"></script>
+    <script type="text/javascript" src="../../controllers/dashboard/inventory.js"></script>
+</body>

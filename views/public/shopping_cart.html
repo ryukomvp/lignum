@@ -10,46 +10,44 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import de hojas de estilo-->
     <link type="text/css" rel="stylesheet" href="../../resources/css/materialize.min.css" media="screen,projection" />
-    <link rel="stylesheet" href="../../resources/css/Diseño_main.css">
-    <link rel="stylesheet" href="../../resources/css/shopping_cart.css">
+    <link rel="stylesheet" href="../../resources/css/public.css">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!--Titulo de la ventana-->
     <title>Carrito</title>
 </head>
 
-<!--Etiqueta del header-->
-<header>
-    <!--Barra de navegacion-->
-    <div class="navbar-fixed">
-        <nav>
-            <div class="nav-wrapper">
-                <a href="#" class="brand-logo"><img src="../../resources/img/2.png" alt="" width="80px"
-                        height="80px"></a>
-                <a href="#" data-target="menu-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="#" class="tooltipped" data-position="bottom" data-tooltip="Inicio de la página"><i
-                                class="material-icons">arrow_upward</i></a></li>
-                    <li><a href="catalogue.html" class="tooltipped" data-position="bottom" data-tooltip="Catalogo"><i
-                                class="material-icons">library_books</i></a></li>
-                    <li><a href="shopping_cart.html" class="tooltipped" data-position="bottom"
-                            data-tooltip="Carrito de compras"><i class="material-icons">shopping_cart</i></a></li>
-                    <li><a href="login.html" class="tooltipped" data-position="bottom"
-                            data-tooltip="Cuenta de usuario"><i class="material-icons">account_circle</i></a></li>
-                </ul>
-            </div>
-        </nav>
+
+
+<body>
+    <!--Etiqueta del header-->
+    <header>
+        <!--Barra de navegacion-->
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="index.html" class="brand-logo"><img src="../../resources/img/2.png" alt=""></a>
+                    <a href="#" data-target="menu-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href="#" class="tooltipped" data-position="bottom" data-tooltip="Inicio de la página"><i
+                                    class="material-icons">arrow_upward</i></a></li>
+                        <li><a href="catalogue.html" class="tooltipped" data-position="bottom"
+                                data-tooltip="Catalogo"><i class="material-icons">library_books</i></a></li>
+                        <li><a href="shopping_cart.html" class="tooltipped" data-position="bottom"
+                                data-tooltip="Carrito de compras"><i class="material-icons">shopping_cart</i></a></li>
+                        <li><a href="login.html" class="tooltipped" data-position="bottom"
+                                data-tooltip="Cuenta de usuario"><i class="material-icons">account_circle</i></a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- menu para dispositivos con pantallas pequeñas -->
         <ul class="sidenav" id="menu-mobile">
             <li><a href="catalogue.html">Catalogo</a></li>
             <li><a href="shopping_cart.html">Carrito</a></li>
             <li><a href="login.html">Cuenta</a></li>
         </ul>
-    </div>
-</header>
-
-<body>
-
-    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </header>
     <!--Etiqueta main-->
     <main>
         <!--Total y pago-->
@@ -66,64 +64,64 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
+        <!--Detalle del producto-->
         <div class="container">
-            <div class="row">
-              <div class="col m12 tabla">
-                <table class="responsive-table highlight ">
-                  <thead>
-                    <!-- Contenido de tabla -->
-                    <tr>
-                      <th>Producto</th>
-                      <th></th>
-                      <th>Usuario</th>
-                      <th>Cantidad</th>
-                      <th>Total</th>
-                      <th>Estado del pedido</th>
-                      <th>Detalles</th>
-                    </tr>
-                  </thead>
-      
-                  <tbody>
-                    <!-- Datos de tabla -->
-                    <tr>
-                      <td>4</td>
-                      <td>4</td>
-                      <td>OmarRivas</td>
-                      <td>2</td>
-                      <td>$50.00</td>
-                      <!-- swith de estado de pedido -->
-                      <td>
-                        <div class="switch">
-                          <label>
-                            En proceso
-                            <input type="checkbox">
-                            <span class="lever"></span>
-                            Terminado
-                          </label>
+            <div class="col s12 m7">
+                <h2 class="header"></h2>
+                <div class="card horizontal" id="card-carrito">
+                    <div class="card-image" id="img-carrito">
+                        <img src="../../resources/img/silla.jpg">
+                    </div>
+                    <div class="card-stacked">
+                        <div class="card-content">
+                            <span class="nombre">Silla</span>
+                            <p class="precio">$##.##</p>
+                            <p class="descripcion">Descripcion no disponible</p>
+                            <p class="cantidad"><button class="detalle-cantidad">+</button> 1 <button
+                                    class="detalle-cantidad">-</button></p>
                         </div>
-                      </td>
-                      <!-- Boton de detalle -->
-                      <td><a class="waves-effect waves-light btn  modal-trigger" href="#Detalles"><Label
-                            class="Detalle">Detalles</Label></a></td>
-                      <td><a class="waves-effect waves-light btn  modal-trigger" href="#Detalles"><Label
-                        class="Detalle">Editar</Label></a></td>
-                      <td><a class="waves-effect waves-light btn  modal-trigger" href="#Detalles"><Label
-                        class="Detalle">Eliminar</Label></a></td>
-                    </tr>
-                   
-
+                        <div class="card-action">
+                            <a href="#"><i class="material-icons">delete</i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- contenedor para cartas de productos -->
+        <div class="container">
+            <div class="col s12 m7">
+                <h2 class="header"></h2>
+                <div class="card horizontal" id="card-carrito">
+                    <div class="card-image" id="img-carrito">
+                        <img src="../../resources/img/mueble 2.jpg">
+                    </div>
+                    <div class="card-stacked">
+                        <div class="card-content">
+                            <span class="nombre">Gabinete</span>
+                            <p class="precio">$##.##</p>
+                            <p class="descripcion">Descripcion no disponible</p>
+                            <p class="cantidad"><button class="detalle-cantidad">+</button> 1 <button
+                                    class="detalle-cantidad">-</button></p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#"><i class="material-icons">delete</i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
-     <!--Etiqueta footer-->
+    <!--Etiqueta footer-->
     <footer>
         <footer class="page-footer">
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">
-                        <h5 class="white-text">Sobre lignum</h5>
+                        <a href="about_us.html">
+                            <h5 class="white-text">Sobre lignum</h5>
+                        </a>
                         <p class="grey-text text-lighten-4">Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Dolorem, ipsum magnam quam nesciunt ratione molestias laboriosam. Magnam in, earum quod nam
                             aliquam, minus debitis quidem eveniet et unde tempore quam.
@@ -155,8 +153,8 @@
     </footer>
 
     <!--Link con archivos js-->
-    <script type="text/javascript" src="../../js/materialize.min.js"></script>
-    <script type="text/javascript" src="../../js/inicializar.js"></script>
+    <script type="text/javascript" src="/resources/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/resources/js/public.js"></script>
 </body>
 
 </html>
