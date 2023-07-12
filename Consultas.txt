@@ -1,0 +1,6 @@
+Graficos
+1- Los 5 productos mas vendidos en el mes 
+2- Cuantos productos hay por materia
+3-Cuantos productos por proveedor
+4-Los 5 clientes con mas pedidos 
+5-Los productos que tengan mas numeros de valoraciones altas

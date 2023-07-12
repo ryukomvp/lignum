@@ -88,4 +88,12 @@ class ProductQueries
     //     $params = array($this->categoria);
     //     return Database::getRows($sql, $params);
     // }
+
+    //Metodo para generar graficos
+
+    public function productosMaterial()
+    {
+        $sql = 'SELECT tipo_material, COUNT(id_producto) cantidad FROM producto INNER JOIN tipo_material USING (id_tipo_material) GROUP BY tipo_material ORDER BY cantidad DESC';
+        return Database::getRows($sql); 
+    }
 }
