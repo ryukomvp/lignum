@@ -69,15 +69,13 @@ CREATE TABLE producto(
 	descripcion_producto varchar(120) not null,
 	precio_producto float not null,
 
-	codigo_producto varchar(10) not null,
+	codigo_producto varchar(10) not null UNIQUE,
 	dimensiones varchar(100) not null,
 	id_categoria int not null,
 	id_tipo_material int not null,
 	id_proveedor int not null,
 	estado boolean DEFAULT true not null,
-	cantidad_existencias int not null,
-	
-	CONSTRAINT codigo_producto_unique UNIQUE (codigo_producto)
+	cantidad_existencias int not null
 );
 
 CREATE TABLE imagen(
@@ -104,19 +102,14 @@ CREATE TABLE usuario_privado(
     usuario_privado varchar(30) not null UNIQUE,
     clave varchar(2048) not null,
 	acceso boolean DEFAULT true not null
-
-    -- CONSTRAINT dui_empleado_unique UNIQUE (dui_empleado),
-	-- CONSTRAINT usuario_privado_unique UNIQUE (usuario_privado)
 );
 
 CREATE TABLE inventario(
 	id_inventario serial not null PRIMARY KEY,
-	codigo_inventario varchar(10) not null,
+	codigo_inventario varchar(10) not null UNIQUE,
 	cantidad_entrante int not null,
 	fecha_entrada date not null,
-	id_producto int not null,
-
-	CONSTRAINT codigo_inventario_unique UNIQUE (codigo_inventario)
+	id_producto int not null
 );
 
 ALTER TABLE producto
@@ -139,12 +132,12 @@ ALTER TABLE inventario
 ADD CONSTRAINT inventario_producto_fkey FOREIGN KEY(id_producto)
 REFERENCES producto(id_producto);
 
-INSERT INTO categoria(categoria)
-VALUES	('Cocina'),
-		('Gamer'),
-		('Jardin'),
-		('Oficina'),
-		('Sala de estar');
+INSERT INTO categoria(categoria, descripcion, foto)
+VALUES	('Cocina', 'Muebles para cocina', '646bdd4f950c4.png'),
+		('Gamer', 'Muebles para habitación', '646bdd4f950c4.png'),
+		('Jardin', 'Muebles para jardin', '646bdd4f950c4.png'),
+		('Oficina', 'Muebles para oficina', '646bdd4f950c4.png'),
+		('Sala de estar', 'Muebles para sala de estar', '646bdd4f950c4.png');
 
 INSERT INTO tipo_material(tipo_material)
 VALUES	('Aglomerado'),

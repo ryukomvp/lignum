@@ -1,0 +1,14 @@
+Graficos
+5-Los productos que tengan mas numeros de valoraciones altas
+
+
+
+Reportes
+1- Todos lo productos ordenados de mas vendidos al menos vendido
+
+SELECT p.id_producto, p.nombre_producto, p.descripcion_producto, COUNT(d.cantidad) AS total FROM producto p, detalle_pedido d
+GROUP BY p.id_producto
+ORDER BY total ASC
+
+
+2- Todos los productos agrupados por tipo de material
