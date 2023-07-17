@@ -91,7 +91,7 @@ class ProductQueries
 
     public function productosMaterial()
     {
-        $sql = 'SELECT tipo_material, ROUND((COUNT(id_producto) * 100.0 / (SELECT COUNT(id_producto) FROM producto)), 2) porcentaje FROM producto INNER JOIN tipo_material USING (id_tipo_material) GROUP BY tipo_material ORDER BY cantidad DESC';
+        $sql = 'SELECT tipo_material, ROUND((COUNT(id_producto) * 100.0 / (SELECT COUNT(id_producto) FROM producto)), 2) porcentaje FROM producto INNER JOIN tipo_material USING (id_tipo_material) GROUP BY tipo_material ORDER BY porcentaje DESC';
         return Database::getRows($sql); 
     }
 
