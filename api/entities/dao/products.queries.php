@@ -94,4 +94,10 @@ class ProductQueries
         $sql = 'SELECT tipo_material, COUNT(id_producto) cantidad FROM producto INNER JOIN tipo_material USING (id_tipo_material) GROUP BY tipo_material ORDER BY cantidad DESC';
         return Database::getRows($sql); 
     }
+
+    public function productosProveedor()
+    {
+        $sql = 'SELECT proveedor, COUNT(id_producto) cantidad FROM producto INNER JOIN proveedor USING(id_proveedor) GROUP BY proveedor ORDER BY cantidad';
+        return Database::getRows($sql);
+    }
 }
