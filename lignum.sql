@@ -29,9 +29,6 @@ CREATE TABLE cliente(
 	usuario_publico varchar(30) not null UNIQUE,
 	clave varchar(2048) not null,
 	acceso boolean DEFAULT true not null
-	
-	-- CONSTRAINT dui_cliente_unique UNIQUE (dui_cliente),
-	-- CONSTRAINT usuario_publico_unique UNIQUE (usuario_publico)
 );
 
 CREATE TABLE pedido(
@@ -211,7 +208,7 @@ VALUES	('Weston Logging Co.', '9355 Blackbird Way', 'westonlogging@contact', '03
        	('McAllen Hardware Store', '81 Grove Avenue', 'mcallenhardware@support', '2134-0312');
 
 INSERT INTO usuario_privado(nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, telefono_empleado, usuario_privado, clave)
-VALUES	('Daniel Alejandro', 'Hernández Figueroa', '06795006-2', 'daniel123hernandez15@gmail.com', '7053-7276', 'rookie', '$2y$10$23qci/810Kh1kXTSivFhEO4Lblnzjv4iPW3SzRaSNkIbmMe5cB6/G'),
+VALUES	('Daniel Alejandro', 'Hernández Figueroa', '06795006-2', 'daniel123hernandez15@gmail.com', '7053-7276', 'rookie', '$2y$10$YxzUkuwpSz7wyKRi42mpOu6MashaUYQQscPbp7UzScI.LviEy0ifW'),
 		('Manya', 'Praundl', '20523865-6', 'mpraundl0@sphinn.com', '4925-3672', 'mpraundl0', '3hS1joaI6m'),
 		('Quinta', 'Knotton', '15075023-8', 'qknotton1@gmpg.org', '1805-1272', 'qknotton1', '9xCz9g'),
 		('Nanon', 'Stother', '03624448-7', 'nstother2@stanford.edu', '5675-9510', 'nstother2', '7Cn72Dql'),
