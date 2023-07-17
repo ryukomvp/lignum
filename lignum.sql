@@ -143,8 +143,7 @@ VALUES	('Aglomerado'),
 		('Fibras de alta densidad'),
 		('Madera contrachapada'),
 		('Virutas orientadas');
-
-		
+	
 INSERT INTO cliente(nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, genero, direccion_cliente, usuario_publico, clave)
 VALUES  ('Robina', 'Bonniface' , 'foto', '55912790-1', 'rbonniface0@ifeng.com', '8566-9159', 'Femenino', '0 Westport Trail', 'rbonniface0', 'QdNQFar'),
         ('Judd', 'Drew' , 'foto', '90621783-8', 'jdrew1@ed.gov', '2412-7332', 'Masculino', '44 Messerschmidt Plaza', 'jdrew1', 'RXSxcTWyD'),
