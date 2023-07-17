@@ -92,4 +92,21 @@ class ProductQueries
         $params = array($this->categoria);
         return Database::getRows($sql, $params);
     }
+
+    
+    /*
+    *   Métodos para generar reportes.
+    */
+    public function productosCategoria()
+    {
+        $sql = 'SELECT p.foto, p.nombre_producto, p.precio_producto, codigo_producto, m.tipo_material, p.estado FROM producto p
+                INNER JOIN categoria c
+                ON p.id_categoria = c.id_categoria
+                INNER JOIN tipo_material m
+                ON p.id_tipo_material = m.id_tipo_material
+                WHERE p.id_categoria = ?
+                ORDER BY p.id_categoria';
+        $params = array($this->categoria);
+        return Database::getRows($sql, $params);
+    }
 }
