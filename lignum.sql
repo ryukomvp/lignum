@@ -217,3 +217,11 @@ VALUES	('Daniel Alejandro', 'Hernández Figueroa', '06795006-2', 'daniel123herna
 		('Parrnell', 'Caress', '43023674-3', 'pcaress6@artisteer.com', '9787-7573', 'pcaress6','GJoEeWAVuaBE'),
 		('Myranda', 'Dehmel', '60768877-6', 'mdehmel7@furl.net', '2877-1107', 'mdehmel7', 'ZqtgvSEnU'),
 		('Rene', 'Stops', '13192485-7', 'rstops8@com.com', '1989-2425', 'rstops8', 'ThY1w0K');
+
+-- Actualizaciones para dar variedad a los tipos de materiales en los productos
+UPDATE producto SET id_tipo_material = 1 WHERE id_producto % 2 = 0 AND id_producto < 5;
+UPDATE producto SET id_tipo_material = 2 WHERE id_producto % 2 != 0 AND id_producto < 5;
+UPDATE producto SET id_tipo_material = 3 WHERE id_producto = 5;
+UPDATE producto SET id_tipo_material = 4 WHERE id_producto % 2 = 0 AND id_producto > 5;
+UPDATE producto SET id_tipo_material = 5 WHERE id_producto % 2 != 0 AND id_producto > 5;
+UPDATE producto SET id_tipo_material = 6 WHERE id_producto = 10;
