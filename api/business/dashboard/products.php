@@ -26,8 +26,7 @@ if (isset($_GET['action'])) {
             case 'search':
                 $_POST = Validator::validateForm($_POST);
                 if ($_POST['search'] == '') {
-                    $result['status'] = 1;
-                    $result['dataset'] = $category->readAll();
+                    $result['exception'] = 'Ingrese un valor para buscar';
                 } elseif ($result['dataset'] = $product->searchRows($_POST['search'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' coincidencias';
@@ -47,7 +46,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Descripción incorrecta';
                 } elseif (!$product->setPrecio($_POST['precio'])) {
                     $result['exception'] = 'Precio incorrecto';
-                }elseif (!$product->setCodigo($_POST['codigo'])) {
+                } elseif (!$product->setCodigo($_POST['codigo'])) {
                     $result['exception'] = 'codigo incorrecto';
                 } elseif (!$product->setDimensiones($_POST['dimensiones'])) {
                     $result['exception'] = 'dimensiones incorrecto';
