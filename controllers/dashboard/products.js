@@ -11,7 +11,6 @@ const SAVE_FORM = document.getElementById('save-form');
 const MODAL_TITLE = document.getElementById('modal-title');
 // Constantes para establecer el contenido de la tabla.
 const PRODUCTOS = document.getElementById('productos');
-const RECORDS = document.getElementById('records');
 // Constante tipo objeto para establecer las opciones del componente Modal.
 const OPTIONS = {
     dismissible: false
@@ -68,7 +67,6 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 async function fillTable(form = null) {
     // Se inicializa el contenido de la tabla.
     PRODUCTOS.innerHTML = '';
-    RECORDS.textContent = '';
     // Se verifica la acción a realizar.
     (form) ? action = 'search' : action = 'readAll';
     // Petición para obtener los registros disponibles.
@@ -107,8 +105,6 @@ async function fillTable(form = null) {
         });
         // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
         M.Tooltip.init(document.querySelectorAll('.tooltipped'));
-        // Se muestra un mensaje de acuerdo con el resultado.
-        RECORDS.textContent = JSON.message;
     } else {
         sweetAlert(4, JSON.exception, true);
     }

@@ -8,7 +8,6 @@ const SAVE_FORM = document.getElementById('save-form');
 const MODAL_TITLE = document.getElementById('modal-title');
 // Constantes para establecer el contenido de la tabla.
 const TBODY_ROWS = document.getElementById('tbody-rows');
-const RECORDS = document.getElementById('records');
 // Constante tipo objeto para establecer las opciones del componente Modal.
 const OPTIONS = {
     dismissible: false
@@ -67,7 +66,6 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 async function fillTable(form = null) {
     // Se inicializa el contenido de la tabla.
     TBODY_ROWS.innerHTML = '';
-    RECORDS.textContent = '';
     // Se verifica la acción a realizar.
     (form) ? action = 'search' : action = 'readAll';
     // Petición para obtener los registros disponibles.
@@ -85,10 +83,11 @@ async function fillTable(form = null) {
                         <button onclick="openUpdate(${row.id_tipo_material})" class="btn blue tooltipped" data-tooltip="Actualizar">
                             <i class="material-icons">mode_edit</i>
                         </button>
-                    </td>
-                    <td>
                         <button onclick="openDelete(${row.id_tipo_material})" class="btn red tooltipped" data-tooltip="Eliminar">
                             <i class="material-icons">delete</i>
+                        </button>
+                        <button onclick="openReport(${row.id_tipo_material})" class="btn green tooltipped" data-tooltip="Generar reporte">
+                            <i class="material-icons">assignment</i>
                         </button>
                     </td>
                 </tr>
@@ -96,8 +95,6 @@ async function fillTable(form = null) {
         });
         // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
         M.Tooltip.init(document.querySelectorAll('.tooltipped'));
-        // Se muestra un mensaje de acuerdo con el resultado.
-        RECORDS.textContent = JSON.message;
     } else {
         sweetAlert(4, JSON.exception, true);
     }
@@ -178,11 +175,11 @@ async function openDelete(id) {
 *   Parámetros: id (identificador del registro seleccionado).
 *   Retorno: ninguno.
 */
-// function openReport(id) {
-//     // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
-//     const PATH = new URL(`${SERVER_URL}reports/dashboard/productos_categoria.php`);
-//     // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
-//     PATH.searchParams.append('id_categoria', id);
-//     // Se abre el reporte en una nueva pestaña del navegador web.
-//     window.open(PATH.href);
-// }
+function openReport(id) {
+    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+    const PATH = new URL(`${SERVER_URL}reports/dashboard/productos_tipo_material.php`);
+    // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
+    PATH.searchParams.append('id_tipo_material', id);
+    // Se abre el reporte en una nueva pestaña del navegador web.
+    window.open(PATH.href);
+}

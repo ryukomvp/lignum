@@ -7,17 +7,17 @@ $pdf = new Report;
 // Se verifica si existe un valor para la categoría, de lo contrario se muestra un mensaje.
 if (isset($_GET['id_tipo_material'])) {
     // Se incluyen las clases para la transferencia y acceso a datos.
-    require_once('../../entities/dto/tipo_material.php');
-    require_once('../../entities/dto/producto.php');
+    require_once('../../entities/dto/materials.php');
+    require_once('../../entities/dto/products.php');
     // Se instancian las entidades correspondientes.
-    $categoria = new Categoria;
-    $producto = new Producto;
+    $material = new Material;
+    $producto = new Product;
     // Se establece el valor de la categoría, de lo contrario se muestra un mensaje.
-    if ($categoria->setId($_GET['id_tipo_material']) && $producto->setCategoria($_GET['id_tipo_material'])) {
+    if ($material->setId($_GET['id_tipo_material']) && $producto->setTipoMaterial($_GET['id_tipo_material'])) {
         // Se verifica si la categoría existe, de lo contrario se muestra un mensaje.
-        if ($rowCategoria = $categoria->readOne()) {
+        if ($rowMaterial = $material->readAll()) {
             // Se inicia el reporte con el encabezado del documento.
-            $pdf->startReport('Productos del material ' . $rowCategoria['tipo_material']);
+            $pdf->startReport('Productos del material ' . $rowMaterial['tipo_material']);
             // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
             if ($dataProductos = $producto->productosCategoria()) {
                 // Se establece un color de relleno para los encabezados.

@@ -47,18 +47,13 @@
                     <a onclick="openCreate()" class="btn-large waves-effect tooltipped" data-tooltip="Crear usuario">
                         <i class="material-icons">add</i>
                     </a>
-                    <a class="dropdown-trigger btn-large waves-effect tooltipped" data-target='reportes' data-tooltip="Catálogo de reportes">
-                        <i class="material-icons">autorenew</i>
+                    <a onclick="openReport()" class="btn-large waves-effect tooltipped" data-tooltip="Generar reporte">
+                        <i class="material-icons">insert_drive_file</i>
                     </a>
-                    <ul id='reportes' class='dropdown-content'>        
-                        <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
-                        <li><a onclick="openReport()"><i class="material-icons">view_module</i>Tipo de material</a></li>
-                      </ul>
                 </div>
             </div>
         </div>
         <!-- Contenido de las cartas -->
-        <div class="row" id="records"></div>
         <div class="row" id="productos"></div>
 
         <!-- ventana modal para scrud productos -->
