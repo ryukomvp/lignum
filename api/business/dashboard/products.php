@@ -44,9 +44,9 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Validator::getFileError();
                 } elseif (!$product->setDescripcion($_POST['descripcion'])) {
                     $result['exception'] = 'Descripción incorrecta';
-                }    $result['exception'] = 'Precio incorrecto';
                 } elseif (!$product->setPrecio($_POST['precio'])) {
-                 elseif (!$product->setCodigo($_POST['codigo'])) {
+                    $result['exception'] = 'Precio incorrecto';
+                } elseif (!$product->setCodigo($_POST['codigo'])) {
                     $result['exception'] = 'codigo incorrecto';
                 } elseif (!$product->setDimensiones($_POST['dimensiones'])) {
                     $result['exception'] = 'dimensiones incorrecto';
@@ -156,9 +156,15 @@ if (isset($_GET['action'])) {
                 if ($result['dataset'] = $product->productosMaterial()) {
                     $result['status'] = 1;
                 } else {
-                    $result['exception'] = 'No hay datos disponibles'
+                    $result['exception'] = 'No hay datos disponibles';
                 }
                 break;
+            case 'productosProveedor': 
+                if ($result['dataset'] = $product->productosProveedor()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = 'No hay datos disponibles';
+                }
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
