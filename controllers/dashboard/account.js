@@ -53,10 +53,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </div>
                 </div>
             `;
-            // Se inicializa el componente Dropdown para que funcione la lista desplegable en los menús.
-            // M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'));
-            // Se inicializa el componente Sidenav para que funcione la navegación lateral.
-            // M.Sidenav.init(document.querySelectorAll('.sidenav'));
             // Inicialización del componente tooltiped
             M.Tooltip.init(document.querySelectorAll('.tooltipped'));
         } else {
@@ -100,36 +96,30 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // inicializacion de tooltip
 document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.tooltipped');
-    var instances = M.Tooltip.init(elems);
-  });
-  
-  // inicializacion de ventana modal
-//   document.addEventListener('DOMContentLoaded', function() {
-//     var elems = document.querySelectorAll('.modal');
-//     var instances = M.Modal.init(elems);
-//   });
-  
-  // inicializacion de selecionador
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems);
-  });
-  
-  // inicializacion de menu para pantallas pequeñas
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems);
-  });
+var elems = document.querySelectorAll('.tooltipped');
+var instances = M.Tooltip.init(elems);
+});
 
-  // inicializacion de date picker
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.datepicker');
-    var instances = M.Datepicker.init(elems);
-  });
+// inicializacion de selecionador
+document.addEventListener('DOMContentLoaded', function() {
+var elems = document.querySelectorAll('select');
+var instances = M.FormSelect.init(elems);
+});
 
-  // inicializacion de dropdow
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.dropdown-trigger');
-    var instances = M.Dropdown.init(elems);
-  });
+// inicializacion de menu para pantallas pequeñas
+document.addEventListener('DOMContentLoaded', function() {
+var elems = document.querySelectorAll('.sidenav');
+var instances = M.Sidenav.init(elems);
+});
+
+// inicializacion de date picker
+document.addEventListener('DOMContentLoaded', function() {
+var elems = document.querySelectorAll('.datepicker');
+var instances = M.Datepicker.init(elems);
+});
+
+// inicializacion de dropdow
+document.addEventListener('DOMContentLoaded', function() {
+var elems = document.querySelectorAll('.dropdown-trigger');
+var instances = M.Dropdown.init(elems);
+});
