@@ -11,4 +11,11 @@ GROUP BY p.id_producto
 ORDER BY total ASC
 
 
-2- Todos los productos agrupados por tipo de material
+2- Todos los productos agrupados por tipo de material (TERMINADO)
+
+SELECT p.nombre_producto, p.foto, p.precio_producto, codigo_producto, c.categoria, m.tipo_material FROM producto p
+INNER JOIN categoria c
+ON p.id_categoria = c.id_categoria
+INNER JOIN tipo_material m
+ON p.id_tipo_material = m.id_tipo_material
+ORDER BY p.id_tipo_material

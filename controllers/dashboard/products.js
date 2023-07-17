@@ -209,11 +209,11 @@ async function openDelete(id) {
 *   Parámetros: id (identificador del registro seleccionado).
 *   Retorno: ninguno.
 */
-// function openReport(id) {
-//     // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
-//     const PATH = new URL(`${SERVER_URL}reports/dashboard/productos_categoria.php`);
-//     // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
-//     PATH.searchParams.append('id_categoria', id);
-//     // Se abre el reporte en una nueva pestaña del navegador web.
-//     window.open(PATH.href);
-// }
+function openReport(id) {
+    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+    const PATH = new URL(`${SERVER_URL}reports/dashboard/productos_tipo_material.php`);
+    // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
+    PATH.searchParams.append('id_tipo_material', id);
+    // Se abre el reporte en una nueva pestaña del navegador web.
+    window.open(PATH.href);
+}
