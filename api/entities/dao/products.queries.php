@@ -100,4 +100,10 @@ class ProductQueries
         $sql = 'SELECT nombre_proveedor, COUNT(id_producto) cantidad FROM producto INNER JOIN proveedor USING(id_proveedor) GROUP BY nombre_proveedor ORDER BY cantidad';
         return Database::getRows($sql);
     }
+    
+    public function productosVendidos
+    {
+        $sql = 'SELECT nombre_producto, COUNT(cantidad) cantidad FROM detalle_pedido INNER JOIN producto USING (id_producto) GROUP BY nombre_producto ORDER BY cantidad';
+        return Database::getRows($sql);
+    }
 }
