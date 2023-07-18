@@ -5,21 +5,21 @@ require_once('../../helpers/report.php');
 // Se instancia la clase para crear el reporte.
 $pdf = new Report;
 // Se verifica si existe un valor para la categoría, de lo contrario se muestra un mensaje.
-if (isset($_GET['id_categoria'])) {
+if (isset($_GET['id_pedido'])) {
     // Se incluyen las clases para la transferencia y acceso a datos.
-    require_once('../../entities/dto/categoria.php');
-    require_once('../../entities/dto/producto.php');
+    require_once('../../entities/dto/orders.php');
+    require_once('../../entities/dto/products.php');
     // Se instancian las entidades correspondientes.
-    $categoria = new Categoria;
-    $producto = new Producto;
+    $order = new Order;
+    $product = new Product;
     // Se establece el valor de la categoría, de lo contrario se muestra un mensaje.
-    if ($categoria->setId($_GET['id_categoria']) && $producto->setCategoria($_GET['id_categoria'])) {
+    if ($orders->setId($_GET['id_pedido']) && $order->setId($_GET['id_pedido'])) {
         // Se verifica si la categoría existe, de lo contrario se muestra un mensaje.
-        if ($rowCategoria = $categoria->readOne()) {
+        if ($rowOrders = $orders->readOne()) {
             // Se inicia el reporte con el encabezado del documento.
-            $pdf->startReport('Productos de la categoría ' . $rowCategoria['nombre_categoria']);
+            $pdf->startReport('Productos de la categoría ' . $rowOrders['codigo_pedido']);
             // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
-            if ($dataProductos = $producto->productosCategoria()) {
+            if ($dataProducts = $products->productordera()) {
                 // Se establece un color de relleno para los encabezados.
                 $pdf->setFillColor(225);
                 // Se establece la fuente para los encabezados.
