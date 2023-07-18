@@ -19,28 +19,26 @@ if (isset($_GET['id_tipo_material'])) {
             // Se inicia el reporte con el encabezado del documento.
             $pdf->startReport('Productos del material ' . $rowMaterial['tipo_material']);
             // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
-            if ($dataProductos = $producto->productosCategoria()) {
+            if ($dataProductos = $producto->productoTipoMaterial()) {
                 // Se establece un color de relleno para los encabezados.
                 $pdf->setFillColor(225);
                 // Se establece la fuente para los encabezados.
                 $pdf->setFont('Times', 'B', 11);
                 // Se imprimen las celdas con los encabezados.
-                $pdf->cell(37, 10, 'Nombre', 1, 0, 'C', 1);
-                $pdf->cell(37, 10, 'Precio (US$)', 1, 0, 'C', 1);
-                $pdf->cell(37, 10, 'Código', 1, 0, 'C', 1);
-                $pdf->cell(37, 10, 'Categoría', 1, 0, 'C', 1);
-                $pdf->cell(37, 10, 'Estado', 1, 1, 'C', 1);
+                $pdf->cell(46.5, 10, 'Nombre', 1, 0, 'C', 1);
+                $pdf->cell(46.5, 10, 'Precio (US$)', 1, 0, 'C', 1);
+                $pdf->cell(46.5, 10, $pdf->encodeString('Categoría'), 1, 0, 'C', 1);
+                $pdf->cell(46.5, 10, 'Estado', 1, 1, 'C', 1);
                 // Se establece la fuente para los datos de los productos.
                 $pdf->setFont('Times', '', 11);
                 // Se recorren los registros fila por fila.
                 foreach ($dataProductos as $rowProducto) {
                     ($rowProducto['estado']) ? $estado = 'Activo' : $estado = 'Inactivo';
                     // Se imprimen las celdas con los datos de los productos.
-                    $pdf->cell(37, 10, $pdf->encodeString($rowProducto['nombre_producto']), 1, 0);
-                    $pdf->cell(37, 10, $rowProducto['precio_producto'], 1, 0);
-                    $pdf->cell(37, 10, $rowProducto['codigo_producto'], 1, 0);
-                    $pdf->cell(37, 10, $rowProducto['categoria'], 1, 0);
-                    $pdf->cell(37, 10, $estado, 1, 1);
+                    $pdf->cell(46.5, 10, $pdf->encodeString($rowProducto['nombre_producto']), 1, 0);
+                    $pdf->cell(46.5, 10, $rowProducto['precio_producto'], 1, 0);
+                    $pdf->cell(46.5, 10, $pdf->encodeString($rowProducto['categoria']), 1, 0);
+                    $pdf->cell(46.5, 10, $estado, 1, 1);
                 }
             } else {
                 $pdf->cell(0, 10, $pdf->encodeString('No hay productos para el tipo de material'), 1, 1);

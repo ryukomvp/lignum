@@ -82,14 +82,14 @@ class ProductQueries
     */
     public function productoTipoMaterial()
     {
-        $sql = 'SELECT p.nombre_producto, p.precio_producto, codigo_producto, c.categoria FROM producto p
+        $sql = 'SELECT p.nombre_producto, p.precio_producto, c.categoria, p.estado FROM producto p
                 INNER JOIN categoria c
                 ON p.id_categoria = c.id_categoria
                 INNER JOIN tipo_material m
                 ON p.id_tipo_material = m.id_tipo_material
                 WHERE p.id_tipo_material = ?
                 ORDER BY p.nombre_producto';
-        $params = array($this->categoria);
+        $params = array($this->material);
         return Database::getRows($sql, $params);
     }
 
@@ -99,7 +99,7 @@ class ProductQueries
     */
     public function productosCategoria()
     {
-        $sql = 'SELECT p.foto, p.nombre_producto, p.precio_producto, codigo_producto, m.tipo_material, p.estado FROM producto p
+        $sql = 'SELECT p.foto, p.nombre_producto, p.precio_producto, m.tipo_material, p.estado FROM producto p
                 INNER JOIN categoria c
                 ON p.id_categoria = c.id_categoria
                 INNER JOIN tipo_material m
