@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     graficaBarProveedor();
     graficaPieMaterial();
+    graficaDonaProductos();
 });
 
 async function graficaBarProveedor() {
@@ -65,8 +66,17 @@ async function graficaDonaProductos() {
     if (DATA.status) {
         // Se declaran los arreglos para guardar los datos a graficar.
         let ventas = [];
-        let porcentaje = [];
+        let porcentaje2 = [];
         // Se recorre el conjunto de registros fila por fila a través del objeto row.
-        DATA.dataset.
+        DATA.dataset.forEach(row => {
+            // Se agregan los datos a los arreglos.
+            ventas.push(row.cantidad);
+            porcentaje2.push(row.porcentaje);
+        });
+        // Llamada a la función que genera y muestra un gráfico de barras. Se encuentra en el archivo components.js
+        donutGraph('chart3', ventas, porcentaje2, '5 Productos mas vendidos')
+    } else {
+        document.getElementById('chart3').remove();
+        console.log(DATA.exception);
     }
 }

@@ -248,7 +248,7 @@ function donutGraph(canvas, legends, values, title) {
     const context = document.getElementById(canvas).getContext('2d');
     // Se crea una instancia para generar el gráfico con los datos recibidos. Requiere la librería chart.js para funcionar.
     const chart = new Chart(context, {
-        type: 'pie',
+        type: 'doughnut',
         data: {
             labels: legends,
             datasets: [{

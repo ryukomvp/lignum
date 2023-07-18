@@ -167,7 +167,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'productosVendidos' :
-                if ($result['dataset'] = $product->productosProveedor()) {
+                if ($result['dataset'] = $product->productosVendidos()) {
                     $result['status'] = 1;
                 } else {
                     $result['exception'] = 'No hay datos disponibles';
