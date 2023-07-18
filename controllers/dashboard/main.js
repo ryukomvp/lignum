@@ -70,11 +70,11 @@ async function graficaDonaProductos() {
         // Se recorre el conjunto de registros fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
             // Se agregan los datos a los arreglos.
-            ventas.push(row.cantidad);
+            ventas.push(row.nombre_producto);
             porcentaje2.push(row.porcentaje);
         });
         // Llamada a la función que genera y muestra un gráfico de barras. Se encuentra en el archivo components.js
-        donutGraph('chart3', ventas, porcentaje2, '5 Productos mas vendidos')
+        donutGraph('chart3', ventas, porcentaje2, '5 Productos mas vendidos del mes')
     } else {
         document.getElementById('chart3').remove();
         console.log(DATA.exception);

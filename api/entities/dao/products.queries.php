@@ -103,7 +103,7 @@ class ProductQueries
     
     public function productosVendidos()
     {
-        $sql = 'SELECT nombre_producto, ROUND((COUNT(cantidad) * 100.0 / (SELECT COUNT(cantidad) FROM detalle_pedido)), 2) porcentaje FROM detalle_pedido INNER JOIN producto USING (id_producto) GROUP BY nombre_producto ORDER BY cantidad';
+        $sql = 'SELECT nombre_producto, ROUND((COUNT(cantidad) * 100.0 / (SELECT COUNT(cantidad) FROM detalle_pedido)), 2) porcentaje FROM detalle_pedido INNER JOIN producto USING (id_producto) GROUP BY nombre_producto ORDER BY porcentaje LIMIT 5';
         return Database::getRows($sql);
     }
 }
