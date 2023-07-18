@@ -57,3 +57,16 @@ async function graficaPieMaterial() {
         console.log(DATA.exception);
     }
 }
+
+async function graficaDonaProductos() {
+    // Petición para obtener los datos del gráfico.
+    const DATA = await dataFetch(PRODUCTO_API, 'productosVendidos');
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
+    if (DATA.status) {
+        // Se declaran los arreglos para guardar los datos a graficar.
+        let ventas = [];
+        let porcentaje = [];
+        // Se recorre el conjunto de registros fila por fila a través del objeto row.
+        DATA.dataset.
+    }
+}
