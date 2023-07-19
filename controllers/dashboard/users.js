@@ -84,12 +84,10 @@ async function fillTable(form = null) {
                     <td>${row.usuario_privado}</td>
                     <td><i class="material-icons">${icon}</i></td>
                     <td>
-                        <a onclick="openUpdate(${row.id_usuario_privado})" class="btn waves-effect tooltipped" data-tooltip="Actualizar">
+                        <a onclick="openUpdate(${row.id_usuario_privado})" class="btn blue waves-effect tooltipped" data-tooltip="Actualizar">
                             <i class="material-icons">edit</i>
                         </a>
-                    </td>
-                    <td>
-                        <a onclick="openDelete(${row.id_usuario_privado})" class="btn waves-effect tooltipped"
+                        <a onclick="openDelete(${row.id_usuario_privado})" class="btn red waves-effect tooltipped"
                             data-tooltip="Eliminar"><i class="material-icons">delete</i>
                         </a>
                     </td>
@@ -191,4 +189,16 @@ async function openDelete(id) {
             sweetAlert(2, JSON.exception, false);
         }
     }
+}
+
+/*
+*   Función para abrir el reporte de productos de una categoría.
+*   Parámetros: id (identificador del registro seleccionado).
+*   Retorno: ninguno.
+*/
+function openReport() {
+    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+    const PATH = new URL(`${SERVER_URL}reports/dashboard/usuarios_general.php`);
+    // Se abre el reporte en una nueva pestaña del navegador web.
+    window.open(PATH.href);
 }

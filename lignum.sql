@@ -237,3 +237,6 @@ UPDATE producto SET id_tipo_material = 3 WHERE id_producto = 5;
 UPDATE producto SET id_tipo_material = 4 WHERE id_producto % 2 = 0 AND id_producto > 5;
 UPDATE producto SET id_tipo_material = 5 WHERE id_producto % 2 != 0 AND id_producto > 5;
 UPDATE producto SET id_tipo_material = 6 WHERE id_producto = 10;
+
+-- Actualizaciones para dar variedad a los accesos de los usuarios
+UPDATE usuario_privado SET acceso = false WHERE id_usuario_privado % 2 = 0
