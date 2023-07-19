@@ -19,3 +19,6 @@ ON p.id_categoria = c.id_categoria
 INNER JOIN tipo_material m
 ON p.id_tipo_material = m.id_tipo_material
 ORDER BY p.id_tipo_material
+
+3- usuarios por acceso al sistema
+SELECT CONCAT(nombre_empleado, ' ',apellido_empleado) AS "Nombre completo", dui_empleado, usuario_privado FROM usuario_privado

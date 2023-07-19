@@ -11,7 +11,7 @@ $pdf->startReport('Usuarios por acceso');
 // Se instancia el módelo Categoría para obtener los datos.
 $usuario = new User;
 // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
-if ($dataCategorias = $usuario->readAll()) {
+if ($dataUsuarios = $usuario->readAll()) {
     // Se establece un color de relleno para los encabezados.
     $pdf->setFillColor(175);
     // Se establece la fuente para los encabezados.
@@ -27,7 +27,7 @@ if ($dataCategorias = $usuario->readAll()) {
     $pdf->setFont('Times', '', 11);
 
     // Se recorren los registros fila por fila.
-    foreach ($dataCategorias as $rowCategoria) {
+    foreach ($dataUsuarios as $rowCategoria) {
         // Se imprime una celda con el nombre de la categoría.
         $pdf->cell(0, 10, $pdf->encodeString('Categoría: ' . $rowCategoria['categoria']), 1, 1, 'C', 1);
         // Se instancia el módelo Producto para procesar los datos.
@@ -38,11 +38,11 @@ if ($dataCategorias = $usuario->readAll()) {
             if ($dataProductos = $producto->productosCategoria()) {
                 // Se recorren los registros fila por fila.
                 foreach ($dataProductos as $rowProducto) {
-                    ($rowProducto['estado']) ? $estado = 'Activo' : $estado = 'Inactivo';
+                    ($rowProducto['acceso']) ? $estado = 'Permitido' : $estado = 'Denegado';
                     // Se imprimen las celdas con los datos de los productos.
-                    $pdf->cell(46.5, 10, $pdf->encodeString($rowProducto['nombre_producto']), 1, 0);
+                    $pdf->cell(46.5, 10, $pdf->encodeString($rowProducto['"Nombre completo"']), 1, 0);
                     $pdf->cell(46.5, 10, $rowProducto['precio_producto'], 1, 0);
-                    $pdf->cell(46.5, 10, $rowProducto['tipo_material'], 1, 0);
+                    $pdf->cell(46.5, 10, $pdf->encodeString($rowProducto['tipo_material']), 1, 0);
                 }
             } else {
                 $pdf->cell(0, 10, $pdf->encodeString('No hay productos para la categoría'), 1, 1);
