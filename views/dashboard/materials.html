@@ -31,7 +31,7 @@
                         <div class="nav-wrapper">
                             <form method="post" id="search-form">
                                 <div class="input-field">
-                                    <input id="search" type="search" name="search" required>
+                                    <input id="search" type="search" name="search">
                                     <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                                     <i class="material-icons">close</i>
                                 </div>
@@ -44,9 +44,6 @@
                     <a onclick="openCreate()" class="btn-large waves-effect tooltipped" data-tooltip="Crear material">
                         <i class="material-icons">add</i>
                     </a>
-                    <a onclick="openReport()" class="btn-large waves-effect tooltipped" data-tooltip="Recargar tabla">
-                        <i class="material-icons">autorenew</i>
-                    </a>
                 </div>
             </div>
         </div>
@@ -57,7 +54,6 @@
                     <table class="responsive-table highlight centered">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Material</th>
                                 <th>Mantenimientos</th>
                             </tr>
