@@ -19,7 +19,7 @@ public function createOrder()
 {
     date_default_timezone_set('America/El_Salvador');
     $date = date('Y-m-d');
-    $sql = 'INSERT INTO pedido(codigo_pedido, descripcion_pedido, id_cliente, id_estado_pedido, direccion_pedido, fecha) VALUES(?, ?, ?, ?, ?, ?)';
+    $sql = 'INSERT INTO pedido(codigo_pedido, descripcion_pedido, id_cliente, estado_pedido, direccion_pedido, fecha) VALUES(?, ?, ?, ?, ?, ?)';
     $params = array($this->codigo, $this->descripcion, $this->cliente, $this->estado, $this->direccion, $this->fecha);
     return Database::executeRows($sql, $params);
 }
@@ -32,14 +32,14 @@ public function readAll()
 
 public function readOne()
 {
-    $sql = 'SELECT id_pedido, codigo_pedido, descripcion_pedido, id_cliente, id_estado_pedido, direccion_pedido, fecha from pedido WHERE id_producto = ?';
+    $sql = 'SELECT id_pedido, codigo_pedido, descripcion_pedido, id_cliente, estado_pedido, direccion_pedido, fecha from pedido WHERE id_producto = ?';
     $params = array($this->id_pedido);
     return Database::getRows($sql, $params);
 }
 
 public function updateOrder()
 {
-    $sql = 'UPDATE pedido SET codigo_pedido = ?, descripcion_pedido = ?, id_cliente = ?, id_estado_pedido = ? direccion_pedido = ?, fecha = ? WHERE id_pedido = ?';
+    $sql = 'UPDATE pedido SET codigo_pedido = ?, descripcion_pedido = ?, id_cliente = ?, estado_pedido = ? direccion_pedido = ?, fecha = ? WHERE id_pedido = ?';
     $params = array($this->codigo, $this->descripcion, $this->cliente, $this->estado);
     return Database::executeRows($sql, $params);
 }
@@ -51,6 +51,12 @@ public function deleteOrder()
     return Database::executeRows($sql, $params);
 }
 
+public function readAllestado()
+    {
+        $sql = 'SELECT unnest(enum_range(NULL::estado_pedido))';
+        return Database::getRows($sql);
+    }
+
 // report
 public function report()
 {
@@ -58,7 +64,8 @@ public function report()
     FROM producto p
     INNER JOIN tipo_material t ON  p.id_tipo_material = t.id_tipo_material
     INNER JOIN detalle_pedido d ON p.id_producto = d.id_producto
-    GROUP BY p.nombre_producto, p.descripcion_producto, p.codigo_producto, t.tipo_material';
+    GROUP BY p.nombre_producto, p.descripcion_producto, p.codigo_producto, t.tipo_material
+    order by cantidad desc';
     return Database::getRows($sql);
 }
 
