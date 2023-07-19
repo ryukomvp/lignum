@@ -271,7 +271,7 @@ function donutGraph(canvas, legends, values, title) {
     Funcion para generar un gráfico de area polar
 */
 
-function PolarGraph(canvas, legends, values, titles) {
+function PolarGraph(canvas, legends, values, title) {
     // Se declara un arreglo para guardar códigos de colores en formato hexadecimal.
     let colors = [];
     // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar y se agregan al arreglo.

@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     graficaBarProveedor();
     graficaPieMaterial();
     graficaDonaProductos();
+    graficoPolarPedidos();
 });
 
 async function graficaBarProveedor() {

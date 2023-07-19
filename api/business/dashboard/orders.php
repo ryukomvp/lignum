@@ -1,12 +1,12 @@
 <?php
-require_once('../../entities/dto/order.php');
+require_once('../../entities/dto/orders.php');
 
 
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
     // Se instancia la clase correspondiente.
-    $order = new Order;
+    $orders = new Order;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'dataset' => null);
     // Se verifica si existe una sesión iniciada como cliente para realizar las acciones correspondientes.
