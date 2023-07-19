@@ -1,5 +1,6 @@
 //Constante para completar la ruta de la API
 const PRODUCTO_API = 'business/dashboard/products.php';
+const PEDIDO_API = 'business/dashboard/orders.php'
 const BIENVENIDA = document.getElementById('bienvenida');
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -78,5 +79,24 @@ async function graficaDonaProductos() {
     } else {
         document.getElementById('chart3').remove();
         console.log(DATA.exception);
+    }
+}
+
+async function graficoPolarPedidos() {
+    // Petición para obtener los datos del gráfico.
+    const DATA = await dataFetch(PEDIDO_API, 'pedidosClientes');
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
+    if (DATA.status) {
+        // Se declaran los arreglos para guardar los datos a graficar.
+        let clientes = [];
+        let cantidad2 = [];
+        // Se recorre el conjunto de registros fila por fila a través del objeto row.
+        DATA.dataset.forEach(row => {
+            // Se agregan los datos a los arreglos.
+            clientes.push(row.nombre_cliente);
+            cantidad2.push(row.cantidad);
+        });
+        // Llamada a la función que genera y muestra un gráfico de barras. Se encuentra en el archivo components.js
+        PolarGraph('chart4', clientes, cantidad2, '5 clientes con mas pedidos')
     }
 }
