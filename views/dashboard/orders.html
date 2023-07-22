@@ -25,7 +25,7 @@
         <div class="navbar-fixed">
             <nav>
                 <div class="nav-wrapper">
-                    <a href="main.html" class="brand-logo"><img src="/resources/img/2.png" alt=""></a>
+                    <a href="main.html" class="brand-logo"><img src="../../resources/img/2.png" alt=""></a>
                     <a href="#" data-target="menu-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li><a href="#" class="tooltipped" data-position="bottom" data-tooltip="Inicio de la página"><i
@@ -63,13 +63,11 @@
                     </nav>
                 </div>
                 <div class="col s2 m2">
-                    <a href="#modal-usuarios" class="waves-effect waves-light btn-large tooltipped modal-trigger"
-                        data-position="right" data-tooltip="Agregar un usuario"><i
-                            class="material-icons">add_shopping_cart</i></a>
+                    <a onclick="openReport()" class="waves-effect waves-light amber btn-large tooltipped modal-trigger"
+                        data-position="right" data-tooltip="Agregar un usuario">
+                        <i class="material-icons">assignment</i>
+                    </a>
                 </div>
-                <!-- Enlace para generar un reporte en formato PDF -->
-                <a onclick="openReport()" class="btn waves-effect amber tooltipped" data-tooltip="Reporte">
-                    <i class="material-icons">assignment</i>
                 </a>
             </div>
         </div>

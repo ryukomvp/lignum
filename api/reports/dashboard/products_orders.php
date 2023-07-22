@@ -8,7 +8,7 @@ require_once('../../entities/dto/orders.php');
 // Se instancia la clase para crear el reporte.
 $pdf = new Report;
 // Se inicia el reporte con el encabezado del documento.
-$pdf->startReport('Productos por categoría');
+$pdf->startReport('Detalles de el pedido ');
 // Se instancia el módelo Categoría para obtener los datos.
 $product = new Product;
 $order = new Order;
@@ -41,11 +41,11 @@ if ($dataorder = $order->report()) {
                 // Se recorren los registros fila por fila.
                 foreach ($dataProducts as $rowProducts) {
                     // Se imprimen las celdas con los datos de los productos.
-                    $pdf->cell(126, 10, $pdf->encodeString($rowProducto['nombre_producto']), 1, 0);
-                    $pdf->cell(30, 10, $pdf->encodeString($rowProducto['descripcion_producto']), 1, 0);
-                    $pdf->cell(30, 10, $rowProducto['codigo_producto'], 1, 0);
-                    $pdf->cell(30, 10, $rowProducto['tipo_material'], 1, 0);
-                    $pdf->cell(30, 10, $rowProducto['cantidad'], 1, 0);
+                    $pdf->cell(50, 10, $pdf->encodeString($rowProducto['nombre_producto']), 1, 0);
+                    $pdf->cell(90, 10, $pdf->encodeString($rowProducto['descripcion_producto']), 1, 0);
+                    $pdf->cell(18, 10, $rowProducto['codigo_producto'], 1, 0);
+                    $pdf->cell(24, 10, $rowProducto['tipo_material'], 1, 0);
+                    $pdf->cell(14, 10, $rowProducto['cantidad'], 1, 0);
                 }
             } else {
                 $pdf->cell(0, 10, $pdf->encodeString('No hay productos para la categoría'), 1, 1);
@@ -58,4 +58,4 @@ if ($dataorder = $order->report()) {
     $pdf->cell(0, 10, $pdf->encodeString('No hay categorías para mostrar'), 1, 1);
 }
 // Se llama implícitamente al método footer() y se envía el documento al navegador web.
-$pdf->output('I', 'productos.pdf');
+$pdf->output('I', 'products_orders.pdf');
