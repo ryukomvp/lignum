@@ -10,7 +10,6 @@ $pdf = new Report;
 // Se inicia el reporte con el encabezado del documento.
 $pdf->startReport('Detalles de el pedido ');
 // Se instancia el módelo Categoría para obtener los datos.
-$product = new Product;
 $order = new Order;
 // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
 if ($dataorder = $order->report()) {
@@ -25,27 +24,27 @@ if ($dataorder = $order->report()) {
     $pdf->cell(30, 10, 'Material', 1, 1, 'C', 1);
     $pdf->cell(30, 10, 'Cantidad', 1, 1, 'C', 1);
 
-    // Se establece un color de relleno para mostrar el nombre de la categoría.
-    $pdf->setFillColor(225);
+ 
     // Se establece la fuente para los datos de los productos.
     $pdf->setFont('Times', '', 11);
 
     // Se recorren los registros fila por fila.
     foreach ($dataorder as $rowOrder) {
         // Se imprime una celda con el nombre de la categoría.
-        $pdf->cell(0, 10, $pdf->encodeString('producto: ' . $rowOrder['nombre_producto']), 1, 1, 'C', 1);
+        $pdf->cell(0, 10, $pdf->encodeString('producto: ' . $rowProduct['nombre_producto']), 1, 1, 'C', 1);
+        $product = new Product;
         // Se establece la categoría para obtener sus productos, de lo contrario se imprime un mensaje de error.
-        if ($products->setProducts($rowproducts['id_producto'])) {
+        if ($order->setProduct($rowProducts['id_producto'])) {
             // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
-            if ($dataProducts = $products->productosCategoria()) {
+            if ($dataOrder = $order->productOrder()) {
                 // Se recorren los registros fila por fila.
-                foreach ($dataProducts as $rowProducts) {
+                foreach ($dataOrder as $rowOrder) {
                     // Se imprimen las celdas con los datos de los productos.
                     $pdf->cell(50, 10, $pdf->encodeString($rowProducto['nombre_producto']), 1, 0);
                     $pdf->cell(90, 10, $pdf->encodeString($rowProducto['descripcion_producto']), 1, 0);
                     $pdf->cell(18, 10, $rowProducto['codigo_producto'], 1, 0);
                     $pdf->cell(24, 10, $rowProducto['tipo_material'], 1, 0);
-                    $pdf->cell(14, 10, $rowProducto['cantidad'], 1, 0);
+                    $pdf->cell(14, 10, $rowOrder['cantidad'], 1, 0);
                 }
             } else {
                 $pdf->cell(0, 10, $pdf->encodeString('No hay productos para la categoría'), 1, 1);
