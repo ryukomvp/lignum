@@ -14,6 +14,7 @@ class Order extends OrderQueries
     protected $estado = null;
     protected $direccion = null;
     protected $fecha = null;
+    protected $product = null;
 
 
     public function setId($value)
@@ -88,6 +89,16 @@ class Order extends OrderQueries
         }
     }
 
+    public function setProduct($value)
+    {
+        if(Validator::validateNaturalNumber($value)){
+            $this->product = $value;
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     //Metodo de obtencion de valores de atributos
     public function getId()
     {
@@ -122,6 +133,11 @@ class Order extends OrderQueries
     public function getFecha()
     {
         return $this->fecha;
+    }
+
+    public function getProduct()
+    {
+        return $this->product;
     }
 }
 
