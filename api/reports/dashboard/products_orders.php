@@ -36,7 +36,7 @@ if ($dataorder = $order->report()) {
         // Se establece la categoría para obtener sus productos, de lo contrario se imprime un mensaje de error.
         if ($order->setProduct($rowProducts['id_producto'])) {
             // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
-            if ($dataOrder = $order->productOrder()) {
+            if ($dataOrder = $order->report()) {
                 // Se recorren los registros fila por fila.
                 foreach ($dataOrder as $rowOrder) {
                     // Se imprimen las celdas con los datos de los productos.
