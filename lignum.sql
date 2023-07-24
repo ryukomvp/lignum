@@ -150,14 +150,14 @@ VALUES	('Aglomerado'),
 
 INSERT INTO proveedor(nombre_proveedor, direccion_proveedor, correo_proveedor, telefono_proveedor)
 VALUES	('Weston Logging Co.', '9355 Blackbird Way', 'westonlogging@contact', '0381-0101'),
-		('Weston Logging Co.', '9355 Blackbird Way', 'westonlogging@contact', '0381-0101'),
-		('Weston Logging Co.', '9355 Blackbird Way', 'westonlogging@contact', '0381-0101'),
-		('Weston Logging Co.', '9355 Blackbird Way', 'westonlogging@contact', '0381-0101'),
-		('Weston Logging Co.', '9355 Blackbird Way', 'westonlogging@contact', '0381-0101'),
-		('Weston Logging Co.', '9355 Blackbird Way', 'westonlogging@contact', '0381-0101'),
-		('Weston Logging Co.', '9355 Blackbird Way', 'westonlogging@contact', '0381-0101'),
-		('Weston Logging Co.', '9355 Blackbird Way', 'westonlogging@contact', '0381-0101'),
-		('Weston Logging Co.', '9355 Blackbird Way', 'westonlogging@contact', '0381-0101'),
+		('Medhurst, Wunsch and Purdy', '804 Hoard Drive', 'mlange0@infoseek.co.jp', '2468-5067'),
+		('Romaguera-Crona', '6102 Tennessee Center', 'bmcshirie1@homestead.com', '0206-1449'),
+		('Borer and Sons', '8 Elmside Trail', 'ssainsburybrown2@jalbum.net', '5508-8170'),
+		('Beahan, Franecki and Erdman', '33329 Dayton Center', 'cbernardon3@mayoclinic.com', '6617-7391'),
+		('Quitzon LLC', '6 Chive Terrace', 'pkosel4@etsy.com', '5495-8077'),
+		('Kihn-Kuhic', '81025 Bultman Trail', 'oshouler0@hhs.gov', '2941-7262'),
+		('Auer and Sons', '51 Daystar Hill', 'tskittreal1@youku.com', '0124-7935'),
+		('Beer, Beier and Bayer', '9 Gina Alley', 'nbilyard2@linkedin.com', '1558-5376'),
        	('McAllen Hardware Store', '81 Grove Avenue', 'mcallenhardware@support', '2134-0312');
 
 INSERT INTO producto(nombre_producto, foto, descripcion_producto, precio_producto, codigo_producto, dimensiones, id_categoria, id_tipo_material, id_proveedor, cantidad_existencias)
@@ -211,7 +211,7 @@ VALUES	('Daniel Alejandro', 'Hernández Figueroa', '06795006-2', 'daniel123herna
 		('Rene', 'Stops', '13192485-7', 'rstops8@com.com', '1989-2425', 'rstops8', 'ThY1w0K');
 
 INSERT INTO cliente(nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, genero, direccion_cliente, usuario_publico, clave)
-VALUES  ('Robina', 'Bonniface' , 'foto', '55912790-1', 'rbonniface0@ifeng.com', '8566-9159', 'Femenino', '0 Westport Trail', 'rbonniface0', 'QdNQFar'),
+VALUES  ('Daniel Alejandro', 'Hernández Figueroa', 'foto', '55912790-1', 'daniel123hernandez15@gmail.com', '7053-7276', 'Masculino', '0 Westport Trail', 'rookie', '$2y$10$YxzUkuwpSz7wyKRi42mpOu6MashaUYQQscPbp7UzScI.LviEy0ifW'),
         ('Judd', 'Drew' , 'foto', '90621783-8', 'jdrew1@ed.gov', '2412-7332', 'Masculino', '44 Messerschmidt Plaza', 'jdrew1', 'RXSxcTWyD'),
 		('Gwyneth', 'Samsworth' , 'foto', '70274521-1', 'gsamsworth2@accuweather.com', '7283-1345', 'Femenino', '6 Schurz Hill', 'gsamsworth2', 'BL7U44'),
         ('Hillary', 'Alonso' , 'foto', '52279444-8', 'halonso3@privacy.gov.au', '2312-9120', 'Femenino', '423 Pierstorff Avenue', 'halonso3', '6GFPKMEfvX'),
@@ -238,5 +238,19 @@ UPDATE producto SET id_tipo_material = 4 WHERE id_producto % 2 = 0 AND id_produc
 UPDATE producto SET id_tipo_material = 5 WHERE id_producto % 2 != 0 AND id_producto > 5;
 UPDATE producto SET id_tipo_material = 6 WHERE id_producto = 10;
 
--- Actualizaciones para dar variedad a los accesos de los usuarios
+-- Actualizaciones para dar variedad a los proveedores
+UPDATE producto SET id_proveedor = 1 WHERE id_producto = 1;
+UPDATE producto SET id_proveedor = 2 WHERE id_producto = 2;
+UPDATE producto SET id_proveedor = 3 WHERE id_producto = 3;
+UPDATE producto SET id_proveedor = 4 WHERE id_producto = 4;
+UPDATE producto SET id_proveedor = 5 WHERE id_producto = 5;
+UPDATE producto SET id_proveedor = 6 WHERE id_producto = 6;
+UPDATE producto SET id_proveedor = 7 WHERE id_producto = 7;
+UPDATE producto SET id_proveedor = 8 WHERE id_producto = 8;
+UPDATE producto SET id_proveedor = 9 WHERE id_producto = 9;
+UPDATE producto SET id_proveedor = 10 WHERE id_producto = 10
+
+-- Actualizaciones para dar variedad a los accesos de los usuarios privados
 UPDATE usuario_privado SET acceso = false WHERE id_usuario_privado % 2 = 0
+-- Actualizaciones para dar variedad a los accesos de los usuarios públicos
+UPDATE cliente SET acceso = false WHERE id_cliente % 2 = 0
