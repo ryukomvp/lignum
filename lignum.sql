@@ -133,12 +133,16 @@ ALTER TABLE inventario
 ADD CONSTRAINT inventario_producto_fkey FOREIGN KEY(id_producto)
 REFERENCES producto(id_producto);
 
+TRUNCATE categoria RESTART IDENTITY;
+
 INSERT INTO categoria(categoria, descripcion, foto)
 VALUES	('Cocina', 'Muebles para cocina', '646bdd4f950c4.png'),
 		('Gamer', 'Muebles para habitación', '646bdd4f950c4.png'),
 		('Jardin', 'Muebles para jardin', '646bdd4f950c4.png'),
 		('Oficina', 'Muebles para oficina', '646bdd4f950c4.png'),
 		('Sala de estar', 'Muebles para sala de estar', '646bdd4f950c4.png');
+
+TRUNCATE tipo_material RESTART IDENTITY;
 
 INSERT INTO tipo_material(tipo_material)
 VALUES	('Aglomerado'),
@@ -147,6 +151,8 @@ VALUES	('Aglomerado'),
 		('Fibras de alta densidad'),
 		('Madera contrachapada'),
 		('Virutas orientadas');
+
+TRUNCATE proveedor RESTART IDENTITY;
 
 INSERT INTO proveedor(nombre_proveedor, direccion_proveedor, correo_proveedor, telefono_proveedor)
 VALUES	('Weston Logging Co.', '9355 Blackbird Way', 'westonlogging@contact', '0381-0101'),
@@ -160,6 +166,8 @@ VALUES	('Weston Logging Co.', '9355 Blackbird Way', 'westonlogging@contact', '03
 		('Beer, Beier and Bayer', '9 Gina Alley', 'nbilyard2@linkedin.com', '1558-5376'),
        	('McAllen Hardware Store', '81 Grove Avenue', 'mcallenhardware@support', '2134-0312');
 
+TRUNCATE producto RESTART IDENTITY;
+
 INSERT INTO producto(nombre_producto, foto, descripcion_producto, precio_producto, codigo_producto, dimensiones, id_categoria, id_tipo_material, id_proveedor, cantidad_existencias)
 VALUES 	('Mesa de centro', 'foto', 'Mesa pequeña de centro', 95.00, 'MC201AS2', '9x9', 5, 2, 1, 10),
        	('Mueble para televisor', 'foto', 'Mueble para televisor', 80.00, 'TVA2003P', '14x10', 5, 1, 1, 15),
@@ -172,6 +180,8 @@ VALUES 	('Mesa de centro', 'foto', 'Mesa pequeña de centro', 95.00, 'MC201AS2',
 	   	('Ropero', 'foto', 'Ropero de madera', 105.00, 'ALSJ0921', '20x20', 5, 1, 1, 10),
 	   	('Escalera', 'foto', 'Escalera de madera', 50.00, 'LADD0451', '20x5', 5, 2, 1, 15);
 
+TRUNCATE pedido RESTART IDENTITY;
+
 INSERT INTO pedido(codigo_pedido, descripcion_pedido, id_cliente, fecha)
 VALUES 	(1234567812, 'Mesa de centro de 9x9', 1, '2022-01-01'),
        	(9855723656, 'Mueble para televisor 14x10', 2, '2022-01-05'),
@@ -183,6 +193,8 @@ VALUES 	(1234567812, 'Mesa de centro de 9x9', 1, '2022-01-01'),
 	   	(8954565353, 'Gavetero pequeño de 10x5', 8, '2022-02-05'),
 	   	(7453546359, 'Mueble para televisor de 14x10', 9, '2022-02-10'),
 	   	(7458769098, 'Mesa de centro de 9x9, Escritorio pequeño de 10x5, Mueble para televisor de 14x10', 9, '2022-12-15');
+
+TRUNCATE detalle_pedido RESTART IDENTITY;
 
 INSERT INTO detalle_pedido(id_pedido, id_producto, precio_producto, cantidad)
 VALUES 	(1, 1, 95, 3),
@@ -198,6 +210,8 @@ VALUES 	(1, 1, 95, 3),
 	   	(10, 4, 95, 3),
        	(10, 2, 95, 3);
 
+TRUNCATE usuario_privado RESTART IDENTITY;
+
 INSERT INTO usuario_privado(nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, telefono_empleado, usuario_privado, clave)
 VALUES	('Daniel Alejandro', 'Hernández Figueroa', '06795006-2', 'daniel123hernandez15@gmail.com', '7053-7276', 'rookie', '$2y$10$YxzUkuwpSz7wyKRi42mpOu6MashaUYQQscPbp7UzScI.LviEy0ifW'),
 		('Manya', 'Praundl', '20523865-6', 'mpraundl0@sphinn.com', '4925-3672', 'mpraundl0', '3hS1joaI6m'),
@@ -209,6 +223,8 @@ VALUES	('Daniel Alejandro', 'Hernández Figueroa', '06795006-2', 'daniel123herna
 		('Parrnell', 'Caress', '43023674-3', 'pcaress6@artisteer.com', '9787-7573', 'pcaress6','GJoEeWAVuaBE'),
 		('Myranda', 'Dehmel', '60768877-6', 'mdehmel7@furl.net', '2877-1107', 'mdehmel7', 'ZqtgvSEnU'),
 		('Rene', 'Stops', '13192485-7', 'rstops8@com.com', '1989-2425', 'rstops8', 'ThY1w0K');
+
+TRUNCATE cliente RESTART IDENTITY;
 
 INSERT INTO cliente(nombre_cliente, apellido_cliente, foto, dui_cliente, correo_cliente, telefono_cliente, genero, direccion_cliente, usuario_publico, clave)
 VALUES  ('Daniel Alejandro', 'Hernández Figueroa', 'foto', '55912790-1', 'daniel123hernandez15@gmail.com', '7053-7276', 'Masculino', '0 Westport Trail', 'rookie', '$2y$10$YxzUkuwpSz7wyKRi42mpOu6MashaUYQQscPbp7UzScI.LviEy0ifW'),
@@ -248,9 +264,9 @@ UPDATE producto SET id_proveedor = 6 WHERE id_producto = 6;
 UPDATE producto SET id_proveedor = 7 WHERE id_producto = 7;
 UPDATE producto SET id_proveedor = 8 WHERE id_producto = 8;
 UPDATE producto SET id_proveedor = 9 WHERE id_producto = 9;
-UPDATE producto SET id_proveedor = 10 WHERE id_producto = 10
+UPDATE producto SET id_proveedor = 10 WHERE id_producto = 10;
 
 -- Actualizaciones para dar variedad a los accesos de los usuarios privados
-UPDATE usuario_privado SET acceso = false WHERE id_usuario_privado % 2 = 0
+UPDATE usuario_privado SET acceso = false WHERE id_usuario_privado % 2 = 0;
 -- Actualizaciones para dar variedad a los accesos de los usuarios públicos
-UPDATE cliente SET acceso = false WHERE id_cliente % 2 = 0
+UPDATE cliente SET acceso = false WHERE id_cliente % 2 = 0;
