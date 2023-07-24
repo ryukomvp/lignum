@@ -1,6 +1,6 @@
 <?php
 require_once('../../helpers/validator.php');
-require_once('../../entities/dao/orders.queries.php');
+require_once('../../entities/dao/orders_queries.php');
 
 //Clase para manejar transferencia de datos de pedido y detalle pedido
 
