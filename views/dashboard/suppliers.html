@@ -32,7 +32,7 @@
                         <div class="nav-wrapper">
                             <form method="post" id="search-form">
                                 <div class="input-field">
-                                    <input id="search" type="search" name="search" required>
+                                    <input id="search" type="search" name="search">
                                     <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                                     <i class="material-icons">close</i>
                                 </div>
@@ -45,9 +45,6 @@
                     <a onclick="openCreate()" class="btn-large waves-effect tooltipped" data-tooltip="Crear usuario">
                         <i class="material-icons">add</i>
                     </a>
-                    <a onclick="fillTable()" class="btn-large waves-effect tooltipped" data-tooltip="Recargar tabla">
-                        <i class="material-icons">autorenew</i>
-                    </a>
                 </div>
             </div>
         </div>
@@ -55,17 +52,14 @@
         <div class="container">
             <div class="row">
                 <div class="col m12 tabla">
-                    <table class="responsive-table highlight">
+                    <table class="responsive-table highlight centered">
                         <thead>
-                            <tr id="records"></tr>
                             <tr>
-                                <th>Id</th>
                                 <th>Nombre</th>
                                 <th>Dirección</th>
                                 <th>Correo</th>
                                 <th>Teléfono</th>
-                                <th>Editar</th>
-                                <th>Eliminar</th>
+                                <th>Mantenimientos</th>
                             </tr>
                         </thead>
                         <tbody id="tbody-rows">

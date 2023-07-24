@@ -8,7 +8,6 @@ const SAVE_FORM = document.getElementById('save-form');
 const MODAL_TITLE = document.getElementById('modal-title');
 // Constantes para establecer el contenido de la tabla.
 const TBODY_ROWS = document.getElementById('tbody-rows');
-const RECORDS = document.getElementById('records');
 // Constante tipo objeto para establecer las opciones del componente Modal.
 const OPTIONS = {
     dismissible: false
@@ -66,7 +65,6 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 async function fillTable(form = null) {
     // Se inicializa el contenido de la tabla.
     TBODY_ROWS.innerHTML = '';
-    RECORDS.textContent = '';
     // Se verifica la acción a realizar.
     (form) ? action = 'search' : action = 'readAll';
     // Petición para obtener los registros disponibles.
@@ -78,7 +76,6 @@ async function fillTable(form = null) {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TBODY_ROWS.innerHTML += `
                 <tr>
-                    <td>${row.id_proveedor}</td>
                     <td>${row.nombre_proveedor}</td>
                     <td>${row.direccion_proveedor}</td>
                     <td>${row.correo_proveedor}</td>
@@ -87,10 +84,11 @@ async function fillTable(form = null) {
                         <button onclick="openUpdate(${row.id_proveedor})" class="btn blue tooltipped" data-tooltip="Actualizar">
                             <i class="material-icons">mode_edit</i>
                         </button>
-                    </td>
-                    <td>
-                    <button onclick="openDelete(${row.id_proveedor})" class="btn red tooltipped" data-tooltip="Eliminar">
+                        <button onclick="openDelete(${row.id_proveedor})" class="btn red tooltipped" data-tooltip="Eliminar">
                             <i class="material-icons">delete</i>
+                        </button>
+                        <button onclick="openReport(${row.id_proveedor})" class="btn green tooltipped" data-tooltip="Generar reporte">
+                            <i class="material-icons">assignment</i>
                         </button>
                     </td>
                 </tr>
@@ -98,8 +96,6 @@ async function fillTable(form = null) {
         });
         // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
         M.Tooltip.init(document.querySelectorAll('.tooltipped'));
-        // Se muestra un mensaje de acuerdo con el resultado.
-        RECORDS.textContent = JSON.message;
     } else {
         sweetAlert(4, JSON.exception, true);
     }
@@ -176,4 +172,18 @@ async function openDelete(id) {
             sweetAlert(2, JSON.exception, false);
         }
     }
+}
+
+/*
+*   Función para abrir el reporte de productos de una categoría.
+*   Parámetros: id (identificador del registro seleccionado).
+*   Retorno: ninguno.
+*/
+function openReport(id) {
+    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+    const PATH = new URL(`${SERVER_URL}reports/dashboard/productos_proveedor.php`);
+    // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
+    PATH.searchParams.append('id_proveedor', id);
+    // Se abre el reporte en una nueva pestaña del navegador web.
+    window.open(PATH.href);
 }
