@@ -113,7 +113,7 @@ class ProductQueries
         /*
     *   Métodos para generar reportes.
     */
-    public function productosProveedor()
+    public function productosProveedorReporte()
     {
         $sql = 'SELECT p.nombre_producto, p.precio_producto, c.categoria, m.tipo_material, p.estado FROM producto p
                 INNER JOIN categoria c

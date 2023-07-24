@@ -19,7 +19,7 @@ if (isset($_GET['id_proveedor'])) {
             // Se inicia el reporte con el encabezado del documento.
             $pdf->startReport('Productos del proveedor ' . $rowProveedor['nombre_proveedor']);
             // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
-            if ($dataProductos = $producto->productosProveedor()) {
+            if ($dataProductos = $producto->productosProveedorReporte()) {
                 // Se establece un color de relleno para los encabezados.
                 $pdf->setFillColor(225);
                 // Se establece la fuente para los encabezados.
