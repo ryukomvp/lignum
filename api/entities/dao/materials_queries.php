@@ -28,7 +28,7 @@ class MaterialQueries
 
     public function readAll()
     {
-        $sql = 'SELECT tipo_material
+        $sql = 'SELECT id_tipo_material, tipo_material
                 FROM tipo_material
                 ORDER BY tipo_material';
         return Database::getRows($sql);
