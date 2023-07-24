@@ -59,4 +59,15 @@ class SupplierQueries
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
+
+    public function report()
+{
+    $sql = 'SELECT p.nombre_producto, p.descripcion_producto, p.codigo_producto, t.tipo_material, COUNT(d.id_producto) as cantidad
+    FROM producto p
+    INNER JOIN tipo_material t ON  p.id_tipo_material = t.id_tipo_material
+    INNER JOIN detalle_pedido d ON p.id_producto = d.id_producto
+    GROUP BY p.nombre_producto, p.descripcion_producto, p.codigo_producto, t.tipo_material
+    order by cantidad desc';
+    return Database::getRows($sql);
+}
 }
