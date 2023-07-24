@@ -227,9 +227,6 @@ if (isset($_GET['action'])) {
                 break;
             default:
                 $result['exception'] = 'Acción no disponible fuera de la sesión';
-                // elseif (!$user->getAcceso()) {
-                //     $result['exception'] = 'La cuenta ha sido desactivada';
-                // }
         }
     }
     // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
