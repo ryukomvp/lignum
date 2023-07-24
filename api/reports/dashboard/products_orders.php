@@ -3,7 +3,7 @@
 require_once('../../helpers/report.php');
 // Se incluyen las clases para la transferencia y acceso a datos.
 require_once('../../entities/dto/products.php');
-require_once('../../entities/dto/datails.php');
+require_once('../../entities/dto/details.php');
 
 // Se instancia la clase para crear el reporte.
 $pdf = new Report;

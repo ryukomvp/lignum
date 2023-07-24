@@ -133,10 +133,9 @@ class CustomerQueries
 
     public function report()
     {
-        $sql = 'SELECT c.nombre_cliente, c.usuario_publico, COUNT (d.id_producto) as cantidad  
+        $sql = 'SELECT c.nombre_cliente, c.usuario_publico, COUNT (p.id_cliente) as cantidad  
         FROM pedido p 
         INNER JOIN cliente c ON p.id_cliente = c.id_cliente
-        INNER JOIN detalle_pedido d ON p.id_pedido = d.id_pedido
         GROUP BY c.nombre_cliente, c.usuario_publico
         order by cantidad desc';
         return Database::getRows($sql);

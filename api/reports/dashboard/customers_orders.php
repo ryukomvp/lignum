@@ -2,7 +2,6 @@
 // Se incluye la clase con las plantillas para generar reportes.
 require_once('../../helpers/report.php');
 // Se incluyen las clases para la transferencia y acceso a datos.
-require_once('../../entities/dto/detailos.php');
 require_once('../../entities/dto/customer.php');
 require_once('../../entities/dto/orders.php');
 
@@ -11,10 +10,11 @@ $pdf = new Report;
 // Se inicia el reporte con el encabezado del documento.
 $pdf->startReport('Cantidad de pedidos por clientes');
 // Se instancia el módelo Categoría para obtener los datos.
-$product = new Product;
+$customers = new Customer;
+$orders = new Order;
 
 // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
-if ($dataProduct = $product->readAll()) {
+if ($dataCustomers = $customers->readAll()) {
     // Se establece un color de relleno para los encabezados.
     $pdf->setFillColor(175);
     // Se establece la fuente para los encabezados.
@@ -30,19 +30,19 @@ if ($dataProduct = $product->readAll()) {
     $pdf->setFont('Times', '', 11);
 
     // Se recorren los registros fila por fila.
-    foreach ($dataProduct as $rowProduct) {
+    foreach ($dataCustomers as $rowCustomers) {
         // Se imprime una celda con el nombre del pedido.
-        $orders = new Order;
+        
         // Se establece la categoría para obtener sus productos, de lo contrario se imprime un mensaje de error.
-        if ($orders->setProducto($rowProduct['id_producto'])) {
+        if ($orders->setCliente($rowCustomers['id_cliente'])) {
             // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
-            if ($dataDetails = $details->report()) {
+            if ($dataCustomers = $customers->report()) {
                 // Se recorren los registros fila por fila.
-                foreach ($dataDetails as $rowDetails) {
-                    // Se imprimen las celdas con los datos de los productos.
-                    $pdf->cell(30, 10, $pdf->encodeString($rowCustomers['nombre_cliente']), 1, 0);
-                    $pdf->cell(30, 10, $pdf->encodeString($rowCustomers['usuario_publico']), 1, 0);
-                    $pdf->cell(30, 10, $rowDetails['cantidad'], 1, 0);
+                foreach ($dataCustomers as $rowCustomers ) {
+                        // Se imprimen las celdas con los datos de los productos.
+                        $pdf->cell(30, 10, $pdf->encodeString($rowCustomers['nombre_cliente']), 1, 0);
+                        $pdf->cell(30, 10, $pdf->encodeString($rowCustomers['usuario_publico']), 1, 0);
+                        $pdf->cell(30, 10, $rowOrders['cantidad'], 1, 0);   
                 }
             } else {
                 $pdf->cell(0, 10, $pdf->encodeString('No hay productos para la categoría'), 1, 1);
