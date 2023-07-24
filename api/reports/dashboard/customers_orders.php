@@ -2,8 +2,9 @@
 // Se incluye la clase con las plantillas para generar reportes.
 require_once('../../helpers/report.php');
 // Se incluyen las clases para la transferencia y acceso a datos.
-require_once('../../entities/dto/products.php');
+require_once('../../entities/dto/detailos.php');
 require_once('../../entities/dto/customer.php');
+require_once('../../entities/dto/orders.php');
 
 // Se instancia la clase para crear el reporte.
 $pdf = new Report;
@@ -19,32 +20,28 @@ if ($dataProduct = $product->readAll()) {
     // Se establece la fuente para los encabezados.
     $pdf->setFont('Times', 'B', 11);
     // Se imprimen las celdas con los encabezados.
-    $pdf->cell(30, 10, 'Productos', 1, 0, 'C', 1);
-    $pdf->cell(30, 10, 'Descripcion', 1, 0, 'C', 1);
-    $pdf->cell(30, 10, 'Codigo producto', 1, 0, 'C', 1);
-    $pdf->cell(30, 10, 'Material', 1, 1, 'C', 1);
-    $pdf->cell(30, 10, 'Cantidad', 1, 1, 'C', 1);
+    $pdf->cell(58, 10, 'Nombre', 1, 0, 'C', 1);
+    $pdf->cell(58, 10, 'Usuario', 1, 0, 'C', 1);
+    $pdf->cell(58, 10, 'Cantidad', 1, 0, 'C', 1);
 
- 
+
+    $pdf->setFillColor(225);
     // Se establece la fuente para los datos de los productos.
     $pdf->setFont('Times', '', 11);
 
     // Se recorren los registros fila por fila.
     foreach ($dataProduct as $rowProduct) {
         // Se imprime una celda con el nombre del pedido.
-        $pdf->cell(0, 10, ('Producto: ' . $rowProduct['nombre_prodcuto']), 1, 1, 'C', 1);
-        $product = new Product;
+        $orders = new Order;
         // Se establece la categoría para obtener sus productos, de lo contrario se imprime un mensaje de error.
-        if ($details->setProducto($rowProduct['id_producto'])) {
+        if ($orders->setProducto($rowProduct['id_producto'])) {
             // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
             if ($dataDetails = $details->report()) {
                 // Se recorren los registros fila por fila.
                 foreach ($dataDetails as $rowDetails) {
                     // Se imprimen las celdas con los datos de los productos.
-                    $pdf->cell(30, 10, $pdf->encodeString($rowDetails['nombre_producto']), 1, 0);
-                    $pdf->cell(30, 10, $pdf->encodeString($rowDetails['descripcion_producto']), 1, 0);
-                    $pdf->cell(30, 10, $rowDetails['codigo_producto'], 1, 0);
-                    $pdf->cell(30, 10, $rowDetails['tipo_material'], 1, 0);
+                    $pdf->cell(30, 10, $pdf->encodeString($rowCustomers['nombre_cliente']), 1, 0);
+                    $pdf->cell(30, 10, $pdf->encodeString($rowCustomers['usuario_publico']), 1, 0);
                     $pdf->cell(30, 10, $rowDetails['cantidad'], 1, 0);
                 }
             } else {

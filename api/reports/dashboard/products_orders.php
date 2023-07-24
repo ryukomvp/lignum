@@ -32,7 +32,7 @@ if ($dataProduct = $product->readAll()) {
     // Se recorren los registros fila por fila.
     foreach ($dataProduct as $rowProduct) {
         // Se imprime una celda con el nombre del pedido.
-        $pdf->cell(0, 10, ('Producto: ' . $rowProduct['nombre_prodcuto']), 1, 1, 'C', 1);
+        $pdf->cell(0, 10, ('Producto: ' . $rowProduct['nombre_producto']), 1, 1, 'C', 1);
         $details = new Details;
         // Se establece la categoría para obtener sus productos, de lo contrario se imprime un mensaje de error.
         if ($details->setProducto($rowProduct['id_producto'])) {
@@ -41,10 +41,10 @@ if ($dataProduct = $product->readAll()) {
                 // Se recorren los registros fila por fila.
                 foreach ($dataDetails as $rowDetails) {
                     // Se imprimen las celdas con los datos de los productos.
-                    $pdf->cell(50, 10, $pdf->encodeString($rowDetails['nombre_producto']), 1, 0);
-                    $pdf->cell(90, 10, $pdf->encodeString($rowDetails['descripcion_producto']), 1, 0);
-                    $pdf->cell(18, 10, $rowDetails['codigo_producto'], 1, 0);
-                    $pdf->cell(24, 10, $rowDetails['tipo_material'], 1, 0);
+                    $pdf->cell(50, 10, $pdf->encodeString($rowProduct['nombre_producto']), 1, 0);
+                    $pdf->cell(90, 10, $pdf->encodeString($rowProduct['descripcion_producto']), 1, 0);
+                    $pdf->cell(18, 10, $rowProduct['codigo_producto'], 1, 0);
+                    $pdf->cell(24, 10, $rowProduct['id_tipo_material'], 1, 0);
                     $pdf->cell(14, 10, $rowDetails['cantidad'], 1, 0);
                 }
             } else {
