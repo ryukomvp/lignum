@@ -128,10 +128,10 @@ class UserQueries
     */
     public function usuariosAcceso()
     {
-        $sql = "SELECT CONCAT(nombre_empleado, ' ',apellido_empleado) AS 'Nombre completo', dui_empleado, usuario_privado, acceso FROM  usuario_privado
-                WHERE acceso = false
-                ORDER BY id_usuario_privado";
-        $params = array($this->material);
+        $sql = 'SELECT nombre_empleado, dui_empleado, usuario_privado FROM  usuario_privado
+                WHERE acceso = ?
+                ORDER BY id_usuario_privado';
+        $params = array($this->acceso);
         return Database::getRows($sql, $params);
     }
 }
