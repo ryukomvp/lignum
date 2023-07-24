@@ -34,7 +34,7 @@ if ($dataorder = $order->readAll()) {
         $pdf->cell(0, 10, $pdf->encodeString('producto: ' . $rowProduct['nombre_producto']), 1, 1, 'C', 1);
         $product = new Product;
         // Se establece la categoría para obtener sus productos, de lo contrario se imprime un mensaje de error.
-        if ($order->setProduct($rowProduct['id_producto'])) {
+        if ($order->setProducto($rowProduct['id_producto'])) {
             // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
             if ($dataOrder = $order->report()) {
                 // Se recorren los registros fila por fila.
@@ -50,7 +50,7 @@ if ($dataorder = $order->readAll()) {
                 $pdf->cell(0, 10, $pdf->encodeString('No hay productos para la categoría'), 1, 1);
             }
         } else {
-            $pdf->cell(0, 10, $pdf->encodeString('Ordenes incorrecta o inexistente'), 1, 1);
+            $pdf->cell(0, 10, $pdf->encodeString(' incorrecta o inexistente'), 1, 1);
         }
     }
 } else {

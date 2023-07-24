@@ -14,7 +14,11 @@ class Order extends OrderQueries
     protected $estado = null;
     protected $direccion = null;
     protected $fecha = null;
-    protected $product = null;
+    protected $detalle = null;
+    protected $producto = null;
+    protected $precio = null;
+    protected $cantidad = null;
+
 
 
     public function setId($value)
@@ -89,12 +93,42 @@ class Order extends OrderQueries
         }
     }
 
-    public function setProduct($value)
+    public function setDetalle($value)
     {
         if(Validator::validateNaturalNumber($value)){
-            $this->product = $value;
+            $this->detalle = $value;
             return true;
         }else{
+            return false;
+        }
+    }
+
+    public function setProducto($value)
+    {
+        if(Validator::validateNaturalNumber($value)){
+            $this->producto = $value;
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function setPrecio($value)
+    {
+        if (Validator::validateMoney($value)) {
+            $this->precio = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setCantidad($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->cantidad = $value;
+            return true;
+        } else {
             return false;
         }
     }
@@ -135,9 +169,19 @@ class Order extends OrderQueries
         return $this->fecha;
     }
 
-    public function getProduct()
+    public function getDetalle()
     {
-        return $this->product;
+        return $this->detalle;
+    }
+
+    public function getProducto()
+    {
+        return $this->producto;
+    }
+
+    public function getPrecio()
+    {
+        return $this->precio;
     }
 }
 
