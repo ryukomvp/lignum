@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     graficaBarProveedor();
     graficaPieMaterial();
     graficaDonaProductos();
-    graficoPolarPedidos();
+    graficoBarPedidos();
 });
 
 async function graficaBarProveedor() {
@@ -83,7 +83,7 @@ async function graficaDonaProductos() {
     }
 }
 
-async function graficoPolarPedidos() {
+async function graficoBarPedidos() {
     // Petición para obtener los datos del gráfico.
     const DATA = await dataFetch(PEDIDO_API, 'pedidosClientes');
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
@@ -98,6 +98,6 @@ async function graficoPolarPedidos() {
             cantidad2.push(row.cantidad);
         });
         // Llamada a la función que genera y muestra un gráfico de barras. Se encuentra en el archivo components.js
-        PolarGraph('chart4', clientes, cantidad2, '5 clientes con mas pedidos')
+        barGraph('chart4', clientes, cantidad2, 'Clientes', '5 Clientes con mas pedidos')
     }
 }
