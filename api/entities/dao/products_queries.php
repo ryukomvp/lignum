@@ -125,4 +125,22 @@ class ProductQueries
         $params = array($this->proveedor);
         return Database::getRows($sql, $params);
     }
+
+    public function productosMaterial()
+    {
+        $sql = 'SELECT tipo_material, ROUND((COUNT(id_producto) * 100.0 / (SELECT COUNT(id_producto) FROM producto)), 2) porcentaje FROM producto INNER JOIN tipo_material USING (id_tipo_material) GROUP BY tipo_material ORDER BY porcentaje DESC';
+        return Database::getRows($sql); 
+    }
+
+    public function productosProveedor()
+    {
+        $sql = 'SELECT nombre_proveedor, COUNT(id_producto) cantidad FROM producto INNER JOIN proveedor USING(id_proveedor) GROUP BY nombre_proveedor ORDER BY cantidad';
+        return Database::getRows($sql);
+    }
+    
+    public function productosVendidos()
+    {
+        $sql = 'SELECT nombre_producto, ROUND((COUNT(cantidad) * 100.0 / (SELECT COUNT(cantidad) FROM detalle_pedido)), 2) porcentaje FROM detalle_pedido INNER JOIN producto USING (id_producto) GROUP BY nombre_producto ORDER BY porcentaje LIMIT 5';
+        return Database::getRows($sql);
+    }
 }
