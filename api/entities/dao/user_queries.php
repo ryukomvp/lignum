@@ -122,4 +122,16 @@ class UserQueries
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
+
+    /*
+    *   Métodos para generar reportes.
+    */
+    public function usuariosAcceso()
+    {
+        $sql = "SELECT CONCAT(nombre_empleado, ' ',apellido_empleado) AS 'Nombre completo', dui_empleado, usuario_privado, acceso FROM  usuario_privado
+                WHERE acceso = false
+                ORDER BY id_usuario_privado";
+        $params = array($this->material);
+        return Database::getRows($sql, $params);
+    }
 }
