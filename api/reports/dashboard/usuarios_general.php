@@ -27,7 +27,6 @@ if ($dataUsuarios = $usuario->readAll()) {
     $pdf->setFont('Times', '', 11);
     // Se recorren los registros fila por fila.
     foreach ($dataUsuarios as $rowUsuario) {
-        ($rowUsuario['acceso']) ? $acceso = 'Permitido' : $acceso = 'Denegado';
         // Se imprime una celda con el titulo del acceso.
         $pdf->cell(0, 10, $pdf->encodeString('Acceso: ' . $rowUsuario['acceso']), 1, 1, 'C', 1);
         // Se establece la categoría para obtener sus productos, de lo contrario se imprime un mensaje de error.
@@ -42,14 +41,16 @@ if ($dataUsuarios = $usuario->readAll()) {
                     $pdf->cell(46.5, 10, $pdf->encodeString($rowUsuario['usuario_privado']), 1, 1);
                 }
             } else {
-                $pdf->cell(0, 10, $pdf->encodeString('No hay productos para la categoría'), 1, 1);
+                $pdf->cell(0, 10, $pdf->encodeString('No hay usuarios con este tipo de acceso'), 1, 1);
             }
         } else {
-            $pdf->cell(0, 10, $pdf->encodeString('Categoría incorrecta o inexistente'), 1, 1);
+            $pdf->cell(0, 10, $pdf->encodeString('Acceso incorrecto o inexistente'), 1, 1);
         }
     }
 } else {
-    $pdf->cell(0, 10, $pdf->encodeString('No hay categorías para mostrar'), 1, 1);
+    $pdf->cell(0, 10, $pdf->encodeString('No hay accesos para mostrar'), 1, 1);
 }
 // Se llama implícitamente al método footer() y se envía el documento al navegador web.
 $pdf->output('I', 'productos.pdf');
+
+// ($rowUsuario['acceso']) ? $acceso = 'Permitido' : $acceso = 'Denegado';
