@@ -44,7 +44,7 @@ if (isset($_GET['id_tipo_material'])) {
                 $pdf->cell(0, 10, $pdf->encodeString('No hay productos para el tipo de material'), 1, 1);
             }
             // Se llama implícitamente al método footer() y se envía el documento al navegador web.
-            $pdf->output('I', 'tipo_material.pdf');
+            $pdf->output('I', 'productos_tipo_material.pdf');
         } else {
             print('Tipo de material inexistente');
         }

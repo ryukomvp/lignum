@@ -44,7 +44,7 @@ if (isset($_GET['id_categoria'])) {
                 $pdf->cell(0, 10, $pdf->encodeString('No hay productos para la categoría seleccionada'), 1, 1);
             }
             // Se llama implícitamente al método footer() y se envía el documento al navegador web.
-            $pdf->output('I', 'categoria.pdf');
+            $pdf->output('I', 'productos_categoria.pdf');
         } else {
             print('Categoría inexistente');
         }

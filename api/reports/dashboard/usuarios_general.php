@@ -48,6 +48,6 @@ foreach ($dataAcceso as $indice => $valor) {
     }
 }
 // Se llama implícitamente al método footer() y se envía el documento al navegador web.
-$pdf->output('I', 'productos.pdf');
+$pdf->output('I', 'usuarios.pdf');
 
 // ($rowUsuario['acceso']) ? $acceso = 'Permitido' : $acceso = 'Denegado';
