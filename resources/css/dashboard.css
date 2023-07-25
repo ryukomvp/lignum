@@ -13,7 +13,7 @@ main {
     background-color: #1a120b;
 }
 
-h1{
+h1, h5, p{
     font-family: 'Times New Roman', Times, serif;
 }
 

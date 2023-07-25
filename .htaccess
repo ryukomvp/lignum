@@ -2,8 +2,8 @@
 # | Custom error messages/pages                                        |
 # ----------------------------------------------------------------------
 
-ErrorDocument 403 https://www.youtube.com/
-ErrorDocument 404 https://www.youtube.com/
+ErrorDocument 403 /lignum/resources/error/403.html
+ErrorDocument 404 /lignum/resources/error/404.html
 
 # ----------------------------------------------------------------------
 # | Character encodings                                                |
